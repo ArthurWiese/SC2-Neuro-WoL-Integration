@@ -2,6 +2,8 @@
 *
 
 !.gitignore
+!README.md
+!LICENSE
 
 !Mods/
 !Mods/NeuroIntegration.SC2Mod
