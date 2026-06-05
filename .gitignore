@@ -1,0 +1,17 @@
+# Ignore everything but the Mod and Maps files
+*
+
+!.gitignore
+
+!Mods/
+!Mods/NeuroIntegration.SC2Mod
+!Mods/NeuroIntegration.SC2Mod/*
+!Mods/NeuroIntegration.SC2Mod/*/*
+!Mods/NeuroIntegration.SC2Mod/*/*/*
+
+!Maps
+!Maps/Campaign
+!Maps/Campaign/*.SC2Map
+!Maps/Campaign/*.SC2Map/*
+!Maps/Campaign/*.SC2Map/*/*
+!Maps/Campaign/*.SC2Map/*/*/*
