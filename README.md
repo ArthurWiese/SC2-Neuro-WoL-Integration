@@ -1,4 +1,4 @@
-# SC2 Neuro Wings of Libery Integration
+# SC2 Neuro Wings of Liberty Integration
 A custom Wings of Liberty Campaign using the [SC2 Neuro API Integration](https://github.com/ArthurWiese/SC2-Neuro-API-Integration)
 
 Please report any issues and give feedback in the [Neuro-sama Discord]() under projects/SC2 Neuro WoL Integration or DM me
