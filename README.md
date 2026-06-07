@@ -12,7 +12,7 @@ Neuro also receives context of what is happening in-game and what characters are
 This is just an outline and nothing is set in stone yet. SC2 is very moddable, so there are a lot of possibilities of what can be done
 
 ## How to contribute
-Even if you just have an idea or want to give feedback, you can use the [SC2 Neuro WoL Integration Planner](https://docs.google.com/spreadsheets/d/1aMBb_p_7_Iz50ajwpbP28pfU4uuB_lrLls13Mwx0Uxs/edit?usp=sharing)!
+Even if you just have an idea or want to give feedback, you can use the [SC2 Neuro WoL Integration Plan](https://docs.google.com/spreadsheets/d/1aMBb_p_7_Iz50ajwpbP28pfU4uuB_lrLls13Mwx0Uxs/edit?usp=sharing)!
 
 ### Working on the integration
 If you want to contribute to the SC2 Neuro WoL Integration see [Neuro-sama Discord](https://discord.gg/5wbaxeAbQG) under Neuro-sama/projects/SC2 Neuro WoL Integration and tell me your Github account name or DM me and I will add you to the repo
@@ -29,7 +29,7 @@ This way the integration works when launching the WoL campaign in-game and can e
 4. You can now mod the campaign with the SC2 Editor
 
 ### Guidelines
-Any changes made to the game need to be documented in the [SC2 Neuro WoL Integration Planner](https://docs.google.com/spreadsheets/d/1aMBb_p_7_Iz50ajwpbP28pfU4uuB_lrLls13Mwx0Uxs/edit?usp=sharing) so everyone knows what the current state of the integration is and what has changed
+Any changes made to the game need to be documented in the [SC2 Neuro WoL Integration Plan](https://docs.google.com/spreadsheets/d/1aMBb_p_7_Iz50ajwpbP28pfU4uuB_lrLls13Mwx0Uxs/edit?usp=sharing) so everyone knows what the current state of the integration is and what has changed
 
 Overall the integration should not interfere with the story and important characters of the game and should work more like an addition to the game and not a replacement
 
