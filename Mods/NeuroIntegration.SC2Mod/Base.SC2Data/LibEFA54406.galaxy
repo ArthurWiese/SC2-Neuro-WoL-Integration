@@ -415,7 +415,6 @@ bool libEFA54406_gt_InitMap_Func (bool testConds, bool runActions) {
 
     TriggerExecute(libEFA54406_gt_CreateNeuroIntegrationbank, true, false);
     Wait(1.0, c_timeReal);
-    TriggerExecute(libEFA54406_gt_DisableAchievementsCheats, true, false);
     TriggerSendEvent("execute_actions_global");
     return true;
 }
