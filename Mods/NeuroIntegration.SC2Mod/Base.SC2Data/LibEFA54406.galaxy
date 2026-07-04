@@ -352,18 +352,21 @@ bool libEFA54406_gt_Executeactionsglobal_Func (bool testConds, bool runActions) 
     BankLoad("NeuroIntegration", 1);
     BankWait(BankLastCreated());
     libEFA54406_gv_currentbankbackupid = BankValueGetAsInt(BankLastCreated(), "game_state", "backup_bank_id");
-    libEFA54406_gv_displayNameString = BankValueGetAsString(BankLastCreated(), "game_state", "display_name");
-    auto89E4B579_val = libEFA54406_gv_displayNameString;
-    if (auto89E4B579_val == "Neuro-sama") {
-        libEFA54406_gv_displayNameText = StringExternal("Param/Value/lib_EFA54406_05755519");
+    if ((libEFA54406_gv_displayNameString != BankValueGetAsString(BankLastCreated(), "game_state", "display_name"))) {
+        libEFA54406_gv_displayNameString = BankValueGetAsString(BankLastCreated(), "game_state", "display_name");
+        auto89E4B579_val = libEFA54406_gv_displayNameString;
+        if (auto89E4B579_val == "Neuro-sama") {
+            libEFA54406_gv_displayNameText = StringExternal("Param/Value/lib_EFA54406_05755519");
+        }
+        else if (auto89E4B579_val == "Evil Neuro") {
+            libEFA54406_gv_displayNameText = StringExternal("Param/Value/lib_EFA54406_1B920E42");
+        }
+        else {
+            libEFA54406_gv_displayNameText = StringToText(libEFA54406_gv_displayNameString);
+            libEFA54406_gv_displayNameText = TextWithColor(libEFA54406_gv_displayNameText, Color(100.00, 50.20, 75.29));
+        }
     }
-    else if (auto89E4B579_val == "Evil Neuro") {
-        libEFA54406_gv_displayNameText = StringExternal("Param/Value/lib_EFA54406_1B920E42");
-    }
-    else {
-        libEFA54406_gv_displayNameText = StringToText(libEFA54406_gv_displayNameString);
-        libEFA54406_gv_displayNameText = TextWithColor(libEFA54406_gv_displayNameText, Color(100.00, 50.20, 75.29));
-    }
+
     if ((BankValueGetAsFlag(BankLastCreated(), "do_action", "chat_message") == true)) {
         UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, (libEFA54406_gv_displayNameText + StringToText(": ") + StringToText(BankValueGetAsString(BankLastCreated(), "do_action", "chat_message_arg_1"))));
         BankValueSetFromFlag(BankLastCreated(), "do_action", "chat_message", false);
