@@ -14,12 +14,20 @@ void libEFA54406_InitLibraries () {
 bool libEFA54406_InitVariables_completed = false;
 
 void libEFA54406_InitVariables () {
+    int init_i;
+
     if (libEFA54406_InitVariables_completed) {
         return;
     }
 
     libEFA54406_InitVariables_completed = true;
 
+    for (init_i = 0; init_i <= 20; init_i += 1) {
+        libEFA54406_gv_main_objectives[init_i] = c_invalidObjectiveId;
+    }
+    for (init_i = 0; init_i <= 20; init_i += 1) {
+        libEFA54406_gv_bonus_objectives[init_i] = c_invalidObjectiveId;
+    }
     libEFA54406_gv_bankwriteallowed = true;
     libEFA54406_gv_displayNameString = "Neuro-sama";
     libEFA54406_gv_displayNameText = StringExternal("Param/Value/lib_EFA54406_27B19F2C");
@@ -301,6 +309,111 @@ bool auto_libEFA54406_gf_create_context_TriggerFunc (bool testConds, bool runAct
     return true;
 }
 
+trigger auto_libEFA54406_gf_ObjectiveContext_Trigger = null;
+bool auto_libEFA54406_gf_ObjectiveContext_lp_is_update;
+
+void libEFA54406_gf_ObjectiveContext (bool lp_is_update) {
+    auto_libEFA54406_gf_ObjectiveContext_lp_is_update = lp_is_update;
+
+    if (auto_libEFA54406_gf_ObjectiveContext_Trigger == null) {
+        auto_libEFA54406_gf_ObjectiveContext_Trigger = TriggerCreate("auto_libEFA54406_gf_ObjectiveContext_TriggerFunc");
+    }
+
+    TriggerExecute(auto_libEFA54406_gf_ObjectiveContext_Trigger, false, false);
+}
+
+bool auto_libEFA54406_gf_ObjectiveContext_TriggerFunc (bool testConds, bool runActions) {
+    bool lp_is_update = auto_libEFA54406_gf_ObjectiveContext_lp_is_update;
+
+    // Variable Declarations
+    int lv_objective_index;
+    string lv_objective_context_update;
+    string lv_objective_context;
+    string lv_objective_context_bonus;
+    int lv_lookat_objective;
+    text lv_objective_text;
+    text lv_objective_description;
+    bool lv_atleastone_objective_main;
+    bool lv_atleastone_objective_bonus;
+
+    // Automatic Variable Declarations
+    const int auto66E8E2BA_ae = 19;
+    const int auto66E8E2BA_ai = 1;
+    int auto7227BC47_val;
+    const int autoEEA35E46_ae = 19;
+    const int autoEEA35E46_ai = 1;
+    int autoAB0FBD43_val;
+
+    // Variable Initialization
+    lv_objective_context_update = "";
+    lv_objective_context = "";
+    lv_objective_context_bonus = "";
+    lv_lookat_objective = c_invalidObjectiveId;
+
+    // Implementation
+    if ((lp_is_update == true)) {
+        lv_objective_context_update = "Updated mission objective(s): ";
+    }
+
+    lv_objective_context = "Main objective(s): ";
+    lv_objective_index = 0;
+    for ( ; ( (auto66E8E2BA_ai >= 0 && lv_objective_index <= auto66E8E2BA_ae) || (auto66E8E2BA_ai < 0 && lv_objective_index >= auto66E8E2BA_ae) ) ; lv_objective_index += auto66E8E2BA_ai ) {
+        lv_lookat_objective = libEFA54406_gv_main_objectives[lv_objective_index];
+        if ((lv_lookat_objective != c_invalidObjectiveId) && (ObjectiveVisible(lv_lookat_objective, 1) == true)) {
+            lv_atleastone_objective_main = true;
+            auto7227BC47_val = ObjectiveGetState(lv_lookat_objective);
+            if (auto7227BC47_val == c_objectiveStateCompleted) {
+                lv_objective_context = lv_objective_context + "COMPLETED - ";
+            }
+            else if (auto7227BC47_val == c_objectiveStateFailed) {
+                lv_objective_context = lv_objective_context + "FAILED - ";
+            }
+            else {
+            }
+            lv_objective_text = ObjectiveGetName(lv_lookat_objective);
+            lv_objective_description = ObjectiveGetDescription(lv_lookat_objective);
+            lv_objective_context = lv_objective_context + TextToString(lv_objective_text) + " - " + TextToString(lv_objective_description) + "; ";
+        }
+
+    }
+    lv_objective_context_bonus = "Bonus objective(s): ";
+    lv_objective_index = 0;
+    for ( ; ( (autoEEA35E46_ai >= 0 && lv_objective_index <= autoEEA35E46_ae) || (autoEEA35E46_ai < 0 && lv_objective_index >= autoEEA35E46_ae) ) ; lv_objective_index += autoEEA35E46_ai ) {
+        lv_lookat_objective = libEFA54406_gv_bonus_objectives[lv_objective_index];
+        if ((lv_lookat_objective != c_invalidObjectiveId) && (ObjectiveVisible(lv_lookat_objective, 1) == true)) {
+            lv_atleastone_objective_bonus = true;
+            autoAB0FBD43_val = ObjectiveGetState(lv_lookat_objective);
+            if (autoAB0FBD43_val == c_objectiveStateCompleted) {
+                lv_objective_context_bonus = lv_objective_context_bonus + "COMPLETED - ";
+            }
+            else if (autoAB0FBD43_val == c_objectiveStateFailed) {
+                lv_objective_context_bonus = lv_objective_context_bonus + "FAILED - ";
+            }
+            else {
+            }
+            lv_objective_text = ObjectiveGetName(lv_lookat_objective);
+            lv_objective_description = ObjectiveGetDescription(lv_lookat_objective);
+            lv_objective_context_bonus = lv_objective_context_bonus + TextToString(lv_objective_text) + " - " + TextToString(lv_objective_description) + "; ";
+        }
+
+    }
+    if ((lv_atleastone_objective_main == false) && (lv_atleastone_objective_bonus == false)) {
+        libEFA54406_gf_create_context("mission_objective", lv_objective_context_update + "There is no active mission objective", true);
+        return true;
+    }
+
+    if ((lv_atleastone_objective_main == false)) {
+        lv_objective_context = "";
+    }
+
+    if ((lv_atleastone_objective_bonus == false)) {
+        lv_objective_context_bonus = "";
+    }
+
+    libEFA54406_gf_create_context("mission_objective", lv_objective_context_update + lv_objective_context + lv_objective_context_bonus, true);
+    return true;
+}
+
 trigger auto_libEFA54406_gf_UnblockCommands_Trigger = null;
 bool auto_libEFA54406_gf_UnblockCommands_lp_clear_queue;
 
@@ -352,6 +465,15 @@ bool libEFA54406_gt_Executeactionsglobal_Func (bool testConds, bool runActions) 
     BankLoad("NeuroIntegration", 1);
     BankWait(BankLastCreated());
     libEFA54406_gv_currentbankbackupid = BankValueGetAsInt(BankLastCreated(), "game_state", "backup_bank_id");
+    if ((BankValueGetAsFlag(BankLastCreated(), "game_state", "startup_context") == true)) {
+        BankValueSetFromFlag(BankLastCreated(), "game_state", "startup_context", false);
+        TriggerSendEvent("startup_context");
+        if ((libEFA54406_gv_is_intermission == false)) {
+            libEFA54406_gf_ObjectiveContext(false);
+        }
+
+    }
+
     if ((libEFA54406_gv_displayNameString != BankValueGetAsString(BankLastCreated(), "game_state", "display_name"))) {
         libEFA54406_gv_displayNameString = BankValueGetAsString(BankLastCreated(), "game_state", "display_name");
         auto89E4B579_val = libEFA54406_gv_displayNameString;
@@ -368,8 +490,13 @@ bool libEFA54406_gt_Executeactionsglobal_Func (bool testConds, bool runActions) 
     }
 
     if ((BankValueGetAsFlag(BankLastCreated(), "do_action", "chat_message") == true)) {
-        UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, (libEFA54406_gv_displayNameText + StringToText(": ") + StringToText(BankValueGetAsString(BankLastCreated(), "do_action", "chat_message_arg_1"))));
         BankValueSetFromFlag(BankLastCreated(), "do_action", "chat_message", false);
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, (libEFA54406_gv_displayNameText + StringToText(": ") + StringToText(BankValueGetAsString(BankLastCreated(), "do_action", "chat_message_arg_1"))));
+    }
+
+    if ((BankValueGetAsFlag(BankLastCreated(), "do_action", "get_objectives") == true)) {
+        BankValueSetFromFlag(BankLastCreated(), "do_action", "get_objectives", false);
+        libEFA54406_gf_ObjectiveContext(false);
     }
 
     BankSave(BankLastCreated());
@@ -467,6 +594,11 @@ bool libEFA54406_gt_CreateNeuroIntegrationbank_Func (bool testConds, bool runAct
     BankSave(BankLastCreated());
     TriggerExecute(libEFA54406_gt_ClearQueue, true, false);
     libEFA54406_gf_create_action_1_arg("chat_message", true, "Post a message into the game chat", "string", -1);
+    Wait(0.5, c_timeReal);
+    if ((libEFA54406_gv_is_intermission == false)) {
+        libEFA54406_gf_create_action_0_arg("get_objectives", true, "Get the current mission objectives", -1);
+    }
+
     return true;
 }
 

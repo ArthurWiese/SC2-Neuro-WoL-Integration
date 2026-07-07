@@ -4,11 +4,14 @@ include "TriggerLibs/natives"
 // Library: NeuroLib
 //--------------------------------------------------------------------------------------------------
 // Variable Declarations
+int[21] libEFA54406_gv_main_objectives;
+int[21] libEFA54406_gv_bonus_objectives;
 bool libEFA54406_gv_bankwriteallowed;
 bank libEFA54406_gv_neuroIntegration;
 int libEFA54406_gv_currentbankbackupid;
 string libEFA54406_gv_displayNameString;
 text libEFA54406_gv_displayNameText;
+bool libEFA54406_gv_is_intermission;
 
 // Function Declarations
 void libEFA54406_gf_create_action_0_arg (string lp_action_name, bool lp_action_active, string lp_action_description, int lp_action_uses);
@@ -17,6 +20,7 @@ void libEFA54406_gf_create_action_2_arg (string lp_action_name, bool lp_action_a
 void libEFA54406_gf_create_action_3_arg (string lp_action_name, bool lp_action_active, string lp_action_description, string lp_action_argument_1_type, string lp_action_argument_2_type, string lp_action_argument_3_type, int lp_action_uses);
 void libEFA54406_gf_create_force_action (string lp_force_action_name, string lp_actions, string lp_state, string lp_query, bool lp_ephemeral_context, string lp_priority);
 void libEFA54406_gf_create_context (string lp_context_name, string lp_context, bool lp_silent);
+void libEFA54406_gf_ObjectiveContext (bool lp_is_update);
 void libEFA54406_gf_UnblockCommands (bool lp_clear_queue);
 
 // Trigger Declarations
