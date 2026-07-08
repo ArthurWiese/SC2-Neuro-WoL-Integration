@@ -22,12 +22,14 @@ void libEFA54406_InitVariables () {
 
     libEFA54406_InitVariables_completed = true;
 
+    libEFA54406_gv_nothing_selected_context = true;
     for (init_i = 0; init_i <= 20; init_i += 1) {
         libEFA54406_gv_main_objectives[init_i] = c_invalidObjectiveId;
     }
     for (init_i = 0; init_i <= 20; init_i += 1) {
         libEFA54406_gv_bonus_objectives[init_i] = c_invalidObjectiveId;
     }
+    libEFA54406_gv_previous_selected_units = UnitGroupEmpty();
     libEFA54406_gv_bankwriteallowed = true;
     libEFA54406_gv_displayNameString = "Neuro-sama";
     libEFA54406_gv_displayNameText = StringExternal("Param/Value/lib_EFA54406_27B19F2C");
@@ -467,11 +469,7 @@ bool libEFA54406_gt_Executeactionsglobal_Func (bool testConds, bool runActions) 
     libEFA54406_gv_currentbankbackupid = BankValueGetAsInt(BankLastCreated(), "game_state", "backup_bank_id");
     if ((BankValueGetAsFlag(BankLastCreated(), "game_state", "startup_context") == true)) {
         BankValueSetFromFlag(BankLastCreated(), "game_state", "startup_context", false);
-        TriggerSendEvent("startup_context");
-        if ((libEFA54406_gv_is_intermission == false)) {
-            libEFA54406_gf_ObjectiveContext(false);
-        }
-
+        TriggerExecute(libEFA54406_gt_StartupContext, true, false);
     }
 
     if ((libEFA54406_gv_displayNameString != BankValueGetAsString(BankLastCreated(), "game_state", "display_name"))) {
@@ -500,6 +498,10 @@ bool libEFA54406_gt_Executeactionsglobal_Func (bool testConds, bool runActions) 
     }
 
     BankSave(BankLastCreated());
+    if ((libEFA54406_gv_is_intermission == false)) {
+        TriggerExecute(libEFA54406_gt_PlayerSelectedUnitsContextCompare, true, false);
+    }
+
     TriggerSendEvent("execute_actions_map");
     return true;
 }
@@ -531,6 +533,29 @@ void libEFA54406_gt_Stopexecutionglobal_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: Startup Context
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_StartupContext_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerSendEvent("startup_context");
+    if ((libEFA54406_gv_is_intermission == false)) {
+        libEFA54406_gf_ObjectiveContext(false);
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_StartupContext_Init () {
+    libEFA54406_gt_StartupContext = TriggerCreate("libEFA54406_gt_StartupContext_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: Player chat message
 //--------------------------------------------------------------------------------------------------
 bool libEFA54406_gt_Playerchatmessage_Func (bool testConds, bool runActions) {
@@ -548,6 +573,263 @@ bool libEFA54406_gt_Playerchatmessage_Func (bool testConds, bool runActions) {
 void libEFA54406_gt_Playerchatmessage_Init () {
     libEFA54406_gt_Playerchatmessage = TriggerCreate("libEFA54406_gt_Playerchatmessage_Func");
     TriggerAddEventChatMessage(libEFA54406_gt_Playerchatmessage, c_playerAny, "", false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Player Selected Units Context Compare
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_PlayerSelectedUnitsContextCompare_Func (bool testConds, bool runActions) {
+    int init_i;
+
+    // Variable Declarations
+    text lv_name_of_unit;
+    string lv_name_of_unit_string;
+    string lv_name_of_unit_string_previous;
+    string lv_name_of_unit_string_health;
+    string lv_name_of_unit_string_shield;
+    int lv_unit_max_health;
+    int lv_unit_health;
+    int lv_unit_max_shield;
+    int lv_unit_shield;
+    unit lv_selected_unit;
+    int lv_number_of_selected_unit;
+    unitgroup lv_selected_units;
+    bool lv_is_new_selected_units;
+    bool lv_at_least_one_selected;
+    int lv_owner_of_selected_unit;
+    string[51] lv_selected_units_unique;
+    string[51] lv_selected_units_unique_search_string;
+    string[51] lv_selected_units_unique_search_string_shield;
+    string[51] lv_selected_units_unique_health;
+    string[51] lv_selected_units_unique_shield;
+    int lv_unique_index;
+    string lv_unique_prefix;
+    string lv_replace_string;
+    string lv_selected_units_context;
+
+    // Automatic Variable Declarations
+    unitgroup autoA38AA6AF_g;
+    int autoA38AA6AF_u;
+    unitgroup autoCDA5D3EE_g;
+    int autoCDA5D3EE_u;
+    unitgroup auto7FE69E01_g;
+    int auto7FE69E01_u;
+    unitgroup auto79A014C4_g;
+    int auto79A014C4_u;
+    unitgroup auto9963A157_g;
+    int auto9963A157_u;
+    const int autoD5E30300_ae = 49;
+    const int autoD5E30300_ai = 1;
+
+    // Variable Initialization
+    lv_name_of_unit_string = "";
+    lv_name_of_unit_string_previous = "";
+    lv_name_of_unit_string_health = "";
+    lv_name_of_unit_string_shield = "";
+    lv_selected_units = UnitGroupEmpty();
+    for (init_i = 0; init_i <= 50; init_i += 1) {
+        lv_selected_units_unique[init_i] = "";
+    }
+    for (init_i = 0; init_i <= 50; init_i += 1) {
+        lv_selected_units_unique_search_string[init_i] = "";
+    }
+    for (init_i = 0; init_i <= 50; init_i += 1) {
+        lv_selected_units_unique_search_string_shield[init_i] = "";
+    }
+    for (init_i = 0; init_i <= 50; init_i += 1) {
+        lv_selected_units_unique_health[init_i] = "";
+    }
+    for (init_i = 0; init_i <= 50; init_i += 1) {
+        lv_selected_units_unique_shield[init_i] = "";
+    }
+    lv_unique_prefix = "";
+    lv_replace_string = "";
+    lv_selected_units_context = "";
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    Wait(0.3, c_timeReal);
+    lv_selected_units = UnitGroupSelected(1);
+    autoA38AA6AF_g = lv_selected_units;
+    autoA38AA6AF_u = UnitGroupCount(autoA38AA6AF_g, c_unitCountAll);
+    for (;; autoA38AA6AF_u -= 1) {
+        lv_selected_unit = UnitGroupUnitFromEnd(autoA38AA6AF_g, autoA38AA6AF_u);
+        if (lv_selected_unit == null) { break; }
+        libEFA54406_gv_nothing_selected_context = false;
+        lv_at_least_one_selected = true;
+        lv_name_of_unit = UnitGetName(lv_selected_unit);
+        lv_name_of_unit_string = TextToString(lv_name_of_unit);
+        if ((DataTableValueExists(true, lv_name_of_unit_string) == true)) {
+            DataTableSetInt(true, lv_name_of_unit_string, (DataTableGetInt(true, lv_name_of_unit_string) + 1));
+        }
+        else {
+            DataTableSetInt(true, lv_name_of_unit_string, 1);
+        }
+    }
+    autoCDA5D3EE_g = lv_selected_units;
+    autoCDA5D3EE_u = UnitGroupCount(autoCDA5D3EE_g, c_unitCountAll);
+    for (;; autoCDA5D3EE_u -= 1) {
+        lv_selected_unit = UnitGroupUnitFromEnd(autoCDA5D3EE_g, autoCDA5D3EE_u);
+        if (lv_selected_unit == null) { break; }
+        lv_name_of_unit = UnitGetName(lv_selected_unit);
+        lv_name_of_unit_string = TextToString(lv_name_of_unit);
+        lv_name_of_unit_string_previous = (lv_name_of_unit_string + "_previous");
+        if ((lv_is_new_selected_units == false) && (DataTableValueExists(true, lv_name_of_unit_string_previous) == true) && (DataTableGetInt(true, lv_name_of_unit_string) == DataTableGetInt(true, lv_name_of_unit_string_previous))) {
+        }
+        else {
+            lv_is_new_selected_units = true;
+        }
+    }
+    auto7FE69E01_g = libEFA54406_gv_previous_selected_units;
+    auto7FE69E01_u = UnitGroupCount(auto7FE69E01_g, c_unitCountAll);
+    for (;; auto7FE69E01_u -= 1) {
+        lv_selected_unit = UnitGroupUnitFromEnd(auto7FE69E01_g, auto7FE69E01_u);
+        if (lv_selected_unit == null) { break; }
+        lv_name_of_unit = UnitGetName(lv_selected_unit);
+        lv_name_of_unit_string = TextToString(lv_name_of_unit);
+        lv_name_of_unit_string_previous = (lv_name_of_unit_string + "_previous");
+        if ((DataTableValueExists(true, lv_name_of_unit_string) == false)) {
+            lv_is_new_selected_units = true;
+            if ((DataTableValueExists(true, lv_name_of_unit_string_previous) == true)) {
+                DataTableValueRemove(true, lv_name_of_unit_string_previous);
+            }
+
+        }
+
+    }
+    if ((lv_at_least_one_selected == false)) {
+        if ((libEFA54406_gv_nothing_selected_context == false)) {
+            libEFA54406_gf_create_context("player_selected_units", "Player has no unit(s) selected", true);
+            libEFA54406_gv_nothing_selected_context = true;
+        }
+
+    }
+
+    if ((lv_is_new_selected_units == false)) {
+        auto79A014C4_g = lv_selected_units;
+        auto79A014C4_u = UnitGroupCount(auto79A014C4_g, c_unitCountAll);
+        for (;; auto79A014C4_u -= 1) {
+            lv_selected_unit = UnitGroupUnitFromEnd(auto79A014C4_g, auto79A014C4_u);
+            if (lv_selected_unit == null) { break; }
+            lv_name_of_unit = UnitGetName(lv_selected_unit);
+            lv_name_of_unit_string = TextToString(lv_name_of_unit);
+            if ((DataTableValueExists(true, lv_name_of_unit_string) == true)) {
+                DataTableValueRemove(true, lv_name_of_unit_string);
+            }
+
+        }
+        return true;
+    }
+
+    lv_selected_units_context = "Player selected unit(s): ";
+    libEFA54406_gv_previous_selected_units = lv_selected_units;
+    auto9963A157_g = lv_selected_units;
+    auto9963A157_u = UnitGroupCount(auto9963A157_g, c_unitCountAll);
+    for (;; auto9963A157_u -= 1) {
+        lv_selected_unit = UnitGroupUnitFromEnd(auto9963A157_g, auto9963A157_u);
+        if (lv_selected_unit == null) { break; }
+        lv_name_of_unit = UnitGetName(lv_selected_unit);
+        lv_name_of_unit_string = TextToString(lv_name_of_unit);
+        lv_name_of_unit_string_previous = (lv_name_of_unit_string + "_previous");
+        lv_name_of_unit_string_health = (lv_name_of_unit_string + "_health");
+        lv_name_of_unit_string_shield = (lv_name_of_unit_string + "_shield");
+        lv_unit_max_health = UnitGetPropertyInt(lv_selected_unit, c_unitPropLifeMax, c_unitPropCurrent);
+        lv_unit_health = UnitGetPropertyInt(lv_selected_unit, c_unitPropLife, c_unitPropCurrent);
+        lv_unit_max_shield = UnitGetPropertyInt(lv_selected_unit, c_unitPropShieldsMax, c_unitPropCurrent);
+        lv_unit_shield = UnitGetPropertyInt(lv_selected_unit, c_unitPropShields, c_unitPropCurrent);
+        if ((StringContains(lv_selected_units_context, " " + lv_name_of_unit_string, c_stringAnywhere, c_stringCase) == true)) {
+            if ((DataTableValueExists(true, lv_name_of_unit_string_health) == true)) {
+                DataTableSetString(true, lv_name_of_unit_string_health, (DataTableGetString(true, lv_name_of_unit_string_health) + ", " + IntToString(lv_unit_health)));
+            }
+            else {
+                DataTableSetString(true, lv_name_of_unit_string_health, IntToString(lv_unit_health));
+            }
+            if ((lv_unit_max_shield == 0)) {
+            }
+            else {
+                if ((DataTableValueExists(true, lv_name_of_unit_string_shield) == true)) {
+                    DataTableSetString(true, lv_name_of_unit_string_shield, (DataTableGetString(true, lv_name_of_unit_string_shield) + ", " + IntToString(lv_unit_shield)));
+                }
+                else {
+                    DataTableSetString(true, lv_name_of_unit_string_shield, IntToString(lv_unit_shield));
+                }
+            }
+        }
+        else {
+            lv_owner_of_selected_unit = UnitGetOwner(lv_selected_unit);
+            if ((lv_owner_of_selected_unit != 1)) {
+                if ((libNtve_gf_PlayerIsEnemy(1, lv_owner_of_selected_unit, libNtve_ge_PlayerRelation_Enemy) == true)) {
+                    lv_selected_units_context = lv_selected_units_context + "ENEMY - ";
+                }
+                else if ((libNtve_gf_PlayerIsEnemy(1, lv_owner_of_selected_unit, libNtve_ge_PlayerRelation_Neutral) == true)) {
+                    lv_selected_units_context = lv_selected_units_context + "NEUTRAL - ";
+                }
+                else if ((libNtve_gf_PlayerIsEnemy(1, lv_owner_of_selected_unit, libNtve_ge_PlayerRelation_Ally) == true)) {
+                    lv_selected_units_context = lv_selected_units_context + "ALLY - ";
+                }
+            }
+
+            lv_number_of_selected_unit = DataTableGetInt(true, lv_name_of_unit_string);
+            if ((lv_number_of_selected_unit == 1)) {
+                lv_selected_units_context = lv_selected_units_context + lv_name_of_unit_string;
+            }
+            else {
+                lv_selected_units_context = lv_selected_units_context + IntToString(lv_number_of_selected_unit) + " " + lv_name_of_unit_string;
+            }
+            lv_selected_units_context = lv_selected_units_context + " - Life: " + IntToString(lv_unit_health) + "/" + IntToString(lv_unit_max_health);
+            lv_selected_units_unique[lv_unique_index] = lv_name_of_unit_string;
+            lv_selected_units_unique_search_string[lv_unique_index] = lv_name_of_unit_string + " - Life: " + IntToString(lv_unit_health) + "/" + IntToString(lv_unit_max_health);
+            lv_selected_units_unique_health[lv_unique_index] = ", " + IntToString(lv_unit_health) + "/" + IntToString(lv_unit_max_health);
+            if ((lv_unit_max_shield == 0)) {
+                lv_selected_units_context = lv_selected_units_context + "; ";
+            }
+            else {
+                lv_selected_units_context = lv_selected_units_context + " - Shield: " + IntToString(lv_unit_shield) + "/" + IntToString(lv_unit_max_shield) + "; ";
+                lv_selected_units_unique_search_string_shield[lv_unique_index] = (lv_selected_units_unique_search_string[lv_unique_index] + " - Shield: " + IntToString(lv_unit_shield) + "/" + IntToString(lv_unit_max_shield));
+                lv_selected_units_unique_shield[lv_unique_index] = ", " + IntToString(lv_unit_shield) + "/" + IntToString(lv_unit_max_shield);
+            }
+            DataTableSetInt(true, lv_name_of_unit_string_previous, DataTableGetInt(true, lv_name_of_unit_string));
+            DataTableValueRemove(true, lv_name_of_unit_string);
+            lv_unique_index = (lv_unique_index + 1);
+        }
+    }
+    lv_unique_index = 0;
+    for ( ; ( (autoD5E30300_ai >= 0 && lv_unique_index <= autoD5E30300_ae) || (autoD5E30300_ai < 0 && lv_unique_index >= autoD5E30300_ae) ) ; lv_unique_index += autoD5E30300_ai ) {
+        lv_name_of_unit_string = lv_selected_units_unique[lv_unique_index];
+        if ((lv_name_of_unit_string != "")) {
+            lv_unique_prefix = lv_name_of_unit_string + " - Life: ";
+            lv_name_of_unit_string_health = (lv_name_of_unit_string + "_health");
+            lv_name_of_unit_string_shield = (lv_name_of_unit_string + "_shield");
+            if ((DataTableValueExists(true, lv_name_of_unit_string_health) == true)) {
+                lv_replace_string = (lv_unique_prefix + DataTableGetString(true, lv_name_of_unit_string_health) + lv_selected_units_unique_health[lv_unique_index]);
+                lv_selected_units_context = StringReplaceWord(lv_selected_units_context, lv_selected_units_unique_search_string[lv_unique_index], lv_unique_prefix, c_stringReplaceAll, c_stringCase);
+                lv_selected_units_context = StringReplaceWord(lv_selected_units_context, lv_unique_prefix, lv_replace_string, c_stringReplaceAll, c_stringCase);
+                DataTableValueRemove(true, lv_name_of_unit_string_health);
+            }
+
+            if ((DataTableValueExists(true, lv_name_of_unit_string_shield) == true)) {
+                lv_selected_units_unique_search_string_shield[lv_unique_index] = StringReplaceWord(lv_selected_units_unique_search_string_shield[lv_unique_index], lv_selected_units_unique_search_string[lv_unique_index], lv_unique_prefix, c_stringReplaceAll, c_stringCase);
+                lv_selected_units_unique_search_string_shield[lv_unique_index] = StringReplaceWord(lv_selected_units_unique_search_string_shield[lv_unique_index], lv_unique_prefix, lv_replace_string, c_stringReplaceAll, c_stringCase);
+                lv_unique_prefix = lv_replace_string + " - Shield: ";
+                lv_replace_string = (lv_unique_prefix + DataTableGetString(true, lv_name_of_unit_string_shield) + lv_selected_units_unique_shield[lv_unique_index]);
+                lv_selected_units_context = StringReplaceWord(lv_selected_units_context, lv_selected_units_unique_search_string_shield[lv_unique_index], lv_unique_prefix, c_stringReplaceAll, c_stringCase);
+                lv_selected_units_context = StringReplaceWord(lv_selected_units_context, lv_unique_prefix, lv_replace_string, c_stringReplaceAll, c_stringCase);
+                DataTableValueRemove(true, lv_name_of_unit_string_shield);
+            }
+
+        }
+
+    }
+    libEFA54406_gf_create_context("player_selected_units", lv_selected_units_context, true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_PlayerSelectedUnitsContextCompare_Init () {
+    libEFA54406_gt_PlayerSelectedUnitsContextCompare = TriggerCreate("libEFA54406_gt_PlayerSelectedUnitsContextCompare_Func");
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -743,6 +1025,8 @@ bool libEFA54406_gt_InitLoad_Func (bool testConds, bool runActions) {
     BankSave(libEFA54406_gv_neuroIntegration);
     Wait(1.0, c_timeReal);
     TriggerSendEvent("execute_actions_global");
+    Wait(0.3, c_timeReal);
+    TriggerExecute(libEFA54406_gt_StartupContext, true, false);
     return true;
 }
 
@@ -795,7 +1079,9 @@ void libEFA54406_gt_Savebackupbank_Init () {
 void libEFA54406_InitTriggers () {
     libEFA54406_gt_Executeactionsglobal_Init();
     libEFA54406_gt_Stopexecutionglobal_Init();
+    libEFA54406_gt_StartupContext_Init();
     libEFA54406_gt_Playerchatmessage_Init();
+    libEFA54406_gt_PlayerSelectedUnitsContextCompare_Init();
     libEFA54406_gt_InitMap_Init();
     libEFA54406_gt_CreateNeuroIntegrationbank_Init();
     libEFA54406_gt_DisableAchievementsCheats_Init();

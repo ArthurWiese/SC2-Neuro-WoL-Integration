@@ -4,8 +4,10 @@ include "TriggerLibs/natives"
 // Library: NeuroLib
 //--------------------------------------------------------------------------------------------------
 // Variable Declarations
+bool libEFA54406_gv_nothing_selected_context;
 int[21] libEFA54406_gv_main_objectives;
 int[21] libEFA54406_gv_bonus_objectives;
+unitgroup libEFA54406_gv_previous_selected_units;
 bool libEFA54406_gv_bankwriteallowed;
 bank libEFA54406_gv_neuroIntegration;
 int libEFA54406_gv_currentbankbackupid;
@@ -26,7 +28,9 @@ void libEFA54406_gf_UnblockCommands (bool lp_clear_queue);
 // Trigger Declarations
 trigger libEFA54406_gt_Executeactionsglobal;
 trigger libEFA54406_gt_Stopexecutionglobal;
+trigger libEFA54406_gt_StartupContext;
 trigger libEFA54406_gt_Playerchatmessage;
+trigger libEFA54406_gt_PlayerSelectedUnitsContextCompare;
 trigger libEFA54406_gt_InitMap;
 trigger libEFA54406_gt_CreateNeuroIntegrationbank;
 trigger libEFA54406_gt_DisableAchievementsCheats;
