@@ -8,12 +8,27 @@ bool libEFA54406_gv_nothing_selected_context;
 int[21] libEFA54406_gv_main_objectives;
 int[21] libEFA54406_gv_bonus_objectives;
 unitgroup libEFA54406_gv_previous_selected_units;
+bool libEFA54406_gv_player_moved_selected_units;
+bool libEFA54406_gv_player_hold_selected_units;
+bool libEFA54406_gv_player_patrol_selected_units;
+bool libEFA54406_gv_player_stop_selected_units;
+bool libEFA54406_gv_player_attack_selected_units;
+string libEFA54406_gv_attacked_unit;
+string[21] libEFA54406_gv_enemy_killed_by_player;
+string[21] libEFA54406_gv_allied_killed_by_player;
+string[21] libEFA54406_gv_neutral_killed_by_player;
+string[21] libEFA54406_gv_player_killed_by_player;
+string[21] libEFA54406_gv_player_killed_by_enemy;
+bool libEFA54406_gv_selected_units_context_cd;
+bool libEFA54406_gv_entered_combat;
+bool libEFA54406_gv_entered_combat_context_cd;
 bool libEFA54406_gv_bankwriteallowed;
 bank libEFA54406_gv_neuroIntegration;
 int libEFA54406_gv_currentbankbackupid;
 string libEFA54406_gv_displayNameString;
 text libEFA54406_gv_displayNameText;
 bool libEFA54406_gv_is_intermission;
+bool libEFA54406_gv_is_victory;
 
 // Function Declarations
 void libEFA54406_gf_create_action_0_arg (string lp_action_name, bool lp_action_active, string lp_action_description, int lp_action_uses);
@@ -22,15 +37,29 @@ void libEFA54406_gf_create_action_2_arg (string lp_action_name, bool lp_action_a
 void libEFA54406_gf_create_action_3_arg (string lp_action_name, bool lp_action_active, string lp_action_description, string lp_action_argument_1_type, string lp_action_argument_2_type, string lp_action_argument_3_type, int lp_action_uses);
 void libEFA54406_gf_create_force_action (string lp_force_action_name, string lp_actions, string lp_state, string lp_query, bool lp_ephemeral_context, string lp_priority);
 void libEFA54406_gf_create_context (string lp_context_name, string lp_context, bool lp_silent);
+void libEFA54406_gf_PlayerUnitsContext (string lp_requested_units);
 void libEFA54406_gf_ObjectiveContext (bool lp_is_update);
+void libEFA54406_gf_VictoryScreenContext (text lp_mission_summary, int lp_mission);
 void libEFA54406_gf_UnblockCommands (bool lp_clear_queue);
 
 // Trigger Declarations
 trigger libEFA54406_gt_Executeactionsglobal;
 trigger libEFA54406_gt_Stopexecutionglobal;
 trigger libEFA54406_gt_StartupContext;
+trigger libEFA54406_gt_VictoryAchieved;
+trigger libEFA54406_gt_PlayerActivityContext;
 trigger libEFA54406_gt_Playerchatmessage;
+trigger libEFA54406_gt_UnitAbility;
+trigger libEFA54406_gt_UnitAbilityContext;
+trigger libEFA54406_gt_UnitDies;
+trigger libEFA54406_gt_UnitDiesContext;
+trigger libEFA54406_gt_UnitCombat;
+trigger libEFA54406_gt_UnitCombatContext;
+trigger libEFA54406_gt_UnitCombatContextCooldown;
 trigger libEFA54406_gt_PlayerSelectedUnitsContextCompare;
+trigger libEFA54406_gt_PlayerSelectedUnitsContextCooldown;
+trigger libEFA54406_gt_PlayerVictoryPlayAgain;
+trigger libEFA54406_gt_PlayerVictoryContinue;
 trigger libEFA54406_gt_InitMap;
 trigger libEFA54406_gt_CreateNeuroIntegrationbank;
 trigger libEFA54406_gt_DisableAchievementsCheats;
