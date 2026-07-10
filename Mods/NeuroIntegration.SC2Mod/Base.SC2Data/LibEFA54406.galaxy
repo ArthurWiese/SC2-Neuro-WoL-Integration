@@ -24,15 +24,6 @@ void libEFA54406_InitVariables () {
 
     libEFA54406_InitVariables_completed = true;
 
-    libEFA54406_gv_nothing_selected_context = true;
-    for (init_i = 0; init_i <= 20; init_i += 1) {
-        libEFA54406_gv_main_objectives[init_i] = c_invalidObjectiveId;
-    }
-    for (init_i = 0; init_i <= 20; init_i += 1) {
-        libEFA54406_gv_bonus_objectives[init_i] = c_invalidObjectiveId;
-    }
-    libEFA54406_gv_previous_selected_units = UnitGroupEmpty();
-    libEFA54406_gv_attacked_unit = "";
     for (init_i = 0; init_i <= 20; init_i += 1) {
         libEFA54406_gv_enemy_killed_by_player[init_i] = "";
     }
@@ -47,6 +38,22 @@ void libEFA54406_InitVariables () {
     }
     for (init_i = 0; init_i <= 20; init_i += 1) {
         libEFA54406_gv_player_killed_by_enemy[init_i] = "";
+    }
+    libEFA54406_gv_attacked_unit = "";
+    libEFA54406_gv_nothing_selected_context = true;
+    libEFA54406_gv_previous_selected_units = UnitGroupEmpty();
+    for (init_i = 0; init_i <= 20; init_i += 1) {
+        libEFA54406_gv_units_produced[init_i] = "";
+    }
+    for (init_i = 0; init_i <= 20; init_i += 1) {
+        libEFA54406_gv_building_constructed[init_i] = "";
+    }
+    libEFA54406_gv_upgrades_researched = "";
+    for (init_i = 0; init_i <= 20; init_i += 1) {
+        libEFA54406_gv_main_objectives[init_i] = c_invalidObjectiveId;
+    }
+    for (init_i = 0; init_i <= 20; init_i += 1) {
+        libEFA54406_gv_bonus_objectives[init_i] = c_invalidObjectiveId;
     }
     libEFA54406_gv_bankwriteallowed = true;
     libEFA54406_gv_displayNameString = "Neuro-sama";
@@ -329,6 +336,183 @@ bool auto_libEFA54406_gf_create_context_TriggerFunc (bool testConds, bool runAct
     return true;
 }
 
+trigger auto_libEFA54406_gf_MissionFailure_Trigger = null;
+string auto_libEFA54406_gf_MissionFailure_lp_failure_reason;
+
+void libEFA54406_gf_MissionFailure (string lp_failure_reason) {
+    auto_libEFA54406_gf_MissionFailure_lp_failure_reason = lp_failure_reason;
+
+    if (auto_libEFA54406_gf_MissionFailure_Trigger == null) {
+        auto_libEFA54406_gf_MissionFailure_Trigger = TriggerCreate("auto_libEFA54406_gf_MissionFailure_TriggerFunc");
+    }
+
+    TriggerExecute(auto_libEFA54406_gf_MissionFailure_Trigger, false, false);
+}
+
+bool auto_libEFA54406_gf_MissionFailure_TriggerFunc (bool testConds, bool runActions) {
+    string lp_failure_reason = auto_libEFA54406_gf_MissionFailure_lp_failure_reason;
+
+    // Automatic Variable Declarations
+    // Implementation
+    libEFA54406_gf_create_context("mission_state", ("Mission failed: " + lp_failure_reason), false);
+    return true;
+}
+
+trigger auto_libEFA54406_gf_ObjectiveContext_Trigger = null;
+bool auto_libEFA54406_gf_ObjectiveContext_lp_is_update;
+
+void libEFA54406_gf_ObjectiveContext (bool lp_is_update) {
+    auto_libEFA54406_gf_ObjectiveContext_lp_is_update = lp_is_update;
+
+    if (auto_libEFA54406_gf_ObjectiveContext_Trigger == null) {
+        auto_libEFA54406_gf_ObjectiveContext_Trigger = TriggerCreate("auto_libEFA54406_gf_ObjectiveContext_TriggerFunc");
+    }
+
+    TriggerExecute(auto_libEFA54406_gf_ObjectiveContext_Trigger, false, false);
+}
+
+bool auto_libEFA54406_gf_ObjectiveContext_TriggerFunc (bool testConds, bool runActions) {
+    bool lp_is_update = auto_libEFA54406_gf_ObjectiveContext_lp_is_update;
+
+    // Variable Declarations
+    int lv_objective_index;
+    string lv_objective_context_update;
+    string lv_objective_context;
+    string lv_objective_context_bonus;
+    int lv_lookat_objective;
+    text lv_objective_text;
+    text lv_objective_description;
+    bool lv_atleastone_objective_main;
+    bool lv_atleastone_objective_bonus;
+
+    // Automatic Variable Declarations
+    const int auto66E8E2BA_ae = 19;
+    const int auto66E8E2BA_ai = 1;
+    int auto7227BC47_val;
+    const int autoEEA35E46_ae = 19;
+    const int autoEEA35E46_ai = 1;
+    int autoAB0FBD43_val;
+
+    // Variable Initialization
+    lv_objective_context_update = "";
+    lv_objective_context = "";
+    lv_objective_context_bonus = "";
+    lv_lookat_objective = c_invalidObjectiveId;
+
+    // Implementation
+    if ((lp_is_update == true)) {
+        lv_objective_context_update = "Updated mission objective(s): ";
+    }
+
+    lv_objective_context = "Main objective(s): ";
+    lv_objective_index = 0;
+    for ( ; ( (auto66E8E2BA_ai >= 0 && lv_objective_index <= auto66E8E2BA_ae) || (auto66E8E2BA_ai < 0 && lv_objective_index >= auto66E8E2BA_ae) ) ; lv_objective_index += auto66E8E2BA_ai ) {
+        lv_lookat_objective = libEFA54406_gv_main_objectives[lv_objective_index];
+        if ((lv_lookat_objective != c_invalidObjectiveId) && (ObjectiveVisible(lv_lookat_objective, 1) == true)) {
+            lv_atleastone_objective_main = true;
+            auto7227BC47_val = ObjectiveGetState(lv_lookat_objective);
+            if (auto7227BC47_val == c_objectiveStateCompleted) {
+                lv_objective_context = lv_objective_context + "COMPLETED - ";
+            }
+            else if (auto7227BC47_val == c_objectiveStateFailed) {
+                lv_objective_context = lv_objective_context + "FAILED - ";
+            }
+            else {
+            }
+            lv_objective_text = ObjectiveGetName(lv_lookat_objective);
+            lv_objective_description = ObjectiveGetDescription(lv_lookat_objective);
+            lv_objective_context = lv_objective_context + TextToString(lv_objective_text) + " - " + TextToString(lv_objective_description) + "; ";
+        }
+
+    }
+    lv_objective_context_bonus = "Bonus objective(s): ";
+    lv_objective_index = 0;
+    for ( ; ( (autoEEA35E46_ai >= 0 && lv_objective_index <= autoEEA35E46_ae) || (autoEEA35E46_ai < 0 && lv_objective_index >= autoEEA35E46_ae) ) ; lv_objective_index += autoEEA35E46_ai ) {
+        lv_lookat_objective = libEFA54406_gv_bonus_objectives[lv_objective_index];
+        if ((lv_lookat_objective != c_invalidObjectiveId) && (ObjectiveVisible(lv_lookat_objective, 1) == true)) {
+            lv_atleastone_objective_bonus = true;
+            autoAB0FBD43_val = ObjectiveGetState(lv_lookat_objective);
+            if (autoAB0FBD43_val == c_objectiveStateCompleted) {
+                lv_objective_context_bonus = lv_objective_context_bonus + "COMPLETED - ";
+            }
+            else if (autoAB0FBD43_val == c_objectiveStateFailed) {
+                lv_objective_context_bonus = lv_objective_context_bonus + "FAILED - ";
+            }
+            else {
+            }
+            lv_objective_text = ObjectiveGetName(lv_lookat_objective);
+            lv_objective_description = ObjectiveGetDescription(lv_lookat_objective);
+            lv_objective_context_bonus = lv_objective_context_bonus + TextToString(lv_objective_text) + " - " + TextToString(lv_objective_description) + "; ";
+        }
+
+    }
+    if ((lv_atleastone_objective_main == false) && (lv_atleastone_objective_bonus == false)) {
+        libEFA54406_gf_create_context("mission_objective", lv_objective_context_update + "There is no active mission objective", true);
+        return true;
+    }
+
+    if ((lv_atleastone_objective_main == false)) {
+        lv_objective_context = "";
+    }
+
+    if ((lv_atleastone_objective_bonus == false)) {
+        lv_objective_context_bonus = "";
+    }
+
+    libEFA54406_gf_create_context("mission_objective", lv_objective_context_update + lv_objective_context + lv_objective_context_bonus, true);
+    return true;
+}
+
+trigger auto_libEFA54406_gf_VictoryScreenContext_Trigger = null;
+text auto_libEFA54406_gf_VictoryScreenContext_lp_mission_summary;
+int auto_libEFA54406_gf_VictoryScreenContext_lp_mission;
+
+void libEFA54406_gf_VictoryScreenContext (text lp_mission_summary, int lp_mission) {
+    auto_libEFA54406_gf_VictoryScreenContext_lp_mission_summary = lp_mission_summary;
+    auto_libEFA54406_gf_VictoryScreenContext_lp_mission = lp_mission;
+
+    if (auto_libEFA54406_gf_VictoryScreenContext_Trigger == null) {
+        auto_libEFA54406_gf_VictoryScreenContext_Trigger = TriggerCreate("auto_libEFA54406_gf_VictoryScreenContext_TriggerFunc");
+    }
+
+    TriggerExecute(auto_libEFA54406_gf_VictoryScreenContext_Trigger, false, false);
+}
+
+bool auto_libEFA54406_gf_VictoryScreenContext_TriggerFunc (bool testConds, bool runActions) {
+    text lp_mission_summary = auto_libEFA54406_gf_VictoryScreenContext_lp_mission_summary;
+    int lp_mission = auto_libEFA54406_gf_VictoryScreenContext_lp_mission;
+
+    // Variable Declarations
+    string lv_victory_context;
+    text lv_temp_text;
+    int lv_temp_integer;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_victory_context = "";
+
+    // Implementation
+    if ((lp_mission == libCamp_ge_MapID_MapTZeratul04)) {
+        lv_victory_context = lv_victory_context + "GLORIOUS END!";
+    }
+    else {
+        lv_victory_context = lv_victory_context + "VICTORY!";
+    }
+    lv_victory_context = lv_victory_context + " - You are on the Victory screen. Here you can get statistics about the completed mission. The player can choose to close the screen and continue or replay the mission.";
+    lv_temp_text = libCamp_gf_MissionName(lp_mission);
+    lv_victory_context = lv_victory_context + " Mission: " + TextToString(lv_temp_text) +".";
+    lv_temp_text = libCamp_gf_FormatTimeCampaign(libCamp_gv_tS_MissionCompleteTime);
+    lv_victory_context = lv_victory_context + " Mission time: " + TextToString(lv_temp_text)+ ".";
+    if ((libCamp_gf_MissionReward(lp_mission) > 0)) {
+        lv_temp_integer = libCamp_gf_MissionReward(lp_mission);
+        lv_victory_context = lv_victory_context + " Mission reward: " + IntToString(lv_temp_integer) + " Credits.";
+    }
+
+    lv_victory_context = lv_victory_context + " Mission summary: " + TextToString(lp_mission_summary);
+    libEFA54406_gf_create_context("victory_screen", lv_victory_context, true);
+    return true;
+}
+
 trigger auto_libEFA54406_gf_PlayerUnitsContext_Trigger = null;
 string auto_libEFA54406_gf_PlayerUnitsContext_lp_requested_units;
 
@@ -580,140 +764,47 @@ bool auto_libEFA54406_gf_PlayerUnitsContext_TriggerFunc (bool testConds, bool ru
     return true;
 }
 
-trigger auto_libEFA54406_gf_ObjectiveContext_Trigger = null;
-bool auto_libEFA54406_gf_ObjectiveContext_lp_is_update;
+trigger auto_libEFA54406_gf_BlockContext_Trigger = null;
+bool auto_libEFA54406_gf_BlockContext_lp_block;
 
-void libEFA54406_gf_ObjectiveContext (bool lp_is_update) {
-    auto_libEFA54406_gf_ObjectiveContext_lp_is_update = lp_is_update;
+void libEFA54406_gf_BlockContext (bool lp_block) {
+    auto_libEFA54406_gf_BlockContext_lp_block = lp_block;
 
-    if (auto_libEFA54406_gf_ObjectiveContext_Trigger == null) {
-        auto_libEFA54406_gf_ObjectiveContext_Trigger = TriggerCreate("auto_libEFA54406_gf_ObjectiveContext_TriggerFunc");
+    if (auto_libEFA54406_gf_BlockContext_Trigger == null) {
+        auto_libEFA54406_gf_BlockContext_Trigger = TriggerCreate("auto_libEFA54406_gf_BlockContext_TriggerFunc");
     }
 
-    TriggerExecute(auto_libEFA54406_gf_ObjectiveContext_Trigger, false, false);
+    TriggerExecute(auto_libEFA54406_gf_BlockContext_Trigger, false, false);
 }
 
-bool auto_libEFA54406_gf_ObjectiveContext_TriggerFunc (bool testConds, bool runActions) {
-    bool lp_is_update = auto_libEFA54406_gf_ObjectiveContext_lp_is_update;
-
-    // Variable Declarations
-    int lv_objective_index;
-    string lv_objective_context_update;
-    string lv_objective_context;
-    string lv_objective_context_bonus;
-    int lv_lookat_objective;
-    text lv_objective_text;
-    text lv_objective_description;
-    bool lv_atleastone_objective_main;
-    bool lv_atleastone_objective_bonus;
+bool auto_libEFA54406_gf_BlockContext_TriggerFunc (bool testConds, bool runActions) {
+    bool lp_block = auto_libEFA54406_gf_BlockContext_lp_block;
 
     // Automatic Variable Declarations
-    const int auto66E8E2BA_ae = 19;
-    const int auto66E8E2BA_ai = 1;
-    int auto7227BC47_val;
-    const int autoEEA35E46_ae = 19;
-    const int autoEEA35E46_ai = 1;
-    int autoAB0FBD43_val;
-
-    // Variable Initialization
-    lv_objective_context_update = "";
-    lv_objective_context = "";
-    lv_objective_context_bonus = "";
-    lv_lookat_objective = c_invalidObjectiveId;
-
     // Implementation
-    if ((lp_is_update == true)) {
-        lv_objective_context_update = "Updated mission objective(s): ";
-    }
-
-    lv_objective_context = "Main objective(s): ";
-    lv_objective_index = 0;
-    for ( ; ( (auto66E8E2BA_ai >= 0 && lv_objective_index <= auto66E8E2BA_ae) || (auto66E8E2BA_ai < 0 && lv_objective_index >= auto66E8E2BA_ae) ) ; lv_objective_index += auto66E8E2BA_ai ) {
-        lv_lookat_objective = libEFA54406_gv_main_objectives[lv_objective_index];
-        if ((lv_lookat_objective != c_invalidObjectiveId) && (ObjectiveVisible(lv_lookat_objective, 1) == true)) {
-            lv_atleastone_objective_main = true;
-            auto7227BC47_val = ObjectiveGetState(lv_lookat_objective);
-            if (auto7227BC47_val == c_objectiveStateCompleted) {
-                lv_objective_context = lv_objective_context + "COMPLETED - ";
-            }
-            else if (auto7227BC47_val == c_objectiveStateFailed) {
-                lv_objective_context = lv_objective_context + "FAILED - ";
-            }
-            else {
-            }
-            lv_objective_text = ObjectiveGetName(lv_lookat_objective);
-            lv_objective_description = ObjectiveGetDescription(lv_lookat_objective);
-            lv_objective_context = lv_objective_context + TextToString(lv_objective_text) + " - " + TextToString(lv_objective_description) + "; ";
+    if ((lp_block == true)) {
+        libEFA54406_gv_is_blocking = true;
+        libEFA54406_gf_create_action_0_arg("get_objectives", false, "Get the current mission objectives", -1);
+        libEFA54406_gf_create_action_1_arg("your_units", false, "", "string(all, army, workers, structures)", -1);
+        libEFA54406_gf_create_action_0_arg("current_upgrades", false, "Get the current army upgrades you have", -1);
+        if ((libEFA54406_gv_is_nobuild == false)) {
+            libEFA54406_gf_create_action_0_arg("current_resources", false, "Get the current Minerals and Vespene Gas you have", -1);
+            libEFA54406_gf_create_action_0_arg("current_supply", false, "Get the current used supply and maximum useable supply you have", -1);
         }
 
-    }
-    lv_objective_context_bonus = "Bonus objective(s): ";
-    lv_objective_index = 0;
-    for ( ; ( (autoEEA35E46_ai >= 0 && lv_objective_index <= autoEEA35E46_ae) || (autoEEA35E46_ai < 0 && lv_objective_index >= autoEEA35E46_ae) ) ; lv_objective_index += autoEEA35E46_ai ) {
-        lv_lookat_objective = libEFA54406_gv_bonus_objectives[lv_objective_index];
-        if ((lv_lookat_objective != c_invalidObjectiveId) && (ObjectiveVisible(lv_lookat_objective, 1) == true)) {
-            lv_atleastone_objective_bonus = true;
-            autoAB0FBD43_val = ObjectiveGetState(lv_lookat_objective);
-            if (autoAB0FBD43_val == c_objectiveStateCompleted) {
-                lv_objective_context_bonus = lv_objective_context_bonus + "COMPLETED - ";
-            }
-            else if (autoAB0FBD43_val == c_objectiveStateFailed) {
-                lv_objective_context_bonus = lv_objective_context_bonus + "FAILED - ";
-            }
-            else {
-            }
-            lv_objective_text = ObjectiveGetName(lv_lookat_objective);
-            lv_objective_description = ObjectiveGetDescription(lv_lookat_objective);
-            lv_objective_context_bonus = lv_objective_context_bonus + TextToString(lv_objective_text) + " - " + TextToString(lv_objective_description) + "; ";
-        }
-
-    }
-    if ((lv_atleastone_objective_main == false) && (lv_atleastone_objective_bonus == false)) {
-        libEFA54406_gf_create_context("mission_objective", lv_objective_context_update + "There is no active mission objective", true);
-        return true;
-    }
-
-    if ((lv_atleastone_objective_main == false)) {
-        lv_objective_context = "";
-    }
-
-    if ((lv_atleastone_objective_bonus == false)) {
-        lv_objective_context_bonus = "";
-    }
-
-    libEFA54406_gf_create_context("mission_objective", lv_objective_context_update + lv_objective_context + lv_objective_context_bonus, true);
-    return true;
-}
-
-void libEFA54406_gf_VictoryScreenContext (text lp_mission_summary, int lp_mission) {
-    // Variable Declarations
-    string lv_victory_context;
-    text lv_temp_text;
-    int lv_temp_integer;
-
-    // Automatic Variable Declarations
-    // Variable Initialization
-    lv_victory_context = "";
-
-    // Implementation
-    if ((lp_mission == libCamp_ge_MapID_MapTZeratul04)) {
-        lv_victory_context = lv_victory_context + "GLORIOUS END!";
     }
     else {
-        lv_victory_context = lv_victory_context + "VICTORY!";
-    }
-    lv_victory_context = lv_victory_context + " - You are on the Victory screen. Here you can get statistics about the completed mission. The player can choose to close the screen and continue or replay the mission.";
-    lv_temp_text = libCamp_gf_MissionName(lp_mission);
-    lv_victory_context = lv_victory_context + " Mission: " + TextToString(lv_temp_text) +".";
-    lv_temp_text = libCamp_gf_FormatTimeCampaign(libCamp_gv_tS_MissionCompleteTime);
-    lv_victory_context = lv_victory_context + " Mission time: " + TextToString(lv_temp_text)+ ".";
-    if ((libCamp_gf_MissionReward(lp_mission) > 0)) {
-        lv_temp_integer = libCamp_gf_MissionReward(lp_mission);
-        lv_victory_context = lv_victory_context + " Mission reward: " + IntToString(lv_temp_integer) + " Credits.";
-    }
+        libEFA54406_gv_is_blocking = false;
+        libEFA54406_gf_create_action_0_arg("get_objectives", true, "Get the current mission objectives", -1);
+        libEFA54406_gf_create_action_1_arg("your_units", true, "Get all your current units in the requested category. \"all\" for every unit, \"army\" for all army units, \"workers\" for all worker units and \"structures\" for all your structures", "string(all, army, workers, structures)", -1);
+        libEFA54406_gf_create_action_0_arg("current_upgrades", true, "Get the current army upgrades you have", -1);
+        if ((libEFA54406_gv_is_nobuild == false)) {
+            libEFA54406_gf_create_action_0_arg("current_resources", true, "Get the current Minerals and Vespene Gas you have", -1);
+            libEFA54406_gf_create_action_0_arg("current_supply", true, "Get the current used supply and maximum useable supply you have", -1);
+        }
 
-    lv_victory_context = lv_victory_context + " Mission summary: " + TextToString(lp_mission_summary);
-    libEFA54406_gf_create_context("victory_screen", lv_victory_context, true);
+    }
+    return true;
 }
 
 trigger auto_libEFA54406_gf_UnblockCommands_Trigger = null;
@@ -802,12 +893,24 @@ bool libEFA54406_gt_Executeactionsglobal_Func (bool testConds, bool runActions) 
         libEFA54406_gf_PlayerUnitsContext(BankValueGetAsString(BankLastCreated(), "do_action", "your_units_arg_1"));
     }
 
-    BankSave(BankLastCreated());
-    Wait(0.1, c_timeReal);
-    if ((libEFA54406_gv_is_intermission == false) && (libEFA54406_gv_is_victory == false)) {
-        TriggerExecute(libEFA54406_gt_PlayerActivityContext, true, false);
+    if ((BankValueGetAsFlag(BankLastCreated(), "do_action", "current_resources") == true)) {
+        BankValueSetFromFlag(BankLastCreated(), "do_action", "current_resources", false);
+        TriggerExecute(libEFA54406_gt_Currentresources, true, false);
     }
 
+    if ((BankValueGetAsFlag(BankLastCreated(), "do_action", "current_supply") == true)) {
+        BankValueSetFromFlag(BankLastCreated(), "do_action", "current_supply", false);
+        TriggerExecute(libEFA54406_gt_Currentsupply, true, false);
+    }
+
+    if ((BankValueGetAsFlag(BankLastCreated(), "do_action", "current_upgrades") == true)) {
+        BankValueSetFromFlag(BankLastCreated(), "do_action", "current_upgrades", false);
+        TriggerExecute(libEFA54406_gt_Currentupgrades, true, false);
+    }
+
+    BankSave(BankLastCreated());
+    Wait(0.1, c_timeReal);
+    TriggerExecute(libEFA54406_gt_PlayerActivityContext, true, false);
     TriggerSendEvent("execute_actions_map");
     return true;
 }
@@ -852,8 +955,14 @@ bool libEFA54406_gt_StartupContext_Func (bool testConds, bool runActions) {
     TriggerSendEvent("startup_context");
     if ((libEFA54406_gv_is_intermission == false)) {
         libEFA54406_gf_ObjectiveContext(false);
-        if ((libEFA54406_gv_is_victory == false)) {
+        if ((libEFA54406_gv_is_blocking == false)) {
             libEFA54406_gf_PlayerUnitsContext("all");
+            TriggerExecute(libEFA54406_gt_Currentupgrades, true, false);
+            if ((libEFA54406_gv_is_nobuild == false)) {
+                TriggerExecute(libEFA54406_gt_Currentresources, true, false);
+                TriggerExecute(libEFA54406_gt_Currentsupply, true, false);
+            }
+
         }
 
     }
@@ -876,8 +985,9 @@ bool libEFA54406_gt_VictoryAchieved_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    libEFA54406_gv_is_victory = true;
-    libEFA54406_gf_create_action_1_arg("your_units", false, "", "string(all, army, workers, structures)", -1);
+    libEFA54406_gv_unit_dies_context_cd = false;
+    Wait(1.0, c_timeReal);
+    libEFA54406_gf_BlockContext(true);
     libEFA54406_gf_create_context("mission_state", "Mission completed!", false);
     return true;
 }
@@ -897,11 +1007,18 @@ bool libEFA54406_gt_PlayerActivityContext_Func (bool testConds, bool runActions)
         return true;
     }
 
-    Wait(0.3, c_timeReal);
-    TriggerExecute(libEFA54406_gt_PlayerSelectedUnitsContextCompare, true, false);
-    TriggerExecute(libEFA54406_gt_UnitAbilityContext, true, false);
-    TriggerExecute(libEFA54406_gt_UnitDiesContext, true, false);
-    TriggerExecute(libEFA54406_gt_UnitCombatContext, true, false);
+    if ((libEFA54406_gv_is_intermission == false) && (libEFA54406_gv_is_blocking == false)) {
+        Wait(0.3, c_timeReal);
+        TriggerExecute(libEFA54406_gt_PlayerSelectedUnitsContextCompare, true, false);
+        TriggerExecute(libEFA54406_gt_UnitCommandContext, true, false);
+        TriggerExecute(libEFA54406_gt_UnitDiesContext, true, false);
+        TriggerExecute(libEFA54406_gt_UnitCombatContext, true, false);
+        if ((libEFA54406_gv_is_nobuild == false)) {
+            TriggerExecute(libEFA54406_gt_EconomyContext, true, false);
+        }
+
+    }
+
     return true;
 }
 
@@ -959,26 +1076,8 @@ bool libEFA54406_gt_UnitAbility_Func (bool testConds, bool runActions) {
     }
 
     autoF983FFD6_val = EventUnitAbility();
-    if (autoF983FFD6_val == AbilityCommand("move", 2)) {
-        if ((UnitGroupHasUnit(UnitGroupSelected(1), EventUnit()) == true)) {
-            libEFA54406_gv_player_hold_selected_units = true;
-        }
-
-    }
-    else if (autoF983FFD6_val == AbilityCommand("move", 1)) {
-        if ((UnitGroupHasUnit(UnitGroupSelected(1), EventUnit()) == true)) {
-            libEFA54406_gv_player_patrol_selected_units = true;
-        }
-
-    }
-    else if (autoF983FFD6_val == AbilityCommand("stop", 0)) {
-        if ((UnitGroupHasUnit(UnitGroupSelected(1), EventUnit()) == true)) {
-            libEFA54406_gv_player_stop_selected_units = true;
-        }
-
-    }
-    else if (autoF983FFD6_val == AbilityCommand("attack", 0)) {
-        if ((UnitGroupHasUnit(UnitGroupSelected(1), EventUnit()) == true)) {
+    if (autoF983FFD6_val == AbilityCommand("attack", 0)) {
+        if ((EventUnitAbilityStage() == c_unitAbilStageExecute) && (UnitGroupHasUnit(UnitGroupSelected(1), EventUnit()) == true)) {
             if ((UnitGetOwner(EventUnitTargetUnit()) == 1)) {
                 libEFA54406_gv_player_attack_selected_units = true;
                 lv_attacked_unit_text = UnitGetName(EventUnitTargetUnit());
@@ -1000,6 +1099,11 @@ bool libEFA54406_gt_UnitAbility_Func (bool testConds, bool runActions) {
         }
 
     }
+    else if (autoF983FFD6_val == AbilityCommand("CommandCenterTrain", 0)) {
+        if ((EventUnitAbilityStage() == c_unitAbilStageExecute)) {
+        }
+
+    }
     else {
     }
     return true;
@@ -1008,13 +1112,13 @@ bool libEFA54406_gt_UnitAbility_Func (bool testConds, bool runActions) {
 //--------------------------------------------------------------------------------------------------
 void libEFA54406_gt_UnitAbility_Init () {
     libEFA54406_gt_UnitAbility = TriggerCreate("libEFA54406_gt_UnitAbility_Func");
-    TriggerAddEventUnitAbility(libEFA54406_gt_UnitAbility, null, null, c_unitAbilStageExecute, false);
+    TriggerAddEventUnitAbility(libEFA54406_gt_UnitAbility, null, null, c_unitAbilStageAll, false);
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: Unit Ability Context
+// Trigger: Unit Command Context
 //--------------------------------------------------------------------------------------------------
-bool libEFA54406_gt_UnitAbilityContext_Func (bool testConds, bool runActions) {
+bool libEFA54406_gt_UnitCommandContext_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     // Actions
     if (!runActions) {
@@ -1056,8 +1160,8 @@ bool libEFA54406_gt_UnitAbilityContext_Func (bool testConds, bool runActions) {
 }
 
 //--------------------------------------------------------------------------------------------------
-void libEFA54406_gt_UnitAbilityContext_Init () {
-    libEFA54406_gt_UnitAbilityContext = TriggerCreate("libEFA54406_gt_UnitAbilityContext_Func");
+void libEFA54406_gt_UnitCommandContext_Init () {
+    libEFA54406_gt_UnitCommandContext = TriggerCreate("libEFA54406_gt_UnitCommandContext_Func");
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1235,6 +1339,10 @@ bool libEFA54406_gt_UnitDiesContext_Func (bool testConds, bool runActions) {
         return true;
     }
 
+    if ((libEFA54406_gv_unit_dies_context_cd == true)) {
+        return true;
+    }
+
     lv_unique_index = 0;
     for ( ; ( (autoA979F98D_ai >= 0 && lv_unique_index <= autoA979F98D_ae) || (autoA979F98D_ai < 0 && lv_unique_index >= autoA979F98D_ae) ) ; lv_unique_index += autoA979F98D_ai ) {
         if ((libEFA54406_gv_player_killed_by_player[lv_unique_index] != "")) {
@@ -1403,14 +1511,36 @@ bool libEFA54406_gt_UnitDiesContext_Func (bool testConds, bool runActions) {
     if ((lv_unit_dies_context == "")) {
     }
     else {
-        libEFA54406_gf_create_context("unit_dies", lv_unit_dies_context, true);
+        libEFA54406_gf_create_context("unit_dies", "Combat recap of the last 5 seconds: " + lv_unit_dies_context, true);
     }
+    libEFA54406_gv_unit_dies_context_cd = true;
+    TriggerExecute(libEFA54406_gt_UnitDiesContextCooldown, true, false);
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
 void libEFA54406_gt_UnitDiesContext_Init () {
     libEFA54406_gt_UnitDiesContext = TriggerCreate("libEFA54406_gt_UnitDiesContext_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Unit Dies Context Cooldown
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_UnitDiesContextCooldown_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    Wait(5.0, c_timeReal);
+    libEFA54406_gv_unit_dies_context_cd = false;
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_UnitDiesContextCooldown_Init () {
+    libEFA54406_gt_UnitDiesContextCooldown = TriggerCreate("libEFA54406_gt_UnitDiesContextCooldown_Func");
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1564,6 +1694,10 @@ bool libEFA54406_gt_PlayerSelectedUnitsContextCompare_Func (bool testConds, bool
 
     // Actions
     if (!runActions) {
+        return true;
+    }
+
+    if ((libEFA54406_gv_selected_units_context_cd == true)) {
         return true;
     }
 
@@ -1770,6 +1904,1033 @@ void libEFA54406_gt_PlayerSelectedUnitsContextCooldown_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: Minerals Change
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_MineralsChange_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((EventPlayerPropertyChangeInt() >= 0)) {
+        libEFA54406_gv_minerals_obtained = (libEFA54406_gv_minerals_obtained + EventPlayerPropertyChangeInt());
+    }
+    else {
+        libEFA54406_gv_minerals_expended = (libEFA54406_gv_minerals_expended - EventPlayerPropertyChangeInt());
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_MineralsChange_Init () {
+    libEFA54406_gt_MineralsChange = TriggerCreate("libEFA54406_gt_MineralsChange_Func");
+    TriggerAddEventPlayerPropChange(libEFA54406_gt_MineralsChange, 1, c_playerPropMinerals);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Gas Change
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_GasChange_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((EventPlayerPropertyChangeInt() >= 0)) {
+        libEFA54406_gv_gas_obtained = (libEFA54406_gv_gas_obtained + EventPlayerPropertyChangeInt());
+    }
+    else {
+        libEFA54406_gv_gas_expended = (libEFA54406_gv_gas_expended - EventPlayerPropertyChangeInt());
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_GasChange_Init () {
+    libEFA54406_gt_GasChange = TriggerCreate("libEFA54406_gt_GasChange_Func");
+    TriggerAddEventPlayerPropChange(libEFA54406_gt_GasChange, 1, c_playerPropVespene);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Supply Change
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_SupplyChange_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libEFA54406_gv_supply_change = (libEFA54406_gv_supply_change + EventPlayerPropertyChangeInt());
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_SupplyChange_Init () {
+    libEFA54406_gt_SupplyChange = TriggerCreate("libEFA54406_gt_SupplyChange_Func");
+    TriggerAddEventPlayerPropChange(libEFA54406_gt_SupplyChange, 1, c_playerPropSuppliesUsed);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Supply Max Change
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_SupplyMaxChange_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libEFA54406_gv_supply_max_change = (libEFA54406_gv_supply_max_change + EventPlayerPropertyChangeInt());
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_SupplyMaxChange_Init () {
+    libEFA54406_gt_SupplyMaxChange = TriggerCreate("libEFA54406_gt_SupplyMaxChange_Func");
+    TriggerAddEventPlayerPropChange(libEFA54406_gt_SupplyMaxChange, 1, c_playerPropSuppliesMade);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Unit Produced
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_UnitProduced_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    text lv_name_of_unit;
+    string lv_name_of_unit_string;
+    string lv_name_of_unit_string_produced;
+    int lv_unique_index;
+
+    // Automatic Variable Declarations
+    const int auto146B238C_ae = 19;
+    const int auto146B238C_ai = 1;
+
+    // Variable Initialization
+    lv_name_of_unit_string = "";
+    lv_name_of_unit_string_produced = "";
+
+    // Conditions
+    if (testConds) {
+        if (!((EventPlayer() == 1))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lv_name_of_unit = UnitGetName(EventUnitProgressUnit());
+    lv_name_of_unit_string = TextToString(lv_name_of_unit);
+    lv_name_of_unit_string_produced = (lv_name_of_unit_string + "_produced");
+    if ((DataTableValueExists(true, lv_name_of_unit_string_produced) == true)) {
+        DataTableSetInt(true, lv_name_of_unit_string_produced, (DataTableGetInt(true, lv_name_of_unit_string_produced) + 1));
+    }
+    else {
+        DataTableSetInt(true, lv_name_of_unit_string_produced, 1);
+    }
+    lv_unique_index = 0;
+    for ( ; ( (auto146B238C_ai >= 0 && lv_unique_index <= auto146B238C_ae) || (auto146B238C_ai < 0 && lv_unique_index >= auto146B238C_ae) ) ; lv_unique_index += auto146B238C_ai ) {
+        if (((libEFA54406_gv_units_produced[lv_unique_index] == "") || (libEFA54406_gv_units_produced[lv_unique_index] == lv_name_of_unit_string_produced))) {
+            libEFA54406_gv_units_produced[lv_unique_index] = lv_name_of_unit_string_produced;
+            break;
+        }
+
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_UnitProduced_Init () {
+    libEFA54406_gt_UnitProduced = TriggerCreate("libEFA54406_gt_UnitProduced_Func");
+    TriggerAddEventUnitTrainProgress(libEFA54406_gt_UnitProduced, null, c_unitProgressStageComplete);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Unit Produced Warp In
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_UnitProducedWarpIn_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    text lv_name_of_unit;
+    string lv_name_of_unit_string;
+    string lv_name_of_unit_string_produced;
+    int lv_unique_index;
+
+    // Automatic Variable Declarations
+    const int auto34F0373F_ae = 19;
+    const int auto34F0373F_ai = 1;
+
+    // Variable Initialization
+    lv_name_of_unit_string = "";
+    lv_name_of_unit_string_produced = "";
+
+    // Conditions
+    if (testConds) {
+        if (!((UnitGetOwner(EventUnitCreatedUnit()) == 1))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lv_name_of_unit = UnitGetName(EventUnitCreatedUnit());
+    lv_name_of_unit_string = TextToString(lv_name_of_unit);
+    if ((lv_name_of_unit_string == "")) {
+    }
+    else {
+        lv_name_of_unit_string_produced = (lv_name_of_unit_string + "_produced");
+        if ((DataTableValueExists(true, lv_name_of_unit_string_produced) == true)) {
+            DataTableSetInt(true, lv_name_of_unit_string_produced, (DataTableGetInt(true, lv_name_of_unit_string_produced) + 1));
+        }
+        else {
+            DataTableSetInt(true, lv_name_of_unit_string_produced, 1);
+        }
+        lv_unique_index = 0;
+        for ( ; ( (auto34F0373F_ai >= 0 && lv_unique_index <= auto34F0373F_ae) || (auto34F0373F_ai < 0 && lv_unique_index >= auto34F0373F_ae) ) ; lv_unique_index += auto34F0373F_ai ) {
+            if (((libEFA54406_gv_units_produced[lv_unique_index] == "") || (libEFA54406_gv_units_produced[lv_unique_index] == lv_name_of_unit_string_produced))) {
+                libEFA54406_gv_units_produced[lv_unique_index] = lv_name_of_unit_string_produced;
+                break;
+            }
+
+        }
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_UnitProducedWarpIn_Init () {
+    libEFA54406_gt_UnitProducedWarpIn = TriggerCreate("libEFA54406_gt_UnitProducedWarpIn_Func");
+    TriggerAddEventUnitCreated(libEFA54406_gt_UnitProducedWarpIn, null, "WarpGateTrain", null);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Building Constructed
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_BuildingConstructed_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    text lv_name_of_unit;
+    string lv_name_of_unit_string;
+    string lv_name_of_unit_string_constructed;
+    int lv_unique_index;
+
+    // Automatic Variable Declarations
+    const int auto42C0C2B2_ae = 19;
+    const int auto42C0C2B2_ai = 1;
+
+    // Variable Initialization
+    lv_name_of_unit_string = "";
+    lv_name_of_unit_string_constructed = "";
+
+    // Conditions
+    if (testConds) {
+        if (!((UnitGetOwner(EventUnitProgressUnit()) == 1))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lv_name_of_unit = UnitGetName(EventUnitProgressUnit());
+    lv_name_of_unit_string = TextToString(lv_name_of_unit);
+    lv_name_of_unit_string_constructed = (lv_name_of_unit_string + "_constructed");
+    if ((DataTableValueExists(true, lv_name_of_unit_string_constructed) == true)) {
+        DataTableSetInt(true, lv_name_of_unit_string_constructed, (DataTableGetInt(true, lv_name_of_unit_string_constructed) + 1));
+    }
+    else {
+        DataTableSetInt(true, lv_name_of_unit_string_constructed, 1);
+    }
+    lv_unique_index = 0;
+    for ( ; ( (auto42C0C2B2_ai >= 0 && lv_unique_index <= auto42C0C2B2_ae) || (auto42C0C2B2_ai < 0 && lv_unique_index >= auto42C0C2B2_ae) ) ; lv_unique_index += auto42C0C2B2_ai ) {
+        if (((libEFA54406_gv_building_constructed[lv_unique_index] == "") || (libEFA54406_gv_building_constructed[lv_unique_index] == lv_name_of_unit_string_constructed))) {
+            libEFA54406_gv_building_constructed[lv_unique_index] = lv_name_of_unit_string_constructed;
+            break;
+        }
+
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_BuildingConstructed_Init () {
+    libEFA54406_gt_BuildingConstructed = TriggerCreate("libEFA54406_gt_BuildingConstructed_Func");
+    TriggerAddEventUnitConstructProgress(libEFA54406_gt_BuildingConstructed, null, c_unitProgressStageComplete);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Upgrade Researched
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_UpgradeResearched_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    string lv_upgrade;
+    string lv_gamelink_string;
+    string lv_gamelink_prefix;
+    string lv_gamelink_suffix;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_gamelink_string = "";
+    lv_gamelink_prefix = "";
+    lv_gamelink_suffix = "";
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lv_upgrade = EventUpgradeName();
+    lv_gamelink_string = (lv_upgrade);
+    if ((StringContains(lv_gamelink_string, "protossgroundarmor", c_stringAnywhere, c_stringNoCase) == true)) {
+        lv_gamelink_prefix = "Ground Armor ";
+    }
+    else if ((StringContains(lv_gamelink_string, "protossairarmor", c_stringAnywhere, c_stringNoCase) == true)) {
+        lv_gamelink_prefix = "Air Armor ";
+    }
+    else if ((StringContains(lv_gamelink_string, "protossshields", c_stringAnywhere, c_stringNoCase) == true)) {
+        lv_gamelink_prefix = "Shields ";
+    }
+    else if ((StringContains(lv_gamelink_string, "terraninfantryarmor", c_stringAnywhere, c_stringNoCase) == true)) {
+        lv_gamelink_prefix = "Infantry Armor ";
+    }
+    else if ((StringContains(lv_gamelink_string, "terranvehiclearmor", c_stringAnywhere, c_stringNoCase) == true)) {
+        lv_gamelink_prefix = "Vehicle Armor ";
+    }
+    else if ((StringContains(lv_gamelink_string, "terranshiparmor", c_stringAnywhere, c_stringNoCase) == true)) {
+        lv_gamelink_prefix = "Ship Armor ";
+    }
+    else if ((StringContains(lv_gamelink_string, "protossgroundweapons", c_stringAnywhere, c_stringNoCase) == true)) {
+        lv_gamelink_prefix = "Ground Weapons ";
+    }
+    else if ((StringContains(lv_gamelink_string, "protossairweapons", c_stringAnywhere, c_stringNoCase) == true)) {
+        lv_gamelink_prefix = "Air Weapons ";
+    }
+    else if ((StringContains(lv_gamelink_string, "terraninfantryweapons", c_stringAnywhere, c_stringNoCase) == true)) {
+        lv_gamelink_prefix = "Infantry Weapons ";
+    }
+    else if ((StringContains(lv_gamelink_string, "terranvehicleweapons", c_stringAnywhere, c_stringNoCase) == true)) {
+        lv_gamelink_prefix = "Vehicle Weapons ";
+    }
+    else if ((StringContains(lv_gamelink_string, "terranshipweapons", c_stringAnywhere, c_stringNoCase) == true)) {
+        lv_gamelink_prefix = "Ship Weapons ";
+    }
+    if ((StringContains(lv_gamelink_string, "level1", c_stringAnywhere, c_stringNoCase) == true)) {
+        lv_gamelink_suffix = "Level 1";
+    }
+    else if ((StringContains(lv_gamelink_string, "level2", c_stringAnywhere, c_stringNoCase) == true)) {
+        lv_gamelink_suffix = "Level 2";
+    }
+    else if ((StringContains(lv_gamelink_string, "level3", c_stringAnywhere, c_stringNoCase) == true)) {
+        lv_gamelink_suffix = "Level 3";
+    }
+    lv_gamelink_string = (lv_gamelink_prefix + lv_gamelink_suffix);
+    if ((libEFA54406_gv_upgrades_researched == "")) {
+        libEFA54406_gv_upgrades_researched = lv_gamelink_string;
+    }
+    else {
+        libEFA54406_gv_upgrades_researched = libEFA54406_gv_upgrades_researched + ", " + lv_gamelink_string;
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_UpgradeResearched_Init () {
+    libEFA54406_gt_UpgradeResearched = TriggerCreate("libEFA54406_gt_UpgradeResearched_Func");
+    TriggerAddEventUpgradeLevelChanged(libEFA54406_gt_UpgradeResearched, 1);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Economy Context
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_EconomyContext_Func (bool testConds, bool runActions) {
+    int init_i;
+
+    // Variable Declarations
+    string lv_economy_context;
+    string lv_economy_context_part;
+    int lv_mineral_count;
+    int lv_gas_count;
+    int lv_supply_count;
+    int lv_supply_max_count;
+    int lv_supply_limit_count;
+    unitgroup lv_selected_units;
+    unit lv_selected_unit;
+    int lv_queued_number;
+    int lv_queued_index;
+    string lv_upgrade;
+    string lv_unit;
+    text lv_name_of_unit;
+    string lv_name_of_unit_string;
+    string lv_name_of_unit_string_producing;
+    string lv_name_of_unit_string_constructing;
+    string[21] lv_units_producing;
+    string[21] lv_buildings_constructing;
+    int lv_unique_index;
+    int lv_number_of_units;
+    string lv_gamelink_string;
+    string lv_gamelink_prefix;
+    string lv_gamelink_suffix;
+    string[11] lv_research_structures;
+    string[21] lv_production_structures;
+    string lv_selected_structure;
+    int lv_structure_index;
+
+    // Automatic Variable Declarations
+    const int autoEB1E2988_ae = 19;
+    const int autoEB1E2988_ai = 1;
+    const int auto583DABF5_ae = 19;
+    const int auto583DABF5_ai = 1;
+    unitgroup auto2720FF7E_g;
+    int auto2720FF7E_u;
+    int auto12B1400B_ae;
+    const int auto12B1400B_ai = 1;
+    const int auto6C85E548_ae = 19;
+    const int auto6C85E548_ai = 1;
+    const int autoADF71436_ae = 19;
+    const int autoADF71436_ai = 1;
+    const int autoDD9AC503_ae = 19;
+    const int autoDD9AC503_ai = 1;
+    unitgroup auto50B31AE7_g;
+    int auto50B31AE7_u;
+    const int auto82D15FEC_ae = 19;
+    const int auto82D15FEC_ai = 1;
+    const int autoA18F7140_ae = 19;
+    const int autoA18F7140_ai = 1;
+    const int auto3883C59E_ae = 9;
+    const int auto3883C59E_ai = 1;
+    unitgroup auto3DAB4B64_g;
+    int auto3DAB4B64_u;
+    int autoDF141EDB_ae;
+    const int autoDF141EDB_ai = 1;
+
+    // Variable Initialization
+    lv_economy_context = "";
+    lv_economy_context_part = "";
+    lv_selected_units = UnitGroupEmpty();
+    lv_name_of_unit_string = "";
+    lv_name_of_unit_string_producing = "";
+    lv_name_of_unit_string_constructing = "";
+    for (init_i = 0; init_i <= 20; init_i += 1) {
+        lv_units_producing[init_i] = "";
+    }
+    for (init_i = 0; init_i <= 20; init_i += 1) {
+        lv_buildings_constructing[init_i] = "";
+    }
+    lv_gamelink_string = "";
+    lv_gamelink_prefix = "";
+    lv_gamelink_suffix = "";
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((libEFA54406_gv_economy_context_cd == true)) {
+        return true;
+    }
+
+    lv_mineral_count = PlayerGetPropertyInt(1, c_playerPropMinerals);
+    lv_gas_count = PlayerGetPropertyInt(1, c_playerPropVespene);
+    lv_economy_context = "Economy recap of the last 30 seconds: Current resources: " + IntToString(lv_mineral_count) + " Minerals | " + IntToString(lv_gas_count) + " Vespene Gas";
+    if (((libEFA54406_gv_minerals_obtained != 0) || (libEFA54406_gv_minerals_expended != 0) || (libEFA54406_gv_gas_obtained != 0) || (libEFA54406_gv_gas_expended != 0))) {
+        lv_economy_context_part = lv_economy_context_part + ". Resources obtained: +" + IntToString(libEFA54406_gv_minerals_obtained) + " Minerals | +" + IntToString(libEFA54406_gv_gas_obtained) + " Vespene Gas. ";
+        lv_economy_context_part = lv_economy_context_part + "Resources expended: -" + IntToString(libEFA54406_gv_minerals_expended) + " Minerals | -" + IntToString(libEFA54406_gv_gas_expended) + " Vespene Gas";
+        libEFA54406_gv_minerals_obtained = 0;
+        libEFA54406_gv_minerals_expended = 0;
+        libEFA54406_gv_gas_obtained = 0;
+        libEFA54406_gv_gas_expended = 0;
+    }
+
+    lv_economy_context = lv_economy_context + lv_economy_context_part + "; ";
+    lv_economy_context_part = "";
+    lv_supply_count = PlayerGetPropertyInt(1, c_playerPropSuppliesUsed);
+    lv_supply_limit_count = PlayerGetPropertyInt(1, c_playerPropSuppliesLimit);
+    lv_supply_max_count = MinI(lv_supply_limit_count, PlayerGetPropertyInt(1, c_playerPropSuppliesMade));
+    lv_economy_context = lv_economy_context + "Current used supplies: " + IntToString(lv_supply_count) + "/" + IntToString(lv_supply_max_count);
+    if ((lv_supply_max_count >= lv_supply_limit_count)) {
+        lv_economy_context_part = lv_economy_context_part + ". Supply limit of " + IntToString(lv_supply_limit_count) + " reached. You cannot increase your maximum useable supply over this limit";
+    }
+
+    if ((lv_supply_count >= lv_supply_max_count)) {
+        lv_economy_context_part = lv_economy_context_part + ". You're using all your useable supplies. You cannot produce any more units";
+    }
+
+    if ((PlayerGetPropertyInt(1, c_playerPropSuppliesMade) >= lv_supply_limit_count)) {
+        if (((PlayerGetPropertyInt(1, c_playerPropSuppliesMade) - libEFA54406_gv_supply_max_change) < lv_supply_limit_count)) {
+            libEFA54406_gv_supply_max_change = (lv_supply_limit_count - (PlayerGetPropertyInt(1, c_playerPropSuppliesMade) - libEFA54406_gv_supply_max_change));
+        }
+        else {
+            libEFA54406_gv_supply_max_change = 0;
+        }
+    }
+    else {
+        if (((PlayerGetPropertyInt(1, c_playerPropSuppliesMade) - libEFA54406_gv_supply_max_change) > lv_supply_limit_count)) {
+            libEFA54406_gv_supply_max_change = (PlayerGetPropertyInt(1, c_playerPropSuppliesMade) - lv_supply_limit_count);
+        }
+
+    }
+    if ((libEFA54406_gv_supply_change > 0)) {
+        lv_economy_context_part = lv_economy_context_part + ". Used supply increased: +" + IntToString(libEFA54406_gv_supply_change);
+    }
+    else {
+        if ((libEFA54406_gv_supply_change < 0)) {
+            lv_economy_context_part = lv_economy_context_part + ". Used supply decreased: " + IntToString(libEFA54406_gv_supply_change);
+        }
+
+    }
+    if ((libEFA54406_gv_supply_max_change > 0)) {
+        lv_economy_context_part = lv_economy_context_part + ". Maximum useable supply increased: +" + IntToString(libEFA54406_gv_supply_max_change);
+    }
+    else {
+        if ((libEFA54406_gv_supply_max_change < 0)) {
+            lv_economy_context_part = lv_economy_context_part + ". Maximum useable supply decreased: " + IntToString(libEFA54406_gv_supply_max_change);
+        }
+
+    }
+    libEFA54406_gv_supply_change = 0;
+    libEFA54406_gv_supply_max_change = 0;
+    lv_economy_context = lv_economy_context + lv_economy_context_part + "; ";
+    lv_economy_context_part = "";
+    lv_unique_index = 0;
+    for ( ; ( (autoEB1E2988_ai >= 0 && lv_unique_index <= autoEB1E2988_ae) || (autoEB1E2988_ai < 0 && lv_unique_index >= autoEB1E2988_ae) ) ; lv_unique_index += autoEB1E2988_ai ) {
+        if ((libEFA54406_gv_units_produced[lv_unique_index] != "")) {
+            lv_name_of_unit_string = libEFA54406_gv_units_produced[lv_unique_index];
+            libEFA54406_gv_units_produced[lv_unique_index] = "";
+            lv_number_of_units = DataTableGetInt(true, lv_name_of_unit_string);
+            DataTableValueRemove(true, lv_name_of_unit_string);
+            lv_name_of_unit_string = StringReplaceWord(lv_name_of_unit_string, "_produced", "", c_stringReplaceAll, c_stringCase);
+            if ((lv_number_of_units == 1)) {
+                if ((lv_economy_context_part == "")) {
+                    lv_economy_context_part = lv_name_of_unit_string;
+                }
+                else {
+                    lv_economy_context_part = lv_economy_context_part + ", " + lv_name_of_unit_string;
+                }
+            }
+            else {
+                if ((lv_economy_context_part == "")) {
+                    lv_economy_context_part = IntToString(lv_number_of_units) + " " + lv_name_of_unit_string;
+                }
+                else {
+                    lv_economy_context_part = lv_economy_context_part + ", " + IntToString(lv_number_of_units) + " " + lv_name_of_unit_string;
+                }
+            }
+        }
+
+    }
+    if ((lv_economy_context_part == "")) {
+    }
+    else {
+        lv_economy_context = lv_economy_context + "Produced units: " + lv_economy_context_part + "; ";
+    }
+    lv_economy_context_part = "";
+    lv_production_structures[0] = "CommandCenter";
+    lv_production_structures[1] = "OrbitalCommand";
+    lv_production_structures[2] = "PlanetaryFortress";
+    lv_production_structures[3] = "Barracks";
+    lv_production_structures[4] = "Factory";
+    lv_production_structures[5] = "Starport";
+    lv_production_structures[6] = "Nexus";
+    lv_production_structures[7] = "Gateway";
+    lv_production_structures[8] = "RoboticsFacility";
+    lv_production_structures[9] = "Stargate";
+    lv_production_structures[10] = "WarpGate";
+    lv_structure_index = 0;
+    for ( ; ( (auto583DABF5_ai >= 0 && lv_structure_index <= auto583DABF5_ae) || (auto583DABF5_ai < 0 && lv_structure_index >= auto583DABF5_ae) ) ; lv_structure_index += auto583DABF5_ai ) {
+        if ((lv_production_structures[lv_structure_index] == null)) {
+        }
+        else {
+            lv_selected_structure = lv_production_structures[lv_structure_index];
+            lv_selected_units = UnitGroup(lv_selected_structure, 1, RegionPlayableMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+            auto2720FF7E_g = lv_selected_units;
+            auto2720FF7E_u = UnitGroupCount(auto2720FF7E_g, c_unitCountAll);
+            for (;; auto2720FF7E_u -= 1) {
+                lv_selected_unit = UnitGroupUnitFromEnd(auto2720FF7E_g, auto2720FF7E_u);
+                if (lv_selected_unit == null) { break; }
+                lv_queued_number = UnitQueueGetProperty(lv_selected_unit, c_unitQueuePropertyUsed);
+                auto12B1400B_ae = lv_queued_number;
+                lv_queued_index = 1;
+                for ( ; ( (auto12B1400B_ai >= 0 && lv_queued_index <= auto12B1400B_ae) || (auto12B1400B_ai < 0 && lv_queued_index >= auto12B1400B_ae) ) ; lv_queued_index += auto12B1400B_ai ) {
+                    lv_unit = libNtve_gf_QueuedUnitTypeInTrainingQueueSlot(lv_selected_unit, lv_queued_index, 1);
+                    lv_name_of_unit = UnitTypeGetName(lv_unit);
+                    lv_name_of_unit_string = TextToString(lv_name_of_unit);
+                    lv_name_of_unit_string_producing = (lv_name_of_unit_string + "_producing");
+                    if ((DataTableValueExists(true, lv_name_of_unit_string_producing) == true)) {
+                        DataTableSetInt(true, lv_name_of_unit_string_producing, (DataTableGetInt(true, lv_name_of_unit_string_producing) + 1));
+                    }
+                    else {
+                        DataTableSetInt(true, lv_name_of_unit_string_producing, 1);
+                    }
+                    lv_unique_index = 0;
+                    for ( ; ( (auto6C85E548_ai >= 0 && lv_unique_index <= auto6C85E548_ae) || (auto6C85E548_ai < 0 && lv_unique_index >= auto6C85E548_ae) ) ; lv_unique_index += auto6C85E548_ai ) {
+                        if (((lv_units_producing[lv_unique_index] == "") || (lv_units_producing[lv_unique_index] == lv_name_of_unit_string_producing))) {
+                            lv_units_producing[lv_unique_index] = lv_name_of_unit_string_producing;
+                            break;
+                        }
+
+                    }
+                }
+            }
+            lv_unique_index = 0;
+            for ( ; ( (autoADF71436_ai >= 0 && lv_unique_index <= autoADF71436_ae) || (autoADF71436_ai < 0 && lv_unique_index >= autoADF71436_ae) ) ; lv_unique_index += autoADF71436_ai ) {
+                if ((lv_units_producing[lv_unique_index] != "")) {
+                    lv_name_of_unit_string_producing = lv_units_producing[lv_unique_index];
+                    lv_units_producing[lv_unique_index] = "";
+                    lv_number_of_units = DataTableGetInt(true, lv_name_of_unit_string_producing);
+                    DataTableValueRemove(true, lv_name_of_unit_string_producing);
+                    lv_name_of_unit_string = StringReplaceWord(lv_name_of_unit_string_producing, "_producing", "", c_stringReplaceAll, c_stringCase);
+                    if ((lv_number_of_units == 1)) {
+                        if ((lv_economy_context_part == "")) {
+                            lv_economy_context_part = lv_name_of_unit_string;
+                        }
+                        else {
+                            lv_economy_context_part = lv_economy_context_part + ", " + lv_name_of_unit_string;
+                        }
+                    }
+                    else {
+                        if ((lv_economy_context_part == "")) {
+                            lv_economy_context_part = IntToString(lv_number_of_units) + " " + lv_name_of_unit_string;
+                        }
+                        else {
+                            lv_economy_context_part = lv_economy_context_part + ", " + IntToString(lv_number_of_units) + " " + lv_name_of_unit_string;
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+    if ((lv_economy_context_part == "")) {
+    }
+    else {
+        lv_economy_context = lv_economy_context + "Units currently being produced: " + lv_economy_context_part + "; ";
+    }
+    lv_economy_context_part = "";
+    lv_unique_index = 0;
+    for ( ; ( (autoDD9AC503_ai >= 0 && lv_unique_index <= autoDD9AC503_ae) || (autoDD9AC503_ai < 0 && lv_unique_index >= autoDD9AC503_ae) ) ; lv_unique_index += autoDD9AC503_ai ) {
+        if ((libEFA54406_gv_building_constructed[lv_unique_index] != "")) {
+            lv_name_of_unit_string = libEFA54406_gv_building_constructed[lv_unique_index];
+            libEFA54406_gv_building_constructed[lv_unique_index] = "";
+            lv_number_of_units = DataTableGetInt(true, lv_name_of_unit_string);
+            DataTableValueRemove(true, lv_name_of_unit_string);
+            lv_name_of_unit_string = StringReplaceWord(lv_name_of_unit_string, "_constructed", "", c_stringReplaceAll, c_stringCase);
+            if ((lv_number_of_units == 1)) {
+                if ((lv_economy_context_part == "")) {
+                    lv_economy_context_part = lv_name_of_unit_string;
+                }
+                else {
+                    lv_economy_context_part = lv_economy_context_part + ", " + lv_name_of_unit_string;
+                }
+            }
+            else {
+                if ((lv_economy_context_part == "")) {
+                    lv_economy_context_part = IntToString(lv_number_of_units) + " " + lv_name_of_unit_string;
+                }
+                else {
+                    lv_economy_context_part = lv_economy_context_part + ", " + IntToString(lv_number_of_units) + " " + lv_name_of_unit_string;
+                }
+            }
+        }
+
+    }
+    if ((lv_economy_context_part == "")) {
+    }
+    else {
+        lv_economy_context = lv_economy_context + "Constructed buildings: " + lv_economy_context_part + "; ";
+    }
+    lv_economy_context_part = "";
+    lv_selected_units = UnitGroup(null, 1, RegionPlayableMap(), UnitFilter(0, (1 << (c_targetFilterUnderConstruction - 32)), (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    auto50B31AE7_g = lv_selected_units;
+    auto50B31AE7_u = UnitGroupCount(auto50B31AE7_g, c_unitCountAll);
+    for (;; auto50B31AE7_u -= 1) {
+        lv_selected_unit = UnitGroupUnitFromEnd(auto50B31AE7_g, auto50B31AE7_u);
+        if (lv_selected_unit == null) { break; }
+        if ((UnitCheckProgressState(lv_selected_unit, 1, c_unitProgressStatePaused) == false)) {
+            lv_name_of_unit = UnitGetName(lv_selected_unit);
+            lv_name_of_unit_string = TextToString(lv_name_of_unit);
+            lv_name_of_unit_string_constructing = (lv_name_of_unit_string + "_constructing");
+            if ((DataTableValueExists(true, lv_name_of_unit_string_constructing) == true)) {
+                DataTableSetInt(true, lv_name_of_unit_string_constructing, (DataTableGetInt(true, lv_name_of_unit_string_constructing) + 1));
+            }
+            else {
+                DataTableSetInt(true, lv_name_of_unit_string_constructing, 1);
+            }
+            lv_unique_index = 0;
+            for ( ; ( (auto82D15FEC_ai >= 0 && lv_unique_index <= auto82D15FEC_ae) || (auto82D15FEC_ai < 0 && lv_unique_index >= auto82D15FEC_ae) ) ; lv_unique_index += auto82D15FEC_ai ) {
+                if (((lv_buildings_constructing[lv_unique_index] == "") || (lv_buildings_constructing[lv_unique_index] == lv_name_of_unit_string_constructing))) {
+                    lv_buildings_constructing[lv_unique_index] = lv_name_of_unit_string_constructing;
+                    break;
+                }
+
+            }
+        }
+
+    }
+    lv_unique_index = 0;
+    for ( ; ( (autoA18F7140_ai >= 0 && lv_unique_index <= autoA18F7140_ae) || (autoA18F7140_ai < 0 && lv_unique_index >= autoA18F7140_ae) ) ; lv_unique_index += autoA18F7140_ai ) {
+        if ((lv_buildings_constructing[lv_unique_index] != "")) {
+            lv_name_of_unit_string_constructing = lv_buildings_constructing[lv_unique_index];
+            lv_buildings_constructing[lv_unique_index] = "";
+            lv_number_of_units = DataTableGetInt(true, lv_name_of_unit_string_constructing);
+            DataTableValueRemove(true, lv_name_of_unit_string_constructing);
+            lv_name_of_unit_string = StringReplaceWord(lv_name_of_unit_string_constructing, "_constructing", "", c_stringReplaceAll, c_stringCase);
+            if ((lv_number_of_units == 1)) {
+                if ((lv_economy_context_part == "")) {
+                    lv_economy_context_part = lv_name_of_unit_string;
+                }
+                else {
+                    lv_economy_context_part = lv_economy_context_part + ", " + lv_name_of_unit_string;
+                }
+            }
+            else {
+                if ((lv_economy_context_part == "")) {
+                    lv_economy_context_part = IntToString(lv_number_of_units) + " " + lv_name_of_unit_string;
+                }
+                else {
+                    lv_economy_context_part = lv_economy_context_part + ", " + IntToString(lv_number_of_units) + " " + lv_name_of_unit_string;
+                }
+            }
+        }
+
+    }
+    if ((lv_economy_context_part == "")) {
+    }
+    else {
+        lv_economy_context = lv_economy_context + "Buildings currently being constructed: " + lv_economy_context_part + "; ";
+    }
+    lv_economy_context_part = "";
+    if ((libEFA54406_gv_upgrades_researched == "")) {
+    }
+    else {
+        lv_economy_context = lv_economy_context + "Upgrades researched: " + libEFA54406_gv_upgrades_researched + "; ";
+    }
+    libEFA54406_gv_upgrades_researched = "";
+    lv_research_structures[0] = "EngineeringBay";
+    lv_research_structures[1] = "Armory";
+    lv_research_structures[2] = "Forge";
+    lv_research_structures[3] = "CyberneticsCore";
+    lv_structure_index = 0;
+    for ( ; ( (auto3883C59E_ai >= 0 && lv_structure_index <= auto3883C59E_ae) || (auto3883C59E_ai < 0 && lv_structure_index >= auto3883C59E_ae) ) ; lv_structure_index += auto3883C59E_ai ) {
+        if ((lv_research_structures[lv_structure_index] == null)) {
+        }
+        else {
+            lv_selected_structure = lv_research_structures[lv_structure_index];
+            lv_selected_units = UnitGroup(lv_selected_structure, 1, RegionPlayableMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+            auto3DAB4B64_g = lv_selected_units;
+            auto3DAB4B64_u = UnitGroupCount(auto3DAB4B64_g, c_unitCountAll);
+            for (;; auto3DAB4B64_u -= 1) {
+                lv_selected_unit = UnitGroupUnitFromEnd(auto3DAB4B64_g, auto3DAB4B64_u);
+                if (lv_selected_unit == null) { break; }
+                lv_queued_number = UnitQueueGetProperty(lv_selected_unit, c_unitQueuePropertyUsed);
+                autoDF141EDB_ae = lv_queued_number;
+                lv_queued_index = 1;
+                for ( ; ( (autoDF141EDB_ai >= 0 && lv_queued_index <= autoDF141EDB_ae) || (autoDF141EDB_ai < 0 && lv_queued_index >= autoDF141EDB_ae) ) ; lv_queued_index += autoDF141EDB_ai ) {
+                    lv_upgrade = libNtve_gf_QueuedUpgradeTypeInTrainingQueueSlot(lv_selected_unit, lv_queued_index, 1);
+                    lv_gamelink_string = (lv_upgrade);
+                    if ((StringContains(lv_gamelink_string, "protossgroundarmor", c_stringAnywhere, c_stringNoCase) == true)) {
+                        lv_gamelink_prefix = "Ground Armor ";
+                    }
+                    else if ((StringContains(lv_gamelink_string, "protossairarmor", c_stringAnywhere, c_stringNoCase) == true)) {
+                        lv_gamelink_prefix = "Air Armor ";
+                    }
+                    else if ((StringContains(lv_gamelink_string, "protossshields", c_stringAnywhere, c_stringNoCase) == true)) {
+                        lv_gamelink_prefix = "Shields ";
+                    }
+                    else if ((StringContains(lv_gamelink_string, "terraninfantryarmor", c_stringAnywhere, c_stringNoCase) == true)) {
+                        lv_gamelink_prefix = "Infantry Armor ";
+                    }
+                    else if (((StringContains(lv_gamelink_string, "terranvehiclearmor", c_stringAnywhere, c_stringNoCase) == true) || (StringContains(lv_gamelink_string, "terranvehicleplating", c_stringAnywhere, c_stringNoCase) == true))) {
+                        lv_gamelink_prefix = "Vehicle Armor ";
+                    }
+                    else if (((StringContains(lv_gamelink_string, "terranshiparmor", c_stringAnywhere, c_stringNoCase) == true) || (StringContains(lv_gamelink_string, "terranshipplating", c_stringAnywhere, c_stringNoCase) == true))) {
+                        lv_gamelink_prefix = "Ship Armor ";
+                    }
+                    else if ((StringContains(lv_gamelink_string, "protossgroundweapons", c_stringAnywhere, c_stringNoCase) == true)) {
+                        lv_gamelink_prefix = "Ground Weapons ";
+                    }
+                    else if ((StringContains(lv_gamelink_string, "protossairweapons", c_stringAnywhere, c_stringNoCase) == true)) {
+                        lv_gamelink_prefix = "Air Weapons ";
+                    }
+                    else if ((StringContains(lv_gamelink_string, "terraninfantryweapons", c_stringAnywhere, c_stringNoCase) == true)) {
+                        lv_gamelink_prefix = "Infantry Weapons ";
+                    }
+                    else if ((StringContains(lv_gamelink_string, "terranvehicleweapons", c_stringAnywhere, c_stringNoCase) == true)) {
+                        lv_gamelink_prefix = "Vehicle Weapons ";
+                    }
+                    else if ((StringContains(lv_gamelink_string, "terranshipweapons", c_stringAnywhere, c_stringNoCase) == true)) {
+                        lv_gamelink_prefix = "Ship Weapons ";
+                    }
+                    if ((StringContains(lv_gamelink_string, "level1", c_stringAnywhere, c_stringNoCase) == true)) {
+                        lv_gamelink_suffix = "Level 1";
+                    }
+                    else if ((StringContains(lv_gamelink_string, "level2", c_stringAnywhere, c_stringNoCase) == true)) {
+                        lv_gamelink_suffix = "Level 2";
+                    }
+                    else if ((StringContains(lv_gamelink_string, "level3", c_stringAnywhere, c_stringNoCase) == true)) {
+                        lv_gamelink_suffix = "Level 3";
+                    }
+                    lv_gamelink_string = (lv_gamelink_prefix + lv_gamelink_suffix);
+                    if ((lv_economy_context_part == "")) {
+                        lv_economy_context_part = lv_gamelink_string;
+                    }
+                    else {
+                        lv_economy_context_part = lv_economy_context_part + ", " + lv_gamelink_string;
+                    }
+                }
+            }
+        }
+    }
+    if ((lv_economy_context_part == "")) {
+    }
+    else {
+        lv_economy_context = lv_economy_context + "Upgrades currently being researched: " + lv_economy_context_part + "; ";
+    }
+    lv_economy_context_part = "";
+    libEFA54406_gf_create_context("economy", lv_economy_context, true);
+    libEFA54406_gv_economy_context_cd = true;
+    TriggerExecute(libEFA54406_gt_EconomyContextCooldown, true, false);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_EconomyContext_Init () {
+    libEFA54406_gt_EconomyContext = TriggerCreate("libEFA54406_gt_EconomyContext_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Economy Context Cooldown
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_EconomyContextCooldown_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    Wait(30.0, c_timeReal);
+    libEFA54406_gv_economy_context_cd = false;
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_EconomyContextCooldown_Init () {
+    libEFA54406_gt_EconomyContextCooldown = TriggerCreate("libEFA54406_gt_EconomyContextCooldown_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Current resources
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_Currentresources_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_mineral_count;
+    int lv_gas_count;
+    string lv_economy_context;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_economy_context = "";
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lv_mineral_count = PlayerGetPropertyInt(1, c_playerPropMinerals);
+    lv_gas_count = PlayerGetPropertyInt(1, c_playerPropVespene);
+    lv_economy_context = "Current resources: " + IntToString(lv_mineral_count) + " Minerals | " + IntToString(lv_gas_count) + " Vespene Gas";
+    libEFA54406_gf_create_context("resources", lv_economy_context, true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_Currentresources_Init () {
+    libEFA54406_gt_Currentresources = TriggerCreate("libEFA54406_gt_Currentresources_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Current supply
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_Currentsupply_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_supply_count;
+    int lv_supply_max_count;
+    int lv_supply_limit_count;
+    string lv_economy_context;
+    string lv_economy_context_part;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_economy_context = "";
+    lv_economy_context_part = "";
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lv_supply_count = PlayerGetPropertyInt(1, c_playerPropSuppliesUsed);
+    lv_supply_limit_count = PlayerGetPropertyInt(1, c_playerPropSuppliesLimit);
+    lv_supply_max_count = MinI(lv_supply_limit_count, PlayerGetPropertyInt(1, c_playerPropSuppliesMade));
+    lv_economy_context = lv_economy_context + "Current used supplies: " + IntToString(lv_supply_count) + "/" + IntToString(lv_supply_max_count);
+    if ((lv_supply_max_count >= lv_supply_limit_count)) {
+        lv_economy_context_part = lv_economy_context_part + ". Supply limit of " + IntToString(lv_supply_limit_count) + " reached. You cannot increase your maximum useable supply over this limit";
+    }
+
+    if ((lv_supply_count >= lv_supply_max_count)) {
+        lv_economy_context_part = lv_economy_context_part + ". You're using all your useable supplies. You cannot produce any more units";
+    }
+
+    if ((lv_economy_context_part == "")) {
+    }
+    else {
+        lv_economy_context = lv_economy_context + lv_economy_context_part;
+    }
+    libEFA54406_gf_create_context("resources", lv_economy_context, true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_Currentsupply_Init () {
+    libEFA54406_gt_Currentsupply = TriggerCreate("libEFA54406_gt_Currentsupply_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Current upgrades
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_Currentupgrades_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    string lv_upgrades_string;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_upgrades_string = "";
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((TechTreeUpgradeCount(1, "ProtossAirArmorsLevel3", c_techCountCompleteOnly) == 1)) {
+        lv_upgrades_string = lv_upgrades_string + "Air Armor Level 3, ";
+    }
+    else if ((TechTreeUpgradeCount(1, "ProtossAirArmorsLevel2", c_techCountCompleteOnly) == 1)) {
+        lv_upgrades_string = lv_upgrades_string + "Air Armor Level 2, ";
+    }
+    else if ((TechTreeUpgradeCount(1, "ProtossAirArmorsLevel1", c_techCountCompleteOnly) == 1)) {
+        lv_upgrades_string = lv_upgrades_string + "Air Armor Level 1, ";
+    }
+    if ((TechTreeUpgradeCount(1, "ProtossGroundArmorsLevel3", c_techCountCompleteOnly) == 1)) {
+        lv_upgrades_string = lv_upgrades_string + "Ground Armor Level 3, ";
+    }
+    else if ((TechTreeUpgradeCount(1, "ProtossGroundArmorsLevel2", c_techCountCompleteOnly) == 1)) {
+        lv_upgrades_string = lv_upgrades_string + "Ground Armor Level 2, ";
+    }
+    else if ((TechTreeUpgradeCount(1, "ProtossGroundArmorsLevel1", c_techCountCompleteOnly) == 1)) {
+        lv_upgrades_string = lv_upgrades_string + "Ground Armor Level 1, ";
+    }
+    if ((TechTreeUpgradeCount(1, "ProtossShieldsLevel3", c_techCountCompleteOnly) == 1)) {
+        lv_upgrades_string = lv_upgrades_string + "Shields Level 3, ";
+    }
+    else if ((TechTreeUpgradeCount(1, "ProtossShieldsLevel2", c_techCountCompleteOnly) == 1)) {
+        lv_upgrades_string = lv_upgrades_string + "Shields Level 2, ";
+    }
+    else if ((TechTreeUpgradeCount(1, "ProtossShieldsLevel1", c_techCountCompleteOnly) == 1)) {
+        lv_upgrades_string = lv_upgrades_string + "Shields Level 1, ";
+    }
+    if (((TechTreeUpgradeCount(1, "TerranInfantryArmorsLevel3", c_techCountCompleteOnly) == 1) || (TechTreeUpgradeCount(1, "TerranInfantryArmorsVanadiumPlatingLevel3", c_techCountCompleteOnly) == 1))) {
+        lv_upgrades_string = lv_upgrades_string + "Infantry Armor Level 3, ";
+    }
+    else if (((TechTreeUpgradeCount(1, "TerranInfantryArmorsLevel2", c_techCountCompleteOnly) == 1) || (TechTreeUpgradeCount(1, "TerranInfantryArmorsVanadiumPlatingLevel2", c_techCountCompleteOnly) == 1))) {
+        lv_upgrades_string = lv_upgrades_string + "Infantry Armor Level 2, ";
+    }
+    else if (((TechTreeUpgradeCount(1, "TerranInfantryArmorsLevel1", c_techCountCompleteOnly) == 1) || (TechTreeUpgradeCount(1, "TerranInfantryArmorsVanadiumPlatingLevel1", c_techCountCompleteOnly) == 1))) {
+        lv_upgrades_string = lv_upgrades_string + "Infantry Armor Level 1, ";
+    }
+    if (((TechTreeUpgradeCount(1, "TerranVehicleArmorsLevel3", c_techCountCompleteOnly) == 1) || (TechTreeUpgradeCount(1, "TerranVehicleArmorsVanadiumPlatingLevel3", c_techCountCompleteOnly) == 1))) {
+        lv_upgrades_string = lv_upgrades_string + "Vehicle Armor Level 3, ";
+    }
+    else if (((TechTreeUpgradeCount(1, "TerranVehicleArmorsLevel2", c_techCountCompleteOnly) == 1) || (TechTreeUpgradeCount(1, "TerranVehicleArmorsVanadiumPlatingLevel2", c_techCountCompleteOnly) == 1))) {
+        lv_upgrades_string = lv_upgrades_string + "Vehicle Armor Level 2, ";
+    }
+    else if (((TechTreeUpgradeCount(1, "TerranVehicleArmorsLevel1", c_techCountCompleteOnly) == 1) || (TechTreeUpgradeCount(1, "TerranVehicleArmorsVanadiumPlatingLevel1", c_techCountCompleteOnly) == 1))) {
+        lv_upgrades_string = lv_upgrades_string + "Vehicle Armor Level 1, ";
+    }
+    if (((TechTreeUpgradeCount(1, "TerranShipArmorsLevel3", c_techCountCompleteOnly) == 1) || (TechTreeUpgradeCount(1, "TerranShipArmorsVanadiumPlatingLevel3", c_techCountCompleteOnly) == 1))) {
+        lv_upgrades_string = lv_upgrades_string + "Ship Armor Level 3, ";
+    }
+    else if (((TechTreeUpgradeCount(1, "TerranShipArmorsLevel2", c_techCountCompleteOnly) == 1) || (TechTreeUpgradeCount(1, "TerranShipArmorsVanadiumPlatingLevel2", c_techCountCompleteOnly) == 1))) {
+        lv_upgrades_string = lv_upgrades_string + "Ship Armor Level 2, ";
+    }
+    else if (((TechTreeUpgradeCount(1, "TerranShipArmorsLevel1", c_techCountCompleteOnly) == 1) || (TechTreeUpgradeCount(1, "TerranShipArmorsVanadiumPlatingLevel1", c_techCountCompleteOnly) == 1))) {
+        lv_upgrades_string = lv_upgrades_string + "Ship Armor Level 1, ";
+    }
+    if ((TechTreeUpgradeCount(1, "ProtossAirWeaponsLevel3", c_techCountCompleteOnly) == 1)) {
+        lv_upgrades_string = lv_upgrades_string + "Air Weapons Level 3, ";
+    }
+    else if ((TechTreeUpgradeCount(1, "ProtossAirWeaponsLevel2", c_techCountCompleteOnly) == 1)) {
+        lv_upgrades_string = lv_upgrades_string + "Air Weapons Level 2, ";
+    }
+    else if ((TechTreeUpgradeCount(1, "ProtossAirWeaponsLevel1", c_techCountCompleteOnly) == 1)) {
+        lv_upgrades_string = lv_upgrades_string + "Air Weapons Level 1, ";
+    }
+    if ((TechTreeUpgradeCount(1, "ProtossGroundWeaponsLevel3", c_techCountCompleteOnly) == 1)) {
+        lv_upgrades_string = lv_upgrades_string + "Ground Weapons Level 3, ";
+    }
+    else if ((TechTreeUpgradeCount(1, "ProtossGroundWeaponsLevel2", c_techCountCompleteOnly) == 1)) {
+        lv_upgrades_string = lv_upgrades_string + "Ground Weapons Level 2, ";
+    }
+    else if ((TechTreeUpgradeCount(1, "ProtossGroundWeaponsLevel1", c_techCountCompleteOnly) == 1)) {
+        lv_upgrades_string = lv_upgrades_string + "Ground Weapons Level 1, ";
+    }
+    if (((TechTreeUpgradeCount(1, "TerranInfantryWeaponsLevel3", c_techCountCompleteOnly) == 1) || (TechTreeUpgradeCount(1, "TerranInfantryWeaponsUltraCapacitorsLevel3", c_techCountCompleteOnly) == 1))) {
+        lv_upgrades_string = lv_upgrades_string + "Infantry Weapons Level 3, ";
+    }
+    else if (((TechTreeUpgradeCount(1, "TerranInfantryWeaponsLevel2", c_techCountCompleteOnly) == 1) || (TechTreeUpgradeCount(1, "TerranInfantryWeaponsUltraCapacitorsLevel2", c_techCountCompleteOnly) == 1))) {
+        lv_upgrades_string = lv_upgrades_string + "Infantry Weapons Level 2, ";
+    }
+    else if (((TechTreeUpgradeCount(1, "TerranInfantryWeaponsLevel1", c_techCountCompleteOnly) == 1) || (TechTreeUpgradeCount(1, "TerranInfantryWeaponsUltraCapacitorsLevel1", c_techCountCompleteOnly) == 1))) {
+        lv_upgrades_string = lv_upgrades_string + "Infantry Weapons Level 1, ";
+    }
+    if (((TechTreeUpgradeCount(1, "TerranVehicleWeaponsLevel3", c_techCountCompleteOnly) == 1) || (TechTreeUpgradeCount(1, "TerranVehicleWeaponsUltraCapacitorsLevel3", c_techCountCompleteOnly) == 1))) {
+        lv_upgrades_string = lv_upgrades_string + "Vehicle Weapons Level 3, ";
+    }
+    else if (((TechTreeUpgradeCount(1, "TerranVehicleWeaponsLevel2", c_techCountCompleteOnly) == 1) || (TechTreeUpgradeCount(1, "TerranVehicleWeaponsUltraCapacitorsLevel2", c_techCountCompleteOnly) == 1))) {
+        lv_upgrades_string = lv_upgrades_string + "Vehicle Weapons Level 2, ";
+    }
+    else if (((TechTreeUpgradeCount(1, "TerranVehicleWeaponsLevel1", c_techCountCompleteOnly) == 1) || (TechTreeUpgradeCount(1, "TerranVehicleWeaponsUltraCapacitorsLevel1", c_techCountCompleteOnly) == 1))) {
+        lv_upgrades_string = lv_upgrades_string + "Vehicle Weapons Level 1, ";
+    }
+    if (((TechTreeUpgradeCount(1, "TerranShipWeaponsLevel3", c_techCountCompleteOnly) == 1) || (TechTreeUpgradeCount(1, "TerranShipWeaponsUltraCapacitorsLevel3", c_techCountCompleteOnly) == 1))) {
+        lv_upgrades_string = lv_upgrades_string + "Ship Weapons Level 3, ";
+    }
+    else if (((TechTreeUpgradeCount(1, "TerranShipWeaponsLevel2", c_techCountCompleteOnly) == 1) || (TechTreeUpgradeCount(1, "TerranShipWeaponsUltraCapacitorsLevel2", c_techCountCompleteOnly) == 1))) {
+        lv_upgrades_string = lv_upgrades_string + "Ship Weapons Level 2, ";
+    }
+    else if (((TechTreeUpgradeCount(1, "TerranShipWeaponsLevel1", c_techCountCompleteOnly) == 1) || (TechTreeUpgradeCount(1, "TerranShipWeaponsUltraCapacitorsLevel1", c_techCountCompleteOnly) == 1))) {
+        lv_upgrades_string = lv_upgrades_string + "Ship Weapons Level 1, ";
+    }
+    if ((lv_upgrades_string == "")) {
+        libEFA54406_gf_create_context("upgrades", "You don't have any upgrades", true);
+    }
+    else {
+        libEFA54406_gf_create_context("upgrades", "Current upgrades: " + lv_upgrades_string, true);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_Currentupgrades_Init () {
+    libEFA54406_gt_Currentupgrades = TriggerCreate("libEFA54406_gt_Currentupgrades_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: Player Victory Play Again
 //--------------------------------------------------------------------------------------------------
 bool libEFA54406_gt_PlayerVictoryPlayAgain_Func (bool testConds, bool runActions) {
@@ -1902,8 +3063,10 @@ bool libEFA54406_gt_CreateNeuroIntegrationbank_Func (bool testConds, bool runAct
     if ((libEFA54406_gv_is_intermission == false)) {
         TriggerEnable(libCamp_gt_TS_VSScreenContinue, false);
         TriggerEnable(libCamp_gt_TS_VSScreenPlayAgain, false);
-        libEFA54406_gf_create_action_0_arg("get_objectives", true, "Get the current mission objectives", -1);
-        libEFA54406_gf_create_action_1_arg("your_units", true, "Get all your current units in the requested category. \"all\" for every unit, \"army\" for all army units, \"workers\" for all worker units and \"structures\" for all your structures", "string(all, army, workers, structures)", -1);
+        if ((libEFA54406_gv_is_blocking == false)) {
+            libEFA54406_gf_BlockContext(false);
+        }
+
     }
 
     return true;
@@ -2108,14 +3271,28 @@ void libEFA54406_InitTriggers () {
     libEFA54406_gt_PlayerActivityContext_Init();
     libEFA54406_gt_Playerchatmessage_Init();
     libEFA54406_gt_UnitAbility_Init();
-    libEFA54406_gt_UnitAbilityContext_Init();
+    libEFA54406_gt_UnitCommandContext_Init();
     libEFA54406_gt_UnitDies_Init();
     libEFA54406_gt_UnitDiesContext_Init();
+    libEFA54406_gt_UnitDiesContextCooldown_Init();
     libEFA54406_gt_UnitCombat_Init();
     libEFA54406_gt_UnitCombatContext_Init();
     libEFA54406_gt_UnitCombatContextCooldown_Init();
     libEFA54406_gt_PlayerSelectedUnitsContextCompare_Init();
     libEFA54406_gt_PlayerSelectedUnitsContextCooldown_Init();
+    libEFA54406_gt_MineralsChange_Init();
+    libEFA54406_gt_GasChange_Init();
+    libEFA54406_gt_SupplyChange_Init();
+    libEFA54406_gt_SupplyMaxChange_Init();
+    libEFA54406_gt_UnitProduced_Init();
+    libEFA54406_gt_UnitProducedWarpIn_Init();
+    libEFA54406_gt_BuildingConstructed_Init();
+    libEFA54406_gt_UpgradeResearched_Init();
+    libEFA54406_gt_EconomyContext_Init();
+    libEFA54406_gt_EconomyContextCooldown_Init();
+    libEFA54406_gt_Currentresources_Init();
+    libEFA54406_gt_Currentsupply_Init();
+    libEFA54406_gt_Currentupgrades_Init();
     libEFA54406_gt_PlayerVictoryPlayAgain_Init();
     libEFA54406_gt_PlayerVictoryContinue_Init();
     libEFA54406_gt_InitMap_Init();
