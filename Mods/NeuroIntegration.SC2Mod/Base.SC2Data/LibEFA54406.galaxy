@@ -24,6 +24,11 @@ void libEFA54406_InitVariables () {
 
     libEFA54406_InitVariables_completed = true;
 
+    libEFA54406_gv_attacked_unit = "";
+    libEFA54406_gv_attacker_enemy_group = UnitGroupEmpty();
+    for (init_i = 0; init_i <= 20; init_i += 1) {
+        libEFA54406_gv_attacker_unit_array[init_i] = "";
+    }
     for (init_i = 0; init_i <= 20; init_i += 1) {
         libEFA54406_gv_enemy_killed_by_player[init_i] = "";
     }
@@ -39,7 +44,6 @@ void libEFA54406_InitVariables () {
     for (init_i = 0; init_i <= 20; init_i += 1) {
         libEFA54406_gv_player_killed_by_enemy[init_i] = "";
     }
-    libEFA54406_gv_attacked_unit = "";
     libEFA54406_gv_nothing_selected_context = true;
     libEFA54406_gv_previous_selected_units = UnitGroupEmpty();
     for (init_i = 0; init_i <= 20; init_i += 1) {
@@ -815,10 +819,12 @@ bool auto_libEFA54406_gf_BlockContext_TriggerFunc (bool testConds, bool runActio
     // Implementation
     if ((lp_block == true)) {
         libEFA54406_gv_is_blocking = true;
+        TriggerExecute(libEFA54406_gt_ClearQueue, true, false);
         libEFA54406_gf_create_action_0_arg("get_objectives", false, "Get the current mission objectives", -1);
         libEFA54406_gf_create_action_1_arg("your_units", false, "", "string(all, army, workers, structures)", -1);
         libEFA54406_gf_create_action_0_arg("current_upgrades", false, "Get the current army upgrades you have", -1);
         libEFA54406_gf_create_action_0_arg("current_mission_time", false, "Get the current mission time. Note that due to mission time being tied to game speed the mission time is usually longer than the real time spent in the mission", -1);
+        libEFA54406_gf_create_action_0_arg("unit_most_kills", false, "Get the name of the unit in your forces that has recorded the most kills in this mission", -1);
         if ((libEFA54406_gv_is_nobuild == false)) {
             libEFA54406_gf_create_action_0_arg("current_resources", false, "Get the current Minerals and Vespene Gas you have", -1);
             libEFA54406_gf_create_action_0_arg("current_supply", false, "Get the current used supply and maximum useable supply you have", -1);
@@ -831,6 +837,7 @@ bool auto_libEFA54406_gf_BlockContext_TriggerFunc (bool testConds, bool runActio
         libEFA54406_gf_create_action_1_arg("your_units", true, "Get all your current units in the requested category. \"all\" for every unit, \"army\" for all army units, \"workers\" for all worker units and \"structures\" for all your structures", "string(all, army, workers, structures)", -1);
         libEFA54406_gf_create_action_0_arg("current_upgrades", true, "Get the current army upgrades you have", -1);
         libEFA54406_gf_create_action_0_arg("current_mission_time", true, "Get the current mission time. Note that due to mission time being tied to game speed the mission time is usually longer than the real time spent in the mission", -1);
+        libEFA54406_gf_create_action_0_arg("unit_most_kills", true, "Get the name of the unit in your forces that has recorded the most kills in this mission", -1);
         if ((libEFA54406_gv_is_nobuild == false)) {
             libEFA54406_gf_create_action_0_arg("current_resources", true, "Get the current Minerals and Vespene Gas you have", -1);
             libEFA54406_gf_create_action_0_arg("current_supply", true, "Get the current used supply and maximum useable supply you have", -1);
@@ -976,6 +983,11 @@ bool libEFA54406_gt_Executeactionsglobal_Func (bool testConds, bool runActions) 
         TriggerExecute(libEFA54406_gt_Currentmissiontime, true, false);
     }
 
+    if ((BankValueGetAsFlag(BankLastCreated(), "do_action", "unit_most_kills") == true)) {
+        BankValueSetFromFlag(BankLastCreated(), "do_action", "unit_most_kills", false);
+        TriggerExecute(libEFA54406_gt_UnitHighestKillCount, true, false);
+    }
+
     BankSave(BankLastCreated());
     Wait(0.1, c_timeReal);
     TriggerExecute(libEFA54406_gt_PlayerActivityContext, true, false);
@@ -1053,7 +1065,7 @@ bool libEFA54406_gt_VictoryAchieved_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    libEFA54406_gv_unit_dies_context_cd = false;
+    libEFA54406_gv_combat_context_cd = false;
     Wait(1.0, c_timeReal);
     libEFA54406_gf_BlockContext(true);
     libEFA54406_gf_create_context("mission_state", "Mission completed!", false);
@@ -1079,8 +1091,8 @@ bool libEFA54406_gt_PlayerActivityContext_Func (bool testConds, bool runActions)
         Wait(0.3, c_timeReal);
         TriggerExecute(libEFA54406_gt_PlayerSelectedUnitsContextCompare, true, false);
         TriggerExecute(libEFA54406_gt_UnitCommandContext, true, false);
-        TriggerExecute(libEFA54406_gt_UnitDiesContext, true, false);
-        TriggerExecute(libEFA54406_gt_UnitCombatContext, true, false);
+        TriggerExecute(libEFA54406_gt_CombatContext, true, false);
+        TriggerExecute(libEFA54406_gt_UnitAttackedContext, true, false);
         if ((libEFA54406_gv_is_nobuild == false)) {
             TriggerExecute(libEFA54406_gt_EconomyContext, true, false);
         }
@@ -1250,6 +1262,190 @@ void libEFA54406_gt_UnitCommandContext_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: Unit Attacked Weapon
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_UnitAttackedWeapon_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    text lv_name_of_unit;
+    string lv_name_of_unit_string;
+    string lv_name_of_unit_string_attacker_enemy;
+    int lv_unique_index;
+
+    // Automatic Variable Declarations
+    const int autoB20A5CE1_ae = 19;
+    const int autoB20A5CE1_ai = 1;
+
+    // Variable Initialization
+    lv_name_of_unit_string = "";
+    lv_name_of_unit_string_attacker_enemy = "";
+
+    // Conditions
+    if (testConds) {
+        if (!((((EventPlayer() == 1) && (UnitGetOwner(EventUnitTarget()) != 1)) || ((UnitGetOwner(EventUnitTarget()) == 1) && (libNtve_gf_PlayerIsEnemy(1, EventPlayer(), libNtve_ge_PlayerRelation_Enemy) == true))))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libEFA54406_gv_entered_combat = true;
+    if ((EventPlayer() == 1) && (UnitGetOwner(EventUnitTarget()) != 1)) {
+        if ((UnitGroupHasUnit(libEFA54406_gv_attacker_enemy_group, EventUnitTarget()) == true)) {
+        }
+        else {
+            UnitGroupAdd(libEFA54406_gv_attacker_enemy_group, EventUnitTarget());
+            lv_name_of_unit = UnitGetName(EventUnitTarget());
+            lv_name_of_unit_string = TextToString(lv_name_of_unit);
+            lv_name_of_unit_string_attacker_enemy = (lv_name_of_unit_string + "_attacker_enemy");
+            if ((DataTableValueExists(true, lv_name_of_unit_string_attacker_enemy) == true)) {
+                DataTableSetInt(true, lv_name_of_unit_string_attacker_enemy, (DataTableGetInt(true, lv_name_of_unit_string_attacker_enemy) + 1));
+            }
+            else {
+                DataTableSetInt(true, lv_name_of_unit_string_attacker_enemy, 1);
+            }
+            lv_unique_index = 0;
+            for ( ; ( (autoB20A5CE1_ai >= 0 && lv_unique_index <= autoB20A5CE1_ae) || (autoB20A5CE1_ai < 0 && lv_unique_index >= autoB20A5CE1_ae) ) ; lv_unique_index += autoB20A5CE1_ai ) {
+                if (((libEFA54406_gv_attacker_unit_array[lv_unique_index] == "") || (libEFA54406_gv_attacker_unit_array[lv_unique_index] == lv_name_of_unit_string_attacker_enemy))) {
+                    libEFA54406_gv_attacker_unit_array[lv_unique_index] = lv_name_of_unit_string_attacker_enemy;
+                    break;
+                }
+
+            }
+        }
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_UnitAttackedWeapon_Init () {
+    libEFA54406_gt_UnitAttackedWeapon = TriggerCreate("libEFA54406_gt_UnitAttackedWeapon_Func");
+    TriggerAddEventUnitAttacked2(libEFA54406_gt_UnitAttackedWeapon, null, null);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Unit Attacked Ability
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_UnitAttackedAbility_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    text lv_name_of_unit;
+    string lv_name_of_unit_string;
+    string lv_name_of_unit_string_attacker_enemy;
+    int lv_unique_index;
+
+    // Automatic Variable Declarations
+    const int auto8EB04046_ae = 19;
+    const int auto8EB04046_ai = 1;
+
+    // Variable Initialization
+    lv_name_of_unit_string = "";
+    lv_name_of_unit_string_attacker_enemy = "";
+
+    // Conditions
+    if (testConds) {
+        if (!((((EventPlayer() == 1) && (EventUnitDamageSourcePlayer() != 1)) || ((EventUnitDamageSourcePlayer() == 1) && (libNtve_gf_PlayerIsEnemy(1, EventPlayer(), libNtve_ge_PlayerRelation_Enemy) == true))))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if (((EventUnitDamageEffect() == "IrradiateInitialDamageApply") || (EventUnitDamageEffect() == "IrradiatePeriodicDamage") || (EventUnitDamageEffect() == "PsiStormDamage") || (EventUnitDamageEffect() == "PsiStormDamageInitial") || (EventUnitDamageEffect() == "PurifierPlanetCrackerDamage") || (EventUnitDamageEffect() == "YamatoU") || (EventUnitDamageEffect() == "EMPDamage") || (EventUnitDamageEffect() == "NukeDamage") || (EventUnitDamageEffect() == "HurricaneMissileDamage") || (EventUnitDamageEffect() == "NovaSnipe") || (EventUnitDamageEffect() == "BarrageDamage") || (EventUnitDamageEffect() == "SeekerMissileDamage") || (EventUnitDamageEffect() == "ExperimentalPlasmaGunDamage") || (EventUnitDamageEffect() == "RaynorSnipeDamage") || (EventUnitDamageEffect() == "TossGrenadeDamage") || (EventUnitDamageEffect() == "D8ChargeExplodeDamage") || (EventUnitDamageEffect() == "Obliterate") || (EventUnitDamageEffect() == "SpectreNukeDamage") || (EventUnitDamageEffect() == "330mmBarrageCannonsDamage") || (EventUnitDamageEffect() == "MindBlast") || (EventUnitDamageEffect() == "BonesTossGrenadeDamage") || (EventUnitDamageEffect() == "VultureSpiderMinesDamage") || (EventUnitDamageEffect() == "VolatileBurstU2") || (EventUnitDamageEffect() == "VolatileBurstU") || (EventUnitDamageEffect() == "SuicideDamage"))) {
+        libEFA54406_gv_entered_combat = true;
+        if ((EventPlayer() == 1) && (EventUnitDamageSourcePlayer() != 1)) {
+            if ((UnitGroupHasUnit(libEFA54406_gv_attacker_enemy_group, EventUnitDamageSourceUnit()) == true)) {
+            }
+            else {
+                UnitGroupAdd(libEFA54406_gv_attacker_enemy_group, EventUnitDamageSourceUnit());
+                lv_name_of_unit = UnitGetName(EventUnitDamageSourceUnit());
+                lv_name_of_unit_string = TextToString(lv_name_of_unit);
+                lv_name_of_unit_string_attacker_enemy = (lv_name_of_unit_string + "_attacker_enemy");
+                if ((DataTableValueExists(true, lv_name_of_unit_string_attacker_enemy) == true)) {
+                    DataTableSetInt(true, lv_name_of_unit_string_attacker_enemy, (DataTableGetInt(true, lv_name_of_unit_string_attacker_enemy) + 1));
+                }
+                else {
+                    DataTableSetInt(true, lv_name_of_unit_string_attacker_enemy, 1);
+                }
+                lv_unique_index = 0;
+                for ( ; ( (auto8EB04046_ai >= 0 && lv_unique_index <= auto8EB04046_ae) || (auto8EB04046_ai < 0 && lv_unique_index >= auto8EB04046_ae) ) ; lv_unique_index += auto8EB04046_ai ) {
+                    if (((libEFA54406_gv_attacker_unit_array[lv_unique_index] == "") || (libEFA54406_gv_attacker_unit_array[lv_unique_index] == lv_name_of_unit_string_attacker_enemy))) {
+                        libEFA54406_gv_attacker_unit_array[lv_unique_index] = lv_name_of_unit_string_attacker_enemy;
+                        break;
+                    }
+
+                }
+            }
+        }
+
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_UnitAttackedAbility_Init () {
+    libEFA54406_gt_UnitAttackedAbility = TriggerCreate("libEFA54406_gt_UnitAttackedAbility_Func");
+    TriggerAddEventUnitDamaged(libEFA54406_gt_UnitAttackedAbility, null, c_unitDamageTypeAny, c_unitDamageEither, null);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Unit Attacked Context
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_UnitAttackedContext_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((libEFA54406_gv_entered_combat == true)) {
+        libEFA54406_gv_entered_combat = false;
+        if ((libEFA54406_gv_entered_combat_context_cd == true)) {
+            TriggerStop(libEFA54406_gt_UnitAttackedContextCooldown);
+            TriggerExecute(libEFA54406_gt_UnitAttackedContextCooldown, true, false);
+        }
+        else {
+            libEFA54406_gf_create_context("entered_combat", "Your forces are in a fight with the enemy!", true);
+            libEFA54406_gv_entered_combat_context_cd = true;
+            TriggerExecute(libEFA54406_gt_UnitAttackedContextCooldown, true, false);
+        }
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_UnitAttackedContext_Init () {
+    libEFA54406_gt_UnitAttackedContext = TriggerCreate("libEFA54406_gt_UnitAttackedContext_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Unit Attacked Context Cooldown
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_UnitAttackedContextCooldown_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    Wait(10.0, c_timeReal);
+    libEFA54406_gv_entered_combat_context_cd = false;
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_UnitAttackedContextCooldown_Init () {
+    libEFA54406_gt_UnitAttackedContextCooldown = TriggerCreate("libEFA54406_gt_UnitAttackedContextCooldown_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: Unit Dies
 //--------------------------------------------------------------------------------------------------
 bool libEFA54406_gt_UnitDies_Func (bool testConds, bool runActions) {
@@ -1404,17 +1600,23 @@ void libEFA54406_gt_UnitDies_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: Unit Dies Context
+// Trigger: Combat Context
 //--------------------------------------------------------------------------------------------------
-bool libEFA54406_gt_UnitDiesContext_Func (bool testConds, bool runActions) {
+bool libEFA54406_gt_CombatContext_Func (bool testConds, bool runActions) {
     // Variable Declarations
+    unit lv_attacker_enemy;
     string lv_unit_dies_context;
     string lv_unit_dies_context_part;
     int lv_unique_index;
+    text lv_name_of_unit;
     string lv_name_of_unit_string;
     int lv_number_of_units;
 
     // Automatic Variable Declarations
+    unitgroup auto647D1EEA_g;
+    int auto647D1EEA_u;
+    const int auto62F57638_ae = 19;
+    const int auto62F57638_ai = 1;
     const int autoA979F98D_ae = 19;
     const int autoA979F98D_ai = 1;
     const int auto15D574DA_ae = 19;
@@ -1436,10 +1638,50 @@ bool libEFA54406_gt_UnitDiesContext_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    if ((libEFA54406_gv_unit_dies_context_cd == true)) {
+    if ((libEFA54406_gv_combat_context_cd == true)) {
         return true;
     }
 
+    auto647D1EEA_g = libEFA54406_gv_attacker_enemy_group;
+    auto647D1EEA_u = UnitGroupCount(auto647D1EEA_g, c_unitCountAll);
+    for (;; auto647D1EEA_u -= 1) {
+        lv_attacker_enemy = UnitGroupUnitFromEnd(auto647D1EEA_g, auto647D1EEA_u);
+        if (lv_attacker_enemy == null) { break; }
+        UnitGroupRemove(libEFA54406_gv_attacker_enemy_group, lv_attacker_enemy);
+    }
+    lv_unique_index = 0;
+    for ( ; ( (auto62F57638_ai >= 0 && lv_unique_index <= auto62F57638_ae) || (auto62F57638_ai < 0 && lv_unique_index >= auto62F57638_ae) ) ; lv_unique_index += auto62F57638_ai ) {
+        if ((libEFA54406_gv_attacker_unit_array[lv_unique_index] != "")) {
+            lv_name_of_unit_string = libEFA54406_gv_attacker_unit_array[lv_unique_index];
+            libEFA54406_gv_attacker_unit_array[lv_unique_index] = "";
+            lv_number_of_units = DataTableGetInt(true, lv_name_of_unit_string);
+            DataTableValueRemove(true, lv_name_of_unit_string);
+            lv_name_of_unit_string = StringReplaceWord(lv_name_of_unit_string, "_attacker_enemy", "", c_stringReplaceAll, c_stringCase);
+            if ((lv_number_of_units == 1)) {
+                if ((lv_unit_dies_context_part == "")) {
+                    lv_unit_dies_context_part = lv_name_of_unit_string;
+                }
+                else {
+                    lv_unit_dies_context_part = lv_unit_dies_context_part + ", " + lv_name_of_unit_string;
+                }
+            }
+            else {
+                if ((lv_unit_dies_context_part == "")) {
+                    lv_unit_dies_context_part = IntToString(lv_number_of_units) + " " + lv_name_of_unit_string;
+                }
+                else {
+                    lv_unit_dies_context_part = lv_unit_dies_context_part + ", " + IntToString(lv_number_of_units) + " " + lv_name_of_unit_string;
+                }
+            }
+        }
+
+    }
+    if ((lv_unit_dies_context_part == "")) {
+    }
+    else {
+        lv_unit_dies_context = lv_unit_dies_context + "Your forces were attacked by these ENEMY units: " + lv_unit_dies_context_part + "; ";
+    }
+    lv_unit_dies_context_part = "";
     lv_unique_index = 0;
     for ( ; ( (autoA979F98D_ai >= 0 && lv_unique_index <= autoA979F98D_ae) || (autoA979F98D_ai < 0 && lv_unique_index >= autoA979F98D_ae) ) ; lv_unique_index += autoA979F98D_ai ) {
         if ((libEFA54406_gv_player_killed_by_player[lv_unique_index] != "")) {
@@ -1610,20 +1852,20 @@ bool libEFA54406_gt_UnitDiesContext_Func (bool testConds, bool runActions) {
     else {
         libEFA54406_gf_create_context("unit_dies", "Combat recap of the last 5 seconds: " + lv_unit_dies_context, true);
     }
-    libEFA54406_gv_unit_dies_context_cd = true;
-    TriggerExecute(libEFA54406_gt_UnitDiesContextCooldown, true, false);
+    libEFA54406_gv_combat_context_cd = true;
+    TriggerExecute(libEFA54406_gt_CombatContextCooldown, true, false);
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void libEFA54406_gt_UnitDiesContext_Init () {
-    libEFA54406_gt_UnitDiesContext = TriggerCreate("libEFA54406_gt_UnitDiesContext_Func");
+void libEFA54406_gt_CombatContext_Init () {
+    libEFA54406_gt_CombatContext = TriggerCreate("libEFA54406_gt_CombatContext_Func");
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: Unit Dies Context Cooldown
+// Trigger: Combat Context Cooldown
 //--------------------------------------------------------------------------------------------------
-bool libEFA54406_gt_UnitDiesContextCooldown_Func (bool testConds, bool runActions) {
+bool libEFA54406_gt_CombatContextCooldown_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     // Actions
     if (!runActions) {
@@ -1631,91 +1873,13 @@ bool libEFA54406_gt_UnitDiesContextCooldown_Func (bool testConds, bool runAction
     }
 
     Wait(5.0, c_timeReal);
-    libEFA54406_gv_unit_dies_context_cd = false;
+    libEFA54406_gv_combat_context_cd = false;
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void libEFA54406_gt_UnitDiesContextCooldown_Init () {
-    libEFA54406_gt_UnitDiesContextCooldown = TriggerCreate("libEFA54406_gt_UnitDiesContextCooldown_Func");
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Unit Combat
-//--------------------------------------------------------------------------------------------------
-bool libEFA54406_gt_UnitCombat_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Conditions
-    if (testConds) {
-        if (!((((EventPlayer() == 1) && (UnitGetOwner(EventUnitTarget()) != 1)) || ((UnitGetOwner(EventUnitTarget()) == 1) && (libNtve_gf_PlayerIsEnemy(1, EventPlayer(), libNtve_ge_PlayerRelation_Enemy) == true))))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    libEFA54406_gv_entered_combat = true;
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void libEFA54406_gt_UnitCombat_Init () {
-    libEFA54406_gt_UnitCombat = TriggerCreate("libEFA54406_gt_UnitCombat_Func");
-    TriggerAddEventUnitAttacked2(libEFA54406_gt_UnitCombat, null, null);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Unit Combat Context
-//--------------------------------------------------------------------------------------------------
-bool libEFA54406_gt_UnitCombatContext_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    if ((libEFA54406_gv_entered_combat == true)) {
-        libEFA54406_gv_entered_combat = false;
-        if ((libEFA54406_gv_entered_combat_context_cd == true)) {
-            TriggerStop(libEFA54406_gt_UnitCombatContextCooldown);
-            TriggerExecute(libEFA54406_gt_UnitCombatContextCooldown, true, false);
-        }
-        else {
-            libEFA54406_gf_create_context("entered_combat", "Your forces are in a fight with the enemy!", true);
-            libEFA54406_gv_entered_combat_context_cd = true;
-            TriggerExecute(libEFA54406_gt_UnitCombatContextCooldown, true, false);
-        }
-    }
-
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void libEFA54406_gt_UnitCombatContext_Init () {
-    libEFA54406_gt_UnitCombatContext = TriggerCreate("libEFA54406_gt_UnitCombatContext_Func");
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Unit Combat Context Cooldown
-//--------------------------------------------------------------------------------------------------
-bool libEFA54406_gt_UnitCombatContextCooldown_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    Wait(10.0, c_timeReal);
-    libEFA54406_gv_entered_combat_context_cd = false;
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void libEFA54406_gt_UnitCombatContextCooldown_Init () {
-    libEFA54406_gt_UnitCombatContextCooldown = TriggerCreate("libEFA54406_gt_UnitCombatContextCooldown_Func");
+void libEFA54406_gt_CombatContextCooldown_Init () {
+    libEFA54406_gt_CombatContextCooldown = TriggerCreate("libEFA54406_gt_CombatContextCooldown_Func");
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -3053,6 +3217,60 @@ void libEFA54406_gt_Currentmissiontime_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: Unit Highest Kill Count
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_UnitHighestKillCount_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_highest_unit;
+    text lv_name_of_unit;
+    string lv_name_of_unit_string;
+    int lv_highest_kill_count;
+    unit lv_unit_iterator;
+    int lv_unit_kill_count;
+    unitgroup lv_player_units;
+
+    // Automatic Variable Declarations
+    unitgroup autoB884A631_g;
+    int autoB884A631_u;
+
+    // Variable Initialization
+    lv_name_of_unit_string = "";
+    lv_player_units = UnitGroupEmpty();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lv_player_units = UnitGroup(null, 1, RegionPlayableMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    autoB884A631_g = lv_player_units;
+    autoB884A631_u = UnitGroupCount(autoB884A631_g, c_unitCountAll);
+    for (;; autoB884A631_u -= 1) {
+        lv_unit_iterator = UnitGroupUnitFromEnd(autoB884A631_g, autoB884A631_u);
+        if (lv_unit_iterator == null) { break; }
+        lv_unit_kill_count = UnitGetPropertyInt(lv_unit_iterator, c_unitPropKills, c_unitPropCurrent);
+        if ((lv_unit_kill_count > lv_highest_kill_count)) {
+            lv_highest_kill_count = lv_unit_kill_count;
+            lv_name_of_unit = UnitGetName(lv_unit_iterator);
+            lv_name_of_unit_string = TextToString(lv_name_of_unit);
+        }
+
+    }
+    if ((lv_highest_kill_count <= 0)) {
+        libEFA54406_gf_create_context("hghest_kill_count", "No one in your forces has killed anyone. I guess it's a peaceful life out there in the Koprulu Sector", true);
+    }
+    else {
+        libEFA54406_gf_create_context("hghest_kill_count", lv_name_of_unit_string + " has killed the most with " + IntToString(lv_highest_kill_count) + " kills on record for this mission", true);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_UnitHighestKillCount_Init () {
+    libEFA54406_gt_UnitHighestKillCount = TriggerCreate("libEFA54406_gt_UnitHighestKillCount_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: Player Victory Play Again
 //--------------------------------------------------------------------------------------------------
 bool libEFA54406_gt_PlayerVictoryPlayAgain_Func (bool testConds, bool runActions) {
@@ -3394,12 +3612,13 @@ void libEFA54406_InitTriggers () {
     libEFA54406_gt_Playerchatmessage_Init();
     libEFA54406_gt_UnitAbility_Init();
     libEFA54406_gt_UnitCommandContext_Init();
+    libEFA54406_gt_UnitAttackedWeapon_Init();
+    libEFA54406_gt_UnitAttackedAbility_Init();
+    libEFA54406_gt_UnitAttackedContext_Init();
+    libEFA54406_gt_UnitAttackedContextCooldown_Init();
     libEFA54406_gt_UnitDies_Init();
-    libEFA54406_gt_UnitDiesContext_Init();
-    libEFA54406_gt_UnitDiesContextCooldown_Init();
-    libEFA54406_gt_UnitCombat_Init();
-    libEFA54406_gt_UnitCombatContext_Init();
-    libEFA54406_gt_UnitCombatContextCooldown_Init();
+    libEFA54406_gt_CombatContext_Init();
+    libEFA54406_gt_CombatContextCooldown_Init();
     libEFA54406_gt_PlayerSelectedUnitsContextCompare_Init();
     libEFA54406_gt_PlayerSelectedUnitsContextCooldown_Init();
     libEFA54406_gt_MineralsChange_Init();
@@ -3416,6 +3635,7 @@ void libEFA54406_InitTriggers () {
     libEFA54406_gt_Currentsupply_Init();
     libEFA54406_gt_Currentupgrades_Init();
     libEFA54406_gt_Currentmissiontime_Init();
+    libEFA54406_gt_UnitHighestKillCount_Init();
     libEFA54406_gt_PlayerVictoryPlayAgain_Init();
     libEFA54406_gt_PlayerVictoryContinue_Init();
     libEFA54406_gt_InitMap_Init();
