@@ -360,9 +360,11 @@ bool auto_libEFA54406_gf_MissionFailure_TriggerFunc (bool testConds, bool runAct
 
 trigger auto_libEFA54406_gf_ObjectiveContext_Trigger = null;
 bool auto_libEFA54406_gf_ObjectiveContext_lp_is_update;
+string auto_libEFA54406_gf_ObjectiveContext_lp_additional_context;
 
-void libEFA54406_gf_ObjectiveContext (bool lp_is_update) {
+void libEFA54406_gf_ObjectiveContext (bool lp_is_update, string lp_additional_context) {
     auto_libEFA54406_gf_ObjectiveContext_lp_is_update = lp_is_update;
+    auto_libEFA54406_gf_ObjectiveContext_lp_additional_context = lp_additional_context;
 
     if (auto_libEFA54406_gf_ObjectiveContext_Trigger == null) {
         auto_libEFA54406_gf_ObjectiveContext_Trigger = TriggerCreate("auto_libEFA54406_gf_ObjectiveContext_TriggerFunc");
@@ -373,6 +375,7 @@ void libEFA54406_gf_ObjectiveContext (bool lp_is_update) {
 
 bool auto_libEFA54406_gf_ObjectiveContext_TriggerFunc (bool testConds, bool runActions) {
     bool lp_is_update = auto_libEFA54406_gf_ObjectiveContext_lp_is_update;
+    string lp_additional_context = auto_libEFA54406_gf_ObjectiveContext_lp_additional_context;
 
     // Variable Declarations
     int lv_objective_index;
@@ -400,8 +403,14 @@ bool auto_libEFA54406_gf_ObjectiveContext_TriggerFunc (bool testConds, bool runA
     lv_lookat_objective = c_invalidObjectiveId;
 
     // Implementation
+    Wait(0.5, c_timeReal);
+    if ((lp_additional_context == "")) {
+    }
+    else {
+        lv_objective_context_update = (lv_objective_context_update + lp_additional_context + " - ");
+    }
     if ((lp_is_update == true)) {
-        lv_objective_context_update = "Updated mission objective(s): ";
+        lv_objective_context_update = (lv_objective_context_update + "Updated mission objective(s): ");
     }
 
     lv_objective_context = "Main objective(s): ";
@@ -459,7 +468,12 @@ bool auto_libEFA54406_gf_ObjectiveContext_TriggerFunc (bool testConds, bool runA
         lv_objective_context_bonus = "";
     }
 
-    libEFA54406_gf_create_context("mission_objective", lv_objective_context_update + lv_objective_context + lv_objective_context_bonus, true);
+    lv_objective_context = lv_objective_context_update + lv_objective_context + lv_objective_context_bonus;
+    lv_objective_context = StringReplaceWord(lv_objective_context, "<n/>", " ", c_stringReplaceAll, c_stringCase);
+    lv_objective_context = StringReplaceWord(lv_objective_context, "<s val=\"ObjRewardSummary_Protoss\">", "", c_stringReplaceAll, c_stringCase);
+    lv_objective_context = StringReplaceWord(lv_objective_context, "<s val=\"ObjRewardSummary_Zerg\">", "", c_stringReplaceAll, c_stringCase);
+    lv_objective_context = StringReplaceWord(lv_objective_context, "</s>", "", c_stringReplaceAll, c_stringCase);
+    libEFA54406_gf_create_context("mission_objective", lv_objective_context, true);
     return true;
 }
 
@@ -488,6 +502,8 @@ bool auto_libEFA54406_gf_VictoryScreenContext_TriggerFunc (bool testConds, bool 
     int lv_temp_integer;
 
     // Automatic Variable Declarations
+    int autoF43E42A0_val;
+
     // Variable Initialization
     lv_victory_context = "";
 
@@ -501,6 +517,21 @@ bool auto_libEFA54406_gf_VictoryScreenContext_TriggerFunc (bool testConds, bool 
     lv_victory_context = lv_victory_context + " - You are on the Victory screen. Here you can get statistics about the completed mission. The player can choose to close the screen and continue or replay the mission.";
     lv_temp_text = libCamp_gf_MissionName(lp_mission);
     lv_victory_context = lv_victory_context + " Mission: " + TextToString(lv_temp_text) +".";
+    autoF43E42A0_val = PlayerDifficulty(1);
+    if (autoF43E42A0_val == 1) {
+        lv_victory_context = lv_victory_context + " Difficulty: Casual.";
+    }
+    else if (autoF43E42A0_val == 2) {
+        lv_victory_context = lv_victory_context + " Difficulty: Normal.";
+    }
+    else if (autoF43E42A0_val == 3) {
+        lv_victory_context = lv_victory_context + " Difficulty: Hard.";
+    }
+    else if (autoF43E42A0_val == 4) {
+        lv_victory_context = lv_victory_context + " Difficulty: Brutal.";
+    }
+    else {
+    }
     lv_temp_text = libCamp_gf_FormatTimeCampaign(libCamp_gv_tS_MissionCompleteTime);
     lv_victory_context = lv_victory_context + " Mission time: " + TextToString(lv_temp_text)+ ".";
     if ((libCamp_gf_MissionReward(lp_mission) > 0)) {
@@ -787,6 +818,7 @@ bool auto_libEFA54406_gf_BlockContext_TriggerFunc (bool testConds, bool runActio
         libEFA54406_gf_create_action_0_arg("get_objectives", false, "Get the current mission objectives", -1);
         libEFA54406_gf_create_action_1_arg("your_units", false, "", "string(all, army, workers, structures)", -1);
         libEFA54406_gf_create_action_0_arg("current_upgrades", false, "Get the current army upgrades you have", -1);
+        libEFA54406_gf_create_action_0_arg("current_mission_time", false, "Get the current mission time. Note that due to mission time being tied to game speed the mission time is usually longer than the real time spent in the mission", -1);
         if ((libEFA54406_gv_is_nobuild == false)) {
             libEFA54406_gf_create_action_0_arg("current_resources", false, "Get the current Minerals and Vespene Gas you have", -1);
             libEFA54406_gf_create_action_0_arg("current_supply", false, "Get the current used supply and maximum useable supply you have", -1);
@@ -798,6 +830,7 @@ bool auto_libEFA54406_gf_BlockContext_TriggerFunc (bool testConds, bool runActio
         libEFA54406_gf_create_action_0_arg("get_objectives", true, "Get the current mission objectives", -1);
         libEFA54406_gf_create_action_1_arg("your_units", true, "Get all your current units in the requested category. \"all\" for every unit, \"army\" for all army units, \"workers\" for all worker units and \"structures\" for all your structures", "string(all, army, workers, structures)", -1);
         libEFA54406_gf_create_action_0_arg("current_upgrades", true, "Get the current army upgrades you have", -1);
+        libEFA54406_gf_create_action_0_arg("current_mission_time", true, "Get the current mission time. Note that due to mission time being tied to game speed the mission time is usually longer than the real time spent in the mission", -1);
         if ((libEFA54406_gv_is_nobuild == false)) {
             libEFA54406_gf_create_action_0_arg("current_resources", true, "Get the current Minerals and Vespene Gas you have", -1);
             libEFA54406_gf_create_action_0_arg("current_supply", true, "Get the current used supply and maximum useable supply you have", -1);
@@ -805,6 +838,36 @@ bool auto_libEFA54406_gf_BlockContext_TriggerFunc (bool testConds, bool runActio
 
     }
     return true;
+}
+
+void libEFA54406_gf_IsNobuild (bool lp_is_nobuild) {
+    // Automatic Variable Declarations
+    // Implementation
+    libEFA54406_gv_is_nobuild = lp_is_nobuild;
+    if ((lp_is_nobuild == true)) {
+        TriggerEnable(libEFA54406_gt_MineralsChange, false);
+        TriggerEnable(libEFA54406_gt_GasChange, false);
+        TriggerEnable(libEFA54406_gt_SupplyChange, false);
+        TriggerEnable(libEFA54406_gt_SupplyMaxChange, false);
+        TriggerEnable(libEFA54406_gt_UnitProduced, false);
+        TriggerEnable(libEFA54406_gt_UnitProducedWarpIn, false);
+        TriggerEnable(libEFA54406_gt_BuildingConstructed, false);
+        TriggerEnable(libEFA54406_gt_UpgradeResearched, false);
+        libEFA54406_gf_create_action_0_arg("current_resources", false, "Get the current Minerals and Vespene Gas you have", -1);
+        libEFA54406_gf_create_action_0_arg("current_supply", false, "Get the current used supply and maximum useable supply you have", -1);
+    }
+    else {
+        TriggerEnable(libEFA54406_gt_MineralsChange, true);
+        TriggerEnable(libEFA54406_gt_GasChange, true);
+        TriggerEnable(libEFA54406_gt_SupplyChange, true);
+        TriggerEnable(libEFA54406_gt_SupplyMaxChange, true);
+        TriggerEnable(libEFA54406_gt_UnitProduced, true);
+        TriggerEnable(libEFA54406_gt_UnitProducedWarpIn, true);
+        TriggerEnable(libEFA54406_gt_BuildingConstructed, true);
+        TriggerEnable(libEFA54406_gt_UpgradeResearched, true);
+        libEFA54406_gf_create_action_0_arg("current_resources", true, "Get the current Minerals and Vespene Gas you have", -1);
+        libEFA54406_gf_create_action_0_arg("current_supply", true, "Get the current used supply and maximum useable supply you have", -1);
+    }
 }
 
 trigger auto_libEFA54406_gf_UnblockCommands_Trigger = null;
@@ -885,7 +948,7 @@ bool libEFA54406_gt_Executeactionsglobal_Func (bool testConds, bool runActions) 
 
     if ((BankValueGetAsFlag(BankLastCreated(), "do_action", "get_objectives") == true)) {
         BankValueSetFromFlag(BankLastCreated(), "do_action", "get_objectives", false);
-        libEFA54406_gf_ObjectiveContext(false);
+        libEFA54406_gf_ObjectiveContext(false, "");
     }
 
     if ((BankValueGetAsFlag(BankLastCreated(), "do_action", "your_units") == true)) {
@@ -906,6 +969,11 @@ bool libEFA54406_gt_Executeactionsglobal_Func (bool testConds, bool runActions) 
     if ((BankValueGetAsFlag(BankLastCreated(), "do_action", "current_upgrades") == true)) {
         BankValueSetFromFlag(BankLastCreated(), "do_action", "current_upgrades", false);
         TriggerExecute(libEFA54406_gt_Currentupgrades, true, false);
+    }
+
+    if ((BankValueGetAsFlag(BankLastCreated(), "do_action", "current_mission_time") == true)) {
+        BankValueSetFromFlag(BankLastCreated(), "do_action", "current_mission_time", false);
+        TriggerExecute(libEFA54406_gt_Currentmissiontime, true, false);
     }
 
     BankSave(BankLastCreated());
@@ -954,7 +1022,7 @@ bool libEFA54406_gt_StartupContext_Func (bool testConds, bool runActions) {
     Wait(0.4, c_timeReal);
     TriggerSendEvent("startup_context");
     if ((libEFA54406_gv_is_intermission == false)) {
-        libEFA54406_gf_ObjectiveContext(false);
+        libEFA54406_gf_ObjectiveContext(false, "");
         if ((libEFA54406_gv_is_blocking == false)) {
             libEFA54406_gf_PlayerUnitsContext("all");
             TriggerExecute(libEFA54406_gt_Currentupgrades, true, false);
@@ -1104,6 +1172,18 @@ bool libEFA54406_gt_UnitAbility_Func (bool testConds, bool runActions) {
         }
 
     }
+    else if (autoF983FFD6_val == AbilityCommand("TacNukeStrike", 0)) {
+        if ((EventUnitAbilityStage() == c_unitAbilStageComplete)) {
+            libEFA54406_gv_player_use_nuke = true;
+        }
+
+    }
+    else if (autoF983FFD6_val == AbilityCommand("HeroNuclearStrike", 0)) {
+        if ((EventUnitAbilityStage() == c_unitAbilStageComplete)) {
+            libEFA54406_gv_player_use_nuke = true;
+        }
+
+    }
     else {
     }
     return true;
@@ -1156,6 +1236,11 @@ bool libEFA54406_gt_UnitCommandContext_Func (bool testConds, bool runActions) {
         libEFA54406_gv_attacked_unit = "";
     }
 
+    if ((libEFA54406_gv_player_use_nuke == true)) {
+        libEFA54406_gv_player_use_nuke = false;
+        libEFA54406_gf_create_context("player_nuke", "Player launched a tactical nuke", true);
+    }
+
     return true;
 }
 
@@ -1179,16 +1264,16 @@ bool libEFA54406_gt_UnitDies_Func (bool testConds, bool runActions) {
     int lv_unique_index;
 
     // Automatic Variable Declarations
+    const int auto415204D4_ae = 19;
+    const int auto415204D4_ai = 1;
+    const int auto49922E7D_ae = 19;
+    const int auto49922E7D_ai = 1;
     const int autoF59405A2_ae = 19;
     const int autoF59405A2_ai = 1;
     const int auto1D617B9D_ae = 19;
     const int auto1D617B9D_ai = 1;
     const int auto3D4E5323_ae = 19;
     const int auto3D4E5323_ai = 1;
-    const int auto415204D4_ae = 19;
-    const int auto415204D4_ai = 1;
-    const int auto49922E7D_ae = 19;
-    const int auto49922E7D_ai = 1;
 
     // Variable Initialization
     lv_name_of_unit_string = "";
@@ -1206,39 +1291,51 @@ bool libEFA54406_gt_UnitDies_Func (bool testConds, bool runActions) {
     lv_name_of_unit = UnitGetName(EventUnit());
     lv_name_of_unit_string = TextToString(lv_name_of_unit);
     if ((EventPlayer() == 1)) {
-        if ((UnitGetOwner(libNtve_gf_KillingUnit()) == 1)) {
-            lv_name_of_unit_string_player_player = (lv_name_of_unit_string + "_player_player");
-            if ((DataTableValueExists(true, lv_name_of_unit_string_player_player) == true)) {
-                DataTableSetInt(true, lv_name_of_unit_string_player_player, (DataTableGetInt(true, lv_name_of_unit_string_player_player) + 1));
+        if ((UnitFilterMatch(EventUnit(), 1, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterHidden - 32)))) == true)) {
+            if ((UnitGetOwner(libNtve_gf_KillingUnit()) == 1)) {
+                lv_name_of_unit_string_player_player = (lv_name_of_unit_string + "_player_player");
+                if ((DataTableValueExists(true, lv_name_of_unit_string_player_player) == true)) {
+                    DataTableSetInt(true, lv_name_of_unit_string_player_player, (DataTableGetInt(true, lv_name_of_unit_string_player_player) + 1));
+                }
+                else {
+                    DataTableSetInt(true, lv_name_of_unit_string_player_player, 1);
+                }
+                lv_unique_index = 0;
+                for ( ; ( (auto49922E7D_ai >= 0 && lv_unique_index <= auto49922E7D_ae) || (auto49922E7D_ai < 0 && lv_unique_index >= auto49922E7D_ae) ) ; lv_unique_index += auto49922E7D_ai ) {
+                    if (((libEFA54406_gv_player_killed_by_player[lv_unique_index] == "") || (libEFA54406_gv_player_killed_by_player[lv_unique_index] == lv_name_of_unit_string_player_player))) {
+                        libEFA54406_gv_player_killed_by_player[lv_unique_index] = lv_name_of_unit_string_player_player;
+                        break;
+                    }
+
+                }
             }
             else {
-                DataTableSetInt(true, lv_name_of_unit_string_player_player, 1);
-            }
-            lv_unique_index = 0;
-            for ( ; ( (auto49922E7D_ai >= 0 && lv_unique_index <= auto49922E7D_ae) || (auto49922E7D_ai < 0 && lv_unique_index >= auto49922E7D_ae) ) ; lv_unique_index += auto49922E7D_ai ) {
-                if (((libEFA54406_gv_player_killed_by_player[lv_unique_index] == "") || (libEFA54406_gv_player_killed_by_player[lv_unique_index] == lv_name_of_unit_string_player_player))) {
-                    libEFA54406_gv_player_killed_by_player[lv_unique_index] = lv_name_of_unit_string_player_player;
-                    break;
+                lv_name_of_unit_string_player_enemy = (lv_name_of_unit_string + "_player_enemy");
+                if ((DataTableValueExists(true, lv_name_of_unit_string_player_enemy) == true)) {
+                    DataTableSetInt(true, lv_name_of_unit_string_player_enemy, (DataTableGetInt(true, lv_name_of_unit_string_player_enemy) + 1));
                 }
+                else {
+                    DataTableSetInt(true, lv_name_of_unit_string_player_enemy, 1);
+                }
+                lv_unique_index = 0;
+                for ( ; ( (auto415204D4_ai >= 0 && lv_unique_index <= auto415204D4_ae) || (auto415204D4_ai < 0 && lv_unique_index >= auto415204D4_ae) ) ; lv_unique_index += auto415204D4_ai ) {
+                    if (((libEFA54406_gv_player_killed_by_enemy[lv_unique_index] == "") || (libEFA54406_gv_player_killed_by_enemy[lv_unique_index] == lv_name_of_unit_string_player_enemy))) {
+                        libEFA54406_gv_player_killed_by_enemy[lv_unique_index] = lv_name_of_unit_string_player_enemy;
+                        break;
+                    }
 
+                }
             }
         }
         else {
-            lv_name_of_unit_string_player_enemy = (lv_name_of_unit_string + "_player_enemy");
-            if ((DataTableValueExists(true, lv_name_of_unit_string_player_enemy) == true)) {
-                DataTableSetInt(true, lv_name_of_unit_string_player_enemy, (DataTableGetInt(true, lv_name_of_unit_string_player_enemy) + 1));
+            if ((UnitGetType(libNtve_gf_KillingUnit()) == "WallOfFire")) {
+                return true;
             }
-            else {
-                DataTableSetInt(true, lv_name_of_unit_string_player_enemy, 1);
-            }
-            lv_unique_index = 0;
-            for ( ; ( (auto415204D4_ai >= 0 && lv_unique_index <= auto415204D4_ae) || (auto415204D4_ai < 0 && lv_unique_index >= auto415204D4_ae) ) ; lv_unique_index += auto415204D4_ai ) {
-                if (((libEFA54406_gv_player_killed_by_enemy[lv_unique_index] == "") || (libEFA54406_gv_player_killed_by_enemy[lv_unique_index] == lv_name_of_unit_string_player_enemy))) {
-                    libEFA54406_gv_player_killed_by_enemy[lv_unique_index] = lv_name_of_unit_string_player_enemy;
-                    break;
-                }
 
+            if ((libNtve_gf_KillingUnit() == null) && (EventUnitDamageDeathCheck(c_deathTypeRemove) == false) && (EventUnitDamageDeathCheck(c_deathTypeUnlink) == false) && (EventUnitDamageDeathCheck(c_deathTypeNormal) == true) && (libEFA54406_gv_is_special_case_no_unit_killer == true)) {
+                return true;
             }
+
         }
     }
     else {
@@ -2931,6 +3028,31 @@ void libEFA54406_gt_Currentupgrades_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: Current mission time
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_Currentmissiontime_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    text lv_temp_text;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lv_temp_text = libCamp_gf_FormatTimeCampaign(FixedToInt(libNtve_gf_GamePlayTime(1)));
+    libEFA54406_gf_create_context("mission_time", "Current mission time: " + TextToString(lv_temp_text), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_Currentmissiontime_Init () {
+    libEFA54406_gt_Currentmissiontime = TriggerCreate("libEFA54406_gt_Currentmissiontime_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: Player Victory Play Again
 //--------------------------------------------------------------------------------------------------
 bool libEFA54406_gt_PlayerVictoryPlayAgain_Func (bool testConds, bool runActions) {
@@ -3293,6 +3415,7 @@ void libEFA54406_InitTriggers () {
     libEFA54406_gt_Currentresources_Init();
     libEFA54406_gt_Currentsupply_Init();
     libEFA54406_gt_Currentupgrades_Init();
+    libEFA54406_gt_Currentmissiontime_Init();
     libEFA54406_gt_PlayerVictoryPlayAgain_Init();
     libEFA54406_gt_PlayerVictoryContinue_Init();
     libEFA54406_gt_InitMap_Init();
