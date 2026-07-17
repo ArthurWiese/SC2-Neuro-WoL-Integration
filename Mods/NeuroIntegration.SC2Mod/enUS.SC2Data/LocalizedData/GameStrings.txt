@@ -5,18 +5,25 @@ Param/Value/lib_EFA54406_02B0F08E=Own Unit killed by Player
 Param/Value/lib_EFA54406_05755519=<c val="FF80C0">Neuro-sama</c>
 Param/Value/lib_EFA54406_06F37814=Play Again: 
 Param/Value/lib_EFA54406_07EADF30=Play Again: 
+Param/Value/lib_EFA54406_170EFA64=There is a barracks
 Param/Value/lib_EFA54406_1B920E42=<c val="FF0000">Evil Neuro</c>
 Param/Value/lib_EFA54406_27B19F2C=<c val="FF80C0">Neuro-sama</c>
 Param/Value/lib_EFA54406_2A2F68A6=Play Again: 
 Param/Value/lib_EFA54406_30D0A3C5=There is no killing unit
+Param/Value/lib_EFA54406_3134D4DA=does not Have planetary fortress
 Param/Value/lib_EFA54406_32C5EC07=Someone is killing
 Param/Value/lib_EFA54406_4537635B=Easy
 Param/Value/lib_EFA54406_48AB6FAD=Unknow Difficulty
+Param/Value/lib_EFA54406_4F93FE16=Has tech lab
 Param/Value/lib_EFA54406_6028E76B=Hard
+Param/Value/lib_EFA54406_6A48F50B=Has planetary fortress
 Param/Value/lib_EFA54406_70236798=Own Unit killed
+Param/Value/lib_EFA54406_80CF7049=Marauder is allowed
+Param/Value/lib_EFA54406_83715038=There is a command center
 Param/Value/lib_EFA54406_87B5E461=Play Again: 
 Param/Value/lib_EFA54406_9A6CF506=Normal
 Param/Value/lib_EFA54406_BC986EA2=Own Unit killed by Enemy
+Param/Value/lib_EFA54406_BFA6836D=Medic is allowed
 Param/Value/lib_EFA54406_C5BAAEEF=Killer is visible
 Param/Value/lib_EFA54406_DCD42E87=Insane
 Param/Value/lib_EFA54406_E675F2F5=Play Again: 

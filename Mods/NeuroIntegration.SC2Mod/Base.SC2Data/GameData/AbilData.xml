@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Catalog>
+    <CAbilArmMagazine id="ArmSiloWithNuke">
+        <InfoArray index="Ammo2" Time="40" Unit="Nuke">
+            <Resource index="Minerals" value="-33"/>
+            <Resource index="Vespene" value="-33"/>
+            <Charge Link="Abil/##id##"/>
+            <Cooldown Link="Abil/##id##"/>
+            <Button DefaultButtonFace="LoadOutSpray@1">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+        </InfoArray>
+    </CAbilArmMagazine>
+    <CAbilTrain id="BarracksTrain">
+        <InfoArray index="Train3" Time="45"/>
+        <InfoArray index="Train7" Time="45"/>
+        <InfoArray index="Train8" Time="17">
+            <Resource index="Minerals" value="-16"/>
+            <Button DefaultButtonFace="LoadOutSpray@1">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+            <Unit value="Marine"/>
+        </InfoArray>
+        <InfoArray index="Train9" Time="17">
+            <Resource index="Minerals" value="-25"/>
+            <Resource index="Vespene" value="-16"/>
+            <Button DefaultButtonFace="LoadOutSpray@2">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+            <Unit value="Medic"/>
+        </InfoArray>
+        <InfoArray index="Train10" Time="20">
+            <Resource index="Minerals" value="-33"/>
+            <Resource index="Vespene" value="-8"/>
+            <Button DefaultButtonFace="LoadOutSpray@3">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+            <Unit value="Marauder"/>
+        </InfoArray>
+        <InfoArray index="Train11" Time="20">
+            <Resource index="Minerals" value="-33"/>
+            <Resource index="Vespene" value="-8"/>
+            <Button DefaultButtonFace="LoadOutSpray@4">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+            <Unit value="Firebat"/>
+        </InfoArray>
+        <InfoArray index="Train12" Time="27">
+            <Resource index="Minerals" value="-16"/>
+            <Resource index="Vespene" value="-16"/>
+            <Button DefaultButtonFace="LoadOutSpray@5">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+            <Unit value="Reaper"/>
+        </InfoArray>
+        <InfoArray index="Train13" Time="30">
+            <Resource index="Minerals" value="-50"/>
+            <Resource index="Vespene" value="-50"/>
+            <Button DefaultButtonFace="LoadOutSpray@6">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+            <Unit value="Ghost"/>
+        </InfoArray>
+        <InfoArray index="Train14" Time="30">
+            <Resource index="Minerals" value="-50"/>
+            <Resource index="Vespene" value="-50"/>
+            <Button DefaultButtonFace="LoadOutSpray@7">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+            <Unit value="Spectre"/>
+        </InfoArray>
+    </CAbilTrain>
+    <CAbilTrain id="CommandCenterTrain">
+        <InfoArray index="Train2" Time="12">
+            <Resource index="Minerals" value="-16"/>
+            <Button DefaultButtonFace="LoadOutSpray@1">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+            <Unit value="SCV"/>
+        </InfoArray>
+    </CAbilTrain>
+    <CAbilTrain id="FactoryTrain">
+        <InfoArray index="Train11" Time="20">
+            <Resource index="Minerals" value="-33"/>
+            <Button DefaultButtonFace="LoadOutSpray@1">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+            <Unit value="Hellion"/>
+        </InfoArray>
+        <InfoArray index="Train12" Time="17">
+            <Resource index="Minerals" value="-25"/>
+            <Button DefaultButtonFace="LoadOutSpray@2">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+            <Unit value="Vulture"/>
+        </InfoArray>
+        <InfoArray index="Train13" Time="27">
+            <Resource index="Minerals" value="-50"/>
+            <Resource index="Vespene" value="-16"/>
+            <Button DefaultButtonFace="LoadOutSpray@3">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+            <Unit value="Goliath"/>
+        </InfoArray>
+        <InfoArray index="Train14" Time="34">
+            <Resource index="Minerals" value="-50"/>
+            <Resource index="Vespene" value="-50"/>
+            <Button DefaultButtonFace="LoadOutSpray@4">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+            <Unit value="Diamondback"/>
+        </InfoArray>
+        <InfoArray index="Train15" Time="30">
+            <Resource index="Minerals" value="-50"/>
+            <Resource index="Vespene" value="-41"/>
+            <Button DefaultButtonFace="LoadOutSpray@5">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+            <Unit value="SiegeTank"/>
+        </InfoArray>
+        <InfoArray index="Train16" Time="27">
+            <Resource index="Minerals" value="-33"/>
+            <Resource index="Vespene" value="-33"/>
+            <Button DefaultButtonFace="LoadOutSpray@6">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+            <Unit value="Predator"/>
+        </InfoArray>
+        <InfoArray index="Train17" Time="40">
+            <Resource index="Minerals" value="-100"/>
+            <Resource index="Vespene" value="-66"/>
+            <Button DefaultButtonFace="LoadOutSpray@7">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+            <Unit value="Thor"/>
+        </InfoArray>
+    </CAbilTrain>
+    <CAbilTrain id="GatewayTrain">
+        <InfoArray index="Train7" Time="22">
+            <Resource index="Minerals" value="-33"/>
+            <Button DefaultButtonFace="LoadOutSpray@1">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+            <Unit value="Zealot"/>
+        </InfoArray>
+        <InfoArray index="Train8" Time="28">
+            <Resource index="Minerals" value="-41"/>
+            <Resource index="Vespene" value="-16"/>
+            <Button DefaultButtonFace="LoadOutSpray@2">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+            <Unit value="Stalker"/>
+        </InfoArray>
+        <InfoArray index="Train9" Time="37">
+            <Resource index="Minerals" value="-16"/>
+            <Resource index="Vespene" value="-50"/>
+            <Button DefaultButtonFace="LoadOutSpray@3">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+            <Unit value="HighTemplar"/>
+        </InfoArray>
+        <InfoArray index="Train10" Time="37">
+            <Resource index="Minerals" value="-41"/>
+            <Resource index="Vespene" value="-41"/>
+            <Button DefaultButtonFace="LoadOutSpray@4">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+            <Unit value="DarkTemplar"/>
+        </InfoArray>
+    </CAbilTrain>
+    <CAbilTrain id="NexusTrain">
+        <InfoArray index="Train2" Time="12">
+            <Resource index="Minerals" value="-16"/>
+            <Button DefaultButtonFace="LoadOutSpray@1">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+            <Unit value="Probe"/>
+        </InfoArray>
+    </CAbilTrain>
+    <CAbilTrain id="RoboticsFacilityTrain">
+        <InfoArray index="Train5" Time="27">
+            <Resource index="Minerals" value="-83"/>
+            <Resource index="Vespene" value="-33"/>
+            <Button DefaultButtonFace="LoadOutSpray@1">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+            <Unit value="Immortal"/>
+        </InfoArray>
+        <InfoArray index="Train6" Time="27">
+            <Resource index="Minerals" value="-16"/>
+            <Resource index="Vespene" value="-33"/>
+            <Button DefaultButtonFace="LoadOutSpray@2">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+            <Unit value="Observer"/>
+        </InfoArray>
+        <InfoArray index="Train7" Time="50">
+            <Resource index="Minerals" value="-100"/>
+            <Resource index="Vespene" value="-66"/>
+            <Button DefaultButtonFace="LoadOutSpray@3">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+            <Unit value="Colossus"/>
+        </InfoArray>
+    </CAbilTrain>
+    <CAbilArmMagazine id="SpectreNukeSiloArmMagazine">
+        <InfoArray index="Ammo3" Time="40" Unit="SpectreNuke">
+            <Resource index="Minerals" value="-33"/>
+            <Resource index="Vespene" value="-33"/>
+            <Charge Link="Abil/##id##"/>
+            <Cooldown Link="Abil/##id##"/>
+            <Button DefaultButtonFace="LoadOutSpray@1"/>
+        </InfoArray>
+    </CAbilArmMagazine>
+    <CAbilTrain id="StargateTrain">
+        <InfoArray index="Train7" Time="30">
+            <Resource index="Minerals" value="-50"/>
+            <Resource index="Vespene" value="-33"/>
+            <Button DefaultButtonFace="LoadOutSpray@1">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+            <Unit value="Phoenix"/>
+        </InfoArray>
+        <InfoArray index="Train8" Time="40">
+            <Resource index="Minerals" value="-83"/>
+            <Resource index="Vespene" value="-50"/>
+            <Button DefaultButtonFace="LoadOutSpray@2">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+            <Unit value="VoidRay"/>
+        </InfoArray>
+        <InfoArray index="Train9" Time="80">
+            <Resource index="Minerals" value="-116"/>
+            <Resource index="Vespene" value="-88"/>
+            <Button DefaultButtonFace="LoadOutSpray@3">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+            <Unit value="Carrier"/>
+        </InfoArray>
+    </CAbilTrain>
+    <CAbilTrain id="StarportTrain">
+        <InfoArray index="Train9" Time="28">
+            <Resource index="Minerals" value="-50"/>
+            <Resource index="Vespene" value="-25"/>
+            <Button DefaultButtonFace="LoadOutSpray@1">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+            <Unit value="VikingFighter"/>
+        </InfoArray>
+        <InfoArray index="Train10" Time="28">
+            <Resource index="Minerals" value="-33"/>
+            <Resource index="Vespene" value="-33"/>
+            <Button DefaultButtonFace="LoadOutSpray@2"/>
+            <Unit value="Medivac"/>
+        </InfoArray>
+        <InfoArray index="Train11" Time="34">
+            <Resource index="Minerals" value="-50"/>
+            <Resource index="Vespene" value="-50"/>
+            <Button DefaultButtonFace="LoadOutSpray@3">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+            <Unit value="Wraith"/>
+        </InfoArray>
+        <InfoArray index="Train12" Time="40">
+            <Resource index="Minerals" value="-50"/>
+            <Resource index="Vespene" value="-33"/>
+            <Button DefaultButtonFace="LoadOutSpray@4">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+            <Unit value="Banshee"/>
+        </InfoArray>
+        <InfoArray index="Train13" Time="40">
+            <Resource index="Minerals" value="-33"/>
+            <Resource index="Vespene" value="-66"/>
+            <Button DefaultButtonFace="LoadOutSpray@5">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+            <Unit value="Raven"/>
+        </InfoArray>
+        <InfoArray index="Train14" Time="40">
+            <Resource index="Minerals" value="-33"/>
+            <Resource index="Vespene" value="-66"/>
+            <Button DefaultButtonFace="LoadOutSpray@6">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+            <Unit value="ScienceVessel"/>
+        </InfoArray>
+        <InfoArray index="Train15" Time="74">
+            <Resource index="Minerals" value="-133"/>
+            <Resource index="Vespene" value="-100"/>
+            <Button DefaultButtonFace="LoadOutSpray@7">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+            <Unit value="Battlecruiser"/>
+        </InfoArray>
+        <InfoArray index="Train16" Time="47">
+            <Resource index="Minerals" value="-100"/>
+            <Resource index="Vespene" value="-66"/>
+            <Button DefaultButtonFace="LoadOutSpray@8">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+            <Unit value="Hercules"/>
+        </InfoArray>
+    </CAbilTrain>
+    <CAbilWarpTrain id="WarpGateTrain">
+        <InfoArray index="Train7" Time="5" Unit="Zealot">
+            <Resource index="Minerals" value="-33"/>
+            <Cooldown Link="WarpGateTrain" TimeUse="16"/>
+            <Button DefaultButtonFace="LoadOutSpray@1">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+        </InfoArray>
+        <InfoArray index="Train8" Time="5" Unit="Stalker">
+            <Resource index="Minerals" value="-41"/>
+            <Resource index="Vespene" value="-16"/>
+            <Cooldown Link="WarpGateTrain" TimeUse="22"/>
+            <Button DefaultButtonFace="LoadOutSpray@2">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+        </InfoArray>
+        <InfoArray index="Train9" Time="5" Unit="HighTemplar">
+            <Resource index="Minerals" value="-16"/>
+            <Resource index="Vespene" value="-50"/>
+            <Cooldown Link="WarpGateTrain" TimeUse="30"/>
+            <Button DefaultButtonFace="LoadOutSpray@3">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+        </InfoArray>
+        <InfoArray index="Train10" Time="5" Unit="DarkTemplar">
+            <Resource index="Minerals" value="-41"/>
+            <Resource index="Vespene" value="-41"/>
+            <Cooldown Link="WarpGateTrain" TimeUse="30"/>
+            <Button DefaultButtonFace="LoadOutSpray@4">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+        </InfoArray>
+    </CAbilWarpTrain>
+</Catalog>

@@ -799,6 +799,695 @@ bool auto_libEFA54406_gf_PlayerUnitsContext_TriggerFunc (bool testConds, bool ru
     return true;
 }
 
+trigger auto_libEFA54406_gf_NeuroProducesUnit_Trigger = null;
+string auto_libEFA54406_gf_NeuroProducesUnit_lp_unit_to_produce;
+
+void libEFA54406_gf_NeuroProducesUnit (string lp_unit_to_produce) {
+    auto_libEFA54406_gf_NeuroProducesUnit_lp_unit_to_produce = lp_unit_to_produce;
+
+    if (auto_libEFA54406_gf_NeuroProducesUnit_Trigger == null) {
+        auto_libEFA54406_gf_NeuroProducesUnit_Trigger = TriggerCreate("auto_libEFA54406_gf_NeuroProducesUnit_TriggerFunc");
+    }
+
+    TriggerExecute(auto_libEFA54406_gf_NeuroProducesUnit_Trigger, false, false);
+}
+
+bool auto_libEFA54406_gf_NeuroProducesUnit_TriggerFunc (bool testConds, bool runActions) {
+    string lp_unit_to_produce = auto_libEFA54406_gf_NeuroProducesUnit_lp_unit_to_produce;
+
+    // Variable Declarations
+    int lv_mineral_count;
+    int lv_gas_count;
+    int lv_needed_minerals;
+    int lv_needed_gas;
+    bool lv_not_enough_resources;
+    int lv_supply_count;
+    int lv_supply_max_count;
+    int lv_supply_limit_count;
+    int lv_needed_supply;
+    bool lv_not_enough_supply;
+    string lv_needed_production_building;
+    string lv_needed_requirement_building;
+    string lv_needed_addon_building;
+    unitgroup lv_player_units;
+    unitgroup lv_selected_units;
+    unitgroup lv_lookingat_group;
+    unitgroup lv_lookingat_required_group;
+    unitgroup lv_eligible_group;
+    unit lv_unit;
+    unit lv_unit_required;
+    bool lv_production_exists;
+    bool lv_addon_exists;
+    bool lv_requirement_exists;
+    int lv_available_slots;
+    int lv_most_available_slots;
+    unit lv_most_available_slots_unit;
+    abilcmd lv_ability_command;
+    text lv_name_of_unit;
+    string lv_name_of_unit_string;
+    bool lv_eligible_exists;
+    string lv_warp_unit_type;
+    unitgroup lv_pylon_group;
+    unit lv_pylon_unit;
+
+    // Automatic Variable Declarations
+    string autoF0159D3C_val;
+    unitgroup auto4AFE229D_g;
+    int auto4AFE229D_u;
+    string autoB74DADE7_val;
+    unitgroup auto92F03147_g;
+    int auto92F03147_u;
+    unitgroup auto4A8779BA_g;
+    int auto4A8779BA_u;
+    unitgroup auto0AE17672_g;
+    int auto0AE17672_u;
+    string auto78F33098_val;
+    unitgroup autoCBC14714_g;
+    int autoCBC14714_u;
+    string autoCFD21505_val;
+    unitgroup auto1F937CCA_g;
+    int auto1F937CCA_u;
+    unitgroup auto24A51D50_g;
+    int auto24A51D50_u;
+    unitgroup auto40FFAE91_g;
+    int auto40FFAE91_u;
+    string auto5DBC1EE3_val;
+
+    // Variable Initialization
+    lv_player_units = UnitGroupEmpty();
+    lv_selected_units = UnitGroupEmpty();
+    lv_lookingat_group = UnitGroupEmpty();
+    lv_lookingat_required_group = UnitGroupEmpty();
+    lv_eligible_group = UnitGroupEmpty();
+    lv_name_of_unit_string = "";
+    lv_pylon_group = UnitGroupEmpty();
+
+    // Implementation
+    lv_mineral_count = PlayerGetPropertyInt(1, c_playerPropMinerals);
+    lv_gas_count = PlayerGetPropertyInt(1, c_playerPropVespene);
+    lv_supply_count = PlayerGetPropertyInt(1, c_playerPropSuppliesUsed);
+    lv_supply_limit_count = PlayerGetPropertyInt(1, c_playerPropSuppliesLimit);
+    lv_supply_max_count = MinI(lv_supply_limit_count, PlayerGetPropertyInt(1, c_playerPropSuppliesMade));
+    lv_player_units = UnitGroup(null, 1, RegionPlayableMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    lv_selected_units = UnitGroupFilter(null, 1, UnitGroupSelected(1), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    autoF0159D3C_val = lp_unit_to_produce;
+    if (autoF0159D3C_val == "SCV") {
+        lv_ability_command = AbilityCommand("CommandCenterTrain", 1);
+        lv_needed_production_building = "CommandCenter";
+        lv_needed_supply = 1;
+        lv_needed_minerals = 34;
+    }
+    else if (autoF0159D3C_val == "Marine") {
+        lv_ability_command = AbilityCommand("BarracksTrain", 7);
+        lv_needed_production_building = "Barracks";
+        lv_needed_supply = 1;
+        lv_needed_minerals = 34;
+    }
+    else if (autoF0159D3C_val == "Medic") {
+        lv_ability_command = AbilityCommand("BarracksTrain", 8);
+        lv_needed_production_building = "Barracks";
+        if ((libCamp_gf_StoryTechStateCheck(libCamp_ge_StoryTech_StoryTechMedicStabilizerMedPacks, libCamp_ge_StoryTechStates_TechPurchased) == true)) {
+        }
+        else {
+            lv_needed_addon_building = "BarracksTechLab";
+        }
+        lv_needed_supply = 2;
+        lv_needed_minerals = 50;
+        lv_needed_gas = 34;
+    }
+    else if (autoF0159D3C_val == "Marauder") {
+        lv_ability_command = AbilityCommand("BarracksTrain", 9);
+        lv_needed_production_building = "Barracks";
+        lv_needed_addon_building = "BarracksTechLab";
+        lv_needed_supply = 2;
+        lv_needed_minerals = 67;
+        lv_needed_gas = 17;
+    }
+    else if (autoF0159D3C_val == "Firebat") {
+        lv_ability_command = AbilityCommand("BarracksTrain", 10);
+        lv_needed_production_building = "Barracks";
+        lv_needed_addon_building = "BarracksTechLab";
+        lv_needed_supply = 2;
+        lv_needed_minerals = 67;
+        lv_needed_gas = 17;
+    }
+    else if (autoF0159D3C_val == "Reaper") {
+        lv_ability_command = AbilityCommand("BarracksTrain", 11);
+        lv_needed_production_building = "Barracks";
+        lv_needed_addon_building = "BarracksTechLab";
+        lv_needed_supply = 1;
+        lv_needed_minerals = 34;
+        lv_needed_gas = 34;
+    }
+    else if (autoF0159D3C_val == "Ghost") {
+        lv_ability_command = AbilityCommand("BarracksTrain", 12);
+        lv_needed_production_building = "Barracks";
+        lv_needed_addon_building = "BarracksTechLab";
+        lv_needed_requirement_building = "GhostAcademy";
+        lv_needed_supply = 2;
+        lv_needed_minerals = 100;
+        lv_needed_gas = 100;
+    }
+    else if (autoF0159D3C_val == "Spectre") {
+        lv_ability_command = AbilityCommand("BarracksTrain", 13);
+        lv_needed_production_building = "Barracks";
+        lv_needed_addon_building = "BarracksTechLab";
+        lv_needed_requirement_building = "GhostAcademy";
+        lv_needed_supply = 2;
+        lv_needed_minerals = 100;
+        lv_needed_gas = 100;
+    }
+    else if (autoF0159D3C_val == "Hellion") {
+        lv_ability_command = AbilityCommand("FactoryTrain", 10);
+        lv_needed_production_building = "Factory";
+        lv_needed_supply = 2;
+        lv_needed_minerals = 67;
+    }
+    else if (autoF0159D3C_val == "Vulture") {
+        lv_ability_command = AbilityCommand("FactoryTrain", 11);
+        lv_needed_production_building = "Factory";
+        lv_needed_supply = 2;
+        lv_needed_minerals = 50;
+    }
+    else if (autoF0159D3C_val == "Goliath") {
+        lv_ability_command = AbilityCommand("FactoryTrain", 12);
+        lv_needed_production_building = "Factory";
+        lv_needed_addon_building = "FactoryTechLab";
+        lv_needed_supply = 3;
+        lv_needed_minerals = 100;
+        lv_needed_gas = 34;
+    }
+    else if (autoF0159D3C_val == "Diamondback") {
+        lv_ability_command = AbilityCommand("FactoryTrain", 13);
+        lv_needed_production_building = "Factory";
+        lv_needed_addon_building = "FactoryTechLab";
+        lv_needed_supply = 4;
+        lv_needed_minerals = 100;
+        lv_needed_gas = 100;
+    }
+    else if (autoF0159D3C_val == "Siege Tank") {
+        lv_ability_command = AbilityCommand("FactoryTrain", 14);
+        lv_needed_production_building = "Factory";
+        lv_needed_addon_building = "FactoryTechLab";
+        lv_needed_supply = 3;
+        lv_needed_minerals = 100;
+        lv_needed_gas = 84;
+    }
+    else if (autoF0159D3C_val == "Predator") {
+        lv_ability_command = AbilityCommand("FactoryTrain", 15);
+        lv_needed_production_building = "Factory";
+        lv_needed_addon_building = "FactoryTechLab";
+        lv_needed_supply = 3;
+        lv_needed_minerals = 67;
+        lv_needed_gas = 67;
+    }
+    else if (autoF0159D3C_val == "Thor") {
+        lv_ability_command = AbilityCommand("FactoryTrain", 16);
+        lv_needed_production_building = "Factory";
+        lv_needed_addon_building = "FactoryTechLab";
+        lv_needed_requirement_building = "Armory";
+        lv_needed_supply = 6;
+        lv_needed_minerals = 200;
+        lv_needed_gas = 134;
+    }
+    else if (autoF0159D3C_val == "Viking") {
+        lv_ability_command = AbilityCommand("StarportTrain", 8);
+        lv_needed_production_building = "Starport";
+        lv_needed_supply = 2;
+        lv_needed_minerals = 100;
+        lv_needed_gas = 50;
+    }
+    else if (autoF0159D3C_val == "Medivac") {
+        lv_ability_command = AbilityCommand("StarportTrain", 9);
+        lv_needed_production_building = "Starport";
+        lv_needed_supply = 2;
+        lv_needed_minerals = 67;
+        lv_needed_gas = 67;
+    }
+    else if (autoF0159D3C_val == "Wraith") {
+        lv_ability_command = AbilityCommand("StarportTrain", 10);
+        lv_needed_production_building = "Starport";
+        lv_needed_addon_building = "StarportTechLab";
+        lv_needed_supply = 2;
+        lv_needed_minerals = 100;
+        lv_needed_gas = 100;
+    }
+    else if (autoF0159D3C_val == "Banshee") {
+        lv_ability_command = AbilityCommand("StarportTrain", 11);
+        lv_needed_production_building = "Starport";
+        lv_needed_addon_building = "StarportTechLab";
+        lv_needed_supply = 3;
+        lv_needed_minerals = 100;
+        lv_needed_gas = 67;
+    }
+    else if (autoF0159D3C_val == "Raven") {
+        lv_ability_command = AbilityCommand("StarportTrain", 12);
+        lv_needed_production_building = "Starport";
+        lv_needed_addon_building = "StarportTechLab";
+        lv_needed_supply = 2;
+        lv_needed_minerals = 67;
+        lv_needed_gas = 134;
+    }
+    else if (autoF0159D3C_val == "Science Vessel") {
+        lv_ability_command = AbilityCommand("StarportTrain", 13);
+        lv_needed_production_building = "Starport";
+        lv_needed_addon_building = "StarportTechLab";
+        lv_needed_supply = 2;
+        lv_needed_minerals = 67;
+        lv_needed_gas = 134;
+    }
+    else if (autoF0159D3C_val == "Battlecruiser") {
+        lv_ability_command = AbilityCommand("StarportTrain", 14);
+        lv_needed_production_building = "Starport";
+        lv_needed_addon_building = "StarportTechLab";
+        lv_needed_requirement_building = "FusionCore";
+        lv_needed_supply = 6;
+        lv_needed_minerals = 267;
+        lv_needed_gas = 200;
+    }
+    else if (autoF0159D3C_val == "Hercules") {
+        lv_ability_command = AbilityCommand("StarportTrain", 15);
+        lv_needed_production_building = "Starport";
+        lv_needed_addon_building = "StarportTechLab";
+        lv_needed_requirement_building = "FusionCore";
+        lv_needed_supply = 2;
+        lv_needed_minerals = 200;
+        lv_needed_gas = 134;
+    }
+    else if (autoF0159D3C_val == "Nuke") {
+        if ((TechTreeAbilityIsAllowed(1, AbilityCommand("BarracksTrain", 2)) == true)) {
+            lv_ability_command = AbilityCommand("ArmSiloWithNuke", 1);
+        }
+        else {
+            lv_ability_command = AbilityCommand("SpectreNukeSiloArmMagazine", 2);
+        }
+        lv_needed_production_building = "GhostAcademy";
+        lv_needed_minerals = 67;
+        lv_needed_gas = 67;
+    }
+    else if (autoF0159D3C_val == "Probe") {
+        lv_ability_command = AbilityCommand("NexusTrain", 1);
+        lv_needed_production_building = "Nexus";
+        lv_needed_supply = 1;
+        lv_needed_minerals = 34;
+    }
+    else if (autoF0159D3C_val == "Zealot") {
+        lv_ability_command = AbilityCommand("GatewayTrain", 6);
+        lv_needed_production_building = "Gateway";
+        lv_needed_supply = 2;
+        lv_needed_minerals = 67;
+    }
+    else if (autoF0159D3C_val == "Stalker") {
+        lv_ability_command = AbilityCommand("GatewayTrain", 7);
+        lv_needed_production_building = "Gateway";
+        lv_needed_requirement_building = "CyberneticsCore";
+        lv_needed_supply = 2;
+        lv_needed_minerals = 84;
+        lv_needed_gas = 34;
+    }
+    else if (autoF0159D3C_val == "High Templar") {
+        lv_ability_command = AbilityCommand("GatewayTrain", 8);
+        lv_needed_production_building = "Gateway";
+        lv_needed_requirement_building = "TemplarArchive";
+        lv_needed_supply = 2;
+        lv_needed_minerals = 34;
+        lv_needed_gas = 100;
+    }
+    else if (autoF0159D3C_val == "Dark Templar") {
+        lv_ability_command = AbilityCommand("GatewayTrain", 9);
+        lv_needed_production_building = "Gateway";
+        lv_needed_requirement_building = "DarkShrine";
+        lv_needed_supply = 2;
+        lv_needed_minerals = 84;
+        lv_needed_gas = 84;
+    }
+    else if (autoF0159D3C_val == "Immortal") {
+        lv_ability_command = AbilityCommand("RoboticsFacilityTrain", 4);
+        lv_needed_production_building = "RoboticsFacility";
+        lv_needed_supply = 4;
+        lv_needed_minerals = 167;
+        lv_needed_gas = 67;
+    }
+    else if (autoF0159D3C_val == "Observer") {
+        lv_ability_command = AbilityCommand("RoboticsFacilityTrain", 5);
+        lv_needed_production_building = "RoboticsFacility";
+        lv_needed_supply = 1;
+        lv_needed_minerals = 34;
+        lv_needed_gas = 67;
+    }
+    else if (autoF0159D3C_val == "Colossus") {
+        lv_ability_command = AbilityCommand("RoboticsFacilityTrain", 6);
+        lv_needed_production_building = "RoboticsFacility";
+        lv_needed_requirement_building = "RoboticsBay";
+        lv_needed_supply = 6;
+        lv_needed_minerals = 200;
+        lv_needed_gas = 134;
+    }
+    else if (autoF0159D3C_val == "Phoenix") {
+        lv_ability_command = AbilityCommand("StargateTrain", 6);
+        lv_needed_production_building = "Stargate";
+        lv_needed_supply = 2;
+        lv_needed_minerals = 100;
+        lv_needed_gas = 67;
+    }
+    else if (autoF0159D3C_val == "Void Ray") {
+        lv_ability_command = AbilityCommand("StargateTrain", 7);
+        lv_needed_production_building = "Stargate";
+        lv_needed_supply = 3;
+        lv_needed_minerals = 167;
+        lv_needed_gas = 100;
+    }
+    else if (autoF0159D3C_val == "Carrier") {
+        lv_ability_command = AbilityCommand("StargateTrain", 8);
+        lv_needed_production_building = "Stargate";
+        lv_needed_requirement_building = "FleetBeacon";
+        lv_needed_supply = 6;
+        lv_needed_minerals = 234;
+        lv_needed_gas = 167;
+    }
+    else {
+    }
+    if (((lv_needed_supply + lv_supply_count) > lv_supply_max_count)) {
+        lv_not_enough_supply = true;
+    }
+
+    if ((lv_not_enough_supply == true)) {
+        if (((lv_needed_supply + lv_supply_count) > lv_supply_limit_count)) {
+            libEFA54406_gf_create_context("not_enough_supply", lp_unit_to_produce + " needs " + IntToString(lv_needed_supply) + " supply. You have reachend the supply limit of " + IntToString(lv_supply_limit_count) + " and cannot produce any more units. ", true);
+        }
+        else {
+            libEFA54406_gf_create_context("not_enough_supply", lp_unit_to_produce + " needs " + IntToString(lv_needed_supply) + " supply. You are using all your available supply and cannot produce any more units until the player increases the available supply. ", true);
+        }
+        TriggerExecute(libEFA54406_gt_Currentsupply, true, false);
+        return true;
+    }
+
+    if (((lv_mineral_count < lv_needed_minerals) || (lv_gas_count < lv_needed_gas))) {
+        lv_not_enough_resources = true;
+    }
+
+    if ((lv_not_enough_resources == true)) {
+        libEFA54406_gf_create_context("not_enough_resources", "You don't have enough resources to produce this unit. You need " + IntToString(lv_needed_minerals) + " Minerals | " + IntToString(lv_needed_gas) + " Vespene Gas. ", true);
+        TriggerExecute(libEFA54406_gt_Currentresources, true, false);
+        return true;
+    }
+
+    lv_lookingat_group = UnitGroupFilter(lv_needed_production_building, c_playerAny, lv_selected_units, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    if ((lv_needed_production_building == "CommandCenter")) {
+        UnitGroupAddUnitGroup(lv_lookingat_group, UnitGroupFilter("OrbitalCommand", c_playerAny, lv_selected_units, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
+        UnitGroupAddUnitGroup(lv_lookingat_group, UnitGroupFilter("PlanetaryFortress", c_playerAny, lv_selected_units, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
+    }
+
+    if ((lv_needed_production_building == "Gateway")) {
+        UnitGroupAddUnitGroup(lv_lookingat_group, UnitGroupFilter("WarpGate", c_playerAny, lv_selected_units, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
+    }
+
+    auto4AFE229D_g = lv_lookingat_group;
+    auto4AFE229D_u = UnitGroupCount(auto4AFE229D_g, c_unitCountAll);
+    for (;; auto4AFE229D_u -= 1) {
+        lv_unit = UnitGroupUnitFromEnd(auto4AFE229D_g, auto4AFE229D_u);
+        if (lv_unit == null) { break; }
+        lv_production_exists = true;
+        if ((lv_needed_addon_building != null)) {
+            autoB74DADE7_val = lv_needed_addon_building;
+            if (autoB74DADE7_val == "BarracksTechLab") {
+                if (((UnitGetType(UnitAddOnChild(lv_unit, 0)) == "BarracksTechLab") || (UnitGetType(UnitAddOnChild(lv_unit, 0)) == "BarracksTechReactor"))) {
+                    lv_addon_exists = true;
+                    UnitGroupAdd(lv_eligible_group, lv_unit);
+                }
+
+            }
+            else if (autoB74DADE7_val == "FactoryTechLab") {
+                if (((UnitGetType(UnitAddOnChild(lv_unit, 0)) == "FactoryTechLab") || (UnitGetType(UnitAddOnChild(lv_unit, 0)) == "FactoryTechReactor"))) {
+                    lv_addon_exists = true;
+                    UnitGroupAdd(lv_eligible_group, lv_unit);
+                }
+
+            }
+            else if (autoB74DADE7_val == "StarportTechLab") {
+                if (((UnitGetType(UnitAddOnChild(lv_unit, 0)) == "StarportTechLab") || (UnitGetType(UnitAddOnChild(lv_unit, 0)) == "StarportTechReactor"))) {
+                    lv_addon_exists = true;
+                    UnitGroupAdd(lv_eligible_group, lv_unit);
+                }
+
+            }
+            else {
+            }
+            if ((lv_needed_requirement_building != null)) {
+                lv_lookingat_required_group = UnitGroupFilter(lv_needed_requirement_building, c_playerAny, lv_player_units, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+                auto4A8779BA_g = lv_lookingat_required_group;
+                auto4A8779BA_u = UnitGroupCount(auto4A8779BA_g, c_unitCountAll);
+                for (;; auto4A8779BA_u -= 1) {
+                    lv_unit_required = UnitGroupUnitFromEnd(auto4A8779BA_g, auto4A8779BA_u);
+                    if (lv_unit_required == null) { break; }
+                    lv_requirement_exists = true;
+                }
+                if ((lv_requirement_exists == true)) {
+                }
+                else {
+                    UnitGroupRemove(lv_eligible_group, lv_unit);
+                }
+            }
+
+        }
+        else {
+            if ((lv_needed_requirement_building != null)) {
+                lv_lookingat_required_group = UnitGroupFilter(lv_needed_requirement_building, c_playerAny, lv_player_units, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+                auto92F03147_g = lv_lookingat_required_group;
+                auto92F03147_u = UnitGroupCount(auto92F03147_g, c_unitCountAll);
+                for (;; auto92F03147_u -= 1) {
+                    lv_unit_required = UnitGroupUnitFromEnd(auto92F03147_g, auto92F03147_u);
+                    if (lv_unit_required == null) { break; }
+                    lv_requirement_exists = true;
+                }
+                if ((lv_requirement_exists == true)) {
+                    UnitGroupAdd(lv_eligible_group, lv_unit);
+                }
+
+            }
+            else {
+                UnitGroupAdd(lv_eligible_group, lv_unit);
+            }
+        }
+    }
+    auto0AE17672_g = lv_eligible_group;
+    auto0AE17672_u = UnitGroupCount(auto0AE17672_g, c_unitCountAll);
+    for (;; auto0AE17672_u -= 1) {
+        lv_unit = UnitGroupUnitFromEnd(auto0AE17672_g, auto0AE17672_u);
+        if (lv_unit == null) { break; }
+        if ((lp_unit_to_produce == "Nuke")) {
+            UnitIssueOrder(lv_unit, Order(lv_ability_command), c_orderQueueAddToEnd);
+            return true;
+        }
+
+        if ((UnitGetType(lv_unit) == "WarpGate")) {
+            if ((UnitCheckAbilCmdState(lv_unit, AbilityCommand("WarpGateTrain", 0), c_cmdStateExecuting | c_cmdStateDisabled | c_cmdStateCooldown) == false)) {
+                auto78F33098_val = lp_unit_to_produce;
+                if (auto78F33098_val == "Zealot") {
+                    lv_ability_command = AbilityCommand("WarpGateTrain", 6);
+                    lv_warp_unit_type = "Zealot";
+                }
+                else if (auto78F33098_val == "Stalker") {
+                    lv_ability_command = AbilityCommand("WarpGateTrain", 7);
+                    lv_warp_unit_type = "Stalker";
+                }
+                else if (auto78F33098_val == "High Templar") {
+                    lv_ability_command = AbilityCommand("WarpGateTrain", 8);
+                    lv_warp_unit_type = "HighTemplar";
+                }
+                else if (auto78F33098_val == "Dark Templar") {
+                    lv_ability_command = AbilityCommand("WarpGateTrain", 9);
+                    lv_warp_unit_type = "DarkTemplar";
+                }
+                else {
+                }
+                lv_pylon_group = UnitGroup("Pylon", 1, RegionPlayableMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+                do {
+                    lv_pylon_unit = UnitGroupClosestToPoint(lv_pylon_group, CameraGetTarget(1));
+                    if ((UnitTypePlacementTestsFromUnit(lv_warp_unit_type, 1, lv_pylon_unit, 7.0, c_placementTestPowerMask) != null)) {
+                        UnitIssueOrder(lv_unit, OrderTargetingPoint(lv_ability_command, UnitTypePlacementTestsFromUnit(lv_warp_unit_type, 1, lv_pylon_unit, 7.0, c_placementTestPowerMask)), c_orderQueueAddToEnd);
+                        return true;
+                    }
+                    else {
+                        UnitGroupRemove(lv_pylon_group, lv_pylon_unit);
+                    }
+                }while ((UnitGroupCount(lv_pylon_group, c_unitCountAlive) != 0));
+                continue;
+            }
+            else {
+                continue;
+            }
+        }
+
+        lv_available_slots = UnitQueueGetProperty(lv_unit, c_unitQueuePropertyAvailable);
+        if ((lv_available_slots > lv_most_available_slots)) {
+            lv_most_available_slots = lv_available_slots;
+            lv_most_available_slots_unit = lv_unit;
+        }
+
+    }
+    if ((lv_most_available_slots > 0)) {
+        UnitIssueOrder(lv_most_available_slots_unit, Order(lv_ability_command), c_orderQueueAddToEnd);
+        return true;
+    }
+
+    lv_lookingat_group = UnitGroupFilter(lv_needed_production_building, c_playerAny, lv_player_units, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    if ((lv_needed_production_building == "CommandCenter")) {
+        UnitGroupAddUnitGroup(lv_lookingat_group, UnitGroupFilter("OrbitalCommand", c_playerAny, lv_player_units, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
+        UnitGroupAddUnitGroup(lv_lookingat_group, UnitGroupFilter("PlanetaryFortress", c_playerAny, lv_player_units, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
+    }
+
+    if ((lv_needed_production_building == "Gateway")) {
+        UnitGroupAddUnitGroup(lv_lookingat_group, UnitGroupFilter("WarpGate", c_playerAny, lv_player_units, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
+    }
+
+    autoCBC14714_g = lv_lookingat_group;
+    autoCBC14714_u = UnitGroupCount(autoCBC14714_g, c_unitCountAll);
+    for (;; autoCBC14714_u -= 1) {
+        lv_unit = UnitGroupUnitFromEnd(autoCBC14714_g, autoCBC14714_u);
+        if (lv_unit == null) { break; }
+        lv_production_exists = true;
+        if ((lv_needed_addon_building != null)) {
+            autoCFD21505_val = lv_needed_addon_building;
+            if (autoCFD21505_val == "BarracksTechLab") {
+                if (((UnitGetType(UnitAddOnChild(lv_unit, 0)) == "BarracksTechLab") || (UnitGetType(UnitAddOnChild(lv_unit, 0)) == "BarracksTechReactor"))) {
+                    lv_addon_exists = true;
+                    UnitGroupAdd(lv_eligible_group, lv_unit);
+                }
+
+            }
+            else if (autoCFD21505_val == "FactoryTechLab") {
+                if (((UnitGetType(UnitAddOnChild(lv_unit, 0)) == "FactoryTechLab") || (UnitGetType(UnitAddOnChild(lv_unit, 0)) == "FactoryTechReactor"))) {
+                    lv_addon_exists = true;
+                    UnitGroupAdd(lv_eligible_group, lv_unit);
+                }
+
+            }
+            else if (autoCFD21505_val == "StarportTechLab") {
+                if (((UnitGetType(UnitAddOnChild(lv_unit, 0)) == "StarportTechLab") || (UnitGetType(UnitAddOnChild(lv_unit, 0)) == "StarportTechReactor"))) {
+                    lv_addon_exists = true;
+                    UnitGroupAdd(lv_eligible_group, lv_unit);
+                }
+
+            }
+            else {
+            }
+            if ((lv_needed_requirement_building != null)) {
+                lv_lookingat_required_group = UnitGroupFilter(lv_needed_requirement_building, c_playerAny, lv_player_units, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+                auto24A51D50_g = lv_lookingat_required_group;
+                auto24A51D50_u = UnitGroupCount(auto24A51D50_g, c_unitCountAll);
+                for (;; auto24A51D50_u -= 1) {
+                    lv_unit_required = UnitGroupUnitFromEnd(auto24A51D50_g, auto24A51D50_u);
+                    if (lv_unit_required == null) { break; }
+                    lv_requirement_exists = true;
+                }
+                if ((lv_requirement_exists == true)) {
+                }
+                else {
+                    UnitGroupRemove(lv_eligible_group, lv_unit);
+                }
+            }
+
+        }
+        else {
+            if ((lv_needed_requirement_building != null)) {
+                lv_lookingat_required_group = UnitGroupFilter(lv_needed_requirement_building, c_playerAny, lv_player_units, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+                auto1F937CCA_g = lv_lookingat_required_group;
+                auto1F937CCA_u = UnitGroupCount(auto1F937CCA_g, c_unitCountAll);
+                for (;; auto1F937CCA_u -= 1) {
+                    lv_unit_required = UnitGroupUnitFromEnd(auto1F937CCA_g, auto1F937CCA_u);
+                    if (lv_unit_required == null) { break; }
+                    lv_requirement_exists = true;
+                }
+                if ((lv_requirement_exists == true)) {
+                    UnitGroupAdd(lv_eligible_group, lv_unit);
+                }
+
+            }
+            else {
+                UnitGroupAdd(lv_eligible_group, lv_unit);
+            }
+        }
+    }
+    auto40FFAE91_g = lv_eligible_group;
+    auto40FFAE91_u = UnitGroupCount(auto40FFAE91_g, c_unitCountAll);
+    for (;; auto40FFAE91_u -= 1) {
+        lv_unit = UnitGroupUnitFromEnd(auto40FFAE91_g, auto40FFAE91_u);
+        if (lv_unit == null) { break; }
+        if ((lp_unit_to_produce == "Nuke")) {
+            UnitIssueOrder(lv_unit, Order(lv_ability_command), c_orderQueueAddToEnd);
+            return true;
+        }
+
+        if ((UnitGetType(lv_unit) == "WarpGate")) {
+            if ((UnitCheckAbilCmdState(lv_unit, AbilityCommand("WarpGateTrain", 0), c_cmdStateExecuting | c_cmdStateDisabled) == false)) {
+                if ((UnitCheckAbilCmdState(lv_unit, AbilityCommand("WarpGateTrain", 0), c_cmdStateCooldown) == true)) {
+                    lv_eligible_exists = true;
+                    continue;
+                }
+                else {
+                    auto5DBC1EE3_val = lp_unit_to_produce;
+                    if (auto5DBC1EE3_val == "Zealot") {
+                        lv_ability_command = AbilityCommand("WarpGateTrain", 6);
+                        lv_warp_unit_type = "Zealot";
+                    }
+                    else if (auto5DBC1EE3_val == "Stalker") {
+                        lv_ability_command = AbilityCommand("WarpGateTrain", 7);
+                        lv_warp_unit_type = "Stalker";
+                    }
+                    else if (auto5DBC1EE3_val == "High Templar") {
+                        lv_ability_command = AbilityCommand("WarpGateTrain", 8);
+                        lv_warp_unit_type = "HighTemplar";
+                    }
+                    else if (auto5DBC1EE3_val == "Dark Templar") {
+                        lv_ability_command = AbilityCommand("WarpGateTrain", 9);
+                        lv_warp_unit_type = "DarkTemplar";
+                    }
+                    else {
+                    }
+                    lv_pylon_group = UnitGroupFilter("Pylon", c_playerAny, lv_player_units, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+                    do {
+                        lv_pylon_unit = UnitGroupClosestToPoint(lv_pylon_group, CameraGetTarget(1));
+                        if ((UnitTypePlacementTestsFromUnit(lv_warp_unit_type, 1, lv_pylon_unit, 7.0, c_placementTestPowerMask) != null)) {
+                            UnitIssueOrder(lv_unit, OrderTargetingPoint(lv_ability_command, UnitTypePlacementTestsFromUnit(lv_warp_unit_type, 1, lv_pylon_unit, 7.0, c_placementTestPowerMask)), c_orderQueueAddToEnd);
+                            return true;
+                        }
+                        else {
+                            UnitGroupRemove(lv_pylon_group, lv_pylon_unit);
+                        }
+                    }while ((UnitGroupCount(lv_pylon_group, c_unitCountAlive) != 0));
+                    continue;
+                }
+            }
+            else {
+                continue;
+            }
+        }
+
+        lv_eligible_exists = true;
+        lv_available_slots = UnitQueueGetProperty(lv_unit, c_unitQueuePropertyAvailable);
+        if ((lv_available_slots > lv_most_available_slots)) {
+            lv_most_available_slots = lv_available_slots;
+            lv_most_available_slots_unit = lv_unit;
+        }
+
+    }
+    if ((lv_eligible_exists == true)) {
+        if ((lv_most_available_slots > 0)) {
+            UnitIssueOrder(lv_most_available_slots_unit, Order(lv_ability_command), c_orderQueueAddToEnd);
+        }
+        else {
+            lv_name_of_unit = UnitTypeGetName(lv_needed_production_building);
+            lv_name_of_unit_string = TextToString(lv_name_of_unit);
+            libEFA54406_gf_create_context("cant_produce", "Couldn't produce the requested unit: " + lp_unit_to_produce + " All of your " + lv_name_of_unit_string + " have full production queues. You have to wait until a production slot becomes available or the player needs to build more " + lv_name_of_unit_string + ". ", true);
+        }
+    }
+    else {
+        libEFA54406_gf_create_context("cant_produce", "Couldn't produce the requested unit: " + lp_unit_to_produce + " Required building doesn't exist anymore. ", true);
+    }
+    return true;
+}
+
 trigger auto_libEFA54406_gf_BlockContext_Trigger = null;
 bool auto_libEFA54406_gf_BlockContext_lp_block;
 
@@ -819,6 +1508,7 @@ bool auto_libEFA54406_gf_BlockContext_TriggerFunc (bool testConds, bool runActio
     // Implementation
     if ((lp_block == true)) {
         libEFA54406_gv_is_blocking = true;
+        TriggerStop(libEFA54406_gt_PlayerActivityContext);
         TriggerExecute(libEFA54406_gt_ClearQueue, true, false);
         libEFA54406_gf_create_action_0_arg("get_objectives", false, "Get the current mission objectives", -1);
         libEFA54406_gf_create_action_1_arg("your_units", false, "", "string(all, army, workers, structures)", -1);
@@ -828,6 +1518,7 @@ bool auto_libEFA54406_gf_BlockContext_TriggerFunc (bool testConds, bool runActio
         if ((libEFA54406_gv_is_nobuild == false)) {
             libEFA54406_gf_create_action_0_arg("current_resources", false, "Get the current Minerals and Vespene Gas you have", -1);
             libEFA54406_gf_create_action_0_arg("current_supply", false, "Get the current used supply and maximum useable supply you have", -1);
+            libEFA54406_gf_create_action_1_arg("produce_unit", false, "", "string", -1);
         }
 
     }
@@ -988,6 +1679,11 @@ bool libEFA54406_gt_Executeactionsglobal_Func (bool testConds, bool runActions) 
         TriggerExecute(libEFA54406_gt_UnitHighestKillCount, true, false);
     }
 
+    if ((BankValueGetAsFlag(BankLastCreated(), "do_action", "produce_unit") == true)) {
+        BankValueSetFromFlag(BankLastCreated(), "do_action", "produce_unit", false);
+        libEFA54406_gf_NeuroProducesUnit(BankValueGetAsString(BankLastCreated(), "do_action", "produce_unit_arg_1"));
+    }
+
     BankSave(BankLastCreated());
     Wait(0.1, c_timeReal);
     TriggerExecute(libEFA54406_gt_PlayerActivityContext, true, false);
@@ -1056,25 +1752,23 @@ void libEFA54406_gt_StartupContext_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: Victory Achieved
+// Trigger: Player chat message
 //--------------------------------------------------------------------------------------------------
-bool libEFA54406_gt_VictoryAchieved_Func (bool testConds, bool runActions) {
+bool libEFA54406_gt_Playerchatmessage_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
     }
 
-    libEFA54406_gv_combat_context_cd = false;
-    Wait(1.0, c_timeReal);
-    libEFA54406_gf_BlockContext(true);
-    libEFA54406_gf_create_context("mission_state", "Mission completed!", false);
+    libEFA54406_gf_create_context("player_chat_message", ("In-game chat message: " + EventChatMessage(false)), false);
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void libEFA54406_gt_VictoryAchieved_Init () {
-    libEFA54406_gt_VictoryAchieved = TriggerCreate("libEFA54406_gt_VictoryAchieved_Func");
+void libEFA54406_gt_Playerchatmessage_Init () {
+    libEFA54406_gt_Playerchatmessage = TriggerCreate("libEFA54406_gt_Playerchatmessage_Func");
+    TriggerAddEventChatMessage(libEFA54406_gt_Playerchatmessage, c_playerAny, "", false);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1095,6 +1789,7 @@ bool libEFA54406_gt_PlayerActivityContext_Func (bool testConds, bool runActions)
         TriggerExecute(libEFA54406_gt_UnitAttackedContext, true, false);
         if ((libEFA54406_gv_is_nobuild == false)) {
             TriggerExecute(libEFA54406_gt_EconomyContext, true, false);
+            TriggerExecute(libEFA54406_gt_NeuroCanProduceUnits, true, false);
         }
 
     }
@@ -1105,26 +1800,6 @@ bool libEFA54406_gt_PlayerActivityContext_Func (bool testConds, bool runActions)
 //--------------------------------------------------------------------------------------------------
 void libEFA54406_gt_PlayerActivityContext_Init () {
     libEFA54406_gt_PlayerActivityContext = TriggerCreate("libEFA54406_gt_PlayerActivityContext_Func");
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Player chat message
-//--------------------------------------------------------------------------------------------------
-bool libEFA54406_gt_Playerchatmessage_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    libEFA54406_gf_create_context("player_chat_message", ("In-game chat message: " + EventChatMessage(false)), false);
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void libEFA54406_gt_Playerchatmessage_Init () {
-    libEFA54406_gt_Playerchatmessage = TriggerCreate("libEFA54406_gt_Playerchatmessage_Func");
-    TriggerAddEventChatMessage(libEFA54406_gt_Playerchatmessage, c_playerAny, "", false);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -2986,6 +3661,113 @@ void libEFA54406_gt_EconomyContextCooldown_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: Victory Achieved
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_VictoryAchieved_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libEFA54406_gv_combat_context_cd = false;
+    Wait(1.0, c_timeReal);
+    libEFA54406_gf_BlockContext(true);
+    libEFA54406_gf_create_context("mission_state", "Mission completed!", false);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_VictoryAchieved_Init () {
+    libEFA54406_gt_VictoryAchieved = TriggerCreate("libEFA54406_gt_VictoryAchieved_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Player Victory Play Again
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_PlayerVictoryPlayAgain_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    bool lv_simulation;
+
+    // Automatic Variable Declarations
+    int autoC9E6B4E9_val;
+
+    // Variable Initialization
+    lv_simulation = true;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UISetFrameVisible(PlayerGroupAll(), c_syncFrameTypeVictoryPanel, false);
+    autoC9E6B4E9_val = EventVictoryPanelDifficultySelected();
+    if (autoC9E6B4E9_val == 4) {
+        libEFA54406_gf_create_context("player_action", "Player chose to replay the mission on Brutal difficulty", true);
+        TriggerDebugOutput(1, (StringExternal("Param/Value/lib_EFA54406_07EADF30") + StringExternal("Param/Value/lib_EFA54406_DCD42E87")), false);
+    }
+    else if (autoC9E6B4E9_val == 3) {
+        libEFA54406_gf_create_context("player_action", "Player chose to replay the mission on Hard difficulty", true);
+        TriggerDebugOutput(1, (StringExternal("Param/Value/lib_EFA54406_87B5E461") + StringExternal("Param/Value/lib_EFA54406_6028E76B")), false);
+    }
+    else if (autoC9E6B4E9_val == 2) {
+        libEFA54406_gf_create_context("player_action", "Player chose to replay the mission on Normal difficulty", true);
+        TriggerDebugOutput(1, (StringExternal("Param/Value/lib_EFA54406_2A2F68A6") + StringExternal("Param/Value/lib_EFA54406_9A6CF506")), false);
+    }
+    else if (autoC9E6B4E9_val == 1) {
+        libEFA54406_gf_create_context("player_action", "Player chose to replay the mission on Casual difficulty", true);
+        TriggerDebugOutput(1, (StringExternal("Param/Value/lib_EFA54406_06F37814") + StringExternal("Param/Value/lib_EFA54406_4537635B")), false);
+    }
+    else {
+        TriggerDebugOutput(1, (StringExternal("Param/Value/lib_EFA54406_E675F2F5") + StringExternal("Param/Value/lib_EFA54406_48AB6FAD")), false);
+    }
+    if ((libCamp_gv_tSX_IsSimulation == true)) {
+        lv_simulation = true;
+    }
+    else {
+        lv_simulation = false;
+    }
+    libCamp_gf_PrepareForMission(libCamp_gv_tS_CurrentMap, lv_simulation, true, EventVictoryPanelDifficultySelected());
+    Wait(1.0, c_timeReal);
+    GameOver(1, c_gameOverVictory, false, false);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_PlayerVictoryPlayAgain_Init () {
+    libEFA54406_gt_PlayerVictoryPlayAgain = TriggerCreate("libEFA54406_gt_PlayerVictoryPlayAgain_Func");
+    TriggerAddEventVictoryPanelPlayMissionAgain(libEFA54406_gt_PlayerVictoryPlayAgain, c_playerAny);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Player Victory Continue
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_PlayerVictoryContinue_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UISetFrameVisible(PlayerGroupAll(), c_syncFrameTypeVictoryPanel, false);
+    libEFA54406_gf_create_context("player_action", "Player chose to close the Victory screen and continue", true);
+    Wait(1.0, c_timeReal);
+    if ((libCamp_gv_tS_CurrentMap != libCamp_ge_MapID_MapTValerian03)) {
+        GameOver(1, c_gameOverVictory, false, false);
+        return true;
+    }
+
+    libCamp_gf_TS_CampaignVictory();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_PlayerVictoryContinue_Init () {
+    libEFA54406_gt_PlayerVictoryContinue = TriggerCreate("libEFA54406_gt_PlayerVictoryContinue_Func");
+    TriggerAddEventVictoryPanelExit(libEFA54406_gt_PlayerVictoryContinue, c_playerAny);
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: Current resources
 //--------------------------------------------------------------------------------------------------
 bool libEFA54406_gt_Currentresources_Func (bool testConds, bool runActions) {
@@ -3271,88 +4053,1315 @@ void libEFA54406_gt_UnitHighestKillCount_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: Player Victory Play Again
+// Trigger: Neuro Can Produce Units
 //--------------------------------------------------------------------------------------------------
-bool libEFA54406_gt_PlayerVictoryPlayAgain_Func (bool testConds, bool runActions) {
+bool libEFA54406_gt_NeuroCanProduceUnits_Func (bool testConds, bool runActions) {
     // Variable Declarations
-    bool lv_simulation;
+    unitgroup lv_player_units;
+    unitgroup lv_lookingat_group;
+    unit lv_unit;
+    bool lv_command_center_exists;
+    bool lv_barracks_exists;
+    bool lv_barracks_with_tech_lab_exists;
+    bool lv_has_medic_upgrade;
+    bool lv_academy_exists;
+    bool lv_unarmed_academy_exists;
+    bool lv_factory_exists;
+    bool lv_factory_with_tech_lab_exists;
+    bool lv_armory_exists;
+    bool lv_starport_exists;
+    bool lv_starport_with_tech_lab_exists;
+    bool lv_fusion_core_exists;
+    bool lv_nexus_exists;
+    bool lv_gateway_exists;
+    bool lv_warpgate_exists;
+    bool lv_cyber_core_exists;
+    bool lv_templar_archive_exists;
+    bool lv_dark_shrine_exists;
+    bool lv_robotics_exists;
+    bool lv_robobay_exists;
+    bool lv_stargate_exists;
+    bool lv_fleet_beacon_exists;
+    string lv_tech_lab_reactor;
+    string lv_producable_units;
+    string lv_allowed_blocked_units;
+    string lv_allowed_blocked_units_part;
+    string lv_action_description;
 
     // Automatic Variable Declarations
-    int autoC9E6B4E9_val;
+    unitgroup autoC37FFA8B_g;
+    int autoC37FFA8B_u;
+    unitgroup auto8E146AD7_g;
+    int auto8E146AD7_u;
+    unitgroup auto56E8AFA6_g;
+    int auto56E8AFA6_u;
+    unitgroup auto4A28FCBA_g;
+    int auto4A28FCBA_u;
+    unitgroup auto850DF4AC_g;
+    int auto850DF4AC_u;
+    unitgroup auto5485C2D1_g;
+    int auto5485C2D1_u;
+    unitgroup autoA0A9E744_g;
+    int autoA0A9E744_u;
+    unitgroup auto2FF24DCC_g;
+    int auto2FF24DCC_u;
+    unitgroup autoD2BF2F1A_g;
+    int autoD2BF2F1A_u;
+    unitgroup auto61BF3654_g;
+    int auto61BF3654_u;
+    unitgroup auto99CF4F77_g;
+    int auto99CF4F77_u;
+    unitgroup auto23C05872_g;
+    int auto23C05872_u;
+    unitgroup autoFB85BCCC_g;
+    int autoFB85BCCC_u;
+    unitgroup autoA2008913_g;
+    int autoA2008913_u;
+    unitgroup autoA9240584_g;
+    int autoA9240584_u;
+    unitgroup auto22772BCB_g;
+    int auto22772BCB_u;
+    unitgroup auto01956F58_g;
+    int auto01956F58_u;
+    unitgroup autoE61A5932_g;
+    int autoE61A5932_u;
+    unitgroup autoA64E6311_g;
+    int autoA64E6311_u;
 
     // Variable Initialization
-    lv_simulation = true;
+    lv_player_units = UnitGroupEmpty();
+    lv_lookingat_group = UnitGroupEmpty();
+    lv_tech_lab_reactor = "";
+    lv_producable_units = "";
+    lv_allowed_blocked_units = "";
+    lv_allowed_blocked_units_part = "";
+    lv_action_description = "";
 
     // Actions
     if (!runActions) {
         return true;
     }
 
-    UISetFrameVisible(PlayerGroupAll(), c_syncFrameTypeVictoryPanel, false);
-    autoC9E6B4E9_val = EventVictoryPanelDifficultySelected();
-    if (autoC9E6B4E9_val == 4) {
-        libEFA54406_gf_create_context("player_action", "Player chose to replay the mission on Brutal difficulty", true);
-        TriggerDebugOutput(1, (StringExternal("Param/Value/lib_EFA54406_07EADF30") + StringExternal("Param/Value/lib_EFA54406_DCD42E87")), false);
-    }
-    else if (autoC9E6B4E9_val == 3) {
-        libEFA54406_gf_create_context("player_action", "Player chose to replay the mission on Hard difficulty", true);
-        TriggerDebugOutput(1, (StringExternal("Param/Value/lib_EFA54406_87B5E461") + StringExternal("Param/Value/lib_EFA54406_6028E76B")), false);
-    }
-    else if (autoC9E6B4E9_val == 2) {
-        libEFA54406_gf_create_context("player_action", "Player chose to replay the mission on Normal difficulty", true);
-        TriggerDebugOutput(1, (StringExternal("Param/Value/lib_EFA54406_2A2F68A6") + StringExternal("Param/Value/lib_EFA54406_9A6CF506")), false);
-    }
-    else if (autoC9E6B4E9_val == 1) {
-        libEFA54406_gf_create_context("player_action", "Player chose to replay the mission on Casual difficulty", true);
-        TriggerDebugOutput(1, (StringExternal("Param/Value/lib_EFA54406_06F37814") + StringExternal("Param/Value/lib_EFA54406_4537635B")), false);
+    lv_player_units = UnitGroup(null, 1, RegionPlayableMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    if ((libEFA54406_gv_is_protoss == false)) {
+        lv_lookingat_group = UnitGroupFilter("CommandCenter", c_playerAny, lv_player_units, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+        auto99CF4F77_g = lv_lookingat_group;
+        auto99CF4F77_u = UnitGroupCount(auto99CF4F77_g, c_unitCountAll);
+        for (;; auto99CF4F77_u -= 1) {
+            lv_unit = UnitGroupUnitFromEnd(auto99CF4F77_g, auto99CF4F77_u);
+            if (lv_unit == null) { break; }
+            lv_command_center_exists = true;
+        }
+        lv_lookingat_group = UnitGroupFilter("OrbitalCommand", c_playerAny, lv_player_units, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+        auto23C05872_g = lv_lookingat_group;
+        auto23C05872_u = UnitGroupCount(auto23C05872_g, c_unitCountAll);
+        for (;; auto23C05872_u -= 1) {
+            lv_unit = UnitGroupUnitFromEnd(auto23C05872_g, auto23C05872_u);
+            if (lv_unit == null) { break; }
+            lv_command_center_exists = true;
+        }
+        lv_lookingat_group = UnitGroupFilter("PlanetaryFortress", c_playerAny, lv_player_units, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+        autoFB85BCCC_g = lv_lookingat_group;
+        autoFB85BCCC_u = UnitGroupCount(autoFB85BCCC_g, c_unitCountAll);
+        for (;; autoFB85BCCC_u -= 1) {
+            lv_unit = UnitGroupUnitFromEnd(autoFB85BCCC_g, autoFB85BCCC_u);
+            if (lv_unit == null) { break; }
+            lv_command_center_exists = true;
+        }
+        lv_lookingat_group = UnitGroupFilter("Barracks", c_playerAny, lv_player_units, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+        autoA2008913_g = lv_lookingat_group;
+        autoA2008913_u = UnitGroupCount(autoA2008913_g, c_unitCountAll);
+        for (;; autoA2008913_u -= 1) {
+            lv_unit = UnitGroupUnitFromEnd(autoA2008913_g, autoA2008913_u);
+            if (lv_unit == null) { break; }
+            lv_barracks_exists = true;
+            if (((UnitGetType(UnitAddOnChild(lv_unit, 0)) == "BarracksTechLab") || (UnitGetType(UnitAddOnChild(lv_unit, 0)) == "BarracksTechReactor"))) {
+                lv_barracks_with_tech_lab_exists = true;
+            }
+
+        }
+        lv_lookingat_group = UnitGroupFilter("GhostAcademy", c_playerAny, lv_player_units, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+        autoA9240584_g = lv_lookingat_group;
+        autoA9240584_u = UnitGroupCount(autoA9240584_g, c_unitCountAll);
+        for (;; autoA9240584_u -= 1) {
+            lv_unit = UnitGroupUnitFromEnd(autoA9240584_g, autoA9240584_u);
+            if (lv_unit == null) { break; }
+            lv_academy_exists = true;
+            if ((TechTreeAbilityIsAllowed(1, AbilityCommand("BarracksTrain", 2)) == true)) {
+                if ((UnitCheckAbilCmdState(lv_unit, AbilityCommand("ArmSiloWithNuke", 0), c_cmdStateExecuting | c_cmdStateDisabled) == true)) {
+                }
+                else {
+                    lv_unarmed_academy_exists = true;
+                }
+            }
+            else {
+                if ((UnitCheckAbilCmdState(lv_unit, AbilityCommand("SpectreNukeSiloArmMagazine", 1), c_cmdStateExecuting | c_cmdStateDisabled) == true)) {
+                }
+                else {
+                    lv_unarmed_academy_exists = true;
+                }
+            }
+        }
+        lv_lookingat_group = UnitGroupFilter("Factory", c_playerAny, lv_player_units, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+        auto22772BCB_g = lv_lookingat_group;
+        auto22772BCB_u = UnitGroupCount(auto22772BCB_g, c_unitCountAll);
+        for (;; auto22772BCB_u -= 1) {
+            lv_unit = UnitGroupUnitFromEnd(auto22772BCB_g, auto22772BCB_u);
+            if (lv_unit == null) { break; }
+            lv_factory_exists = true;
+            if (((UnitGetType(UnitAddOnChild(lv_unit, 0)) == "FactoryTechLab") || (UnitGetType(UnitAddOnChild(lv_unit, 0)) == "FactoryTechReactor"))) {
+                lv_factory_with_tech_lab_exists = true;
+            }
+
+        }
+        lv_lookingat_group = UnitGroupFilter("Armory", c_playerAny, lv_player_units, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+        auto01956F58_g = lv_lookingat_group;
+        auto01956F58_u = UnitGroupCount(auto01956F58_g, c_unitCountAll);
+        for (;; auto01956F58_u -= 1) {
+            lv_unit = UnitGroupUnitFromEnd(auto01956F58_g, auto01956F58_u);
+            if (lv_unit == null) { break; }
+            lv_armory_exists = true;
+        }
+        lv_lookingat_group = UnitGroupFilter("Starport", c_playerAny, lv_player_units, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+        autoE61A5932_g = lv_lookingat_group;
+        autoE61A5932_u = UnitGroupCount(autoE61A5932_g, c_unitCountAll);
+        for (;; autoE61A5932_u -= 1) {
+            lv_unit = UnitGroupUnitFromEnd(autoE61A5932_g, autoE61A5932_u);
+            if (lv_unit == null) { break; }
+            lv_starport_exists = true;
+            if (((UnitGetType(UnitAddOnChild(lv_unit, 0)) == "StarportTechLab") || (UnitGetType(UnitAddOnChild(lv_unit, 0)) == "StarportTechReactor"))) {
+                lv_starport_with_tech_lab_exists = true;
+            }
+
+        }
+        lv_lookingat_group = UnitGroupFilter("FusionCore", c_playerAny, lv_player_units, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+        autoA64E6311_g = lv_lookingat_group;
+        autoA64E6311_u = UnitGroupCount(autoA64E6311_g, c_unitCountAll);
+        for (;; autoA64E6311_u -= 1) {
+            lv_unit = UnitGroupUnitFromEnd(autoA64E6311_g, autoA64E6311_u);
+            if (lv_unit == null) { break; }
+            lv_fusion_core_exists = true;
+        }
+        if ((libCamp_gf_StoryResearchStateCheck(libCamp_ge_StoryResearchID_ResearchP51TechReactor, libCamp_ge_StoryResearchState_ResearchStatePurchased) == true)) {
+            lv_tech_lab_reactor = "Techreactor";
+        }
+        else {
+            lv_tech_lab_reactor = "Tech Lab";
+        }
+        if ((TechTreeAbilityIsAllowed(1, AbilityCommand("CommandCenterTrain", 0)) == true)) {
+            if ((lv_command_center_exists == true)) {
+                if ((lv_producable_units == "")) {
+                    lv_producable_units = "SCV";
+                }
+                else {
+                    lv_producable_units = (lv_producable_units + ", SCV");
+                }
+            }
+            else {
+                if ((lv_allowed_blocked_units_part == "")) {
+                    lv_allowed_blocked_units_part = "SCV";
+                }
+                else {
+                    lv_allowed_blocked_units_part = (lv_allowed_blocked_units_part + ", SCV");
+                }
+            }
+        }
+
+        if ((lv_allowed_blocked_units_part == "")) {
+        }
+        else {
+            lv_allowed_blocked_units = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + " needs a Command Center; ");
+            lv_allowed_blocked_units_part = "";
+        }
+        if ((TechTreeAbilityIsAllowed(1, AbilityCommand("BarracksTrain", 0)) == true)) {
+            if ((lv_barracks_exists == true)) {
+                if ((lv_producable_units == "")) {
+                    lv_producable_units = "Marine";
+                }
+                else {
+                    lv_producable_units = (lv_producable_units + ", Marine");
+                }
+            }
+            else {
+                if ((lv_allowed_blocked_units_part == "")) {
+                    lv_allowed_blocked_units_part = "Marine";
+                }
+                else {
+                    lv_allowed_blocked_units_part = (lv_allowed_blocked_units_part + ", Marine");
+                }
+            }
+        }
+
+        if ((libCamp_gf_StoryTechStateCheck(libCamp_ge_StoryTech_StoryTechMedicStabilizerMedPacks, libCamp_ge_StoryTechStates_TechPurchased) == true)) {
+            if ((lv_barracks_exists == true)) {
+                if ((lv_producable_units == "")) {
+                    lv_producable_units = "Medic";
+                }
+                else {
+                    lv_producable_units = (lv_producable_units + ", Medic");
+                }
+            }
+            else {
+                if ((lv_allowed_blocked_units_part == "")) {
+                    lv_allowed_blocked_units_part = "Medic";
+                }
+                else {
+                    lv_allowed_blocked_units_part = (lv_allowed_blocked_units_part + ", Medic");
+                }
+            }
+        }
+
+        if ((lv_allowed_blocked_units_part == "")) {
+        }
+        else {
+            lv_allowed_blocked_units = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + " needs a Barracks; ");
+            lv_allowed_blocked_units_part = "";
+        }
+        if ((libCamp_gf_StoryTechStateCheck(libCamp_ge_StoryTech_StoryTechMedicStabilizerMedPacks, libCamp_ge_StoryTechStates_TechPurchased) == false)) {
+            if ((TechTreeAbilityIsAllowed(1, AbilityCommand("BarracksTrain", 4)) == true)) {
+                if ((lv_barracks_with_tech_lab_exists == true)) {
+                    if ((lv_producable_units == "")) {
+                        lv_producable_units = "Medic";
+                    }
+                    else {
+                        lv_producable_units = (lv_producable_units + ", Medic");
+                    }
+                }
+                else {
+                    if ((lv_allowed_blocked_units_part == "")) {
+                        lv_allowed_blocked_units_part = "Medic";
+                    }
+                    else {
+                        lv_allowed_blocked_units_part = (lv_allowed_blocked_units_part + ", Medic");
+                    }
+                }
+            }
+
+        }
+
+        if ((TechTreeAbilityIsAllowed(1, AbilityCommand("BarracksTrain", 3)) == true)) {
+            if ((lv_barracks_with_tech_lab_exists == true)) {
+                if ((lv_producable_units == "")) {
+                    lv_producable_units = "Marauder";
+                }
+                else {
+                    lv_producable_units = (lv_producable_units + ", Marauder");
+                }
+            }
+            else {
+                if ((lv_allowed_blocked_units_part == "")) {
+                    lv_allowed_blocked_units_part = "Marauder";
+                }
+                else {
+                    lv_allowed_blocked_units_part = (lv_allowed_blocked_units_part + ", Marauder");
+                }
+            }
+        }
+
+        if ((TechTreeAbilityIsAllowed(1, AbilityCommand("BarracksTrain", 5)) == true)) {
+            if ((lv_barracks_with_tech_lab_exists == true)) {
+                if ((lv_producable_units == "")) {
+                    lv_producable_units = "Firebat";
+                }
+                else {
+                    lv_producable_units = (lv_producable_units + ", Firebat");
+                }
+            }
+            else {
+                if ((lv_allowed_blocked_units_part == "")) {
+                    lv_allowed_blocked_units_part = "Firebat";
+                }
+                else {
+                    lv_allowed_blocked_units_part = (lv_allowed_blocked_units_part + ", Firebat");
+                }
+            }
+        }
+
+        if ((TechTreeAbilityIsAllowed(1, AbilityCommand("BarracksTrain", 1)) == true)) {
+            if ((lv_barracks_with_tech_lab_exists == true)) {
+                if ((lv_producable_units == "")) {
+                    lv_producable_units = "Reaper";
+                }
+                else {
+                    lv_producable_units = (lv_producable_units + ", Reaper");
+                }
+            }
+            else {
+                if ((lv_allowed_blocked_units_part == "")) {
+                    lv_allowed_blocked_units_part = "Reaper";
+                }
+                else {
+                    lv_allowed_blocked_units_part = (lv_allowed_blocked_units_part + ", Reaper");
+                }
+            }
+        }
+
+        if ((TechTreeAbilityIsAllowed(1, AbilityCommand("BarracksTrain", 2)) == true)) {
+            if ((lv_barracks_with_tech_lab_exists == true)) {
+                if ((lv_academy_exists == true)) {
+                    if ((lv_producable_units == "")) {
+                        lv_producable_units = "Ghost";
+                    }
+                    else {
+                        lv_producable_units = (lv_producable_units + ", Ghost");
+                    }
+                }
+                else {
+                    if ((lv_allowed_blocked_units_part == "")) {
+                    }
+                    else {
+                        lv_allowed_blocked_units = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + " needs a Barracks with " + lv_tech_lab_reactor + "; ");
+                        lv_allowed_blocked_units_part = "";
+                    }
+                    lv_allowed_blocked_units = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + " Ghost needs a Shadow Ops; ");
+                }
+            }
+            else {
+                if ((lv_academy_exists == true)) {
+                    if ((lv_allowed_blocked_units_part == "")) {
+                        lv_allowed_blocked_units_part = "Ghost";
+                    }
+                    else {
+                        lv_allowed_blocked_units_part = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + ", Ghost");
+                    }
+                }
+                else {
+                    if ((lv_allowed_blocked_units_part == "")) {
+                    }
+                    else {
+                        lv_allowed_blocked_units = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + " needs a Barracks with " + lv_tech_lab_reactor + "; ");
+                        lv_allowed_blocked_units_part = "";
+                    }
+                    lv_allowed_blocked_units = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + " Ghost needs a Barracks with " + lv_tech_lab_reactor + " and Shadow Ops; ");
+                }
+            }
+        }
+
+        if ((TechTreeAbilityIsAllowed(1, AbilityCommand("BarracksTrain", 6)) == true)) {
+            if ((lv_barracks_with_tech_lab_exists == true)) {
+                if ((lv_academy_exists == true)) {
+                    if ((lv_producable_units == "")) {
+                        lv_producable_units = "Spectre";
+                    }
+                    else {
+                        lv_producable_units = (lv_producable_units + ", Spectre");
+                    }
+                }
+                else {
+                    if ((lv_allowed_blocked_units_part == "")) {
+                    }
+                    else {
+                        lv_allowed_blocked_units = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + " needs a Barracks with " + lv_tech_lab_reactor + "; ");
+                        lv_allowed_blocked_units_part = "";
+                    }
+                    lv_allowed_blocked_units = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + " Spectre needs a Shadow Ops; ");
+                }
+            }
+            else {
+                if ((lv_academy_exists == true)) {
+                    if ((lv_allowed_blocked_units_part == "")) {
+                        lv_allowed_blocked_units_part = "Spectre";
+                    }
+                    else {
+                        lv_allowed_blocked_units_part = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + ", Spectre");
+                    }
+                }
+                else {
+                    if ((lv_allowed_blocked_units_part == "")) {
+                    }
+                    else {
+                        lv_allowed_blocked_units = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + " needs a Barracks with " + lv_tech_lab_reactor + "; ");
+                        lv_allowed_blocked_units_part = "";
+                    }
+                    lv_allowed_blocked_units = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + " Spectre needs a Barracks with " + lv_tech_lab_reactor + " and Shadow Ops; ");
+                }
+            }
+        }
+
+        if ((lv_allowed_blocked_units_part == "")) {
+        }
+        else {
+            lv_allowed_blocked_units = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + " needs a Barracks with " + lv_tech_lab_reactor + "; ");
+            lv_allowed_blocked_units_part = "";
+        }
+        if ((TechTreeAbilityIsAllowed(1, AbilityCommand("FactoryTrain", 5)) == true)) {
+            if ((lv_factory_exists == true)) {
+                if ((lv_producable_units == "")) {
+                    lv_producable_units = "Hellion";
+                }
+                else {
+                    lv_producable_units = (lv_producable_units + ", Hellion");
+                }
+            }
+            else {
+                if ((lv_allowed_blocked_units_part == "")) {
+                    lv_allowed_blocked_units_part = "Hellion";
+                }
+                else {
+                    lv_allowed_blocked_units_part = (lv_allowed_blocked_units_part + ", Hellion");
+                }
+            }
+        }
+
+        if ((TechTreeAbilityIsAllowed(1, AbilityCommand("FactoryTrain", 8)) == true)) {
+            if ((lv_factory_exists == true)) {
+                if ((lv_producable_units == "")) {
+                    lv_producable_units = "Vulture";
+                }
+                else {
+                    lv_producable_units = (lv_producable_units + ", Vulture");
+                }
+            }
+            else {
+                if ((lv_allowed_blocked_units_part == "")) {
+                    lv_allowed_blocked_units_part = "Vulture";
+                }
+                else {
+                    lv_allowed_blocked_units_part = (lv_allowed_blocked_units_part + ", Vulture");
+                }
+            }
+        }
+
+        if ((lv_allowed_blocked_units_part == "")) {
+        }
+        else {
+            lv_allowed_blocked_units = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + " needs a Factory; ");
+            lv_allowed_blocked_units_part = "";
+        }
+        if ((TechTreeAbilityIsAllowed(1, AbilityCommand("FactoryTrain", 6)) == true)) {
+            if ((lv_factory_with_tech_lab_exists == true)) {
+                if ((lv_producable_units == "")) {
+                    lv_producable_units = "Goliath";
+                }
+                else {
+                    lv_producable_units = (lv_producable_units + ", Goliath");
+                }
+            }
+            else {
+                if ((lv_allowed_blocked_units_part == "")) {
+                    lv_allowed_blocked_units_part = "Goliath";
+                }
+                else {
+                    lv_allowed_blocked_units_part = (lv_allowed_blocked_units_part + ", Goliath");
+                }
+            }
+        }
+
+        if ((TechTreeAbilityIsAllowed(1, AbilityCommand("FactoryTrain", 7)) == true)) {
+            if ((lv_factory_with_tech_lab_exists == true)) {
+                if ((lv_producable_units == "")) {
+                    lv_producable_units = "Diamondback";
+                }
+                else {
+                    lv_producable_units = (lv_producable_units + ", Diamondback");
+                }
+            }
+            else {
+                if ((lv_allowed_blocked_units_part == "")) {
+                    lv_allowed_blocked_units_part = "Diamondback";
+                }
+                else {
+                    lv_allowed_blocked_units_part = (lv_allowed_blocked_units_part + ", Diamondback");
+                }
+            }
+        }
+
+        if ((TechTreeAbilityIsAllowed(1, AbilityCommand("FactoryTrain", 1)) == true)) {
+            if ((lv_factory_with_tech_lab_exists == true)) {
+                if ((lv_producable_units == "")) {
+                    lv_producable_units = "Siege Tank";
+                }
+                else {
+                    lv_producable_units = (lv_producable_units + ", Siege Tank");
+                }
+            }
+            else {
+                if ((lv_allowed_blocked_units_part == "")) {
+                    lv_allowed_blocked_units_part = "Siege Tank";
+                }
+                else {
+                    lv_allowed_blocked_units_part = (lv_allowed_blocked_units_part + ", Siege Tank");
+                }
+            }
+        }
+
+        if ((TechTreeAbilityIsAllowed(1, AbilityCommand("FactoryTrain", 9)) == true)) {
+            if ((lv_factory_with_tech_lab_exists == true)) {
+                if ((lv_producable_units == "")) {
+                    lv_producable_units = "Predator";
+                }
+                else {
+                    lv_producable_units = (lv_producable_units + ", Predator");
+                }
+            }
+            else {
+                if ((lv_allowed_blocked_units_part == "")) {
+                    lv_allowed_blocked_units_part = "Predator";
+                }
+                else {
+                    lv_allowed_blocked_units_part = (lv_allowed_blocked_units_part + ", Predator");
+                }
+            }
+        }
+
+        if ((TechTreeAbilityIsAllowed(1, AbilityCommand("FactoryTrain", 4)) == true)) {
+            if ((lv_factory_with_tech_lab_exists == true)) {
+                if ((lv_armory_exists == true)) {
+                    if ((lv_producable_units == "")) {
+                        lv_producable_units = "Thor";
+                    }
+                    else {
+                        lv_producable_units = (lv_producable_units + ", Thor");
+                    }
+                }
+                else {
+                    if ((lv_allowed_blocked_units_part == "")) {
+                    }
+                    else {
+                        lv_allowed_blocked_units = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + " needs a Factory with " + lv_tech_lab_reactor + "; ");
+                        lv_allowed_blocked_units_part = "";
+                    }
+                    lv_allowed_blocked_units = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + " Thor needs an Armory; ");
+                }
+            }
+            else {
+                if ((lv_armory_exists == true)) {
+                    if ((lv_allowed_blocked_units_part == "")) {
+                        lv_allowed_blocked_units_part = "Thor";
+                    }
+                    else {
+                        lv_allowed_blocked_units_part = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + ", Thor");
+                    }
+                }
+                else {
+                    if ((lv_allowed_blocked_units_part == "")) {
+                    }
+                    else {
+                        lv_allowed_blocked_units = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + " needs a Factory with " + lv_tech_lab_reactor + "; ");
+                        lv_allowed_blocked_units_part = "";
+                    }
+                    lv_allowed_blocked_units = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + " Thor needs a Factory with " + lv_tech_lab_reactor + " and an Armory; ");
+                }
+            }
+        }
+
+        if ((lv_allowed_blocked_units_part == "")) {
+        }
+        else {
+            lv_allowed_blocked_units = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + " needs a Factory with " + lv_tech_lab_reactor + "; ");
+            lv_allowed_blocked_units_part = "";
+        }
+        if ((TechTreeAbilityIsAllowed(1, AbilityCommand("StarportTrain", 4)) == true)) {
+            if ((lv_starport_exists == true)) {
+                if ((lv_producable_units == "")) {
+                    lv_producable_units = "Viking";
+                }
+                else {
+                    lv_producable_units = (lv_producable_units + ", Viking");
+                }
+            }
+            else {
+                if ((lv_allowed_blocked_units_part == "")) {
+                    lv_allowed_blocked_units_part = "Viking";
+                }
+                else {
+                    lv_allowed_blocked_units_part = (lv_allowed_blocked_units_part + ", Viking");
+                }
+            }
+        }
+
+        if ((TechTreeAbilityIsAllowed(1, AbilityCommand("StarportTrain", 0)) == true)) {
+            if ((lv_starport_exists == true)) {
+                if ((lv_producable_units == "")) {
+                    lv_producable_units = "Medivac";
+                }
+                else {
+                    lv_producable_units = (lv_producable_units + ", Medivac");
+                }
+            }
+            else {
+                if ((lv_allowed_blocked_units_part == "")) {
+                    lv_allowed_blocked_units_part = "Medivac";
+                }
+                else {
+                    lv_allowed_blocked_units_part = (lv_allowed_blocked_units_part + ", Medivac");
+                }
+            }
+        }
+
+        if ((lv_allowed_blocked_units_part == "")) {
+        }
+        else {
+            lv_allowed_blocked_units = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + " needs a Starport; ");
+            lv_allowed_blocked_units_part = "";
+        }
+        if ((TechTreeAbilityIsAllowed(1, AbilityCommand("StarportTrain", 7)) == true)) {
+            if ((lv_starport_with_tech_lab_exists == true)) {
+                if ((lv_producable_units == "")) {
+                    lv_producable_units = "Wraith";
+                }
+                else {
+                    lv_producable_units = (lv_producable_units + ", Wraith");
+                }
+            }
+            else {
+                if ((lv_allowed_blocked_units_part == "")) {
+                    lv_allowed_blocked_units_part = "Wraith";
+                }
+                else {
+                    lv_allowed_blocked_units_part = (lv_allowed_blocked_units_part + ", Wraith");
+                }
+            }
+        }
+
+        if ((TechTreeAbilityIsAllowed(1, AbilityCommand("StarportTrain", 1)) == true)) {
+            if ((lv_starport_with_tech_lab_exists == true)) {
+                if ((lv_producable_units == "")) {
+                    lv_producable_units = "Banshee";
+                }
+                else {
+                    lv_producable_units = (lv_producable_units + ", Banshee");
+                }
+            }
+            else {
+                if ((lv_allowed_blocked_units_part == "")) {
+                    lv_allowed_blocked_units_part = "Banshee";
+                }
+                else {
+                    lv_allowed_blocked_units_part = (lv_allowed_blocked_units_part + ", Banshee");
+                }
+            }
+        }
+
+        if ((TechTreeAbilityIsAllowed(1, AbilityCommand("StarportTrain", 2)) == true)) {
+            if ((lv_starport_with_tech_lab_exists == true)) {
+                if ((lv_producable_units == "")) {
+                    lv_producable_units = "Raven";
+                }
+                else {
+                    lv_producable_units = (lv_producable_units + ", Raven");
+                }
+            }
+            else {
+                if ((lv_allowed_blocked_units_part == "")) {
+                    lv_allowed_blocked_units_part = "Raven";
+                }
+                else {
+                    lv_allowed_blocked_units_part = (lv_allowed_blocked_units_part + ", Raven");
+                }
+            }
+        }
+
+        if ((TechTreeAbilityIsAllowed(1, AbilityCommand("StarportTrain", 6)) == true)) {
+            if ((lv_starport_with_tech_lab_exists == true)) {
+                if ((lv_producable_units == "")) {
+                    lv_producable_units = "Science Vessel";
+                }
+                else {
+                    lv_producable_units = (lv_producable_units + ", Science Vessel");
+                }
+            }
+            else {
+                if ((lv_allowed_blocked_units_part == "")) {
+                    lv_allowed_blocked_units_part = "Science Vessel";
+                }
+                else {
+                    lv_allowed_blocked_units_part = (lv_allowed_blocked_units_part + ", Science Vessel");
+                }
+            }
+        }
+
+        if ((TechTreeAbilityIsAllowed(1, AbilityCommand("StarportTrain", 3)) == true)) {
+            if ((lv_starport_with_tech_lab_exists == true)) {
+                if ((lv_fusion_core_exists == true)) {
+                    if ((lv_producable_units == "")) {
+                        if ((TechTreeAbilityIsAllowed(1, AbilityCommand("StarportTrain", 5)) == true)) {
+                            lv_producable_units = "Battlecruiser, Hercules";
+                        }
+                        else {
+                            lv_producable_units = "Battlecruiser";
+                        }
+                    }
+                    else {
+                        if ((TechTreeAbilityIsAllowed(1, AbilityCommand("StarportTrain", 5)) == true)) {
+                            lv_producable_units = (lv_producable_units + ", Battlecruiser, Hercules");
+                        }
+                        else {
+                            lv_producable_units = (lv_producable_units + ", Battlecruiser");
+                        }
+                    }
+                }
+                else {
+                    if ((lv_allowed_blocked_units_part == "")) {
+                    }
+                    else {
+                        lv_allowed_blocked_units = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + " needs a Starport with " + lv_tech_lab_reactor + "; ");
+                        lv_allowed_blocked_units_part = "";
+                    }
+                    if ((TechTreeAbilityIsAllowed(1, AbilityCommand("StarportTrain", 5)) == true)) {
+                        lv_allowed_blocked_units = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + " Battlecruiser, Hercules needs a Fusion Core; ");
+                    }
+                    else {
+                        lv_allowed_blocked_units = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + " Battlecruiser needs a Fusion Core; ");
+                    }
+                }
+            }
+            else {
+                if ((lv_fusion_core_exists == true)) {
+                    if ((lv_allowed_blocked_units_part == "")) {
+                        if ((TechTreeAbilityIsAllowed(1, AbilityCommand("StarportTrain", 5)) == true)) {
+                            lv_allowed_blocked_units_part = "Battlecruiser, Hercules";
+                        }
+                        else {
+                            lv_allowed_blocked_units_part = "Battlecruiser";
+                        }
+                    }
+                    else {
+                        if ((TechTreeAbilityIsAllowed(1, AbilityCommand("StarportTrain", 5)) == true)) {
+                            lv_allowed_blocked_units_part = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + ", Battlecruiser, Hercules");
+                        }
+                        else {
+                            lv_allowed_blocked_units_part = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + ", Battlecruiser");
+                        }
+                    }
+                }
+                else {
+                    if ((lv_allowed_blocked_units_part == "")) {
+                    }
+                    else {
+                        lv_allowed_blocked_units = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + " needs a Starport with " + lv_tech_lab_reactor + "; ");
+                        lv_allowed_blocked_units_part = "";
+                    }
+                    if ((TechTreeAbilityIsAllowed(1, AbilityCommand("StarportTrain", 5)) == true)) {
+                        lv_allowed_blocked_units = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + " Battlecruiser, Hercules needs a Starport with " + lv_tech_lab_reactor + " and a Fusion Core; ");
+                    }
+                    else {
+                        lv_allowed_blocked_units = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + " Battlecruiser needs a Starport with " + lv_tech_lab_reactor + " and a Fusion Core; ");
+                    }
+                }
+            }
+        }
+
+        if ((TechTreeAbilityIsAllowed(1, AbilityCommand("StarportTrain", 5)) == true) && (TechTreeAbilityIsAllowed(1, AbilityCommand("StarportTrain", 3)) == false)) {
+            if ((lv_starport_with_tech_lab_exists == true)) {
+                if ((lv_fusion_core_exists == true)) {
+                    if ((lv_producable_units == "")) {
+                        lv_producable_units = "Hercules";
+                    }
+                    else {
+                        lv_producable_units = (lv_producable_units + ", Hercules");
+                    }
+                }
+                else {
+                    if ((lv_allowed_blocked_units_part == "")) {
+                    }
+                    else {
+                        lv_allowed_blocked_units = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + " needs a Starport with " + lv_tech_lab_reactor + "; ");
+                        lv_allowed_blocked_units_part = "";
+                    }
+                    lv_allowed_blocked_units = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + " Hercules needs a Fusion Core; ");
+                }
+            }
+            else {
+                if ((lv_fusion_core_exists == true)) {
+                    if ((lv_allowed_blocked_units_part == "")) {
+                        lv_allowed_blocked_units_part = "Hercules";
+                    }
+                    else {
+                        lv_allowed_blocked_units_part = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + ", Hercules");
+                    }
+                }
+                else {
+                    if ((lv_allowed_blocked_units_part == "")) {
+                    }
+                    else {
+                        lv_allowed_blocked_units = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + " needs a Starport with " + lv_tech_lab_reactor + "; ");
+                        lv_allowed_blocked_units_part = "";
+                    }
+                    lv_allowed_blocked_units = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + " Hercules needs a Starport with " + lv_tech_lab_reactor + " and a Fusion Core; ");
+                }
+            }
+        }
+
+        if ((lv_allowed_blocked_units_part == "")) {
+        }
+        else {
+            lv_allowed_blocked_units = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + " needs a Starport with " + lv_tech_lab_reactor + "; ");
+            lv_allowed_blocked_units_part = "";
+        }
+        if ((lv_unarmed_academy_exists == true)) {
+            if ((lv_producable_units == "")) {
+                lv_producable_units = "Nuke";
+            }
+            else {
+                lv_producable_units = (lv_producable_units + ", Nuke");
+            }
+        }
+
+        lv_action_description = lv_producable_units;
+        lv_action_description = StringReplaceWord(lv_action_description, "SCV", "SCV (34M/0V|1S|12s)", c_stringReplaceAll, c_stringCase);
+        lv_action_description = StringReplaceWord(lv_action_description, "Marine", "Marine (34M/0V|1S|17s)", c_stringReplaceAll, c_stringCase);
+        lv_action_description = StringReplaceWord(lv_action_description, "Medic", "Medic (50M/34V|2S|17s)", c_stringReplaceAll, c_stringCase);
+        lv_action_description = StringReplaceWord(lv_action_description, "Marauder", "Marauder (67M/17V|2S|20s)", c_stringReplaceAll, c_stringCase);
+        lv_action_description = StringReplaceWord(lv_action_description, "Firebat", "Firebat (67M/17V|2S|20s)", c_stringReplaceAll, c_stringCase);
+        lv_action_description = StringReplaceWord(lv_action_description, "Reaper", "Reaper (34M/34V|1S|27s)", c_stringReplaceAll, c_stringCase);
+        lv_action_description = StringReplaceWord(lv_action_description, "Ghost", "Ghost (100M/100V|2S|30s)", c_stringReplaceAll, c_stringCase);
+        lv_action_description = StringReplaceWord(lv_action_description, "Spectre", "Spectre (100M/100V|2S|30s)", c_stringReplaceAll, c_stringCase);
+        lv_action_description = StringReplaceWord(lv_action_description, "Hellion", "Hellion (67M/0V|2S|20s)", c_stringReplaceAll, c_stringCase);
+        lv_action_description = StringReplaceWord(lv_action_description, "Vulture", "Vulture (50M/0V|2S|17s)", c_stringReplaceAll, c_stringCase);
+        lv_action_description = StringReplaceWord(lv_action_description, "Goliath", "Goliath (100M/34V|3S|27s)", c_stringReplaceAll, c_stringCase);
+        lv_action_description = StringReplaceWord(lv_action_description, "Diamondback", "Diamondback (100M/100V|4S|34s)", c_stringReplaceAll, c_stringCase);
+        lv_action_description = StringReplaceWord(lv_action_description, "Siege Tank", "Siege Tank (100M/84V|3S|30s)", c_stringReplaceAll, c_stringCase);
+        lv_action_description = StringReplaceWord(lv_action_description, "Predator", "Predator (67M/67V|3S|27s)", c_stringReplaceAll, c_stringCase);
+        lv_action_description = StringReplaceWord(lv_action_description, "Thor", "Thor (200M/134V|6S|40s)", c_stringReplaceAll, c_stringCase);
+        lv_action_description = StringReplaceWord(lv_action_description, "Viking", "Viking (100M/50V|2S|28s)", c_stringReplaceAll, c_stringCase);
+        lv_action_description = StringReplaceWord(lv_action_description, "Medivac", "Medivac (67M/67V|2S|28s)", c_stringReplaceAll, c_stringCase);
+        lv_action_description = StringReplaceWord(lv_action_description, "Wraith", "Wraith (100M/100V|2S|34s)", c_stringReplaceAll, c_stringCase);
+        lv_action_description = StringReplaceWord(lv_action_description, "Banshee", "Banshee (100M/67V|3S|40s)", c_stringReplaceAll, c_stringCase);
+        lv_action_description = StringReplaceWord(lv_action_description, "Raven", "Raven (67M/134V|2S|40s)", c_stringReplaceAll, c_stringCase);
+        lv_action_description = StringReplaceWord(lv_action_description, "Science Vessel", "Science Vessel (67M/134V|2S|40s)", c_stringReplaceAll, c_stringCase);
+        lv_action_description = StringReplaceWord(lv_action_description, "Battlecruiser", "Battlecruiser (267M/200V|6S|74s)", c_stringReplaceAll, c_stringCase);
+        lv_action_description = StringReplaceWord(lv_action_description, "Hercules", "Hercules (200M/134V|6S|47s)", c_stringReplaceAll, c_stringCase);
+        lv_action_description = StringReplaceWord(lv_action_description, "Nuke", "Nuke (67M/67V|0S|40s)", c_stringReplaceAll, c_stringCase);
     }
     else {
-        TriggerDebugOutput(1, (StringExternal("Param/Value/lib_EFA54406_E675F2F5") + StringExternal("Param/Value/lib_EFA54406_48AB6FAD")), false);
+        lv_lookingat_group = UnitGroupFilter("Nexus", c_playerAny, lv_player_units, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+        autoC37FFA8B_g = lv_lookingat_group;
+        autoC37FFA8B_u = UnitGroupCount(autoC37FFA8B_g, c_unitCountAll);
+        for (;; autoC37FFA8B_u -= 1) {
+            lv_unit = UnitGroupUnitFromEnd(autoC37FFA8B_g, autoC37FFA8B_u);
+            if (lv_unit == null) { break; }
+            lv_nexus_exists = true;
+        }
+        lv_lookingat_group = UnitGroupFilter("Gateway", c_playerAny, lv_player_units, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+        auto8E146AD7_g = lv_lookingat_group;
+        auto8E146AD7_u = UnitGroupCount(auto8E146AD7_g, c_unitCountAll);
+        for (;; auto8E146AD7_u -= 1) {
+            lv_unit = UnitGroupUnitFromEnd(auto8E146AD7_g, auto8E146AD7_u);
+            if (lv_unit == null) { break; }
+            if ((UnitCheckAbilCmdState(lv_unit, AbilityCommand("GatewayTrain", 0), c_cmdStateExecuting | c_cmdStateDisabled) == false)) {
+                lv_gateway_exists = true;
+            }
+
+        }
+        lv_lookingat_group = UnitGroupFilter("WarpGate", c_playerAny, lv_player_units, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+        auto56E8AFA6_g = lv_lookingat_group;
+        auto56E8AFA6_u = UnitGroupCount(auto56E8AFA6_g, c_unitCountAll);
+        for (;; auto56E8AFA6_u -= 1) {
+            lv_unit = UnitGroupUnitFromEnd(auto56E8AFA6_g, auto56E8AFA6_u);
+            if (lv_unit == null) { break; }
+            if ((UnitCheckAbilCmdState(lv_unit, AbilityCommand("WarpGateTrain", 0), c_cmdStateExecuting | c_cmdStateDisabled) == false)) {
+                lv_warpgate_exists = true;
+            }
+
+        }
+        lv_lookingat_group = UnitGroupFilter("CyberneticsCore", c_playerAny, lv_player_units, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+        auto4A28FCBA_g = lv_lookingat_group;
+        auto4A28FCBA_u = UnitGroupCount(auto4A28FCBA_g, c_unitCountAll);
+        for (;; auto4A28FCBA_u -= 1) {
+            lv_unit = UnitGroupUnitFromEnd(auto4A28FCBA_g, auto4A28FCBA_u);
+            if (lv_unit == null) { break; }
+            lv_cyber_core_exists = true;
+        }
+        lv_lookingat_group = UnitGroupFilter("TemplarArchive", c_playerAny, lv_player_units, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+        auto850DF4AC_g = lv_lookingat_group;
+        auto850DF4AC_u = UnitGroupCount(auto850DF4AC_g, c_unitCountAll);
+        for (;; auto850DF4AC_u -= 1) {
+            lv_unit = UnitGroupUnitFromEnd(auto850DF4AC_g, auto850DF4AC_u);
+            if (lv_unit == null) { break; }
+            lv_templar_archive_exists = true;
+        }
+        lv_lookingat_group = UnitGroupFilter("DarkShrine", c_playerAny, lv_player_units, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+        auto5485C2D1_g = lv_lookingat_group;
+        auto5485C2D1_u = UnitGroupCount(auto5485C2D1_g, c_unitCountAll);
+        for (;; auto5485C2D1_u -= 1) {
+            lv_unit = UnitGroupUnitFromEnd(auto5485C2D1_g, auto5485C2D1_u);
+            if (lv_unit == null) { break; }
+            lv_dark_shrine_exists = true;
+        }
+        lv_lookingat_group = UnitGroupFilter("RoboticsFacility", c_playerAny, lv_player_units, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+        autoA0A9E744_g = lv_lookingat_group;
+        autoA0A9E744_u = UnitGroupCount(autoA0A9E744_g, c_unitCountAll);
+        for (;; autoA0A9E744_u -= 1) {
+            lv_unit = UnitGroupUnitFromEnd(autoA0A9E744_g, autoA0A9E744_u);
+            if (lv_unit == null) { break; }
+            lv_robotics_exists = true;
+        }
+        lv_lookingat_group = UnitGroupFilter("RoboticsBay", c_playerAny, lv_player_units, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+        auto2FF24DCC_g = lv_lookingat_group;
+        auto2FF24DCC_u = UnitGroupCount(auto2FF24DCC_g, c_unitCountAll);
+        for (;; auto2FF24DCC_u -= 1) {
+            lv_unit = UnitGroupUnitFromEnd(auto2FF24DCC_g, auto2FF24DCC_u);
+            if (lv_unit == null) { break; }
+            lv_robobay_exists = true;
+        }
+        lv_lookingat_group = UnitGroupFilter("Stargate", c_playerAny, lv_player_units, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+        autoD2BF2F1A_g = lv_lookingat_group;
+        autoD2BF2F1A_u = UnitGroupCount(autoD2BF2F1A_g, c_unitCountAll);
+        for (;; autoD2BF2F1A_u -= 1) {
+            lv_unit = UnitGroupUnitFromEnd(autoD2BF2F1A_g, autoD2BF2F1A_u);
+            if (lv_unit == null) { break; }
+            lv_stargate_exists = true;
+        }
+        lv_lookingat_group = UnitGroupFilter("FleetBeacon", c_playerAny, lv_player_units, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+        auto61BF3654_g = lv_lookingat_group;
+        auto61BF3654_u = UnitGroupCount(auto61BF3654_g, c_unitCountAll);
+        for (;; auto61BF3654_u -= 1) {
+            lv_unit = UnitGroupUnitFromEnd(auto61BF3654_g, auto61BF3654_u);
+            if (lv_unit == null) { break; }
+            lv_fleet_beacon_exists = true;
+        }
+        if ((TechTreeAbilityIsAllowed(1, AbilityCommand("NexusTrain", 0)) == true)) {
+            if ((lv_nexus_exists == true)) {
+                if ((lv_producable_units == "")) {
+                    lv_producable_units = "Probe";
+                }
+                else {
+                    lv_producable_units = (lv_producable_units + ", Probe");
+                }
+            }
+            else {
+                if ((lv_allowed_blocked_units_part == "")) {
+                    lv_allowed_blocked_units_part = "Probe";
+                }
+                else {
+                    lv_allowed_blocked_units_part = (lv_allowed_blocked_units_part + ", Probe");
+                }
+            }
+        }
+
+        if ((lv_allowed_blocked_units_part == "")) {
+        }
+        else {
+            lv_allowed_blocked_units = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + " needs a Nexus; ");
+            lv_allowed_blocked_units_part = "";
+        }
+        if ((TechTreeAbilityIsAllowed(1, AbilityCommand("GatewayTrain", 0)) == true)) {
+            if (((lv_gateway_exists == true) || (lv_warpgate_exists == true))) {
+                if ((lv_producable_units == "")) {
+                    lv_producable_units = "Zealot";
+                }
+                else {
+                    lv_producable_units = (lv_producable_units + ", Zealot");
+                }
+            }
+            else {
+                if ((lv_allowed_blocked_units_part == "")) {
+                    lv_allowed_blocked_units_part = "Zealot";
+                }
+                else {
+                    lv_allowed_blocked_units_part = (lv_allowed_blocked_units_part + ", Zealot");
+                }
+            }
+        }
+
+        if ((TechTreeAbilityIsAllowed(1, AbilityCommand("GatewayTrain", 1)) == true)) {
+            if (((lv_gateway_exists == true) || (lv_warpgate_exists == true))) {
+                if ((lv_cyber_core_exists == true)) {
+                    if ((lv_producable_units == "")) {
+                        lv_producable_units = "Stalker";
+                    }
+                    else {
+                        lv_producable_units = (lv_producable_units + ", Stalker");
+                    }
+                }
+                else {
+                    lv_allowed_blocked_units = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + " Stalker needs a Cybernetics Core; ");
+                }
+            }
+            else {
+                if ((lv_cyber_core_exists == true)) {
+                    if ((lv_allowed_blocked_units_part == "")) {
+                        lv_allowed_blocked_units_part = "Stalker";
+                    }
+                    else {
+                        lv_allowed_blocked_units_part = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + ", Stalker");
+                    }
+                }
+                else {
+                    if ((lv_allowed_blocked_units_part == "")) {
+                    }
+                    else {
+                        lv_allowed_blocked_units = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + " needs a Gateway; ");
+                        lv_allowed_blocked_units_part = "";
+                    }
+                    lv_allowed_blocked_units = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + " Stalker needs a Gateway and a Cybernetics Core; ");
+                }
+            }
+        }
+
+        if ((TechTreeAbilityIsAllowed(1, AbilityCommand("GatewayTrain", 3)) == true)) {
+            if (((lv_gateway_exists == true) || (lv_warpgate_exists == true))) {
+                if ((lv_templar_archive_exists == true)) {
+                    if ((lv_producable_units == "")) {
+                        lv_producable_units = "High Templar";
+                    }
+                    else {
+                        lv_producable_units = (lv_producable_units + ", High Templar");
+                    }
+                }
+                else {
+                    lv_allowed_blocked_units = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + " High Templar needs a Templar Archive; ");
+                }
+            }
+            else {
+                if ((lv_cyber_core_exists == true)) {
+                    if ((lv_allowed_blocked_units_part == "")) {
+                        lv_allowed_blocked_units_part = "High Templar";
+                    }
+                    else {
+                        lv_allowed_blocked_units_part = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + ", High Templar");
+                    }
+                }
+                else {
+                    if ((lv_allowed_blocked_units_part == "")) {
+                    }
+                    else {
+                        lv_allowed_blocked_units = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + " needs a Gateway; ");
+                        lv_allowed_blocked_units_part = "";
+                    }
+                    lv_allowed_blocked_units = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + " High Templar needs a Gateway and a Templar Archive; ");
+                }
+            }
+        }
+
+        if ((TechTreeAbilityIsAllowed(1, AbilityCommand("GatewayTrain", 4)) == true)) {
+            if (((lv_gateway_exists == true) || (lv_warpgate_exists == true))) {
+                if ((lv_dark_shrine_exists == true)) {
+                    if ((lv_producable_units == "")) {
+                        lv_producable_units = "Dark Templar";
+                    }
+                    else {
+                        lv_producable_units = (lv_producable_units + ", Dark Templar");
+                    }
+                }
+                else {
+                    lv_allowed_blocked_units = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + " Dark Templar needs a Dark Shrine; ");
+                }
+            }
+            else {
+                if ((lv_cyber_core_exists == true)) {
+                    if ((lv_allowed_blocked_units_part == "")) {
+                        lv_allowed_blocked_units_part = "Dark Templar";
+                    }
+                    else {
+                        lv_allowed_blocked_units_part = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + ", Dark Templar");
+                    }
+                }
+                else {
+                    if ((lv_allowed_blocked_units_part == "")) {
+                    }
+                    else {
+                        lv_allowed_blocked_units = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + " needs a Gateway; ");
+                        lv_allowed_blocked_units_part = "";
+                    }
+                    lv_allowed_blocked_units = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + " Dark Templar needs a Gateway and a Dark Shrine; ");
+                }
+            }
+        }
+
+        if ((lv_allowed_blocked_units_part == "")) {
+        }
+        else {
+            lv_allowed_blocked_units = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + " needs a Gateway; ");
+            lv_allowed_blocked_units_part = "";
+        }
+        if ((TechTreeAbilityIsAllowed(1, AbilityCommand("RoboticsFacilityTrain", 3)) == true)) {
+            if ((lv_robotics_exists == true)) {
+                if ((lv_producable_units == "")) {
+                    lv_producable_units = "Immortal";
+                }
+                else {
+                    lv_producable_units = (lv_producable_units + ", Immortal");
+                }
+            }
+            else {
+                if ((lv_allowed_blocked_units_part == "")) {
+                    lv_allowed_blocked_units_part = "Immortal";
+                }
+                else {
+                    lv_allowed_blocked_units_part = (lv_allowed_blocked_units_part + ", Immortal");
+                }
+            }
+        }
+
+        if ((TechTreeAbilityIsAllowed(1, AbilityCommand("RoboticsFacilityTrain", 1)) == true)) {
+            if ((lv_robotics_exists == true)) {
+                if ((lv_producable_units == "")) {
+                    lv_producable_units = "Observer";
+                }
+                else {
+                    lv_producable_units = (lv_producable_units + ", Observer");
+                }
+            }
+            else {
+                if ((lv_allowed_blocked_units_part == "")) {
+                    lv_allowed_blocked_units_part = "Observer";
+                }
+                else {
+                    lv_allowed_blocked_units_part = (lv_allowed_blocked_units_part + ", Observer");
+                }
+            }
+        }
+
+        if ((TechTreeAbilityIsAllowed(1, AbilityCommand("RoboticsFacilityTrain", 2)) == true)) {
+            if ((lv_robotics_exists == true)) {
+                if ((lv_robobay_exists == true)) {
+                    if ((lv_producable_units == "")) {
+                        lv_producable_units = "Colossus";
+                    }
+                    else {
+                        lv_producable_units = (lv_producable_units + ", Colossus");
+                    }
+                }
+                else {
+                    lv_allowed_blocked_units = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + " Colossus needs a Robotics Bay; ");
+                }
+            }
+            else {
+                if ((lv_cyber_core_exists == true)) {
+                    if ((lv_allowed_blocked_units_part == "")) {
+                        lv_allowed_blocked_units_part = "Colossus";
+                    }
+                    else {
+                        lv_allowed_blocked_units_part = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + ", Colossus");
+                    }
+                }
+                else {
+                    if ((lv_allowed_blocked_units_part == "")) {
+                    }
+                    else {
+                        lv_allowed_blocked_units = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + " needs a Robotics Facility; ");
+                        lv_allowed_blocked_units_part = "";
+                    }
+                    lv_allowed_blocked_units = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + " Colossus needs a Robotics Facility and a Robotics Bay; ");
+                }
+            }
+        }
+
+        if ((lv_allowed_blocked_units_part == "")) {
+        }
+        else {
+            lv_allowed_blocked_units = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + " needs a Robotics Facility; ");
+            lv_allowed_blocked_units_part = "";
+        }
+        if ((TechTreeAbilityIsAllowed(1, AbilityCommand("StargateTrain", 0)) == true)) {
+            if ((lv_stargate_exists == true)) {
+                if ((lv_producable_units == "")) {
+                    lv_producable_units = "Phoenix";
+                }
+                else {
+                    lv_producable_units = (lv_producable_units + ", Phoenix");
+                }
+            }
+            else {
+                if ((lv_allowed_blocked_units_part == "")) {
+                    lv_allowed_blocked_units_part = "Phoenix";
+                }
+                else {
+                    lv_allowed_blocked_units_part = (lv_allowed_blocked_units_part + ", Phoenix");
+                }
+            }
+        }
+
+        if ((TechTreeAbilityIsAllowed(1, AbilityCommand("StargateTrain", 4)) == true)) {
+            if ((lv_stargate_exists == true)) {
+                if ((lv_producable_units == "")) {
+                    lv_producable_units = "Void Ray";
+                }
+                else {
+                    lv_producable_units = (lv_producable_units + ", Void Ray");
+                }
+            }
+            else {
+                if ((lv_allowed_blocked_units_part == "")) {
+                    lv_allowed_blocked_units_part = "Void Ray";
+                }
+                else {
+                    lv_allowed_blocked_units_part = (lv_allowed_blocked_units_part + ", Void Ray");
+                }
+            }
+        }
+
+        if ((TechTreeAbilityIsAllowed(1, AbilityCommand("StargateTrain", 2)) == true)) {
+            if ((lv_stargate_exists == true)) {
+                if ((lv_fleet_beacon_exists == true)) {
+                    if ((lv_producable_units == "")) {
+                        lv_producable_units = "Carrier";
+                    }
+                    else {
+                        lv_producable_units = (lv_producable_units + ", Carrier");
+                    }
+                }
+                else {
+                    lv_allowed_blocked_units = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + " Carrier needs a Fleet Beacon; ");
+                }
+            }
+            else {
+                if ((lv_fleet_beacon_exists == true)) {
+                    if ((lv_allowed_blocked_units_part == "")) {
+                        lv_allowed_blocked_units_part = "Carrier";
+                    }
+                    else {
+                        lv_allowed_blocked_units_part = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + ", Carrier");
+                    }
+                }
+                else {
+                    if ((lv_allowed_blocked_units_part == "")) {
+                    }
+                    else {
+                        lv_allowed_blocked_units = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + " needs a Stargate; ");
+                        lv_allowed_blocked_units_part = "";
+                    }
+                    lv_allowed_blocked_units = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + " Carrier needs a Stargate and a Fleet Beacon; ");
+                }
+            }
+        }
+
+        if ((lv_allowed_blocked_units_part == "")) {
+        }
+        else {
+            lv_allowed_blocked_units = (lv_allowed_blocked_units + lv_allowed_blocked_units_part + " needs a Stargate; ");
+            lv_allowed_blocked_units_part = "";
+        }
+        lv_action_description = lv_producable_units;
+        lv_action_description = StringReplaceWord(lv_action_description, "Probe", "Probe (34M/0V|1S|12s)", c_stringReplaceAll, c_stringCase);
+        lv_action_description = StringReplaceWord(lv_action_description, "Zealot", "Zealot (67M/0V|2S|22s)", c_stringReplaceAll, c_stringCase);
+        lv_action_description = StringReplaceWord(lv_action_description, "Stalker", "Stalker (84M/34V|2S|28s)", c_stringReplaceAll, c_stringCase);
+        lv_action_description = StringReplaceWord(lv_action_description, "High Templar", "High Templar (34M/100V|2S|37s)", c_stringReplaceAll, c_stringCase);
+        lv_action_description = StringReplaceWord(lv_action_description, "Dark Templar", "Dark Templar (84M/84V|2S|37s)", c_stringReplaceAll, c_stringCase);
+        lv_action_description = StringReplaceWord(lv_action_description, "Immortal", "Immortal (167M/67V|4S|27s)", c_stringReplaceAll, c_stringCase);
+        lv_action_description = StringReplaceWord(lv_action_description, "Observer", "Observer (34M/67V|1S|27s)", c_stringReplaceAll, c_stringCase);
+        lv_action_description = StringReplaceWord(lv_action_description, "Colossus", "Colossus (200M/134V|6S|50s)", c_stringReplaceAll, c_stringCase);
+        lv_action_description = StringReplaceWord(lv_action_description, "Phoenix", "Phoenix (100M/67V|2S|30s)", c_stringReplaceAll, c_stringCase);
+        lv_action_description = StringReplaceWord(lv_action_description, "Void Ray", "Void Ray (167M/100V|3S|40s)", c_stringReplaceAll, c_stringCase);
+        lv_action_description = StringReplaceWord(lv_action_description, "Carrier", "Carrier (234M/167V|6S|80s)", c_stringReplaceAll, c_stringCase);
     }
-    if ((libCamp_gv_tSX_IsSimulation == true)) {
-        lv_simulation = true;
+    if ((lv_producable_units == "") && (lv_allowed_blocked_units == "")) {
+        libEFA54406_gf_create_action_1_arg("produce_unit", false, "", "string", -1);
+        return true;
     }
-    else {
-        lv_simulation = false;
+
+    if ((lv_producable_units == "")) {
+        lv_action_description = "Produce a unit. Units you produce cost only 2/3 the resources and take 2/3 the time to produce than if a player does it. You currently cannot produce any units. Units you could produce if the player builds the structure: " + lv_allowed_blocked_units;
+        libEFA54406_gf_create_action_1_arg("produce_unit", true, lv_action_description, "string(no unit)", -1);
+        return true;
     }
-    libCamp_gf_PrepareForMission(libCamp_gv_tS_CurrentMap, lv_simulation, true, EventVictoryPanelDifficultySelected());
-    Wait(1.0, c_timeReal);
-    GameOver(1, c_gameOverVictory, false, false);
+
+    if ((lv_allowed_blocked_units == "")) {
+        lv_action_description = "Produce a unit. Units you produce cost only 2/3 the resources and take 2/3 the time to produce than if a player does it. Units you can produce in this format <Name> (Mineral cost/Vespene Gas cost|Supply cost|Production time in seconds): " + lv_action_description + ".";
+        libEFA54406_gf_create_action_1_arg("produce_unit", true, lv_action_description, "string(" + lv_producable_units + ")", -1);
+        return true;
+    }
+
+    lv_action_description = "Produce a unit. Units you produce cost only 2/3 the resources and take 2/3 the time to produce than if a player does it. Units you can produce in this format <Name> (Mineral cost/Vespene Gas cost|Supply cost|Production time in seconds): " + lv_action_description + ". Units you could produce if the player builds the structure: " + lv_allowed_blocked_units;
+    libEFA54406_gf_create_action_1_arg("produce_unit", true, lv_action_description, "string(" + lv_producable_units + ")", -1);
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void libEFA54406_gt_PlayerVictoryPlayAgain_Init () {
-    libEFA54406_gt_PlayerVictoryPlayAgain = TriggerCreate("libEFA54406_gt_PlayerVictoryPlayAgain_Func");
-    TriggerAddEventVictoryPanelPlayMissionAgain(libEFA54406_gt_PlayerVictoryPlayAgain, c_playerAny);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Player Victory Continue
-//--------------------------------------------------------------------------------------------------
-bool libEFA54406_gt_PlayerVictoryContinue_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    UISetFrameVisible(PlayerGroupAll(), c_syncFrameTypeVictoryPanel, false);
-    libEFA54406_gf_create_context("player_action", "Player chose to close the Victory screen and continue", true);
-    Wait(1.0, c_timeReal);
-    if ((libCamp_gv_tS_CurrentMap != libCamp_ge_MapID_MapTValerian03)) {
-        GameOver(1, c_gameOverVictory, false, false);
-        return true;
-    }
-
-    libCamp_gf_TS_CampaignVictory();
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void libEFA54406_gt_PlayerVictoryContinue_Init () {
-    libEFA54406_gt_PlayerVictoryContinue = TriggerCreate("libEFA54406_gt_PlayerVictoryContinue_Func");
-    TriggerAddEventVictoryPanelExit(libEFA54406_gt_PlayerVictoryContinue, c_playerAny);
+void libEFA54406_gt_NeuroCanProduceUnits_Init () {
+    libEFA54406_gt_NeuroCanProduceUnits = TriggerCreate("libEFA54406_gt_NeuroCanProduceUnits_Func");
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -3607,9 +5616,8 @@ void libEFA54406_InitTriggers () {
     libEFA54406_gt_Executeactionsglobal_Init();
     libEFA54406_gt_Stopexecutionglobal_Init();
     libEFA54406_gt_StartupContext_Init();
-    libEFA54406_gt_VictoryAchieved_Init();
-    libEFA54406_gt_PlayerActivityContext_Init();
     libEFA54406_gt_Playerchatmessage_Init();
+    libEFA54406_gt_PlayerActivityContext_Init();
     libEFA54406_gt_UnitAbility_Init();
     libEFA54406_gt_UnitCommandContext_Init();
     libEFA54406_gt_UnitAttackedWeapon_Init();
@@ -3631,13 +5639,15 @@ void libEFA54406_InitTriggers () {
     libEFA54406_gt_UpgradeResearched_Init();
     libEFA54406_gt_EconomyContext_Init();
     libEFA54406_gt_EconomyContextCooldown_Init();
+    libEFA54406_gt_VictoryAchieved_Init();
+    libEFA54406_gt_PlayerVictoryPlayAgain_Init();
+    libEFA54406_gt_PlayerVictoryContinue_Init();
     libEFA54406_gt_Currentresources_Init();
     libEFA54406_gt_Currentsupply_Init();
     libEFA54406_gt_Currentupgrades_Init();
     libEFA54406_gt_Currentmissiontime_Init();
     libEFA54406_gt_UnitHighestKillCount_Init();
-    libEFA54406_gt_PlayerVictoryPlayAgain_Init();
-    libEFA54406_gt_PlayerVictoryContinue_Init();
+    libEFA54406_gt_NeuroCanProduceUnits_Init();
     libEFA54406_gt_InitMap_Init();
     libEFA54406_gt_CreateNeuroIntegrationbank_Init();
     libEFA54406_gt_DisableAchievementsCheats_Init();

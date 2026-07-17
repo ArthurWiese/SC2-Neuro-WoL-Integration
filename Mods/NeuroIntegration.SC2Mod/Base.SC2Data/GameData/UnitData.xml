@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Catalog>
+    <CUnit id="Barracks">
+        <CardLayouts index="0">
+            <LayoutButtons index="13" Face="Spectre" AbilCmd="BarracksTrain,Train7" Row="0" Column="3"/>
+            <LayoutButtons index="15" Face="TechReactorAI" AbilCmd="BarracksAddOns,Build3" Row="2" Column="2"/>
+        </CardLayouts>
+        <CardLayouts CardId="0002">
+            <LayoutButtons Face="Marine" Type="AbilCmd" AbilCmd="BarracksTrain,Train8" Row="0" Column="0"/>
+            <LayoutButtons Face="Medic" Type="AbilCmd" AbilCmd="BarracksTrain,Train9" Row="1" Column="0"/>
+            <LayoutButtons Face="Marauder" Type="AbilCmd" AbilCmd="BarracksTrain,Train10" Row="0" Column="1"/>
+            <LayoutButtons Face="Firebat" Type="AbilCmd" AbilCmd="BarracksTrain,Train11" Row="1" Column="1"/>
+            <LayoutButtons Face="Reaper" Type="AbilCmd" AbilCmd="BarracksTrain,Train12" Row="0" Column="2"/>
+            <LayoutButtons Face="Ghost" Type="AbilCmd" AbilCmd="BarracksTrain,Train13" Row="0" Column="3"/>
+            <LayoutButtons Face="Spectre" Type="AbilCmd" AbilCmd="BarracksTrain,Train14" Row="1" Column="3"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="CommandCenter">
+        <CardLayouts index="0">
+            <LayoutButtons index="0" Face="CalldownMULE" AbilCmd="CalldownMULE,Execute" Row="1" Column="2"/>
+            <LayoutButtons index="1" Face="UpgradeToPlanetaryFortress" AbilCmd="UpgradeToPlanetaryFortress,Execute" Row="0" Column="4"/>
+            <LayoutButtons index="2" Face="Rally" AbilCmd="RallyCommand,Rally1" Row="1"/>
+            <LayoutButtons index="3" Face="CommandCenterLoad" AbilCmd="CommandCenterTransport,LoadAll" Row="2" Column="0"/>
+            <LayoutButtons index="4" Face="CommandCenterUnloadAll" AbilCmd="CommandCenterTransport,UnloadAll" Column="1"/>
+            <LayoutButtons index="5" Face="Lift" AbilCmd="CommandCenterLiftOff,Execute" Column="3"/>
+            <LayoutButtons index="6" Face="Halt" AbilCmd="BuildInProgress,Halt"/>
+            <LayoutButtons index="7" Face="Cancel" AbilCmd="que5CancelToSelection,CancelLast" Column="4"/>
+            <LayoutButtons index="8" Face="CancelUpgradeMorph" AbilCmd="UpgradeToPlanetaryFortress,Cancel"/>
+            <LayoutButtons index="9" AbilCmd="UpgradeToOrbital,Cancel"/>
+            <LayoutButtons index="10" Face="CancelBuilding" AbilCmd="BuildInProgress,Cancel"/>
+            <LayoutButtons index="11" Face="SelectBuilder" Type="SelectBuilder" AbilCmd="CommandCenterTrain,Train1" Row="1" Column="3"/>
+            <LayoutButtons index="12" Face="Scan" Type="AbilCmd" AbilCmd="ScannerSweep,Execute" Column="1"/>
+            <LayoutButtons index="13" Face="SCV" AbilCmd="CommandCenterTrain,Train1" Row="0" Column="0"/>
+        </CardLayouts>
+        <CardLayouts CardId="0002">
+            <LayoutButtons Face="SCV" Type="AbilCmd" AbilCmd="CommandCenterTrain,Train2" Row="0" Column="0"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Factory">
+        <CardLayouts index="0">
+            <LayoutButtons index="12" Face="TechReactor" AbilCmd="FactoryAddOns,Build4" Column="0"/>
+            <LayoutButtons index="13" Face="TechReactorAI" AbilCmd="FactoryAddOns,Build3" Column="2"/>
+        </CardLayouts>
+        <CardLayouts CardId="0002">
+            <LayoutButtons Face="Hellion" Type="AbilCmd" AbilCmd="FactoryTrain,Train11" Row="0" Column="0"/>
+            <LayoutButtons Face="Vulture" Type="AbilCmd" AbilCmd="FactoryTrain,Train12" Row="0" Column="1"/>
+            <LayoutButtons Face="Goliath" Type="AbilCmd" AbilCmd="FactoryTrain,Train13" Row="0" Column="2"/>
+            <LayoutButtons Face="Diamondback" Type="AbilCmd" AbilCmd="FactoryTrain,Train14" Row="0" Column="3"/>
+            <LayoutButtons Face="SiegeTank" Type="AbilCmd" AbilCmd="FactoryTrain,Train15" Row="0" Column="4"/>
+            <LayoutButtons Face="Predator" Type="AbilCmd" AbilCmd="FactoryTrain,Train16" Row="1" Column="0"/>
+            <LayoutButtons Face="Thor" Type="AbilCmd" AbilCmd="FactoryTrain,Train17" Row="1" Column="1"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Gateway">
+        <CardLayouts CardId="0002">
+            <LayoutButtons Face="Zealot" Type="AbilCmd" AbilCmd="GatewayTrain,Train7" Row="0" Column="0"/>
+            <LayoutButtons Face="Stalker" Type="AbilCmd" AbilCmd="GatewayTrain,Train8" Row="0" Column="1"/>
+            <LayoutButtons Face="HighTemplar" Type="AbilCmd" AbilCmd="GatewayTrain,Train9" Row="0" Column="2"/>
+            <LayoutButtons Face="DarkTemplar" Type="AbilCmd" AbilCmd="GatewayTrain,Train10" Row="0" Column="3"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="GhostAcademy">
+        <CardLayouts CardId="0002">
+            <LayoutButtons Face="NukeArm" Type="AbilCmd" AbilCmd="ArmSiloWithNuke,Ammo2" Row="0" Column="0"/>
+            <LayoutButtons Face="SpectreNukeArm" Type="AbilCmd" AbilCmd="SpectreNukeSiloArmMagazine,Ammo3" Row="0" Column="1"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Nexus">
+        <CardLayouts CardId="0002">
+            <LayoutButtons Face="Probe" Type="AbilCmd" AbilCmd="NexusTrain,Train2" Row="0" Column="0"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="OrbitalCommand">
+        <CardLayouts CardId="0002">
+            <LayoutButtons Face="SCV" Type="AbilCmd" AbilCmd="CommandCenterTrain,Train2" Row="0" Column="0"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="PlanetaryFortress">
+        <CardLayouts CardId="0002">
+            <LayoutButtons Face="SCV" Type="AbilCmd" AbilCmd="CommandCenterTrain,Train2" Row="0" Column="0"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Predator">
+        <LifeStart value="200"/>
+        <LifeMax value="200"/>
+    </CUnit>
+    <CUnit id="RoboticsFacility">
+        <CardLayouts CardId="0002">
+            <LayoutButtons Face="Immortal" Type="AbilCmd" AbilCmd="RoboticsFacilityTrain,Train5" Row="0" Column="0"/>
+            <LayoutButtons Face="Observer" Type="AbilCmd" AbilCmd="RoboticsFacilityTrain,Train6" Row="0" Column="1"/>
+            <LayoutButtons Face="Colossus" Type="AbilCmd" AbilCmd="RoboticsFacilityTrain,Train7" Row="0" Column="2"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Stargate">
+        <CardLayouts CardId="0002">
+            <LayoutButtons Face="Phoenix" Type="AbilCmd" AbilCmd="StargateTrain,Train7" Row="0" Column="0"/>
+            <LayoutButtons Face="VoidRay" Type="AbilCmd" AbilCmd="StargateTrain,Train8" Row="0" Column="1"/>
+            <LayoutButtons Face="Carrier" Type="AbilCmd" AbilCmd="StargateTrain,Train9" Row="0" Column="2"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Starport">
+        <CardLayouts index="0">
+            <LayoutButtons index="14" Face="BuildScienceVessel" AbilCmd="StarportTrain,Train7" Row="0"/>
+            <LayoutButtons index="16" Face="TechReactorAI" AbilCmd="StarportAddOns,Build3" Row="2" Column="2"/>
+            <LayoutButtons index="17" Face="Wraith" AbilCmd="StarportTrain,Train8" Column="0"/>
+            <LayoutButtons index="18" Face="BuildHercules" AbilCmd="StarportTrain,Train6" Row="1" Column="1"/>
+        </CardLayouts>
+        <CardLayouts CardId="0002">
+            <LayoutButtons Face="VikingFighter" Type="AbilCmd" AbilCmd="StarportTrain,Train9" Row="0" Column="0"/>
+            <LayoutButtons Face="Medivac" Type="AbilCmd" AbilCmd="StarportTrain,Train10" Row="0" Column="1"/>
+            <LayoutButtons Face="Wraith" Type="AbilCmd" AbilCmd="StarportTrain,Train11" Row="0" Column="2"/>
+            <LayoutButtons Face="Banshee" Type="AbilCmd" AbilCmd="StarportTrain,Train12" Row="0" Column="3"/>
+            <LayoutButtons Face="Raven" Type="AbilCmd" AbilCmd="StarportTrain,Train13" Row="0" Column="4"/>
+            <LayoutButtons Face="BuildScienceVessel" Type="AbilCmd" AbilCmd="StarportTrain,Train14" Row="1" Column="0"/>
+            <LayoutButtons Face="Battlecruiser" Type="AbilCmd" AbilCmd="StarportTrain,Train15" Row="1" Column="1"/>
+            <LayoutButtons Face="BuildHercules" Type="AbilCmd" AbilCmd="StarportTrain,Train16" Row="1" Column="2"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="WarpGate">
+        <CardLayouts CardId="0002">
+            <LayoutButtons Face="Zealot" Type="AbilCmd" AbilCmd="WarpGateTrain,Train7" Row="0" Column="0"/>
+            <LayoutButtons Face="Stalker" Type="AbilCmd" AbilCmd="WarpGateTrain,Train8" Row="0" Column="1"/>
+            <LayoutButtons Face="HighTemplar" Type="AbilCmd" AbilCmd="WarpGateTrain,Train9" Row="0" Column="2"/>
+            <LayoutButtons Face="DarkTemplar" Type="AbilCmd" AbilCmd="WarpGateTrain,Train10" Row="0" Column="3"/>
+        </CardLayouts>
+    </CUnit>
+</Catalog>
