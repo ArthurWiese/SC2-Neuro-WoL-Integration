@@ -65,6 +65,29 @@
             <LayoutButtons Face="SpectreNukeArm" Type="AbilCmd" AbilCmd="SpectreNukeSiloArmMagazine,Ammo3" Row="0" Column="1"/>
         </CardLayouts>
     </CUnit>
+    <CUnit id="MercCompound">
+        <CardLayouts index="0">
+            <LayoutButtons index="1" AbilCmd="255,255"/>
+            <LayoutButtons index="3" AbilCmd="255,255"/>
+            <LayoutButtons index="5" AbilCmd="255,255"/>
+            <LayoutButtons index="7" AbilCmd="255,255"/>
+            <LayoutButtons index="9" AbilCmd="255,255"/>
+            <LayoutButtons index="11" AbilCmd="255,255"/>
+            <LayoutButtons index="13" AbilCmd="255,255"/>
+            <LayoutButtons index="14" AbilCmd="255,255"/>
+            <LayoutButtons index="17" AbilCmd="255,255"/>
+        </CardLayouts>
+        <CardLayouts CardId="0002">
+            <LayoutButtons Face="HireKelmorianMiners" Type="AbilCmd" AbilCmd="SummonMercenaries,Train9" Row="0" Column="0"/>
+            <LayoutButtons Face="HireDevilDogs" Type="AbilCmd" AbilCmd="SummonMercenaries,Train10" Row="0" Column="1"/>
+            <LayoutButtons Face="HireHammerSecurities" Type="AbilCmd" AbilCmd="SummonMercenaries,Train11" Row="0" Column="2"/>
+            <LayoutButtons Face="HireSpartanCompany" Type="AbilCmd" AbilCmd="SummonMercenaries,Train12" Row="0" Column="3"/>
+            <LayoutButtons Face="HireSiegeBreakers" Type="AbilCmd" AbilCmd="SummonMercenaries,Train13" Row="0" Column="4"/>
+            <LayoutButtons Face="HireHelsAngels" Type="AbilCmd" AbilCmd="SummonMercenaries,Train14" Row="1" Column="0"/>
+            <LayoutButtons Face="HireDuskWing" Type="AbilCmd" AbilCmd="SummonMercenaries,Train15" Row="1" Column="1"/>
+            <LayoutButtons Face="HireDukesRevenge" Type="AbilCmd" AbilCmd="SummonMercenaries,Train16" Row="1" Column="2"/>
+        </CardLayouts>
+    </CUnit>
     <CUnit id="Nexus">
         <CardLayouts CardId="0002">
             <LayoutButtons Face="Probe" Type="AbilCmd" AbilCmd="NexusTrain,Train2" Row="0" Column="0"/>

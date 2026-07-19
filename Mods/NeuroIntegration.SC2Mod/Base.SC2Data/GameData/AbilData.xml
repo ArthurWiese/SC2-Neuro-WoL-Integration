@@ -302,6 +302,184 @@
             <Unit value="Hercules"/>
         </InfoArray>
     </CAbilTrain>
+    <CAbilTrain id="SummonMercenaries">
+        <InfoArray index="Train9" Effect="MercGroundDrop">
+            <Resource index="Minerals" value="-33"/>
+            <Charge>
+                <CountMax value="3"/>
+                <CountStart value="3"/>
+                <CountUse value="1"/>
+                <Link value="KelMorianMercs"/>
+                <Location value="Global"/>
+            </Charge>
+            <Cooldown>
+                <Link value="KelMorianMercs"/>
+                <Location value="Global"/>
+                <TimeStart value="300"/>
+                <TimeUse value="300"/>
+            </Cooldown>
+            <Button DefaultButtonFace="LoadOutSpray@1">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+            <Unit value="WarPig"/>
+            <Unit value="WarPig"/>
+            <Unit value="WarPig"/>
+            <Unit value="WarPig"/>
+        </InfoArray>
+        <InfoArray index="Train10" Effect="MercGroundDrop">
+            <Resource index="Minerals" value="12"/>
+            <Resource index="Vespene" value="50"/>
+            <Charge>
+                <CountMax value="2"/>
+                <CountStart value="2"/>
+                <CountUse value="1"/>
+                <Link value="DevilDogs"/>
+                <Location value="Global"/>
+            </Charge>
+            <Cooldown>
+                <Link value="DevilDogs"/>
+                <Location value="Global"/>
+                <TimeStart value="300"/>
+                <TimeUse value="300"/>
+            </Cooldown>
+            <Button DefaultButtonFace="LoadOutSpray@2">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+            <Unit value="DevilDog"/>
+            <Unit value="DevilDog"/>
+        </InfoArray>
+        <InfoArray index="Train11" Effect="MercGroundDrop">
+            <Resource index="Minerals" value="-88"/>
+            <Charge>
+                <CountMax value="2"/>
+                <CountStart value="2"/>
+                <CountUse value="1"/>
+                <Link value="HammerSecurities"/>
+                <Location value="Global"/>
+            </Charge>
+            <Cooldown>
+                <Link value="HammerSecurities"/>
+                <Location value="Global"/>
+                <TimeStart value="360"/>
+                <TimeUse value="360"/>
+            </Cooldown>
+            <Button DefaultButtonFace="LoadOutSpray@3">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+            <Unit value="HammerSecurity"/>
+            <Unit value="HammerSecurity"/>
+        </InfoArray>
+        <InfoArray index="Train12" Effect="MercGroundDrop">
+            <Resource index="Minerals" value="-100"/>
+            <Resource index="Vespene" value="-16"/>
+            <Charge>
+                <CountMax value="2"/>
+                <CountStart value="2"/>
+                <CountUse value="1"/>
+                <Link value="SpartanCompany"/>
+                <Location value="Global"/>
+            </Charge>
+            <Cooldown>
+                <Link value="SpartanCompany"/>
+                <Location value="Global"/>
+                <TimeStart value="360"/>
+                <TimeUse value="360"/>
+            </Cooldown>
+            <Button DefaultButtonFace="LoadOutSpray@4">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+            <Unit value="SpartanCompany"/>
+            <Unit value="SpartanCompany"/>
+        </InfoArray>
+        <InfoArray index="Train13" Effect="MercGroundDrop">
+            <Resource index="Minerals" value="-133"/>
+            <Resource index="Vespene" value="-66"/>
+            <Charge>
+                <CountMax value="2"/>
+                <CountStart value="2"/>
+                <CountUse value="1"/>
+                <Link value="SiegeBreakers"/>
+                <Location value="Global"/>
+            </Charge>
+            <Cooldown>
+                <Link value="SiegeBreakers"/>
+                <Location value="Global"/>
+                <TimeStart value="420"/>
+                <TimeUse value="420"/>
+            </Cooldown>
+            <Button DefaultButtonFace="LoadOutSpray@5">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+            <Unit value="SiegeBreaker"/>
+            <Unit value="SiegeBreaker"/>
+        </InfoArray>
+        <InfoArray index="Train14" Effect="MercAirDrop">
+            <Resource index="Minerals" value="-108"/>
+            <Resource index="Vespene" value="-100"/>
+            <Charge>
+                <CountMax value="2"/>
+                <CountStart value="2"/>
+                <CountUse value="1"/>
+                <Link value="HelsAngels"/>
+                <Location value="Global"/>
+            </Charge>
+            <Cooldown>
+                <Link value="HelsAngels"/>
+                <Location value="Global"/>
+                <TimeStart value="300"/>
+                <TimeUse value="300"/>
+            </Cooldown>
+            <Button DefaultButtonFace="LoadOutSpray@6">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+            <Unit value="HelsAngelFighter"/>
+            <Unit value="HelsAngelFighter"/>
+            <Unit value="HelsAngelFighter"/>
+        </InfoArray>
+        <InfoArray index="Train15" Effect="MercAirDrop">
+            <Resource index="Minerals" value="-116"/>
+            <Resource index="Vespene" value="-66"/>
+            <Charge>
+                <CountMax value="2"/>
+                <CountStart value="2"/>
+                <CountUse value="1"/>
+                <Link value="DuskWing"/>
+                <Location value="Global"/>
+            </Charge>
+            <Cooldown>
+                <Link value="DuskWing"/>
+                <Location value="Global"/>
+                <TimeStart value="420"/>
+                <TimeUse value="420"/>
+            </Cooldown>
+            <Button DefaultButtonFace="LoadOutSpray@7">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+            <Unit value="DuskWing"/>
+            <Unit value="DuskWing"/>
+        </InfoArray>
+        <InfoArray index="Train16" Effect="MercAirDrop">
+            <Resource index="Minerals" value="-133"/>
+            <Resource index="Vespene" value="-100"/>
+            <Charge>
+                <CountMax value="1"/>
+                <CountStart value="1"/>
+                <CountUse value="1"/>
+                <Link value="DukesRevenge"/>
+                <Location value="Global"/>
+            </Charge>
+            <Cooldown>
+                <Link value="DukesRevenge"/>
+                <Location value="Global"/>
+                <TimeStart value="420"/>
+                <TimeUse value="420"/>
+            </Cooldown>
+            <Button DefaultButtonFace="LoadOutSpray@8">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+            <Unit value="DukesRevenge"/>
+        </InfoArray>
+    </CAbilTrain>
     <CAbilWarpTrain id="WarpGateTrain">
         <InfoArray index="Train7" Time="5" Unit="Zealot">
             <Resource index="Minerals" value="-33"/>

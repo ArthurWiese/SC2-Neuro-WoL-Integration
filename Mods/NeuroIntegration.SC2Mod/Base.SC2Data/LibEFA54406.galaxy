@@ -1479,12 +1479,158 @@ bool auto_libEFA54406_gf_NeuroProducesUnit_TriggerFunc (bool testConds, bool run
         else {
             lv_name_of_unit = UnitTypeGetName(lv_needed_production_building);
             lv_name_of_unit_string = TextToString(lv_name_of_unit);
-            libEFA54406_gf_create_context("cant_produce", "Couldn't produce the requested unit: " + lp_unit_to_produce + " All of your " + lv_name_of_unit_string + " have full production queues. You have to wait until a production slot becomes available or the player needs to build more " + lv_name_of_unit_string + ". ", true);
+            libEFA54406_gf_create_context("cant_produce", "Couldn't produce the requested unit: " + lp_unit_to_produce + ". All of your " + lv_name_of_unit_string + " have full production queues. You have to wait until a production slot becomes available or the player needs to build more " + lv_name_of_unit_string + ". ", true);
         }
     }
     else {
-        libEFA54406_gf_create_context("cant_produce", "Couldn't produce the requested unit: " + lp_unit_to_produce + " Required building doesn't exist anymore. ", true);
+        libEFA54406_gf_create_context("cant_produce", "Couldn't produce the requested unit: " + lp_unit_to_produce + ". Required building doesn't exist anymore. ", true);
     }
+    return true;
+}
+
+trigger auto_libEFA54406_gf_NeuroCallsMercenary_Trigger = null;
+string auto_libEFA54406_gf_NeuroCallsMercenary_lp_merc_to_call;
+
+void libEFA54406_gf_NeuroCallsMercenary (string lp_merc_to_call) {
+    auto_libEFA54406_gf_NeuroCallsMercenary_lp_merc_to_call = lp_merc_to_call;
+
+    if (auto_libEFA54406_gf_NeuroCallsMercenary_Trigger == null) {
+        auto_libEFA54406_gf_NeuroCallsMercenary_Trigger = TriggerCreate("auto_libEFA54406_gf_NeuroCallsMercenary_TriggerFunc");
+    }
+
+    TriggerExecute(auto_libEFA54406_gf_NeuroCallsMercenary_Trigger, false, false);
+}
+
+bool auto_libEFA54406_gf_NeuroCallsMercenary_TriggerFunc (bool testConds, bool runActions) {
+    string lp_merc_to_call = auto_libEFA54406_gf_NeuroCallsMercenary_lp_merc_to_call;
+
+    // Variable Declarations
+    int lv_mineral_count;
+    int lv_gas_count;
+    int lv_needed_minerals;
+    int lv_needed_gas;
+    bool lv_not_enough_resources;
+    int lv_supply_count;
+    int lv_supply_max_count;
+    int lv_supply_limit_count;
+    int lv_needed_supply;
+    bool lv_not_enough_supply;
+    unitgroup lv_mercenary_compounds;
+    unit lv_unit;
+    unit lv_merc_compound_unit;
+    bool lv_merc_compound_exists;
+    abilcmd lv_ability_command;
+
+    // Automatic Variable Declarations
+    string auto39367DFB_val;
+    unitgroup auto975B71AB_g;
+    int auto975B71AB_u;
+
+    // Variable Initialization
+    lv_mercenary_compounds = UnitGroupEmpty();
+
+    // Implementation
+    lv_mineral_count = PlayerGetPropertyInt(1, c_playerPropMinerals);
+    lv_gas_count = PlayerGetPropertyInt(1, c_playerPropVespene);
+    lv_supply_count = PlayerGetPropertyInt(1, c_playerPropSuppliesUsed);
+    lv_supply_limit_count = PlayerGetPropertyInt(1, c_playerPropSuppliesLimit);
+    lv_supply_max_count = MinI(lv_supply_limit_count, PlayerGetPropertyInt(1, c_playerPropSuppliesMade));
+    auto39367DFB_val = lp_merc_to_call;
+    if (auto39367DFB_val == "War Pigs") {
+        lv_ability_command = AbilityCommand("SummonMercenaries", 8);
+        lv_needed_supply = 4;
+        lv_needed_minerals = 167;
+    }
+    else if (auto39367DFB_val == "Devil Dogs") {
+        lv_ability_command = AbilityCommand("SummonMercenaries", 9);
+        lv_needed_supply = 4;
+        lv_needed_minerals = 167;
+        lv_needed_gas = 50;
+    }
+    else if (auto39367DFB_val == "Hammer Securities") {
+        lv_ability_command = AbilityCommand("SummonMercenaries", 10);
+        lv_needed_supply = 4;
+        lv_needed_minerals = 167;
+        lv_needed_gas = 50;
+    }
+    else if (auto39367DFB_val == "Spartan Company") {
+        lv_ability_command = AbilityCommand("SummonMercenaries", 11);
+        lv_needed_supply = 6;
+        lv_needed_minerals = 200;
+        lv_needed_gas = 84;
+    }
+    else if (auto39367DFB_val == "Siege Breakers") {
+        lv_ability_command = AbilityCommand("SummonMercenaries", 12);
+        lv_needed_supply = 6;
+        lv_needed_minerals = 267;
+        lv_needed_gas = 134;
+    }
+    else if (auto39367DFB_val == "Hels Angels") {
+        lv_ability_command = AbilityCommand("SummonMercenaries", 13);
+        lv_needed_supply = 6;
+        lv_needed_minerals = 267;
+        lv_needed_gas = 200;
+    }
+    else if (auto39367DFB_val == "Dusk Wings") {
+        lv_ability_command = AbilityCommand("SummonMercenaries", 14);
+        lv_needed_supply = 6;
+        lv_needed_minerals = 234;
+        lv_needed_gas = 134;
+    }
+    else if (auto39367DFB_val == "Dukes Revenge") {
+        lv_ability_command = AbilityCommand("SummonMercenaries", 15);
+        lv_needed_supply = 6;
+        lv_needed_minerals = 267;
+        lv_needed_gas = 200;
+    }
+    else {
+    }
+    if (((lv_needed_supply + lv_supply_count) > lv_supply_max_count)) {
+        lv_not_enough_supply = true;
+    }
+
+    if ((lv_not_enough_supply == true)) {
+        if (((lv_needed_supply + lv_supply_count) > lv_supply_limit_count)) {
+            libEFA54406_gf_create_context("not_enough_supply", lp_merc_to_call + " needs " + IntToString(lv_needed_supply) + " supply. You have reachend the supply limit of " + IntToString(lv_supply_limit_count) + " and cannot call any more mercenaries. ", true);
+        }
+        else {
+            libEFA54406_gf_create_context("not_enough_supply", lp_merc_to_call + " needs " + IntToString(lv_needed_supply) + " supply. You are using all your available supply and cannot call any more mercenaries until the player increases the available supply. ", true);
+        }
+        TriggerExecute(libEFA54406_gt_Currentsupply, true, false);
+        return true;
+    }
+
+    if (((lv_mineral_count < lv_needed_minerals) || (lv_gas_count < lv_needed_gas))) {
+        lv_not_enough_resources = true;
+    }
+
+    if ((lv_not_enough_resources == true)) {
+        libEFA54406_gf_create_context("not_enough_resources", "You don't have enough resources to call this mercenary. You need " + IntToString(lv_needed_minerals) + " Minerals | " + IntToString(lv_needed_gas) + " Vespene Gas. ", true);
+        TriggerExecute(libEFA54406_gt_Currentresources, true, false);
+        return true;
+    }
+
+    lv_mercenary_compounds = UnitGroup("MercCompound", 1, RegionPlayableMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    auto975B71AB_g = lv_mercenary_compounds;
+    auto975B71AB_u = UnitGroupCount(auto975B71AB_g, c_unitCountAll);
+    for (;; auto975B71AB_u -= 1) {
+        lv_unit = UnitGroupUnitFromEnd(auto975B71AB_g, auto975B71AB_u);
+        if (lv_unit == null) { break; }
+        lv_merc_compound_exists = true;
+    }
+    if ((lv_merc_compound_exists == true)) {
+        lv_merc_compound_unit = UnitGroupUnit(lv_mercenary_compounds, 1);
+        if ((UnitCheckAbilCmdState(lv_merc_compound_unit, lv_ability_command, c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled | c_cmdStateCooldown) == false) && (UnitCheckAbilCmdState(lv_merc_compound_unit, lv_ability_command, c_cmdStateHasCharges) == true)) {
+            UnitIssueOrder(lv_merc_compound_unit, Order(lv_ability_command), c_orderQueueAddToEnd);
+            return true;
+        }
+        else {
+            libEFA54406_gf_create_context("cant_call_merc", "Couldn't call the requested mercenary: " + lp_merc_to_call + ". Ability is on cooldown or disabled. ", true);
+            return true;
+        }
+    }
+
+    libEFA54406_gf_create_context("cant_call_merc", "Couldn't call the requested mercenary: " + lp_merc_to_call + ". Required building doesn't exist anymore. ", true);
     return true;
 }
 
@@ -1519,6 +1665,7 @@ bool auto_libEFA54406_gf_BlockContext_TriggerFunc (bool testConds, bool runActio
             libEFA54406_gf_create_action_0_arg("current_resources", false, "Get the current Minerals and Vespene Gas you have", -1);
             libEFA54406_gf_create_action_0_arg("current_supply", false, "Get the current used supply and maximum useable supply you have", -1);
             libEFA54406_gf_create_action_1_arg("produce_unit", false, "", "string", -1);
+            libEFA54406_gf_create_action_1_arg("call_merc", false, "", "string", -1);
         }
 
     }
@@ -1684,6 +1831,11 @@ bool libEFA54406_gt_Executeactionsglobal_Func (bool testConds, bool runActions) 
         libEFA54406_gf_NeuroProducesUnit(BankValueGetAsString(BankLastCreated(), "do_action", "produce_unit_arg_1"));
     }
 
+    if ((BankValueGetAsFlag(BankLastCreated(), "do_action", "call_merc") == true)) {
+        BankValueSetFromFlag(BankLastCreated(), "do_action", "call_merc", false);
+        libEFA54406_gf_NeuroCallsMercenary(BankValueGetAsString(BankLastCreated(), "do_action", "call_merc_arg_1"));
+    }
+
     BankSave(BankLastCreated());
     Wait(0.1, c_timeReal);
     TriggerExecute(libEFA54406_gt_PlayerActivityContext, true, false);
@@ -1790,6 +1942,7 @@ bool libEFA54406_gt_PlayerActivityContext_Func (bool testConds, bool runActions)
         if ((libEFA54406_gv_is_nobuild == false)) {
             TriggerExecute(libEFA54406_gt_EconomyContext, true, false);
             TriggerExecute(libEFA54406_gt_NeuroCanProduceUnits, true, false);
+            TriggerExecute(libEFA54406_gt_NeuroCanCallMercenaries, true, false);
         }
 
     }
@@ -3674,6 +3827,8 @@ bool libEFA54406_gt_VictoryAchieved_Func (bool testConds, bool runActions) {
     Wait(1.0, c_timeReal);
     libEFA54406_gf_BlockContext(true);
     libEFA54406_gf_create_context("mission_state", "Mission completed!", false);
+    Wait(1.0, c_timeReal);
+    libEFA54406_gf_BlockContext(true);
     return true;
 }
 
@@ -5349,7 +5504,7 @@ bool libEFA54406_gt_NeuroCanProduceUnits_Func (bool testConds, bool runActions) 
     }
 
     if ((lv_allowed_blocked_units == "")) {
-        lv_action_description = "Produce a unit. Units you produce cost only 2/3 the resources and take 2/3 the time to produce than if a player does it. Units you can produce in this format <Name> (Mineral cost/Vespene Gas cost|Supply cost|Production time in seconds): " + lv_action_description + ".";
+        lv_action_description = "Produce a unit. Units you produce cost only 2/3 the resources and take 2/3 the time to produce than if a player does it. Units you can produce in this format <Name> (Mineral cost/Vespene Gas cost|Supply cost|Production time in seconds): " + lv_action_description;
         libEFA54406_gf_create_action_1_arg("produce_unit", true, lv_action_description, "string(" + lv_producable_units + ")", -1);
         return true;
     }
@@ -5362,6 +5517,239 @@ bool libEFA54406_gt_NeuroCanProduceUnits_Func (bool testConds, bool runActions) 
 //--------------------------------------------------------------------------------------------------
 void libEFA54406_gt_NeuroCanProduceUnits_Init () {
     libEFA54406_gt_NeuroCanProduceUnits = TriggerCreate("libEFA54406_gt_NeuroCanProduceUnits_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Neuro Can Call Mercenaries
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_NeuroCanCallMercenaries_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unitgroup lv_mercenary_compounds;
+    unit lv_unit;
+    unit lv_merc_compound_unit;
+    bool lv_merc_compound_exists;
+    string lv_callable_units;
+    string lv_cooldown_units;
+    string lv_action_description;
+
+    // Automatic Variable Declarations
+    unitgroup auto3052684D_g;
+    int auto3052684D_u;
+
+    // Variable Initialization
+    lv_mercenary_compounds = UnitGroupEmpty();
+    lv_callable_units = "";
+    lv_cooldown_units = "";
+    lv_action_description = "";
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((libEFA54406_gv_is_protoss == false)) {
+        lv_mercenary_compounds = UnitGroup("MercCompound", 1, RegionPlayableMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+        auto3052684D_g = lv_mercenary_compounds;
+        auto3052684D_u = UnitGroupCount(auto3052684D_g, c_unitCountAll);
+        for (;; auto3052684D_u -= 1) {
+            lv_unit = UnitGroupUnitFromEnd(auto3052684D_g, auto3052684D_u);
+            if (lv_unit == null) { break; }
+            lv_merc_compound_exists = true;
+        }
+        if ((lv_merc_compound_exists == true)) {
+            lv_merc_compound_unit = UnitGroupUnit(lv_mercenary_compounds, 1);
+            if ((UnitCheckAbilCmdState(lv_merc_compound_unit, AbilityCommand("SummonMercenaries", 0), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false) && (UnitCheckAbilCmdState(lv_merc_compound_unit, AbilityCommand("SummonMercenaries", 0), c_cmdStateHasCharges) == true)) {
+                if ((UnitCheckAbilCmdState(lv_merc_compound_unit, AbilityCommand("SummonMercenaries", 0), c_cmdStateCooldown) == true)) {
+                    if ((lv_cooldown_units == "")) {
+                        lv_cooldown_units = "War Pigs";
+                    }
+                    else {
+                        lv_cooldown_units = (lv_cooldown_units + ", War Pigs");
+                    }
+                }
+                else {
+                    if ((lv_callable_units == "")) {
+                        lv_callable_units = "War Pigs";
+                    }
+                    else {
+                        lv_callable_units = (lv_callable_units + ", War Pigs");
+                    }
+                }
+            }
+
+            if ((UnitCheckAbilCmdState(lv_merc_compound_unit, AbilityCommand("SummonMercenaries", 1), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false) && (UnitCheckAbilCmdState(lv_merc_compound_unit, AbilityCommand("SummonMercenaries", 1), c_cmdStateHasCharges) == true)) {
+                if ((UnitCheckAbilCmdState(lv_merc_compound_unit, AbilityCommand("SummonMercenaries", 1), c_cmdStateCooldown) == true)) {
+                    if ((lv_cooldown_units == "")) {
+                        lv_cooldown_units = "Devil Dogs";
+                    }
+                    else {
+                        lv_cooldown_units = (lv_cooldown_units + ", Devil Dogs");
+                    }
+                }
+                else {
+                    if ((lv_callable_units == "")) {
+                        lv_callable_units = "Devil Dogs";
+                    }
+                    else {
+                        lv_callable_units = (lv_callable_units + ", Devil Dogs");
+                    }
+                }
+            }
+
+            if ((UnitCheckAbilCmdState(lv_merc_compound_unit, AbilityCommand("SummonMercenaries", 3), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false) && (UnitCheckAbilCmdState(lv_merc_compound_unit, AbilityCommand("SummonMercenaries", 3), c_cmdStateHasCharges) == true)) {
+                if ((UnitCheckAbilCmdState(lv_merc_compound_unit, AbilityCommand("SummonMercenaries", 3), c_cmdStateCooldown) == true)) {
+                    if ((lv_cooldown_units == "")) {
+                        lv_cooldown_units = "Hammer Securities";
+                    }
+                    else {
+                        lv_cooldown_units = (lv_cooldown_units + ", Hammer Securities");
+                    }
+                }
+                else {
+                    if ((lv_callable_units == "")) {
+                        lv_callable_units = "Hammer Securities";
+                    }
+                    else {
+                        lv_callable_units = (lv_callable_units + ", Hammer Securities");
+                    }
+                }
+            }
+
+            if ((UnitCheckAbilCmdState(lv_merc_compound_unit, AbilityCommand("SummonMercenaries", 2), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false) && (UnitCheckAbilCmdState(lv_merc_compound_unit, AbilityCommand("SummonMercenaries", 2), c_cmdStateHasCharges) == true)) {
+                if ((UnitCheckAbilCmdState(lv_merc_compound_unit, AbilityCommand("SummonMercenaries", 2), c_cmdStateCooldown) == true)) {
+                    if ((lv_cooldown_units == "")) {
+                        lv_cooldown_units = "Spartan Company";
+                    }
+                    else {
+                        lv_cooldown_units = (lv_cooldown_units + ", Spartan Company");
+                    }
+                }
+                else {
+                    if ((lv_callable_units == "")) {
+                        lv_callable_units = "Spartan Company";
+                    }
+                    else {
+                        lv_callable_units = (lv_callable_units + ", Spartan Company");
+                    }
+                }
+            }
+
+            if ((UnitCheckAbilCmdState(lv_merc_compound_unit, AbilityCommand("SummonMercenaries", 4), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false) && (UnitCheckAbilCmdState(lv_merc_compound_unit, AbilityCommand("SummonMercenaries", 4), c_cmdStateHasCharges) == true)) {
+                if ((UnitCheckAbilCmdState(lv_merc_compound_unit, AbilityCommand("SummonMercenaries", 4), c_cmdStateCooldown) == true)) {
+                    if ((lv_cooldown_units == "")) {
+                        lv_cooldown_units = "Siege Breakers";
+                    }
+                    else {
+                        lv_cooldown_units = (lv_cooldown_units + ", Siege Breakers");
+                    }
+                }
+                else {
+                    if ((lv_callable_units == "")) {
+                        lv_callable_units = "Siege Breakers";
+                    }
+                    else {
+                        lv_callable_units = (lv_callable_units + ", Siege Breakers");
+                    }
+                }
+            }
+
+            if ((UnitCheckAbilCmdState(lv_merc_compound_unit, AbilityCommand("SummonMercenaries", 5), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false) && (UnitCheckAbilCmdState(lv_merc_compound_unit, AbilityCommand("SummonMercenaries", 5), c_cmdStateHasCharges) == true)) {
+                if ((UnitCheckAbilCmdState(lv_merc_compound_unit, AbilityCommand("SummonMercenaries", 5), c_cmdStateCooldown) == true)) {
+                    if ((lv_cooldown_units == "")) {
+                        lv_cooldown_units = "Hels Angels";
+                    }
+                    else {
+                        lv_cooldown_units = (lv_cooldown_units + ", Hels Angels");
+                    }
+                }
+                else {
+                    if ((lv_callable_units == "")) {
+                        lv_callable_units = "Hels Angels";
+                    }
+                    else {
+                        lv_callable_units = (lv_callable_units + ", Hels Angels");
+                    }
+                }
+            }
+
+            if ((UnitCheckAbilCmdState(lv_merc_compound_unit, AbilityCommand("SummonMercenaries", 6), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false) && (UnitCheckAbilCmdState(lv_merc_compound_unit, AbilityCommand("SummonMercenaries", 6), c_cmdStateHasCharges) == true)) {
+                if ((UnitCheckAbilCmdState(lv_merc_compound_unit, AbilityCommand("SummonMercenaries", 6), c_cmdStateCooldown) == true)) {
+                    if ((lv_cooldown_units == "")) {
+                        lv_cooldown_units = "Dusk Wings";
+                    }
+                    else {
+                        lv_cooldown_units = (lv_cooldown_units + ", Dusk Wings");
+                    }
+                }
+                else {
+                    if ((lv_callable_units == "")) {
+                        lv_callable_units = "Dusk Wings";
+                    }
+                    else {
+                        lv_callable_units = (lv_callable_units + ", Dusk Wings");
+                    }
+                }
+            }
+
+            if ((UnitCheckAbilCmdState(lv_merc_compound_unit, AbilityCommand("SummonMercenaries", 7), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false) && (UnitCheckAbilCmdState(lv_merc_compound_unit, AbilityCommand("SummonMercenaries", 7), c_cmdStateHasCharges) == true)) {
+                if ((UnitCheckAbilCmdState(lv_merc_compound_unit, AbilityCommand("SummonMercenaries", 7), c_cmdStateCooldown) == true)) {
+                    if ((lv_cooldown_units == "")) {
+                        lv_cooldown_units = "Dukes Revenge";
+                    }
+                    else {
+                        lv_cooldown_units = (lv_cooldown_units + ", Dukes Revenge");
+                    }
+                }
+                else {
+                    if ((lv_callable_units == "")) {
+                        lv_callable_units = "Dukes Revenge";
+                    }
+                    else {
+                        lv_callable_units = (lv_callable_units + ", Dukes Revenge");
+                    }
+                }
+            }
+
+            lv_action_description = lv_callable_units;
+            lv_action_description = StringReplaceWord(lv_action_description, "War Pigs", "War Pigs - 4 Elite Marines (167M/0V|4S)", c_stringReplaceAll, c_stringCase);
+            lv_action_description = StringReplaceWord(lv_action_description, "Devil Dogs", "Devil Dogs - 2 Elite Firebats (167M/50V|4S)", c_stringReplaceAll, c_stringCase);
+            lv_action_description = StringReplaceWord(lv_action_description, "Hammer Securities", "Hammer Securities - 2 Elite Marodeurs (167M/50V|4S)", c_stringReplaceAll, c_stringCase);
+            lv_action_description = StringReplaceWord(lv_action_description, "Spartan Company", "Spartan Company - 2 Elite Goliaths (200M/84V|6S)", c_stringReplaceAll, c_stringCase);
+            lv_action_description = StringReplaceWord(lv_action_description, "Siege Breakers", "Siege Breakers - 2 Elite Siege Tanks (267M/134V|6S)", c_stringReplaceAll, c_stringCase);
+            lv_action_description = StringReplaceWord(lv_action_description, "Hels Angels", "Hels Angels - 3 Elite Vikings (267M/200V|6S)", c_stringReplaceAll, c_stringCase);
+            lv_action_description = StringReplaceWord(lv_action_description, "Dusk Wings", "Dusk Wings - 2 Elite Banshees (234M/134V|6S)", c_stringReplaceAll, c_stringCase);
+            lv_action_description = StringReplaceWord(lv_action_description, "Dukes Revenge", "Dukes Revenge - 1 Elite Battlecruiser (267M/200V|6S)", c_stringReplaceAll, c_stringCase);
+            if ((lv_callable_units == "") && (lv_cooldown_units == "")) {
+                libEFA54406_gf_create_action_1_arg("call_merc", false, "", "string", -1);
+                return true;
+            }
+
+            if ((lv_callable_units == "")) {
+                lv_action_description = "Call mercenaries. Mercenaries you call cost only 2/3 the resources than if a player calls them. You currently cannot call any Mercenaries. Mercenaries on cooldown: " + lv_cooldown_units;
+                libEFA54406_gf_create_action_1_arg("call_merc", true, lv_action_description, "string(no merc)", -1);
+                return true;
+            }
+
+            if ((lv_cooldown_units == "")) {
+                lv_action_description = "Call mercenaries. Mercenaries you call cost only 2/3 the resources than if a player calls them. Callable Mercenaries in this format <name> - <number of elite units> (Mineral cost/Vespene Gas cost|Supply cost): " + lv_action_description;
+                libEFA54406_gf_create_action_1_arg("call_merc", true, lv_action_description, "string(" + lv_callable_units + ")", -1);
+                return true;
+            }
+
+            lv_action_description = "Call mercenaries. Mercenaries you call cost only 2/3 the resources than if a player calls them. Callable Mercenaries in this format <name> - <number of elite units> (Mineral cost/Vespene Gas cost|Supply cost): " + lv_action_description + ". Mercenaries on cooldown: " + lv_cooldown_units;
+            libEFA54406_gf_create_action_1_arg("call_merc", true, lv_action_description, "string(" + lv_callable_units + ")", -1);
+        }
+        else {
+            libEFA54406_gf_create_action_1_arg("call_merc", false, "", "string", -1);
+        }
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_NeuroCanCallMercenaries_Init () {
+    libEFA54406_gt_NeuroCanCallMercenaries = TriggerCreate("libEFA54406_gt_NeuroCanCallMercenaries_Func");
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -5648,6 +6036,7 @@ void libEFA54406_InitTriggers () {
     libEFA54406_gt_Currentmissiontime_Init();
     libEFA54406_gt_UnitHighestKillCount_Init();
     libEFA54406_gt_NeuroCanProduceUnits_Init();
+    libEFA54406_gt_NeuroCanCallMercenaries_Init();
     libEFA54406_gt_InitMap_Init();
     libEFA54406_gt_CreateNeuroIntegrationbank_Init();
     libEFA54406_gt_DisableAchievementsCheats_Init();

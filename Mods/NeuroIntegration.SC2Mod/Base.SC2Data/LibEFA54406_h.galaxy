@@ -59,6 +59,7 @@ void libEFA54406_gf_ObjectiveContext (bool lp_is_update, string lp_additional_co
 void libEFA54406_gf_VictoryScreenContext (text lp_mission_summary, int lp_mission);
 void libEFA54406_gf_PlayerUnitsContext (string lp_requested_units);
 void libEFA54406_gf_NeuroProducesUnit (string lp_unit_to_produce);
+void libEFA54406_gf_NeuroCallsMercenary (string lp_merc_to_call);
 void libEFA54406_gf_BlockContext (bool lp_block);
 void libEFA54406_gf_IsNobuild (bool lp_is_nobuild);
 void libEFA54406_gf_UnblockCommands (bool lp_clear_queue);
@@ -99,6 +100,7 @@ trigger libEFA54406_gt_Currentupgrades;
 trigger libEFA54406_gt_Currentmissiontime;
 trigger libEFA54406_gt_UnitHighestKillCount;
 trigger libEFA54406_gt_NeuroCanProduceUnits;
+trigger libEFA54406_gt_NeuroCanCallMercenaries;
 trigger libEFA54406_gt_InitMap;
 trigger libEFA54406_gt_CreateNeuroIntegrationbank;
 trigger libEFA54406_gt_DisableAchievementsCheats;
