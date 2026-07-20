@@ -1634,6 +1634,380 @@ bool auto_libEFA54406_gf_NeuroCallsMercenary_TriggerFunc (bool testConds, bool r
     return true;
 }
 
+void libEFA54406_gf_NeuroReseachesUpgrade (string lp_upgrade_to_research) {
+    // Variable Declarations
+    int lv_mineral_count;
+    int lv_gas_count;
+    int lv_needed_minerals;
+    int lv_needed_gas;
+    bool lv_not_enough_resources;
+    string lv_needed_production_building;
+    unitgroup lv_player_units;
+    unitgroup lv_lookingat_group;
+    unit lv_unit;
+    unit lv_research_unit;
+    abilcmd lv_ability_command;
+    bool lv_has_vanadium;
+    bool lv_has_capacitors;
+    bool lv_production_exists;
+    int lv_available_slots;
+    int lv_most_available_slots;
+    unit lv_most_available_slots_unit;
+
+    // Automatic Variable Declarations
+    string auto3BC643FD_val;
+    unitgroup auto32CFF115_g;
+    int auto32CFF115_u;
+
+    // Variable Initialization
+    lv_player_units = UnitGroupEmpty();
+    lv_lookingat_group = UnitGroupEmpty();
+
+    // Implementation
+    lv_mineral_count = PlayerGetPropertyInt(1, c_playerPropMinerals);
+    lv_gas_count = PlayerGetPropertyInt(1, c_playerPropVespene);
+    lv_player_units = UnitGroup(null, 1, RegionPlayableMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    if ((libEFA54406_gv_is_protoss == false)) {
+        if ((libCamp_gf_StoryResearchStateCheck(libCamp_ge_StoryResearchID_ResearchP11UltraCapacitors, libCamp_ge_StoryResearchState_ResearchStatePurchased) == true)) {
+            lv_has_capacitors = true;
+        }
+        else {
+            if ((libCamp_gf_StoryResearchStateCheck(libCamp_ge_StoryResearchID_ResearchP12VanadiumPlating, libCamp_ge_StoryResearchState_ResearchStatePurchased) == true)) {
+                lv_has_vanadium = true;
+            }
+
+        }
+    }
+
+    auto3BC643FD_val = lp_upgrade_to_research;
+    if (auto3BC643FD_val == "Infantry Armor Level 1") {
+        if ((lv_has_vanadium == true)) {
+            lv_ability_command = AbilityCommand("EngineeringBayResearch", 17);
+        }
+        else {
+            lv_ability_command = AbilityCommand("EngineeringBayResearch", 16);
+        }
+        lv_needed_minerals = 67;
+        lv_needed_gas = 67;
+        lv_needed_production_building = "EngineeringBay";
+    }
+    else if (auto3BC643FD_val == "Infantry Armor Level 2") {
+        if ((lv_has_vanadium == true)) {
+            lv_ability_command = AbilityCommand("EngineeringBayResearch", 19);
+        }
+        else {
+            lv_ability_command = AbilityCommand("EngineeringBayResearch", 18);
+        }
+        lv_needed_minerals = 117;
+        lv_needed_gas = 117;
+        lv_needed_production_building = "EngineeringBay";
+    }
+    else if (auto3BC643FD_val == "Infantry Armor Level 3") {
+        if ((lv_has_vanadium == true)) {
+            lv_ability_command = AbilityCommand("EngineeringBayResearch", 21);
+        }
+        else {
+            lv_ability_command = AbilityCommand("EngineeringBayResearch", 20);
+        }
+        lv_needed_minerals = 167;
+        lv_needed_gas = 167;
+        lv_needed_production_building = "EngineeringBay";
+    }
+    else if (auto3BC643FD_val == "Infantry Weapons Level 1") {
+        if ((lv_has_capacitors == true)) {
+            lv_ability_command = AbilityCommand("EngineeringBayResearch", 23);
+        }
+        else {
+            lv_ability_command = AbilityCommand("EngineeringBayResearch", 22);
+        }
+        lv_needed_minerals = 67;
+        lv_needed_gas = 67;
+        lv_needed_production_building = "EngineeringBay";
+    }
+    else if (auto3BC643FD_val == "Infantry Weapons Level 2") {
+        if ((lv_has_capacitors == true)) {
+            lv_ability_command = AbilityCommand("EngineeringBayResearch", 25);
+        }
+        else {
+            lv_ability_command = AbilityCommand("EngineeringBayResearch", 24);
+        }
+        lv_needed_minerals = 117;
+        lv_needed_gas = 117;
+        lv_needed_production_building = "EngineeringBay";
+    }
+    else if (auto3BC643FD_val == "Infantry Weapons Level 3") {
+        if ((lv_has_capacitors == true)) {
+            lv_ability_command = AbilityCommand("EngineeringBayResearch", 27);
+        }
+        else {
+            lv_ability_command = AbilityCommand("EngineeringBayResearch", 26);
+        }
+        lv_needed_minerals = 167;
+        lv_needed_gas = 167;
+        lv_needed_production_building = "EngineeringBay";
+    }
+    else if (auto3BC643FD_val == "Vehicle Armor Level 1") {
+        if ((lv_has_vanadium == true)) {
+            lv_ability_command = AbilityCommand("FusionCoreResearch", 3);
+        }
+        else {
+            lv_ability_command = AbilityCommand("FusionCoreResearch", 2);
+        }
+        lv_needed_minerals = 67;
+        lv_needed_gas = 67;
+        lv_needed_production_building = "Armory";
+    }
+    else if (auto3BC643FD_val == "Vehicle Armor Level 2") {
+        if ((lv_has_vanadium == true)) {
+            lv_ability_command = AbilityCommand("FusionCoreResearch", 5);
+        }
+        else {
+            lv_ability_command = AbilityCommand("FusionCoreResearch", 4);
+        }
+        lv_needed_minerals = 117;
+        lv_needed_gas = 117;
+        lv_needed_production_building = "Armory";
+    }
+    else if (auto3BC643FD_val == "Vehicle Armor Level 3") {
+        if ((lv_has_vanadium == true)) {
+            lv_ability_command = AbilityCommand("FusionCoreResearch", 7);
+        }
+        else {
+            lv_ability_command = AbilityCommand("FusionCoreResearch", 6);
+        }
+        lv_needed_minerals = 167;
+        lv_needed_gas = 167;
+        lv_needed_production_building = "Armory";
+    }
+    else if (auto3BC643FD_val == "Vehicle Weapons Level 1") {
+        if ((lv_has_capacitors == true)) {
+            lv_ability_command = AbilityCommand("FusionCoreResearch", 9);
+        }
+        else {
+            lv_ability_command = AbilityCommand("FusionCoreResearch", 8);
+        }
+        lv_needed_minerals = 67;
+        lv_needed_gas = 67;
+        lv_needed_production_building = "Armory";
+    }
+    else if (auto3BC643FD_val == "Vehicle Weapons Level 2") {
+        if ((lv_has_capacitors == true)) {
+            lv_ability_command = AbilityCommand("FusionCoreResearch", 11);
+        }
+        else {
+            lv_ability_command = AbilityCommand("FusionCoreResearch", 10);
+        }
+        lv_needed_minerals = 117;
+        lv_needed_gas = 117;
+        lv_needed_production_building = "Armory";
+    }
+    else if (auto3BC643FD_val == "Vehicle Weapons Level 3") {
+        if ((lv_has_capacitors == true)) {
+            lv_ability_command = AbilityCommand("FusionCoreResearch", 13);
+        }
+        else {
+            lv_ability_command = AbilityCommand("FusionCoreResearch", 12);
+        }
+        lv_needed_minerals = 167;
+        lv_needed_gas = 167;
+        lv_needed_production_building = "Armory";
+    }
+    else if (auto3BC643FD_val == "Ship Armor Level 1") {
+        if ((lv_has_vanadium == true)) {
+            lv_ability_command = AbilityCommand("FusionCoreResearch", 19);
+        }
+        else {
+            lv_ability_command = AbilityCommand("FusionCoreResearch", 14);
+        }
+        lv_needed_minerals = 100;
+        lv_needed_gas = 100;
+        lv_needed_production_building = "Armory";
+    }
+    else if (auto3BC643FD_val == "Ship Armor Level 2") {
+        if ((lv_has_vanadium == true)) {
+            lv_ability_command = AbilityCommand("FusionCoreResearch", 17);
+        }
+        else {
+            lv_ability_command = AbilityCommand("FusionCoreResearch", 16);
+        }
+        lv_needed_minerals = 150;
+        lv_needed_gas = 150;
+        lv_needed_production_building = "Armory";
+    }
+    else if (auto3BC643FD_val == "Ship Armor Level 3") {
+        if ((lv_has_vanadium == true)) {
+            lv_ability_command = AbilityCommand("FusionCoreResearch", 19);
+        }
+        else {
+            lv_ability_command = AbilityCommand("FusionCoreResearch", 18);
+        }
+        lv_needed_minerals = 200;
+        lv_needed_gas = 200;
+        lv_needed_production_building = "Armory";
+    }
+    else if (auto3BC643FD_val == "Ship Weapons Level 1") {
+        if ((lv_has_capacitors == true)) {
+            lv_ability_command = AbilityCommand("FusionCoreResearch", 21);
+        }
+        else {
+            lv_ability_command = AbilityCommand("FusionCoreResearch", 20);
+        }
+        lv_needed_minerals = 67;
+        lv_needed_gas = 67;
+        lv_needed_production_building = "Armory";
+    }
+    else if (auto3BC643FD_val == "Ship Weapons Level 2") {
+        if ((lv_has_capacitors == true)) {
+            lv_ability_command = AbilityCommand("FusionCoreResearch", 23);
+        }
+        else {
+            lv_ability_command = AbilityCommand("FusionCoreResearch", 22);
+        }
+        lv_needed_minerals = 117;
+        lv_needed_gas = 117;
+        lv_needed_production_building = "Armory";
+    }
+    else if (auto3BC643FD_val == "Ship Weapons Level 3") {
+        if ((lv_has_capacitors == true)) {
+            lv_ability_command = AbilityCommand("FusionCoreResearch", 25);
+        }
+        else {
+            lv_ability_command = AbilityCommand("FusionCoreResearch", 24);
+        }
+        lv_needed_minerals = 167;
+        lv_needed_gas = 167;
+        lv_needed_production_building = "Armory";
+    }
+    else if (auto3BC643FD_val == "Shields Level 1") {
+        lv_ability_command = AbilityCommand("ForgeResearch", 9);
+        lv_needed_minerals = 134;
+        lv_needed_gas = 134;
+        lv_needed_production_building = "Forge";
+    }
+    else if (auto3BC643FD_val == "Shields Level 2") {
+        lv_ability_command = AbilityCommand("ForgeResearch", 10);
+        lv_needed_minerals = 200;
+        lv_needed_gas = 200;
+        lv_needed_production_building = "Forge";
+    }
+    else if (auto3BC643FD_val == "Shields Level 3") {
+        lv_ability_command = AbilityCommand("ForgeResearch", 11);
+        lv_needed_minerals = 267;
+        lv_needed_gas = 267;
+        lv_needed_production_building = "Forge";
+    }
+    else if (auto3BC643FD_val == "Ground Armor Level 1") {
+        lv_ability_command = AbilityCommand("ForgeResearch", 12);
+        lv_needed_minerals = 67;
+        lv_needed_gas = 67;
+        lv_needed_production_building = "Forge";
+    }
+    else if (auto3BC643FD_val == "Ground Armor Level 2") {
+        lv_ability_command = AbilityCommand("ForgeResearch", 13);
+        lv_needed_minerals = 117;
+        lv_needed_gas = 117;
+        lv_needed_production_building = "Forge";
+    }
+    else if (auto3BC643FD_val == "Ground Armor Level 3") {
+        lv_ability_command = AbilityCommand("ForgeResearch", 14);
+        lv_needed_minerals = 167;
+        lv_needed_gas = 167;
+        lv_needed_production_building = "Forge";
+    }
+    else if (auto3BC643FD_val == "Ground Weapons Level 1") {
+        lv_ability_command = AbilityCommand("ForgeResearch", 15);
+        lv_needed_minerals = 67;
+        lv_needed_gas = 67;
+        lv_needed_production_building = "Forge";
+    }
+    else if (auto3BC643FD_val == "Ground Weapons Level 2") {
+        lv_ability_command = AbilityCommand("ForgeResearch", 16);
+        lv_needed_minerals = 117;
+        lv_needed_gas = 117;
+        lv_needed_production_building = "Forge";
+    }
+    else if (auto3BC643FD_val == "Ground Weapons Level 3") {
+        lv_ability_command = AbilityCommand("ForgeResearch", 17);
+        lv_needed_minerals = 167;
+        lv_needed_gas = 167;
+        lv_needed_production_building = "Forge";
+    }
+    else if (auto3BC643FD_val == "Air Armor Level 1") {
+        lv_ability_command = AbilityCommand("CyberneticsCoreResearch", 12);
+        lv_needed_minerals = 100;
+        lv_needed_gas = 100;
+        lv_needed_production_building = "CyberneticsCore";
+    }
+    else if (auto3BC643FD_val == "Air Armor Level 2") {
+        lv_ability_command = AbilityCommand("CyberneticsCoreResearch", 13);
+        lv_needed_minerals = 150;
+        lv_needed_gas = 150;
+        lv_needed_production_building = "CyberneticsCore";
+    }
+    else if (auto3BC643FD_val == "Air Armor Level 3") {
+        lv_ability_command = AbilityCommand("CyberneticsCoreResearch", 14);
+        lv_needed_minerals = 200;
+        lv_needed_gas = 200;
+        lv_needed_production_building = "CyberneticsCore";
+    }
+    else if (auto3BC643FD_val == "Air Weapons Level 1") {
+        lv_ability_command = AbilityCommand("CyberneticsCoreResearch", 15);
+        lv_needed_minerals = 67;
+        lv_needed_gas = 67;
+        lv_needed_production_building = "CyberneticsCore";
+    }
+    else if (auto3BC643FD_val == "Air Weapons Level 2") {
+        lv_ability_command = AbilityCommand("CyberneticsCoreResearch", 16);
+        lv_needed_minerals = 117;
+        lv_needed_gas = 117;
+        lv_needed_production_building = "CyberneticsCore";
+    }
+    else if (auto3BC643FD_val == "Air Weapons Level 3") {
+        lv_ability_command = AbilityCommand("CyberneticsCoreResearch", 17);
+        lv_needed_minerals = 167;
+        lv_needed_gas = 167;
+        lv_needed_production_building = "CyberneticsCore";
+    }
+    else {
+    }
+    if (((lv_mineral_count < lv_needed_minerals) || (lv_gas_count < lv_needed_gas))) {
+        lv_not_enough_resources = true;
+    }
+
+    if ((lv_not_enough_resources == true)) {
+        libEFA54406_gf_create_context("not_enough_resources", "You don't have enough resources to research this upgrade. You need " + IntToString(lv_needed_minerals) + " Minerals | " + IntToString(lv_needed_gas) + " Vespene Gas. ", true);
+        TriggerExecute(libEFA54406_gt_Currentresources, true, false);
+        return ;
+    }
+
+    lv_lookingat_group = UnitGroupFilter(lv_needed_production_building, c_playerAny, lv_player_units, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    auto32CFF115_g = lv_lookingat_group;
+    auto32CFF115_u = UnitGroupCount(auto32CFF115_g, c_unitCountAll);
+    for (;; auto32CFF115_u -= 1) {
+        lv_unit = UnitGroupUnitFromEnd(auto32CFF115_g, auto32CFF115_u);
+        if (lv_unit == null) { break; }
+        lv_production_exists = true;
+        lv_available_slots = UnitQueueGetProperty(lv_unit, c_unitQueuePropertyAvailable);
+        if ((lv_available_slots > lv_most_available_slots)) {
+            lv_most_available_slots = lv_available_slots;
+            lv_most_available_slots_unit = lv_unit;
+        }
+
+    }
+    if ((lv_production_exists == true)) {
+        if ((UnitCheckAbilCmdState(lv_most_available_slots_unit, lv_ability_command, c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled | c_cmdStateCooldown) == false)) {
+            UnitIssueOrder(lv_most_available_slots_unit, Order(lv_ability_command), c_orderQueueAddToEnd);
+            return ;
+        }
+        else {
+            libEFA54406_gf_create_context("cant_call_merc", "Couldn't research the requested upgrade: " + lp_upgrade_to_research + ". Upgrade is already being researched or not available. ", true);
+            return ;
+        }
+    }
+
+    libEFA54406_gf_create_context("cant_call_merc", "Couldn't research the requested upgrade: " + lp_upgrade_to_research + ". Required building doesn't exist anymore. ", true);
+}
+
 trigger auto_libEFA54406_gf_BlockContext_Trigger = null;
 bool auto_libEFA54406_gf_BlockContext_lp_block;
 
@@ -1666,6 +2040,7 @@ bool auto_libEFA54406_gf_BlockContext_TriggerFunc (bool testConds, bool runActio
             libEFA54406_gf_create_action_0_arg("current_supply", false, "Get the current used supply and maximum useable supply you have", -1);
             libEFA54406_gf_create_action_1_arg("produce_unit", false, "", "string", -1);
             libEFA54406_gf_create_action_1_arg("call_merc", false, "", "string", -1);
+            libEFA54406_gf_create_action_1_arg("research_upgrade", false, "", "string", -1);
         }
 
     }
@@ -1836,6 +2211,11 @@ bool libEFA54406_gt_Executeactionsglobal_Func (bool testConds, bool runActions) 
         libEFA54406_gf_NeuroCallsMercenary(BankValueGetAsString(BankLastCreated(), "do_action", "call_merc_arg_1"));
     }
 
+    if ((BankValueGetAsFlag(BankLastCreated(), "do_action", "research_upgrade") == true)) {
+        BankValueSetFromFlag(BankLastCreated(), "do_action", "research_upgrade", false);
+        libEFA54406_gf_NeuroReseachesUpgrade(BankValueGetAsString(BankLastCreated(), "do_action", "research_upgrade_arg_1"));
+    }
+
     BankSave(BankLastCreated());
     Wait(0.1, c_timeReal);
     TriggerExecute(libEFA54406_gt_PlayerActivityContext, true, false);
@@ -1943,6 +2323,7 @@ bool libEFA54406_gt_PlayerActivityContext_Func (bool testConds, bool runActions)
             TriggerExecute(libEFA54406_gt_EconomyContext, true, false);
             TriggerExecute(libEFA54406_gt_NeuroCanProduceUnits, true, false);
             TriggerExecute(libEFA54406_gt_NeuroCanCallMercenaries, true, false);
+            TriggerExecute(libEFA54406_gt_NeuroCanResearchUpgrades, true, false);
         }
 
     }
@@ -3723,14 +4104,14 @@ bool libEFA54406_gt_EconomyContext_Func (bool testConds, bool runActions) {
                 for ( ; ( (autoDF141EDB_ai >= 0 && lv_queued_index <= autoDF141EDB_ae) || (autoDF141EDB_ai < 0 && lv_queued_index >= autoDF141EDB_ae) ) ; lv_queued_index += autoDF141EDB_ai ) {
                     lv_upgrade = libNtve_gf_QueuedUpgradeTypeInTrainingQueueSlot(lv_selected_unit, lv_queued_index, 1);
                     lv_gamelink_string = (lv_upgrade);
-                    if ((StringContains(lv_gamelink_string, "protossgroundarmor", c_stringAnywhere, c_stringNoCase) == true)) {
+                    if ((StringContains(lv_gamelink_string, "protossshields", c_stringAnywhere, c_stringNoCase) == true)) {
+                        lv_gamelink_prefix = "Shields ";
+                    }
+                    else if ((StringContains(lv_gamelink_string, "protossgroundarmor", c_stringAnywhere, c_stringNoCase) == true)) {
                         lv_gamelink_prefix = "Ground Armor ";
                     }
                     else if ((StringContains(lv_gamelink_string, "protossairarmor", c_stringAnywhere, c_stringNoCase) == true)) {
                         lv_gamelink_prefix = "Air Armor ";
-                    }
-                    else if ((StringContains(lv_gamelink_string, "protossshields", c_stringAnywhere, c_stringNoCase) == true)) {
-                        lv_gamelink_prefix = "Shields ";
                     }
                     else if ((StringContains(lv_gamelink_string, "terraninfantryarmor", c_stringAnywhere, c_stringNoCase) == true)) {
                         lv_gamelink_prefix = "Infantry Armor ";
@@ -4015,14 +4396,14 @@ bool libEFA54406_gt_Currentupgrades_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    if ((TechTreeUpgradeCount(1, "ProtossAirArmorsLevel3", c_techCountCompleteOnly) == 1)) {
-        lv_upgrades_string = lv_upgrades_string + "Air Armor Level 3, ";
+    if ((TechTreeUpgradeCount(1, "ProtossShieldsLevel3", c_techCountCompleteOnly) == 1)) {
+        lv_upgrades_string = lv_upgrades_string + "Shields Level 3, ";
     }
-    else if ((TechTreeUpgradeCount(1, "ProtossAirArmorsLevel2", c_techCountCompleteOnly) == 1)) {
-        lv_upgrades_string = lv_upgrades_string + "Air Armor Level 2, ";
+    else if ((TechTreeUpgradeCount(1, "ProtossShieldsLevel2", c_techCountCompleteOnly) == 1)) {
+        lv_upgrades_string = lv_upgrades_string + "Shields Level 2, ";
     }
-    else if ((TechTreeUpgradeCount(1, "ProtossAirArmorsLevel1", c_techCountCompleteOnly) == 1)) {
-        lv_upgrades_string = lv_upgrades_string + "Air Armor Level 1, ";
+    else if ((TechTreeUpgradeCount(1, "ProtossShieldsLevel1", c_techCountCompleteOnly) == 1)) {
+        lv_upgrades_string = lv_upgrades_string + "Shields Level 1, ";
     }
     if ((TechTreeUpgradeCount(1, "ProtossGroundArmorsLevel3", c_techCountCompleteOnly) == 1)) {
         lv_upgrades_string = lv_upgrades_string + "Ground Armor Level 3, ";
@@ -4033,41 +4414,23 @@ bool libEFA54406_gt_Currentupgrades_Func (bool testConds, bool runActions) {
     else if ((TechTreeUpgradeCount(1, "ProtossGroundArmorsLevel1", c_techCountCompleteOnly) == 1)) {
         lv_upgrades_string = lv_upgrades_string + "Ground Armor Level 1, ";
     }
-    if ((TechTreeUpgradeCount(1, "ProtossShieldsLevel3", c_techCountCompleteOnly) == 1)) {
-        lv_upgrades_string = lv_upgrades_string + "Shields Level 3, ";
+    if ((TechTreeUpgradeCount(1, "ProtossGroundWeaponsLevel3", c_techCountCompleteOnly) == 1)) {
+        lv_upgrades_string = lv_upgrades_string + "Ground Weapons Level 3, ";
     }
-    else if ((TechTreeUpgradeCount(1, "ProtossShieldsLevel2", c_techCountCompleteOnly) == 1)) {
-        lv_upgrades_string = lv_upgrades_string + "Shields Level 2, ";
+    else if ((TechTreeUpgradeCount(1, "ProtossGroundWeaponsLevel2", c_techCountCompleteOnly) == 1)) {
+        lv_upgrades_string = lv_upgrades_string + "Ground Weapons Level 2, ";
     }
-    else if ((TechTreeUpgradeCount(1, "ProtossShieldsLevel1", c_techCountCompleteOnly) == 1)) {
-        lv_upgrades_string = lv_upgrades_string + "Shields Level 1, ";
+    else if ((TechTreeUpgradeCount(1, "ProtossGroundWeaponsLevel1", c_techCountCompleteOnly) == 1)) {
+        lv_upgrades_string = lv_upgrades_string + "Ground Weapons Level 1, ";
     }
-    if (((TechTreeUpgradeCount(1, "TerranInfantryArmorsLevel3", c_techCountCompleteOnly) == 1) || (TechTreeUpgradeCount(1, "TerranInfantryArmorsVanadiumPlatingLevel3", c_techCountCompleteOnly) == 1))) {
-        lv_upgrades_string = lv_upgrades_string + "Infantry Armor Level 3, ";
+    if ((TechTreeUpgradeCount(1, "ProtossAirArmorsLevel3", c_techCountCompleteOnly) == 1)) {
+        lv_upgrades_string = lv_upgrades_string + "Air Armor Level 3, ";
     }
-    else if (((TechTreeUpgradeCount(1, "TerranInfantryArmorsLevel2", c_techCountCompleteOnly) == 1) || (TechTreeUpgradeCount(1, "TerranInfantryArmorsVanadiumPlatingLevel2", c_techCountCompleteOnly) == 1))) {
-        lv_upgrades_string = lv_upgrades_string + "Infantry Armor Level 2, ";
+    else if ((TechTreeUpgradeCount(1, "ProtossAirArmorsLevel2", c_techCountCompleteOnly) == 1)) {
+        lv_upgrades_string = lv_upgrades_string + "Air Armor Level 2, ";
     }
-    else if (((TechTreeUpgradeCount(1, "TerranInfantryArmorsLevel1", c_techCountCompleteOnly) == 1) || (TechTreeUpgradeCount(1, "TerranInfantryArmorsVanadiumPlatingLevel1", c_techCountCompleteOnly) == 1))) {
-        lv_upgrades_string = lv_upgrades_string + "Infantry Armor Level 1, ";
-    }
-    if (((TechTreeUpgradeCount(1, "TerranVehicleArmorsLevel3", c_techCountCompleteOnly) == 1) || (TechTreeUpgradeCount(1, "TerranVehicleArmorsVanadiumPlatingLevel3", c_techCountCompleteOnly) == 1))) {
-        lv_upgrades_string = lv_upgrades_string + "Vehicle Armor Level 3, ";
-    }
-    else if (((TechTreeUpgradeCount(1, "TerranVehicleArmorsLevel2", c_techCountCompleteOnly) == 1) || (TechTreeUpgradeCount(1, "TerranVehicleArmorsVanadiumPlatingLevel2", c_techCountCompleteOnly) == 1))) {
-        lv_upgrades_string = lv_upgrades_string + "Vehicle Armor Level 2, ";
-    }
-    else if (((TechTreeUpgradeCount(1, "TerranVehicleArmorsLevel1", c_techCountCompleteOnly) == 1) || (TechTreeUpgradeCount(1, "TerranVehicleArmorsVanadiumPlatingLevel1", c_techCountCompleteOnly) == 1))) {
-        lv_upgrades_string = lv_upgrades_string + "Vehicle Armor Level 1, ";
-    }
-    if (((TechTreeUpgradeCount(1, "TerranShipArmorsLevel3", c_techCountCompleteOnly) == 1) || (TechTreeUpgradeCount(1, "TerranShipArmorsVanadiumPlatingLevel3", c_techCountCompleteOnly) == 1))) {
-        lv_upgrades_string = lv_upgrades_string + "Ship Armor Level 3, ";
-    }
-    else if (((TechTreeUpgradeCount(1, "TerranShipArmorsLevel2", c_techCountCompleteOnly) == 1) || (TechTreeUpgradeCount(1, "TerranShipArmorsVanadiumPlatingLevel2", c_techCountCompleteOnly) == 1))) {
-        lv_upgrades_string = lv_upgrades_string + "Ship Armor Level 2, ";
-    }
-    else if (((TechTreeUpgradeCount(1, "TerranShipArmorsLevel1", c_techCountCompleteOnly) == 1) || (TechTreeUpgradeCount(1, "TerranShipArmorsVanadiumPlatingLevel1", c_techCountCompleteOnly) == 1))) {
-        lv_upgrades_string = lv_upgrades_string + "Ship Armor Level 1, ";
+    else if ((TechTreeUpgradeCount(1, "ProtossAirArmorsLevel1", c_techCountCompleteOnly) == 1)) {
+        lv_upgrades_string = lv_upgrades_string + "Air Armor Level 1, ";
     }
     if ((TechTreeUpgradeCount(1, "ProtossAirWeaponsLevel3", c_techCountCompleteOnly) == 1)) {
         lv_upgrades_string = lv_upgrades_string + "Air Weapons Level 3, ";
@@ -4078,14 +4441,14 @@ bool libEFA54406_gt_Currentupgrades_Func (bool testConds, bool runActions) {
     else if ((TechTreeUpgradeCount(1, "ProtossAirWeaponsLevel1", c_techCountCompleteOnly) == 1)) {
         lv_upgrades_string = lv_upgrades_string + "Air Weapons Level 1, ";
     }
-    if ((TechTreeUpgradeCount(1, "ProtossGroundWeaponsLevel3", c_techCountCompleteOnly) == 1)) {
-        lv_upgrades_string = lv_upgrades_string + "Ground Weapons Level 3, ";
+    if (((TechTreeUpgradeCount(1, "TerranInfantryArmorsLevel3", c_techCountCompleteOnly) == 1) || (TechTreeUpgradeCount(1, "TerranInfantryArmorsVanadiumPlatingLevel3", c_techCountCompleteOnly) == 1))) {
+        lv_upgrades_string = lv_upgrades_string + "Infantry Armor Level 3, ";
     }
-    else if ((TechTreeUpgradeCount(1, "ProtossGroundWeaponsLevel2", c_techCountCompleteOnly) == 1)) {
-        lv_upgrades_string = lv_upgrades_string + "Ground Weapons Level 2, ";
+    else if (((TechTreeUpgradeCount(1, "TerranInfantryArmorsLevel2", c_techCountCompleteOnly) == 1) || (TechTreeUpgradeCount(1, "TerranInfantryArmorsVanadiumPlatingLevel2", c_techCountCompleteOnly) == 1))) {
+        lv_upgrades_string = lv_upgrades_string + "Infantry Armor Level 2, ";
     }
-    else if ((TechTreeUpgradeCount(1, "ProtossGroundWeaponsLevel1", c_techCountCompleteOnly) == 1)) {
-        lv_upgrades_string = lv_upgrades_string + "Ground Weapons Level 1, ";
+    else if (((TechTreeUpgradeCount(1, "TerranInfantryArmorsLevel1", c_techCountCompleteOnly) == 1) || (TechTreeUpgradeCount(1, "TerranInfantryArmorsVanadiumPlatingLevel1", c_techCountCompleteOnly) == 1))) {
+        lv_upgrades_string = lv_upgrades_string + "Infantry Armor Level 1, ";
     }
     if (((TechTreeUpgradeCount(1, "TerranInfantryWeaponsLevel3", c_techCountCompleteOnly) == 1) || (TechTreeUpgradeCount(1, "TerranInfantryWeaponsUltraCapacitorsLevel3", c_techCountCompleteOnly) == 1))) {
         lv_upgrades_string = lv_upgrades_string + "Infantry Weapons Level 3, ";
@@ -4096,6 +4459,15 @@ bool libEFA54406_gt_Currentupgrades_Func (bool testConds, bool runActions) {
     else if (((TechTreeUpgradeCount(1, "TerranInfantryWeaponsLevel1", c_techCountCompleteOnly) == 1) || (TechTreeUpgradeCount(1, "TerranInfantryWeaponsUltraCapacitorsLevel1", c_techCountCompleteOnly) == 1))) {
         lv_upgrades_string = lv_upgrades_string + "Infantry Weapons Level 1, ";
     }
+    if (((TechTreeUpgradeCount(1, "TerranVehicleArmorsLevel3", c_techCountCompleteOnly) == 1) || (TechTreeUpgradeCount(1, "TerranVehicleArmorsVanadiumPlatingLevel3", c_techCountCompleteOnly) == 1))) {
+        lv_upgrades_string = lv_upgrades_string + "Vehicle Armor Level 3, ";
+    }
+    else if (((TechTreeUpgradeCount(1, "TerranVehicleArmorsLevel2", c_techCountCompleteOnly) == 1) || (TechTreeUpgradeCount(1, "TerranVehicleArmorsVanadiumPlatingLevel2", c_techCountCompleteOnly) == 1))) {
+        lv_upgrades_string = lv_upgrades_string + "Vehicle Armor Level 2, ";
+    }
+    else if (((TechTreeUpgradeCount(1, "TerranVehicleArmorsLevel1", c_techCountCompleteOnly) == 1) || (TechTreeUpgradeCount(1, "TerranVehicleArmorsVanadiumPlatingLevel1", c_techCountCompleteOnly) == 1))) {
+        lv_upgrades_string = lv_upgrades_string + "Vehicle Armor Level 1, ";
+    }
     if (((TechTreeUpgradeCount(1, "TerranVehicleWeaponsLevel3", c_techCountCompleteOnly) == 1) || (TechTreeUpgradeCount(1, "TerranVehicleWeaponsUltraCapacitorsLevel3", c_techCountCompleteOnly) == 1))) {
         lv_upgrades_string = lv_upgrades_string + "Vehicle Weapons Level 3, ";
     }
@@ -4104,6 +4476,15 @@ bool libEFA54406_gt_Currentupgrades_Func (bool testConds, bool runActions) {
     }
     else if (((TechTreeUpgradeCount(1, "TerranVehicleWeaponsLevel1", c_techCountCompleteOnly) == 1) || (TechTreeUpgradeCount(1, "TerranVehicleWeaponsUltraCapacitorsLevel1", c_techCountCompleteOnly) == 1))) {
         lv_upgrades_string = lv_upgrades_string + "Vehicle Weapons Level 1, ";
+    }
+    if (((TechTreeUpgradeCount(1, "TerranShipArmorsLevel3", c_techCountCompleteOnly) == 1) || (TechTreeUpgradeCount(1, "TerranShipArmorsVanadiumPlatingLevel3", c_techCountCompleteOnly) == 1))) {
+        lv_upgrades_string = lv_upgrades_string + "Ship Armor Level 3, ";
+    }
+    else if (((TechTreeUpgradeCount(1, "TerranShipArmorsLevel2", c_techCountCompleteOnly) == 1) || (TechTreeUpgradeCount(1, "TerranShipArmorsVanadiumPlatingLevel2", c_techCountCompleteOnly) == 1))) {
+        lv_upgrades_string = lv_upgrades_string + "Ship Armor Level 2, ";
+    }
+    else if (((TechTreeUpgradeCount(1, "TerranShipArmorsLevel1", c_techCountCompleteOnly) == 1) || (TechTreeUpgradeCount(1, "TerranShipArmorsVanadiumPlatingLevel1", c_techCountCompleteOnly) == 1))) {
+        lv_upgrades_string = lv_upgrades_string + "Ship Armor Level 1, ";
     }
     if (((TechTreeUpgradeCount(1, "TerranShipWeaponsLevel3", c_techCountCompleteOnly) == 1) || (TechTreeUpgradeCount(1, "TerranShipWeaponsUltraCapacitorsLevel3", c_techCountCompleteOnly) == 1))) {
         lv_upgrades_string = lv_upgrades_string + "Ship Weapons Level 3, ";
@@ -5753,6 +6134,461 @@ void libEFA54406_gt_NeuroCanCallMercenaries_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: Neuro Can Research Upgrades
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_NeuroCanResearchUpgrades_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unitgroup lv_lookingat_group;
+    unit lv_unit;
+    unit lv_research_unit;
+    bool lv_engi_exists;
+    bool lv_armory_exists;
+    bool lv_forge_exists;
+    bool lv_cybernetics_exists;
+    string lv_available_research;
+    string lv_actions;
+    string lv_action_description;
+
+    // Automatic Variable Declarations
+    unitgroup auto3AD76BDE_g;
+    int auto3AD76BDE_u;
+    unitgroup auto7C2626B2_g;
+    int auto7C2626B2_u;
+    unitgroup autoF700E819_g;
+    int autoF700E819_u;
+    unitgroup auto41BAE5BB_g;
+    int auto41BAE5BB_u;
+
+    // Variable Initialization
+    lv_lookingat_group = UnitGroupEmpty();
+    lv_available_research = "";
+    lv_actions = "";
+    lv_action_description = "";
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((libEFA54406_gv_is_protoss == false)) {
+        lv_lookingat_group = UnitGroup("EngineeringBay", 1, RegionPlayableMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+        autoF700E819_g = lv_lookingat_group;
+        autoF700E819_u = UnitGroupCount(autoF700E819_g, c_unitCountAll);
+        for (;; autoF700E819_u -= 1) {
+            lv_unit = UnitGroupUnitFromEnd(autoF700E819_g, autoF700E819_u);
+            if (lv_unit == null) { break; }
+            lv_engi_exists = true;
+        }
+        if ((lv_engi_exists == true)) {
+            lv_research_unit = UnitGroupUnit(lv_lookingat_group, 1);
+            if (((UnitCheckAbilCmdState(lv_research_unit, AbilityCommand("EngineeringBayResearch", 6), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false) || (UnitCheckAbilCmdState(lv_research_unit, AbilityCommand("EngineeringBayResearch", 13), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false))) {
+                if ((lv_available_research == "")) {
+                    lv_available_research = "TIAL1";
+                }
+                else {
+                    lv_available_research = (lv_available_research + ", TIAL1");
+                }
+            }
+
+            if (((UnitCheckAbilCmdState(lv_research_unit, AbilityCommand("EngineeringBayResearch", 7), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false) || (UnitCheckAbilCmdState(lv_research_unit, AbilityCommand("EngineeringBayResearch", 14), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false))) {
+                if ((lv_available_research == "")) {
+                    lv_available_research = "TIAL2";
+                }
+                else {
+                    lv_available_research = (lv_available_research + ", TIAL2");
+                }
+            }
+
+            if (((UnitCheckAbilCmdState(lv_research_unit, AbilityCommand("EngineeringBayResearch", 8), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false) || (UnitCheckAbilCmdState(lv_research_unit, AbilityCommand("EngineeringBayResearch", 15), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false))) {
+                if ((lv_available_research == "")) {
+                    lv_available_research = "TIAL3";
+                }
+                else {
+                    lv_available_research = (lv_available_research + ", TIAL3");
+                }
+            }
+
+            if (((UnitCheckAbilCmdState(lv_research_unit, AbilityCommand("EngineeringBayResearch", 2), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false) || (UnitCheckAbilCmdState(lv_research_unit, AbilityCommand("EngineeringBayResearch", 10), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false))) {
+                if ((lv_available_research == "")) {
+                    lv_available_research = "TIWL1";
+                }
+                else {
+                    lv_available_research = (lv_available_research + ", TIWL1");
+                }
+            }
+
+            if (((UnitCheckAbilCmdState(lv_research_unit, AbilityCommand("EngineeringBayResearch", 3), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false) || (UnitCheckAbilCmdState(lv_research_unit, AbilityCommand("EngineeringBayResearch", 11), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false))) {
+                if ((lv_available_research == "")) {
+                    lv_available_research = "TIWL2";
+                }
+                else {
+                    lv_available_research = (lv_available_research + ", TIWL2");
+                }
+            }
+
+            if (((UnitCheckAbilCmdState(lv_research_unit, AbilityCommand("EngineeringBayResearch", 4), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false) || (UnitCheckAbilCmdState(lv_research_unit, AbilityCommand("EngineeringBayResearch", 12), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false))) {
+                if ((lv_available_research == "")) {
+                    lv_available_research = "TIWL3";
+                }
+                else {
+                    lv_available_research = (lv_available_research + ", TIWL3");
+                }
+            }
+
+        }
+
+        lv_lookingat_group = UnitGroup("Armory", 1, RegionPlayableMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+        auto41BAE5BB_g = lv_lookingat_group;
+        auto41BAE5BB_u = UnitGroupCount(auto41BAE5BB_g, c_unitCountAll);
+        for (;; auto41BAE5BB_u -= 1) {
+            lv_unit = UnitGroupUnitFromEnd(auto41BAE5BB_g, auto41BAE5BB_u);
+            if (lv_unit == null) { break; }
+            lv_armory_exists = true;
+        }
+        if ((lv_armory_exists == true)) {
+            lv_research_unit = UnitGroupUnit(lv_lookingat_group, 1);
+            if (((UnitCheckAbilCmdState(lv_research_unit, AbilityCommand("ArmoryResearch", 2), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false) || (UnitCheckAbilCmdState(lv_research_unit, AbilityCommand("ArmoryResearch", 21), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false))) {
+                if ((lv_available_research == "")) {
+                    lv_available_research = "TVAL1";
+                }
+                else {
+                    lv_available_research = (lv_available_research + ", TVAL1");
+                }
+            }
+
+            if (((UnitCheckAbilCmdState(lv_research_unit, AbilityCommand("ArmoryResearch", 3), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false) || (UnitCheckAbilCmdState(lv_research_unit, AbilityCommand("ArmoryResearch", 22), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false))) {
+                if ((lv_available_research == "")) {
+                    lv_available_research = "TVAL2";
+                }
+                else {
+                    lv_available_research = (lv_available_research + ", TVAL2");
+                }
+            }
+
+            if (((UnitCheckAbilCmdState(lv_research_unit, AbilityCommand("ArmoryResearch", 4), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false) || (UnitCheckAbilCmdState(lv_research_unit, AbilityCommand("ArmoryResearch", 23), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false))) {
+                if ((lv_available_research == "")) {
+                    lv_available_research = "TVAL3";
+                }
+                else {
+                    lv_available_research = (lv_available_research + ", TVAL3");
+                }
+            }
+
+            if (((UnitCheckAbilCmdState(lv_research_unit, AbilityCommand("ArmoryResearch", 5), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false) || (UnitCheckAbilCmdState(lv_research_unit, AbilityCommand("ArmoryResearch", 15), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false))) {
+                if ((lv_available_research == "")) {
+                    lv_available_research = "TVWL1";
+                }
+                else {
+                    lv_available_research = (lv_available_research + ", TVWL1");
+                }
+            }
+
+            if (((UnitCheckAbilCmdState(lv_research_unit, AbilityCommand("ArmoryResearch", 6), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false) || (UnitCheckAbilCmdState(lv_research_unit, AbilityCommand("ArmoryResearch", 16), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false))) {
+                if ((lv_available_research == "")) {
+                    lv_available_research = "TVWL2";
+                }
+                else {
+                    lv_available_research = (lv_available_research + ", TVWL2");
+                }
+            }
+
+            if (((UnitCheckAbilCmdState(lv_research_unit, AbilityCommand("ArmoryResearch", 7), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false) || (UnitCheckAbilCmdState(lv_research_unit, AbilityCommand("ArmoryResearch", 17), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false))) {
+                if ((lv_available_research == "")) {
+                    lv_available_research = "TVWL3";
+                }
+                else {
+                    lv_available_research = (lv_available_research + ", TVWL3");
+                }
+            }
+
+            if (((UnitCheckAbilCmdState(lv_research_unit, AbilityCommand("ArmoryResearch", 8), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false) || (UnitCheckAbilCmdState(lv_research_unit, AbilityCommand("ArmoryResearch", 24), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false))) {
+                if ((lv_available_research == "")) {
+                    lv_available_research = "TSAL1";
+                }
+                else {
+                    lv_available_research = (lv_available_research + ", TSAL1");
+                }
+            }
+
+            if (((UnitCheckAbilCmdState(lv_research_unit, AbilityCommand("ArmoryResearch", 9), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false) || (UnitCheckAbilCmdState(lv_research_unit, AbilityCommand("ArmoryResearch", 25), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false))) {
+                if ((lv_available_research == "")) {
+                    lv_available_research = "TSAL2";
+                }
+                else {
+                    lv_available_research = (lv_available_research + ", TSAL2");
+                }
+            }
+
+            if (((UnitCheckAbilCmdState(lv_research_unit, AbilityCommand("ArmoryResearch", 10), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false) || (UnitCheckAbilCmdState(lv_research_unit, AbilityCommand("ArmoryResearch", 26), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false))) {
+                if ((lv_available_research == "")) {
+                    lv_available_research = "TSAL3";
+                }
+                else {
+                    lv_available_research = (lv_available_research + ", TSAL3");
+                }
+            }
+
+            if (((UnitCheckAbilCmdState(lv_research_unit, AbilityCommand("ArmoryResearch", 11), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false) || (UnitCheckAbilCmdState(lv_research_unit, AbilityCommand("ArmoryResearch", 18), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false))) {
+                if ((lv_available_research == "")) {
+                    lv_available_research = "TSWL1";
+                }
+                else {
+                    lv_available_research = (lv_available_research + ", TSWL1");
+                }
+            }
+
+            if (((UnitCheckAbilCmdState(lv_research_unit, AbilityCommand("ArmoryResearch", 12), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false) || (UnitCheckAbilCmdState(lv_research_unit, AbilityCommand("ArmoryResearch", 19), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false))) {
+                if ((lv_available_research == "")) {
+                    lv_available_research = "TSWL2";
+                }
+                else {
+                    lv_available_research = (lv_available_research + ", TSWL2");
+                }
+            }
+
+            if (((UnitCheckAbilCmdState(lv_research_unit, AbilityCommand("ArmoryResearch", 13), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false) || (UnitCheckAbilCmdState(lv_research_unit, AbilityCommand("ArmoryResearch", 20), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false))) {
+                if ((lv_available_research == "")) {
+                    lv_available_research = "TSWL3";
+                }
+                else {
+                    lv_available_research = (lv_available_research + ", TSWL3");
+                }
+            }
+
+        }
+
+        lv_actions = lv_available_research;
+        lv_actions = StringReplaceWord(lv_actions, "TIA", "Infantry Armor ", c_stringReplaceAll, c_stringCase);
+        lv_actions = StringReplaceWord(lv_actions, "TIW", "Infantry Weapons ", c_stringReplaceAll, c_stringCase);
+        lv_actions = StringReplaceWord(lv_actions, "TVA", "Vehicle Armor ", c_stringReplaceAll, c_stringCase);
+        lv_actions = StringReplaceWord(lv_actions, "TVW", "Vehicle Weapons ", c_stringReplaceAll, c_stringCase);
+        lv_actions = StringReplaceWord(lv_actions, "TSA", "Ship Armor ", c_stringReplaceAll, c_stringCase);
+        lv_actions = StringReplaceWord(lv_actions, "TSW", "Ship Weapons ", c_stringReplaceAll, c_stringCase);
+        lv_actions = StringReplaceWord(lv_actions, "L1", "Level 1", c_stringReplaceAll, c_stringCase);
+        lv_actions = StringReplaceWord(lv_actions, "L2", "Level 2", c_stringReplaceAll, c_stringCase);
+        lv_actions = StringReplaceWord(lv_actions, "L3", "Level 3", c_stringReplaceAll, c_stringCase);
+        lv_action_description = lv_available_research;
+        lv_action_description = StringReplaceWord(lv_action_description, "TIAL1", "Infantry Armor Level 1 (67M/67V|114s)", c_stringReplaceAll, c_stringCase);
+        lv_action_description = StringReplaceWord(lv_action_description, "TIAL2", "Infantry Armor Level 2 (117M/117V|134s)", c_stringReplaceAll, c_stringCase);
+        lv_action_description = StringReplaceWord(lv_action_description, "TIAL3", "Infantry Armor Level 3 (167M/167V|154s)", c_stringReplaceAll, c_stringCase);
+        lv_action_description = StringReplaceWord(lv_action_description, "TIWL1", "Infantry Weapons Level 1 (67M/67V|114s)", c_stringReplaceAll, c_stringCase);
+        lv_action_description = StringReplaceWord(lv_action_description, "TIWL2", "Infantry Weapons Level 2 (117M/117V|134s)", c_stringReplaceAll, c_stringCase);
+        lv_action_description = StringReplaceWord(lv_action_description, "TIWL3", "Infantry Weapons Level 3 (167M/167V|154s)", c_stringReplaceAll, c_stringCase);
+        lv_action_description = StringReplaceWord(lv_action_description, "TVAL1", "Vehicle Armor Level 1 (67M/67V|114s)", c_stringReplaceAll, c_stringCase);
+        lv_action_description = StringReplaceWord(lv_action_description, "TVAL2", "Vehicle Armor Level 2 (117M/117V|134s)", c_stringReplaceAll, c_stringCase);
+        lv_action_description = StringReplaceWord(lv_action_description, "TVAL3", "Vehicle Armor Level 3 (167M/167V|154s)", c_stringReplaceAll, c_stringCase);
+        lv_action_description = StringReplaceWord(lv_action_description, "TVWL1", "Vehicle Weapons Level 1 (67M/67V|114s)", c_stringReplaceAll, c_stringCase);
+        lv_action_description = StringReplaceWord(lv_action_description, "TVWL2", "Vehicle Weapons Level 2 (117M/117V|134s)", c_stringReplaceAll, c_stringCase);
+        lv_action_description = StringReplaceWord(lv_action_description, "TVWL3", "Vehicle Weapons Level 3 (167M/167V|154s)", c_stringReplaceAll, c_stringCase);
+        lv_action_description = StringReplaceWord(lv_action_description, "TSAL1", "Ship Armor Level 1 (100M/100V|114s)", c_stringReplaceAll, c_stringCase);
+        lv_action_description = StringReplaceWord(lv_action_description, "TSAL2", "Ship Armor Level 2 (150M/150V|134s)", c_stringReplaceAll, c_stringCase);
+        lv_action_description = StringReplaceWord(lv_action_description, "TSAL3", "Ship Armor Level 3 (200M/200V|154s)", c_stringReplaceAll, c_stringCase);
+        lv_action_description = StringReplaceWord(lv_action_description, "TSWL1", "Ship Weapons Level 1 (67M/67V|114s)", c_stringReplaceAll, c_stringCase);
+        lv_action_description = StringReplaceWord(lv_action_description, "TSWL2", "Ship Weapons Level 2 (117M/117V|134s)", c_stringReplaceAll, c_stringCase);
+        lv_action_description = StringReplaceWord(lv_action_description, "TSWL3", "Ship Weapons Level 3 (167M/167V|154s)", c_stringReplaceAll, c_stringCase);
+    }
+    else {
+        lv_lookingat_group = UnitGroup("Forge", 1, RegionPlayableMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+        auto3AD76BDE_g = lv_lookingat_group;
+        auto3AD76BDE_u = UnitGroupCount(auto3AD76BDE_g, c_unitCountAll);
+        for (;; auto3AD76BDE_u -= 1) {
+            lv_unit = UnitGroupUnitFromEnd(auto3AD76BDE_g, auto3AD76BDE_u);
+            if (lv_unit == null) { break; }
+            lv_forge_exists = true;
+        }
+        if ((lv_forge_exists == true)) {
+            lv_research_unit = UnitGroupUnit(lv_lookingat_group, 1);
+            if ((UnitCheckAbilCmdState(lv_research_unit, AbilityCommand("ForgeResearch", 6), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false)) {
+                if ((lv_available_research == "")) {
+                    lv_available_research = "PSL1";
+                }
+                else {
+                    lv_available_research = (lv_available_research + ", PSL1");
+                }
+            }
+
+            if ((UnitCheckAbilCmdState(lv_research_unit, AbilityCommand("ForgeResearch", 7), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false)) {
+                if ((lv_available_research == "")) {
+                    lv_available_research = "PSL2";
+                }
+                else {
+                    lv_available_research = (lv_available_research + ", PSL2");
+                }
+            }
+
+            if ((UnitCheckAbilCmdState(lv_research_unit, AbilityCommand("ForgeResearch", 8), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false)) {
+                if ((lv_available_research == "")) {
+                    lv_available_research = "PSL3";
+                }
+                else {
+                    lv_available_research = (lv_available_research + ", PSL3");
+                }
+            }
+
+            if ((UnitCheckAbilCmdState(lv_research_unit, AbilityCommand("ForgeResearch", 3), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false)) {
+                if ((lv_available_research == "")) {
+                    lv_available_research = "PGAL1";
+                }
+                else {
+                    lv_available_research = (lv_available_research + ", PGAL1");
+                }
+            }
+
+            if ((UnitCheckAbilCmdState(lv_research_unit, AbilityCommand("ForgeResearch", 4), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false)) {
+                if ((lv_available_research == "")) {
+                    lv_available_research = "PGAL2";
+                }
+                else {
+                    lv_available_research = (lv_available_research + ", PGAL2");
+                }
+            }
+
+            if ((UnitCheckAbilCmdState(lv_research_unit, AbilityCommand("ForgeResearch", 5), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false)) {
+                if ((lv_available_research == "")) {
+                    lv_available_research = "PGAL3";
+                }
+                else {
+                    lv_available_research = (lv_available_research + ", PGAL3");
+                }
+            }
+
+            if ((UnitCheckAbilCmdState(lv_research_unit, AbilityCommand("ForgeResearch", 0), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false)) {
+                if ((lv_available_research == "")) {
+                    lv_available_research = "PGWL1";
+                }
+                else {
+                    lv_available_research = (lv_available_research + ", PGWL1");
+                }
+            }
+
+            if ((UnitCheckAbilCmdState(lv_research_unit, AbilityCommand("ForgeResearch", 1), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false)) {
+                if ((lv_available_research == "")) {
+                    lv_available_research = "PGWL2";
+                }
+                else {
+                    lv_available_research = (lv_available_research + ", PGWL2");
+                }
+            }
+
+            if ((UnitCheckAbilCmdState(lv_research_unit, AbilityCommand("ForgeResearch", 2), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false)) {
+                if ((lv_available_research == "")) {
+                    lv_available_research = "PGWL3";
+                }
+                else {
+                    lv_available_research = (lv_available_research + ", PGWL3");
+                }
+            }
+
+        }
+
+        lv_lookingat_group = UnitGroup("CyberneticsCore", 1, RegionPlayableMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+        auto7C2626B2_g = lv_lookingat_group;
+        auto7C2626B2_u = UnitGroupCount(auto7C2626B2_g, c_unitCountAll);
+        for (;; auto7C2626B2_u -= 1) {
+            lv_unit = UnitGroupUnitFromEnd(auto7C2626B2_g, auto7C2626B2_u);
+            if (lv_unit == null) { break; }
+            lv_cybernetics_exists = true;
+        }
+        if ((lv_cybernetics_exists == true)) {
+            lv_research_unit = UnitGroupUnit(lv_lookingat_group, 1);
+            if ((UnitCheckAbilCmdState(lv_research_unit, AbilityCommand("CyberneticsCoreResearch", 3), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false)) {
+                if ((lv_available_research == "")) {
+                    lv_available_research = "PAAL1";
+                }
+                else {
+                    lv_available_research = (lv_available_research + ", PAAL1");
+                }
+            }
+
+            if ((UnitCheckAbilCmdState(lv_research_unit, AbilityCommand("CyberneticsCoreResearch", 4), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false)) {
+                if ((lv_available_research == "")) {
+                    lv_available_research = "PAAL2";
+                }
+                else {
+                    lv_available_research = (lv_available_research + ", PAAL2");
+                }
+            }
+
+            if ((UnitCheckAbilCmdState(lv_research_unit, AbilityCommand("CyberneticsCoreResearch", 5), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false)) {
+                if ((lv_available_research == "")) {
+                    lv_available_research = "PAAL3";
+                }
+                else {
+                    lv_available_research = (lv_available_research + ", PAAL3");
+                }
+            }
+
+            if ((UnitCheckAbilCmdState(lv_research_unit, AbilityCommand("CyberneticsCoreResearch", 0), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false)) {
+                if ((lv_available_research == "")) {
+                    lv_available_research = "PAWL1";
+                }
+                else {
+                    lv_available_research = (lv_available_research + ", PAWL1");
+                }
+            }
+
+            if ((UnitCheckAbilCmdState(lv_research_unit, AbilityCommand("CyberneticsCoreResearch", 1), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false)) {
+                if ((lv_available_research == "")) {
+                    lv_available_research = "PAWL2";
+                }
+                else {
+                    lv_available_research = (lv_available_research + ", PAWL2");
+                }
+            }
+
+            if ((UnitCheckAbilCmdState(lv_research_unit, AbilityCommand("CyberneticsCoreResearch", 2), c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled) == false)) {
+                if ((lv_available_research == "")) {
+                    lv_available_research = "PAWL3";
+                }
+                else {
+                    lv_available_research = (lv_available_research + ", PAWL3");
+                }
+            }
+
+            lv_actions = lv_available_research;
+            lv_actions = StringReplaceWord(lv_actions, "PS", "Shields ", c_stringReplaceAll, c_stringCase);
+            lv_actions = StringReplaceWord(lv_actions, "PGA", "Ground Armor ", c_stringReplaceAll, c_stringCase);
+            lv_actions = StringReplaceWord(lv_actions, "PGW", "Ground Weapons ", c_stringReplaceAll, c_stringCase);
+            lv_actions = StringReplaceWord(lv_actions, "PAA", "Air Armor ", c_stringReplaceAll, c_stringCase);
+            lv_actions = StringReplaceWord(lv_actions, "PAW", "Air Weapons ", c_stringReplaceAll, c_stringCase);
+            lv_actions = StringReplaceWord(lv_actions, "L1", "Level 1", c_stringReplaceAll, c_stringCase);
+            lv_actions = StringReplaceWord(lv_actions, "L2", "Level 2", c_stringReplaceAll, c_stringCase);
+            lv_actions = StringReplaceWord(lv_actions, "L3", "Level 3", c_stringReplaceAll, c_stringCase);
+            lv_action_description = lv_available_research;
+            lv_action_description = StringReplaceWord(lv_action_description, "PSL1", "Shields Level 1 (134M/134V|107s)", c_stringReplaceAll, c_stringCase);
+            lv_action_description = StringReplaceWord(lv_action_description, "PSL2", "Shields Level 2 (200M/200V|127s)", c_stringReplaceAll, c_stringCase);
+            lv_action_description = StringReplaceWord(lv_action_description, "PSL3", "Shields Level 3 (267M/267V|147s)", c_stringReplaceAll, c_stringCase);
+            lv_action_description = StringReplaceWord(lv_action_description, "PGAL1", "Ground Armor Level 1 (67M/67V|107s)", c_stringReplaceAll, c_stringCase);
+            lv_action_description = StringReplaceWord(lv_action_description, "PGAL2", "Ground Armor Level 2 (117M/117V|127s)", c_stringReplaceAll, c_stringCase);
+            lv_action_description = StringReplaceWord(lv_action_description, "PGAL3", "Ground Armor Level 3 (167M/167V|147s)", c_stringReplaceAll, c_stringCase);
+            lv_action_description = StringReplaceWord(lv_action_description, "PGWL1", "Ground Weapons Level 1 (67M/67V|107s)", c_stringReplaceAll, c_stringCase);
+            lv_action_description = StringReplaceWord(lv_action_description, "PGWL2", "Ground Weapons Level 2 (117M/117V|127s)", c_stringReplaceAll, c_stringCase);
+            lv_action_description = StringReplaceWord(lv_action_description, "PGWL3", "Ground Weapons Level 3 (167M/167V|147s)", c_stringReplaceAll, c_stringCase);
+            lv_action_description = StringReplaceWord(lv_action_description, "PAAL1", "Air Armor Level 1 (100M/100V|107s)", c_stringReplaceAll, c_stringCase);
+            lv_action_description = StringReplaceWord(lv_action_description, "PAAL2", "Air Armor Level 2 (150M/150V|127s)", c_stringReplaceAll, c_stringCase);
+            lv_action_description = StringReplaceWord(lv_action_description, "PAAL3", "Air Armor Level 3 (200M/200V|147s)", c_stringReplaceAll, c_stringCase);
+            lv_action_description = StringReplaceWord(lv_action_description, "PAWL1", "Air Weapons Level 1 (67M/67V|107s)", c_stringReplaceAll, c_stringCase);
+            lv_action_description = StringReplaceWord(lv_action_description, "PAWL2", "Air Weapons Level 2 (117M/117V|127s)", c_stringReplaceAll, c_stringCase);
+            lv_action_description = StringReplaceWord(lv_action_description, "PAWL3", "Air Weapons Level 3 (167M/167V|147s)", c_stringReplaceAll, c_stringCase);
+        }
+
+    }
+    if ((lv_available_research == "")) {
+        libEFA54406_gf_create_action_1_arg("research_upgrade", false, "", "string", -1);
+        return true;
+    }
+
+    lv_action_description = "Research an upgrade. Upgrades you research cost only 2/3 the resources and take 2/3 the time to produce than if a player does it. Upgrades you can research in this format <Name> (Mineral cost/Vespene Gas cost|Production time in seconds): " + lv_action_description + ". ";
+    libEFA54406_gf_create_action_1_arg("research_upgrade", true, lv_action_description, "string(" + lv_actions + ")", -1);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_NeuroCanResearchUpgrades_Init () {
+    libEFA54406_gt_NeuroCanResearchUpgrades = TriggerCreate("libEFA54406_gt_NeuroCanResearchUpgrades_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: Init Map
 //--------------------------------------------------------------------------------------------------
 bool libEFA54406_gt_InitMap_Func (bool testConds, bool runActions) {
@@ -6037,6 +6873,7 @@ void libEFA54406_InitTriggers () {
     libEFA54406_gt_UnitHighestKillCount_Init();
     libEFA54406_gt_NeuroCanProduceUnits_Init();
     libEFA54406_gt_NeuroCanCallMercenaries_Init();
+    libEFA54406_gt_NeuroCanResearchUpgrades_Init();
     libEFA54406_gt_InitMap_Init();
     libEFA54406_gt_CreateNeuroIntegrationbank_Init();
     libEFA54406_gt_DisableAchievementsCheats_Init();
