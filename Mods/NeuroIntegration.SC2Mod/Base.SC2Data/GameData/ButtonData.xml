@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Catalog>
+    <CButton id="AresClassWeaponsSystem2">
+        <Icon value="Assets\Textures\btn-techupgrade-terran-charonboosters.dds"/>
+        <EditorCategories value="Race:Terran"/>
+        <TintRacially value="1"/>
+    </CButton>
+    <CButton id="AresClassWeaponsSystem22">
+        <Icon value="Assets\Textures\btn-techupgrade-terran-charonboosters.dds"/>
+        <EditorCategories value="Race:Terran"/>
+        <TintRacially value="1"/>
+    </CButton>
+    <CButton id="AresClassWeaponsSystem222">
+        <Icon value="Assets\Textures\btn-techupgrade-terran-charonboosters.dds"/>
+        <EditorCategories value="Race:Terran"/>
+        <TintRacially value="1"/>
+    </CButton>
+    <CButton id="Attack2">
+        <Icon value="Assets\Textures\btn-command-attack.dds"/>
+        <AlertIcon value="Assets\Textures\btn-command-attack.dds"/>
+        <EditorCategories value="Race:Neutral"/>
+        <TintRacially value="1"/>
+        <Universal value="1"/>
+        <SimpleDisplayText value="SimpleDisplay/Attack2"/>
+    </CButton>
+    <CButton id="Attack22">
+        <Icon value="Assets\Textures\btn-command-attack.dds"/>
+        <AlertIcon value="Assets\Textures\btn-command-attack.dds"/>
+        <EditorCategories value="Race:Neutral"/>
+        <TintRacially value="1"/>
+        <Universal value="1"/>
+        <SimpleDisplayText value="SimpleDisplay/Attack22"/>
+    </CButton>
+    <CButton id="Attack222">
+        <Icon value="Assets\Textures\btn-command-attack.dds"/>
+        <AlertIcon value="Assets\Textures\btn-command-attack.dds"/>
+        <EditorCategories value="Race:Neutral"/>
+        <TintRacially value="1"/>
+        <Universal value="1"/>
+        <SimpleDisplayText value="SimpleDisplay/Attack222"/>
+    </CButton>
+    <CButton id="Move2">
+        <Icon value="Assets\Textures\btn-command-move.dds"/>
+        <AlertIcon value="Assets\Textures\btn-command-move.dds"/>
+        <EditorCategories value="Race:Neutral"/>
+        <TintRacially value="1"/>
+        <Universal value="1"/>
+        <SimpleDisplayText value="SimpleDisplay/Move2"/>
+    </CButton>
+    <CButton id="Move22">
+        <Icon value="Assets\Textures\btn-command-move.dds"/>
+        <AlertIcon value="Assets\Textures\btn-command-move.dds"/>
+        <EditorCategories value="Race:Neutral"/>
+        <TintRacially value="1"/>
+        <Universal value="1"/>
+        <SimpleDisplayText value="SimpleDisplay/Move22"/>
+    </CButton>
+    <CButton id="Move222">
+        <Icon value="Assets\Textures\btn-command-move.dds"/>
+        <AlertIcon value="Assets\Textures\btn-command-move.dds"/>
+        <EditorCategories value="Race:Neutral"/>
+        <TintRacially value="1"/>
+        <Universal value="1"/>
+        <SimpleDisplayText value="SimpleDisplay/Move222"/>
+    </CButton>
+    <CButton id="MoveHoldPosition2">
+        <Icon value="Assets\Textures\btn-command-holdposition.dds"/>
+        <AlertIcon value="Assets\Textures\btn-command-holdposition.dds"/>
+        <EditorCategories value="Race:Neutral"/>
+        <TintRacially value="1"/>
+        <Universal value="1"/>
+    </CButton>
+    <CButton id="MoveHoldPosition22">
+        <Icon value="Assets\Textures\btn-command-holdposition.dds"/>
+        <AlertIcon value="Assets\Textures\btn-command-holdposition.dds"/>
+        <EditorCategories value="Race:Neutral"/>
+        <TintRacially value="1"/>
+        <Universal value="1"/>
+    </CButton>
+    <CButton id="MoveHoldPosition222">
+        <Icon value="Assets\Textures\btn-command-holdposition.dds"/>
+        <AlertIcon value="Assets\Textures\btn-command-holdposition.dds"/>
+        <EditorCategories value="Race:Neutral"/>
+        <TintRacially value="1"/>
+        <Universal value="1"/>
+    </CButton>
+    <CButton id="MovePatrol2">
+        <Icon value="Assets\Textures\btn-command-patrol.dds"/>
+        <AlertIcon value="Assets\Textures\btn-command-patrol.dds"/>
+        <EditorCategories value="Race:Neutral"/>
+        <TintRacially value="1"/>
+        <Universal value="1"/>
+    </CButton>
+    <CButton id="MovePatrol22">
+        <Icon value="Assets\Textures\btn-command-patrol.dds"/>
+        <AlertIcon value="Assets\Textures\btn-command-patrol.dds"/>
+        <EditorCategories value="Race:Neutral"/>
+        <TintRacially value="1"/>
+        <Universal value="1"/>
+    </CButton>
+    <CButton id="MovePatrol222">
+        <Icon value="Assets\Textures\btn-command-patrol.dds"/>
+        <AlertIcon value="Assets\Textures\btn-command-patrol.dds"/>
+        <EditorCategories value="Race:Neutral"/>
+        <TintRacially value="1"/>
+        <Universal value="1"/>
+    </CButton>
+    <CButton id="MultiLockTargetingSystem2">
+        <Icon value="Assets\Textures\btn-techupgrade-terran-multilocktargetingsystem.dds"/>
+        <EditorCategories value="Race:Terran"/>
+        <TintRacially value="1"/>
+    </CButton>
+    <CButton id="MultiLockTargetingSystem22">
+        <Icon value="Assets\Textures\btn-techupgrade-terran-multilocktargetingsystem.dds"/>
+        <EditorCategories value="Race:Terran"/>
+        <TintRacially value="1"/>
+    </CButton>
+    <CButton id="MultiLockTargetingSystem222">
+        <Icon value="Assets\Textures\btn-techupgrade-terran-multilocktargetingsystem.dds"/>
+        <EditorCategories value="Race:Terran"/>
+        <TintRacially value="1"/>
+    </CButton>
+    <CButton id="Stop2">
+        <Icon value="Assets\Textures\btn-command-stop.dds"/>
+        <AlertIcon value="Assets\Textures\btn-command-stop.dds"/>
+        <EditorCategories value="Race:Neutral"/>
+        <TintRacially value="1"/>
+        <Universal value="1"/>
+    </CButton>
+    <CButton id="Stop22">
+        <Icon value="Assets\Textures\btn-command-stop.dds"/>
+        <AlertIcon value="Assets\Textures\btn-command-stop.dds"/>
+        <EditorCategories value="Race:Neutral"/>
+        <TintRacially value="1"/>
+        <Universal value="1"/>
+    </CButton>
+    <CButton id="Stop222">
+        <Icon value="Assets\Textures\btn-command-stop.dds"/>
+        <AlertIcon value="Assets\Textures\btn-command-stop.dds"/>
+        <EditorCategories value="Race:Neutral"/>
+        <TintRacially value="1"/>
+        <Universal value="1"/>
+    </CButton>
+</Catalog>

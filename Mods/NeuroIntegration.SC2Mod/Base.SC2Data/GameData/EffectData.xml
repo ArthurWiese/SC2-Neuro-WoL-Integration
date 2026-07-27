@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Catalog>
+    <CEffectDamage id="NukeDamage2">
+        <EditorCategories value="Race:Terran"/>
+        <AINotifyFlags index="HurtFriend" value="1"/>
+        <AINotifyFlags index="HurtEnemy" value="1"/>
+        <AINotifyFlags index="MajorDanger" value="1"/>
+        <ResponseFlags index="Acquire" value="1"/>
+        <ResponseFlags index="Flee" value="1"/>
+        <AttributeBonus index="Structure" value="300"/>
+        <Amount value="500"/>
+        <Death value="Fire"/>
+        <AreaArray Radius="6" Fraction="1"/>
+        <AreaArray Radius="9" Fraction="0.5"/>
+        <AreaArray Radius="12" Fraction="0.25"/>
+        <SearchFilters value="-;Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <SearchFlags index="CallForHelp" value="1"/>
+        <SearchFlags index="SameCliff" value="0"/>
+    </CEffectDamage>
+    <CEffectDamage id="MEGANUKEDamage">
+        <EditorCategories value="Race:Terran"/>
+        <AINotifyFlags index="HurtFriend" value="1"/>
+        <AINotifyFlags index="HurtEnemy" value="1"/>
+        <AINotifyFlags index="MajorDanger" value="1"/>
+        <ResponseFlags index="Acquire" value="1"/>
+        <ResponseFlags index="Flee" value="1"/>
+        <Amount value="10000"/>
+        <Death value="Fire"/>
+        <AreaArray Radius="1000" Fraction="1"/>
+        <SearchFilters value="-;Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <SearchFlags index="CallForHelp" value="1"/>
+        <SearchFlags index="SameCliff" value="0"/>
+    </CEffectDamage>
+    <CEffectDamage id="NukeDamage22">
+        <EditorCategories value="Race:Terran"/>
+        <AINotifyFlags index="HurtFriend" value="1"/>
+        <AINotifyFlags index="HurtEnemy" value="1"/>
+        <AINotifyFlags index="MajorDanger" value="1"/>
+        <ResponseFlags index="Acquire" value="1"/>
+        <ResponseFlags index="Flee" value="1"/>
+        <ArmorReduction value="1"/>
+        <Amount value="10"/>
+        <Death value="Fire"/>
+        <AreaArray Radius="1.5" Fraction="1"/>
+        <AreaArray Radius="2.5" Fraction="0.5"/>
+        <AreaArray Radius="4" Fraction="0.25"/>
+        <SearchFilters value="-;Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <SearchFlags index="CallForHelp" value="1"/>
+        <SearchFlags index="SameCliff" value="0"/>
+    </CEffectDamage>
+    <CEffectDamage id="NukeDamage23">
+        <EditorCategories value="Race:Terran"/>
+        <AINotifyFlags index="HurtFriend" value="1"/>
+        <AINotifyFlags index="HurtEnemy" value="1"/>
+        <AINotifyFlags index="MajorDanger" value="1"/>
+        <ResponseFlags index="Acquire" value="1"/>
+        <ResponseFlags index="Flee" value="1"/>
+        <ArmorReduction value="1"/>
+        <Amount value="15"/>
+        <Death value="Fire"/>
+        <AreaArray Radius="2.25" Fraction="1"/>
+        <AreaArray Radius="3.75" Fraction="0.5"/>
+        <AreaArray Radius="6" Fraction="0.25"/>
+        <SearchFilters value="-;Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <SearchFlags index="CallForHelp" value="1"/>
+        <SearchFlags index="SameCliff" value="0"/>
+    </CEffectDamage>
+    <CEffectDamage id="NukeDamage232">
+        <EditorCategories value="Race:Terran"/>
+        <AINotifyFlags index="HurtFriend" value="1"/>
+        <AINotifyFlags index="HurtEnemy" value="1"/>
+        <AINotifyFlags index="MajorDanger" value="1"/>
+        <ResponseFlags index="Acquire" value="1"/>
+        <ResponseFlags index="Flee" value="1"/>
+        <ArmorReduction value="1"/>
+        <Amount value="20"/>
+        <Death value="Fire"/>
+        <AreaArray Radius="5" Fraction="1"/>
+        <AreaArray Radius="3" Fraction="0.5"/>
+        <AreaArray Radius="8" Fraction="0.25"/>
+        <SearchFilters value="-;Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <SearchFlags index="CallForHelp" value="1"/>
+        <SearchFlags index="SameCliff" value="0"/>
+    </CEffectDamage>
+    <CEffectCreatePersistent id="NukeDetonate2">
+        <EditorCategories value="Race:Terran"/>
+        <InitialDelay value="1.25"/>
+        <InitialEffect value="NukeDamage2"/>
+        <ExpireDelay value="8.25"/>
+        <RevealRadius value="8"/>
+        <RevealFlags index="Unfog" value="1"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="MEGANUKE">
+        <EditorCategories value="Race:Terran"/>
+        <InitialDelay value="1.25"/>
+        <InitialEffect value="MEGANUKEDamage"/>
+        <ExpireDelay value="8.25"/>
+        <RevealRadius value="8"/>
+        <RevealFlags index="Unfog" value="1"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="SpartanCompanyA2">
+        <ValidatorArray value="CasterIsNotHidden"/>
+        <EditorCategories value="Race:Terran"/>
+        <WhichLocation Value="TargetUnit"/>
+        <Flags index="Channeled" value="1"/>
+        <PeriodCount value="2"/>
+        <PeriodicEffectArray value="SpartanCompanyALM2"/>
+        <PeriodicPeriodArray value="0"/>
+        <PeriodicPeriodArray value="0.21"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="SpartanCompanyA22">
+        <ValidatorArray value="CasterIsNotHidden"/>
+        <EditorCategories value="Race:Terran"/>
+        <WhichLocation Value="TargetUnit"/>
+        <Flags index="Channeled" value="1"/>
+        <PeriodCount value="2"/>
+        <PeriodicEffectArray value="SpartanCompanyALM22"/>
+        <PeriodicPeriodArray value="0"/>
+        <PeriodicPeriodArray value="0.21"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="SpartanCompanyA222">
+        <ValidatorArray value="CasterIsNotHidden"/>
+        <EditorCategories value="Race:Terran"/>
+        <WhichLocation Value="TargetUnit"/>
+        <Flags index="Channeled" value="1"/>
+        <PeriodCount value="2"/>
+        <PeriodicEffectArray value="SpartanCompanyALM222"/>
+        <PeriodicPeriodArray value="0"/>
+        <PeriodicPeriodArray value="0.21"/>
+    </CEffectCreatePersistent>
+    <CEffectLaunchMissile id="SpartanCompanyALM2">
+        <EditorCategories value="Race:Terran"/>
+        <ImpactEffect value="SpartanCompanyAU2"/>
+        <AmmoUnit value="SpartanCompanyAWeapon2"/>
+    </CEffectLaunchMissile>
+    <CEffectLaunchMissile id="SpartanCompanyALM22">
+        <EditorCategories value="Race:Terran"/>
+        <ImpactEffect value="SpartanCompanyAU22"/>
+        <AmmoUnit value="SpartanCompanyAWeapon22"/>
+    </CEffectLaunchMissile>
+    <CEffectLaunchMissile id="SpartanCompanyALM222">
+        <EditorCategories value="Race:Terran"/>
+        <ImpactEffect value="SpartanCompanyAU222"/>
+        <AmmoUnit value="SpartanCompanyAWeapon222"/>
+    </CEffectLaunchMissile>
+    <CEffectDamage id="SpartanCompanyAU2" parent="DU_WEAP_MISSILE">
+        <EditorCategories value="Race:Terran"/>
+        <AttributeBonus index="Armored" value="11"/>
+        <Amount value="11"/>
+    </CEffectDamage>
+    <CEffectDamage id="SpartanCompanyAU22" parent="DU_WEAP_MISSILE">
+        <EditorCategories value="Race:Terran"/>
+        <AttributeBonus index="Armored" value="11"/>
+        <Amount value="11"/>
+    </CEffectDamage>
+    <CEffectDamage id="SpartanCompanyAU222" parent="DU_WEAP_MISSILE">
+        <EditorCategories value="Race:Terran"/>
+        <AttributeBonus index="Armored" value="11"/>
+        <Amount value="11"/>
+    </CEffectDamage>
+    <CEffectDamage id="SpartanCompanyG2" parent="DU_WEAP">
+        <ValidatorArray value="CasterIsNotHidden"/>
+        <EditorCategories value="Race:Terran"/>
+        <Kind value="Ranged"/>
+        <Amount value="24"/>
+    </CEffectDamage>
+    <CEffectDamage id="SpartanCompanyG22" parent="DU_WEAP">
+        <ValidatorArray value="CasterIsNotHidden"/>
+        <EditorCategories value="Race:Terran"/>
+        <Kind value="Ranged"/>
+        <Amount value="24"/>
+    </CEffectDamage>
+    <CEffectDamage id="SpartanCompanyG222" parent="DU_WEAP">
+        <ValidatorArray value="CasterIsNotHidden"/>
+        <EditorCategories value="Race:Terran"/>
+        <Kind value="Ranged"/>
+        <Amount value="24"/>
+    </CEffectDamage>
+    <CEffectLaunchMissile id="WraithGLaunchMissile2">
+        <ValidatorArray index="0" value="WraithGLaunchMissileTargetFilters"/>
+        <EditorCategories value="Race:Terran"/>
+        <ImpactEffect value="WraithGU2"/>
+        <AmmoUnit value="WraithGroundWeapon"/>
+    </CEffectLaunchMissile>
+    <CEffectDamage id="WraithGU2" parent="DU_WEAP">
+        <EditorCategories value="Race:Terran"/>
+        <Visibility value="Visible"/>
+        <Kind value="Ranged"/>
+        <Amount value="16"/>
+    </CEffectDamage>
+</Catalog>

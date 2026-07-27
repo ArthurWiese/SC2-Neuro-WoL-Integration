@@ -1,0 +1,15 @@
+﻿Button/Hotkey/Attack2=A
+Button/Hotkey/Attack22=A
+Button/Hotkey/Attack222=A
+Button/Hotkey/Move2=M
+Button/Hotkey/Move22=M
+Button/Hotkey/Move222=M
+Button/Hotkey/MoveHoldPosition2=H
+Button/Hotkey/MoveHoldPosition22=H
+Button/Hotkey/MoveHoldPosition222=H
+Button/Hotkey/MovePatrol2=P
+Button/Hotkey/MovePatrol22=P
+Button/Hotkey/MovePatrol222=P
+Button/Hotkey/Stop2=S
+Button/Hotkey/Stop22=S
+Button/Hotkey/Stop222=S

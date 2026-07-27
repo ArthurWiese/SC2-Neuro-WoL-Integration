@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Catalog>
+    <CBehaviorBuff id="ArmorBonus">
+        <Alignment value="Positive"/>
+        <BehaviorFlags index="Permanent" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="-29536"/>
+        <Modification>
+            <LifeArmorBonus value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ArmorBonus2">
+        <Alignment value="Positive"/>
+        <BehaviorFlags index="Permanent" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="-29536"/>
+        <Modification>
+            <LifeArmorBonus value="2"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ArmorBonus22">
+        <Alignment value="Positive"/>
+        <BehaviorFlags index="Permanent" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="-29536"/>
+        <Modification>
+            <LifeArmorBonus value="3"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="Buff_small_tier1_movement_attack_speed">
+        <Alignment value="Positive"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="5"/>
+        <Modification MoveSpeedMultiplier="1.33" AttackSpeedMultiplier="1.33"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="Buff_small_tier1_movement_attack_speed2">
+        <Alignment value="Positive"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="5"/>
+        <Modification MoveSpeedMultiplier="1.5" AttackSpeedMultiplier="1.5"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="Buff_small_tier1_movement_attack_speed3">
+        <Alignment value="Positive"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="5"/>
+        <Modification MoveSpeedMultiplier="1.67" AttackSpeedMultiplier="1.67"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="Buff_small_tier1_movement_attack_speed32">
+        <Alignment value="Positive"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="5"/>
+        <Modification MoveSpeedMultiplier="2" AttackSpeedMultiplier="2"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="Buff_small_tier1_movement_attack_speed4">
+        <Alignment value="Positive"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="5"/>
+        <Modification SightBonus="2" RangedWeaponRange="2"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="Buff_small_tier1_movement_attack_speed42">
+        <Alignment value="Positive"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="5"/>
+        <Modification SightBonus="3" RangedWeaponRange="3"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="Buff_small_tier1_movement_attack_speed43">
+        <Alignment value="Positive"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="5"/>
+        <Modification SightBonus="4" RangedWeaponRange="4"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="Buff_small_tier1_movement_attack_speed44">
+        <Alignment value="Positive"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="5"/>
+        <Modification SightBonus="5" RangedWeaponRange="5"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="Buff_small_tier1_movement_attack_speed45">
+        <Alignment value="Positive"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="4"/>
+        <Modification TimeScale="1.75" AttackSpeedMultiplier="0.57"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="Buff_small_tier1_movement_attack_speed452">
+        <Alignment value="Positive"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="4"/>
+        <Modification TimeScale="2" AttackSpeedMultiplier="0.5"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="Buff_small_tier1_movement_attack_speed453">
+        <Alignment value="Positive"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="4"/>
+        <Modification TimeScale="2.5" AttackSpeedMultiplier="0.4"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="Buff_small_tier1_movement_attack_speed4532">
+        <Alignment value="Positive"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="4"/>
+        <Modification TimeScale="3" AttackSpeedMultiplier="0.33"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="Capacitors1">
+        <Alignment value="Positive"/>
+        <BehaviorFlags index="Permanent" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification AttackSpeedMultiplier="1.05"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="Capacitors12">
+        <Alignment value="Positive"/>
+        <BehaviorFlags index="Permanent" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification AttackSpeedMultiplier="1.1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="Capacitors13">
+        <Alignment value="Positive"/>
+        <BehaviorFlags index="Permanent" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification AttackSpeedMultiplier="1.15"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="DamageBonus1">
+        <Alignment value="Positive"/>
+        <BehaviorFlags index="Permanent" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification>
+            <DamageDealtScaled index="Ranged" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="DamageBonus12">
+        <Alignment value="Positive"/>
+        <BehaviorFlags index="Permanent" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification>
+            <DamageDealtScaled index="Ranged" value="2"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="DamageBonus13">
+        <Alignment value="Positive"/>
+        <BehaviorFlags index="Permanent" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification>
+            <DamageDealtScaled index="Ranged" value="3"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="EvilDamage">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification>
+            <DamageDealtFraction index="Ranged" value="0.5"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="MultilockTargetingSystems2">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="Race:Terran,AbilityorEffectType:Structures"/>
+        <Requirements value="UseMultilockTargetingSystems"/>
+        <Modification>
+            <WeaponEnableArray value="GoliathAUpgraded"/>
+            <WeaponEnableArray value="GoliathGUpgraded"/>
+            <WeaponEnableArray value="SpartanCompanyAUpgraded"/>
+            <WeaponEnableArray value="SpartanCompanyGUpgraded"/>
+            <WeaponDisableArray value="GoliathA"/>
+            <WeaponDisableArray value="GoliathG"/>
+            <WeaponDisableArray value="SpartanCompanyA"/>
+            <WeaponDisableArray value="SpartanCompanyG"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="MultilockTargetingSystems22">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="Race:Terran,AbilityorEffectType:Structures"/>
+        <Requirements value="UseMultilockTargetingSystems"/>
+        <Modification>
+            <WeaponEnableArray value="GoliathAUpgraded"/>
+            <WeaponEnableArray value="GoliathGUpgraded"/>
+            <WeaponEnableArray value="SpartanCompanyAUpgraded"/>
+            <WeaponEnableArray value="SpartanCompanyGUpgraded"/>
+            <WeaponDisableArray value="GoliathA"/>
+            <WeaponDisableArray value="GoliathG"/>
+            <WeaponDisableArray value="SpartanCompanyA"/>
+            <WeaponDisableArray value="SpartanCompanyG"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="MultilockTargetingSystems222">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="Race:Terran,AbilityorEffectType:Structures"/>
+        <Requirements value="UseMultilockTargetingSystems"/>
+        <Modification>
+            <WeaponEnableArray value="GoliathAUpgraded"/>
+            <WeaponEnableArray value="GoliathGUpgraded"/>
+            <WeaponEnableArray value="SpartanCompanyAUpgraded"/>
+            <WeaponEnableArray value="SpartanCompanyGUpgraded"/>
+            <WeaponDisableArray value="GoliathA"/>
+            <WeaponDisableArray value="GoliathG"/>
+            <WeaponDisableArray value="SpartanCompanyA"/>
+            <WeaponDisableArray value="SpartanCompanyG"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ScavengingSystemsMechDeath2">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
+        <Requirements value="ScavengingSystemsResearched"/>
+        <Modification>
+            <DeathResponse Chance="1" Effect="ScavengingSystemsSearchArea"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ScavengingSystemsMechDeath22">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
+        <Requirements value="ScavengingSystemsResearched"/>
+        <Modification>
+            <DeathResponse Chance="1" Effect="ScavengingSystemsSearchArea"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ScavengingSystemsMechDeath222">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
+        <Requirements value="ScavengingSystemsResearched"/>
+        <Modification>
+            <DeathResponse Chance="1" Effect="ScavengingSystemsSearchArea"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="UnknownBehavior">
+        <Alignment value="Negative"/>
+        <BehaviorCategories index="Stun" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="2"/>
+        <Modification TimeScale="0.01">
+            <ModifyFlags index="DisableAbils" value="1"/>
+            <ModifyFlags index="DisableWeapons" value="1"/>
+            <ModifyFlags index="SuppressMoving" value="1"/>
+            <ModifyFlags index="SuppressTurning" value="1"/>
+            <StateFlags index="Stun" value="1"/>
+            <StateFlags index="SuppressAttack" value="1"/>
+            <StateFlags index="SuppressDetection" value="1"/>
+            <AbilClassDisableArray index="CAbilAttack" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="UnknownBehavior2">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="2"/>
+        <Modification TimeScale="0.67"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="UnknownBehavior22">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="2"/>
+        <Modification TimeScale="0.33"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="UnknownBehavior222">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="2"/>
+        <Modification TimeScale="0.67"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="UnknownBehavior223">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="2"/>
+        <Modification TimeScale="0.5"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="UnknownBehavior23">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="2"/>
+        <Modification TimeScale="0.83"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="VanadiumPlating">
+        <BehaviorFlags index="Permanent" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification>
+            <VitalMaxAdditiveMultiplierArray index="Life" value="0.05"/>
+        </Modification>
+        <Alignment value="Positive"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="VanadiumPlating2">
+        <BehaviorFlags index="Permanent" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification>
+            <VitalMaxAdditiveMultiplierArray index="Life" value="0.1"/>
+        </Modification>
+        <Alignment value="Positive"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="VanadiumPlating3">
+        <BehaviorFlags index="Permanent" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification>
+            <VitalMaxAdditiveMultiplierArray index="Life" value="0.15"/>
+        </Modification>
+        <Alignment value="Positive"/>
+    </CBehaviorBuff>
+</Catalog>

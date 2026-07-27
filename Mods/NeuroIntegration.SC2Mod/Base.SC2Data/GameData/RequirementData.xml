@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Catalog>
+    <CRequirement id="UseAresClassWeaponsSystem2">
+        <EditorCategories value="Race:Terran,TechType:Upgrade"/>
+        <NodeArray index="Show" Link="CountUpgradeAresClassWeaponsSystemCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="UseAresClassWeaponsSystem22">
+        <EditorCategories value="Race:Terran,TechType:Upgrade"/>
+        <NodeArray index="Show" Link="CountUpgradeAresClassWeaponsSystemCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="UseAresClassWeaponsSystem222">
+        <EditorCategories value="Race:Terran,TechType:Upgrade"/>
+        <NodeArray index="Show" Link="CountUpgradeAresClassWeaponsSystemCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="UseMultilockTargetingSystems2">
+        <EditorCategories value="Race:Terran,TechType:Upgrade"/>
+        <NodeArray index="Show" Link="CountUpgradeMultilockTargetingSystemsCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="UseMultilockTargetingSystems22">
+        <EditorCategories value="Race:Terran,TechType:Upgrade"/>
+        <NodeArray index="Show" Link="CountUpgradeMultilockTargetingSystemsCompleteOnly"/>
+    </CRequirement>
+    <CRequirement id="UseMultilockTargetingSystems222">
+        <EditorCategories value="Race:Terran,TechType:Upgrade"/>
+        <NodeArray index="Show" Link="CountUpgradeMultilockTargetingSystemsCompleteOnly"/>
+    </CRequirement>
+</Catalog>

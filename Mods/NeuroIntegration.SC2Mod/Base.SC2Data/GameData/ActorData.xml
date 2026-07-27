@@ -1,0 +1,1725 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Catalog>
+    <CActorModel id="GenericAttackDamageModel2" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackDamageModel22" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackDamageModel222" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackDamageModel3" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackDamageModel4" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackDamageModel5" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackDamageModel52" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackDamageModel522" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackDamageModel5222" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackDamageModel52222" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackDamageModel5223" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackDamageModel523" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackDamageModel5232" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackDamageModel524" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackDamageModel53" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackDamageModel532" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackDamageModel5322" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackDamageModel533" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackDamageModel54" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackDamageModel542" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackDamageModel55" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackDamageModel6" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackDamageModel62" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackDamageModel622" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackDamageModel6222" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackDamageModel623" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackDamageModel63" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackDamageModel632" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackDamageModel64" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackDamageModel7" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackDamageModel72" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackDamageModel722" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackDamageModel73" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackDamageModel8" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackDamageModel82" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackDamageModel9" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorSound id="GenericAttackDamageSound2" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackDamageSound22" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackDamageSound222" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackDamageSound3" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackDamageSound4" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackDamageSound5" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackDamageSound52" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackDamageSound522" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackDamageSound5222" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackDamageSound52222" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackDamageSound5223" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackDamageSound523" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackDamageSound5232" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackDamageSound524" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackDamageSound53" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackDamageSound532" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackDamageSound5322" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackDamageSound533" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackDamageSound54" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackDamageSound542" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackDamageSound55" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackDamageSound6" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackDamageSound62" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackDamageSound622" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackDamageSound6222" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackDamageSound623" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackDamageSound63" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackDamageSound632" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackDamageSound64" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackDamageSound7" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackDamageSound72" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackDamageSound722" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackDamageSound73" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackDamageSound8" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackDamageSound82" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackDamageSound9" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorModel id="GenericAttackImpactModel2" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackImpactModel22" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackImpactModel222" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackImpactModel3" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackImpactModel4" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackImpactModel5" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackImpactModel52" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackImpactModel522" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackImpactModel5222" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackImpactModel52222" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackImpactModel5223" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackImpactModel523" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackImpactModel5232" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackImpactModel524" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackImpactModel53" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackImpactModel532" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackImpactModel5322" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackImpactModel533" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackImpactModel54" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackImpactModel542" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackImpactModel55" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackImpactModel6" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackImpactModel62" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackImpactModel622" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackImpactModel6222" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackImpactModel623" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackImpactModel63" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackImpactModel632" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackImpactModel64" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackImpactModel7" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackImpactModel72" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackImpactModel722" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackImpactModel73" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackImpactModel8" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackImpactModel82" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackImpactModel9" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorSound id="GenericAttackImpactSound2" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackImpactSound22" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackImpactSound222" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackImpactSound3" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackImpactSound4" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackImpactSound5" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackImpactSound52" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackImpactSound522" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackImpactSound5222" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackImpactSound52222" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackImpactSound5223" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackImpactSound523" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackImpactSound5232" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackImpactSound524" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackImpactSound53" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackImpactSound532" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackImpactSound5322" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackImpactSound533" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackImpactSound54" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackImpactSound542" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackImpactSound55" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackImpactSound6" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackImpactSound62" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackImpactSound622" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackImpactSound6222" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackImpactSound623" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackImpactSound63" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackImpactSound632" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackImpactSound64" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackImpactSound7" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackImpactSound72" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackImpactSound722" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackImpactSound73" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackImpactSound8" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackImpactSound82" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackImpactSound9" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorModel id="GenericAttackLaunchModel2" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackLaunchModel22" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackLaunchModel222" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackLaunchModel3" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackLaunchModel4" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackLaunchModel5" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackLaunchModel52" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackLaunchModel522" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackLaunchModel5222" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackLaunchModel52222" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackLaunchModel5223" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackLaunchModel523" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackLaunchModel5232" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackLaunchModel524" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackLaunchModel53" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackLaunchModel532" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackLaunchModel5322" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackLaunchModel533" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackLaunchModel54" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackLaunchModel542" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackLaunchModel55" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackLaunchModel6" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackLaunchModel62" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackLaunchModel622" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackLaunchModel6222" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackLaunchModel623" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackLaunchModel63" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackLaunchModel632" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackLaunchModel64" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackLaunchModel7" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackLaunchModel72" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackLaunchModel722" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackLaunchModel73" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackLaunchModel8" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackLaunchModel82" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorModel id="GenericAttackLaunchModel9" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Inherits index="Visibility" value="1"/>
+        <Model value="GenericAttackModel"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorSound id="GenericAttackLaunchSound2" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackLaunchSound22" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackLaunchSound222" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackLaunchSound3" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackLaunchSound4" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackLaunchSound5" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackLaunchSound52" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackLaunchSound522" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackLaunchSound5222" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackLaunchSound52222" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackLaunchSound5223" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackLaunchSound523" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackLaunchSound5232" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackLaunchSound524" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackLaunchSound53" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackLaunchSound532" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackLaunchSound5322" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackLaunchSound533" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackLaunchSound54" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackLaunchSound542" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackLaunchSound55" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackLaunchSound6" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackLaunchSound62" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackLaunchSound622" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackLaunchSound6222" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackLaunchSound623" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackLaunchSound63" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackLaunchSound632" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackLaunchSound64" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackLaunchSound7" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackLaunchSound72" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackLaunchSound722" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackLaunchSound73" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackLaunchSound8" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackLaunchSound82" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorSound id="GenericAttackLaunchSound9" parent="SoundOneShot">
+        <Flags index="SuppressCreationErrors" value="1"/>
+        <Sound value="GenericAttackSound"/>
+    </CActorSound>
+    <CActorModel id="GhostNukeCollateralFire2">
+        <On Terms="Effect.NukeDamage2.Start; At Target" Send="Create"/>
+        <HostSiteOps Ops="SOpShadow"/>
+    </CActorModel>
+    <CActorModel id="GhostNukeCollateralFire22">
+        <On Terms="Effect.MEGANUKEDamage.Start; At Target" Send="Create"/>
+        <HostSiteOps Ops="SOpShadow"/>
+    </CActorModel>
+    <CActorModel id="GhostNukeDrop">
+        <On Terms="Effect.NukeDetonate2.Start" Send="Create"/>
+        <On Terms="Effect.NukeDetonate2.Start" Send="$Birth"/>
+        <On Terms="Effect.NukeDamage2.Start" Send="Destroy"/>
+    </CActorModel>
+    <CActorModel id="GhostNukeDrop2">
+        <On Terms="Effect.MEGANUKE.Start" Send="Create"/>
+        <On Terms="Effect.MEGANUKE.Start" Send="$Birth"/>
+        <On Terms="Effect.MEGANUKEDamage.Start" Send="Destroy"/>
+        <HostSiteOps Ops="SOpTargetPointStationary SOpShadow"/>
+        <Model value="GhostNukeDrop"/>
+        <Scale value="2.000000"/>
+    </CActorModel>
+    <CActorSound id="GhostNukeDropSound">
+        <On Terms="Effect.NukeDetonate2.Start" Send="Create"/>
+        <On Terms="Effect.NukeDamage2.Start" Send="Destroy"/>
+        <On Terms="Effect.MEGANUKE.Start" Send="Create"/>
+        <On Terms="Effect.MEGANUKEDamage" Send="Destroy"/>
+    </CActorSound>
+    <CActorSquib id="GhostNukeExplode2">
+        <On Terms="Effect.NukeDamage2.Start; At Effect" Send="Create"/>
+        <HostSiteOps Ops="SOpTargetPointStationary SOpShadow"/>
+        <Map index="None" Sound="Ghost_NukeExplode"/>
+    </CActorSquib>
+    <CActorSquib id="GhostNukeExplode22">
+        <On Terms="Effect.MEGANUKEDamage.Start; At Effect" Send="Create"/>
+        <HostSiteOps Ops="SOpTargetPointStationary SOpShadow"/>
+        <Map index="None" Sound="Ghost_NukeExplode"/>
+    </CActorSquib>
+    <CActorFoliageFXSpawner id="GhostNukeFoliageFXSpawner2" parent="FoliageFXSpawnerFire">
+        <On Terms="Effect.NukeDamage2.Start" Send="Create"/>
+        <Radius value="8.000000"/>
+    </CActorFoliageFXSpawner>
+    <CActorFoliageFXSpawner id="GhostNukeFoliageFXSpawner22" parent="FoliageFXSpawnerFire">
+        <On Terms="Effect.MEGANUKEDamage.Start" Send="Create"/>
+        <Radius value="1000.000000"/>
+    </CActorFoliageFXSpawner>
+    <!-- Added for protoss shields -->
+    <CActorAction id="GhostNukeShieldHitter">
+        <On Terms="Effect.NukeDamage2.Start" Send="Create"/>
+        <On Terms="Effect.NukeDamage2.Stop" Send="Destroy"/>
+        <On Terms="Effect.MEGANUKEDamage.Start" Send="Create"/>
+        <On Terms="Effect.MEGANUKEDamage.Stop" Send="Destroy"/>
+    </CActorAction>
+    <CActorUnit id="KelmorianMiner2" parent="GenericUnitBase" unitName="WarPig2">
+        <Aliases value="_UnitSmall"/>
+        <Macros value="UnloadDropAnim"/>
+        <On Terms="Abil.attack.ReadyStart" Send="AnimGroupApply Ready"/>
+        <On Terms="WeaponStart.*.AttackStart; WeaponTargetElevation GE 20.000000" Send="AnimBracketStart Attack Attack,Superior"/>
+        <On Terms="WeaponStart.*.AttackStart" Send="AnimBracketStart Attack Attack"/>
+        <On Terms="WeaponStop.*.AttackStop" Send="AnimBracketStop Attack"/>
+        <On Terms="Abil.attack.ReadyStop" Send="AnimGroupRemove Ready"/>
+        <On Terms="Behavior.MercGroundDrop.Create" Send="Create WarPigDropModel"/>
+        <On Terms="ActorCreation; ValidateUnit NoMarineShield" Send="AnimPlay Cover Cover PlayForever 0.000000"/>
+        <On Terms="Upgrade.ShieldWall.Add" Send="AnimClear Cover"/>
+        <On Terms="Upgrade.ShieldWall.Remove" Send="AnimPlay Cover Cover PlayForever 0.000000"/>
+        <On Terms="Upgrade.CombatShield.Add" Send="AnimClear Cover"/>
+        <On Terms="Upgrade.CombatShield.Remove" Send="AnimPlay Cover Cover PlayForever 0.000000"/>
+        <On Terms="UnitDeath.WarPig; AnimPlaying Cover" Target="_DeathModel" Send="AnimPlay Cover Cover PlayForever"/>
+        <Model value="WarPig"/>
+        <BuildModel value="WarPig"/>
+        <DeathArray index="Normal" ModelLink="KelmorianMinerDeath" SoundLink="Marine_DeathFXBloodSpray"/>
+        <DeathArray index="Blast" ModelLink="MarineDeathBlast" SoundLink="Marine_DeathFXBlast"/>
+        <DeathArray index="Disintegrate" ModelLink="MarineDeathAcid" SoundLink="Marine_DeathFXFire"/>
+        <DeathArray index="Eat" AnimProps="Stand" ModelLink="MarineDeathEat" SoundLink="Marine_DeathFXEat"/>
+        <DeathArray index="Eviscerate" ModelLink="MarineDeathEviscerate" SoundLink="Marine_DeathFXEviscerate"/>
+        <DeathArray index="Fire" ModelLink="MarineDeathFire" SoundLink="Marine_DeathFXFire"/>
+        <DeathArray index="Silentkill" SoundLink="Marine_DeathFXSilentKill"/>
+        <DeathArray index="Squish" SoundLink="Marine_DeathFXBloodSpray"/>
+        <PlacementModel value="WarPig"/>
+        <PortraitModel value="MarineMercenaryPortrait"/>
+        <StandAnimTurnTime value="5"/>
+        <WalkAnimMoveSpeed value="2.25"/>
+        <BarOffset value="40"/>
+        <BarWidth value="36"/>
+        <GroupIcon>
+            <Image value="Assets\Textures\wireframe-terran-marine-mercenary.dds"/>
+        </GroupIcon>
+        <GroupSoundArray index="What" value="MarineGroupWhat"/>
+        <GroupSoundArray index="Yes" value="MarineGroupYes"/>
+        <GroupSoundArray index="Attack" value="MarineGroupAttack"/>
+        <GroupSoundArray index="Board" value="MarineGroupBoard"/>
+        <HeroIcon value="Assets\Textures\BTN-Unit-Terran-MarineMercenary.dds"/>
+        <HighlightTooltip value="Unit/Name/WarPig"/>
+        <LifeArmorIcon value="Assets\Textures\btn-upgrade-terran-infantryarmorlevel0.dds"/>
+        <SoundArray index="Birth" value="MarineBirth"/>
+        <SoundArray index="Ready" value="Marine_Ready"/>
+        <SoundArray index="Help" value="Marine_Help"/>
+        <SoundArray index="What" value="Marine_What"/>
+        <SoundArray index="Yes" value="Marine_Yes"/>
+        <SoundArray index="Attack" value="Marine_Attack"/>
+        <SoundArray index="Pissed" value="Marine_Pissed"/>
+        <SoundArray index="Movement" value="MarineMovement"/>
+        <SoundArray index="Turning" value="MarineTurning"/>
+        <SoundArray index="Board" value="MarineBoard"/>
+        <SoundArray index="Click" value="MarineClick"/>
+        <SoundArray index="ClickError" value="MarineClickError"/>
+        <SoundArray index="Highlight" value="MarineHighlight"/>
+        <UnitIcon value="Assets\Textures\BTN-Unit-Terran-MarineMercenary.dds"/>
+        <Wireframe>
+            <Image value="Assets\Textures\wireframe-terran-marine-mercenary.dds"/>
+        </Wireframe>
+    </CActorUnit>
+    <CActorUnit id="KelmorianMiner22" parent="GenericUnitBase" unitName="WarPig4">
+        <Aliases value="_UnitSmall"/>
+        <Macros value="UnloadDropAnim"/>
+        <On Terms="Abil.attack.ReadyStart" Send="AnimGroupApply Ready"/>
+        <On Terms="WeaponStart.*.AttackStart; WeaponTargetElevation GE 20.000000" Send="AnimBracketStart Attack Attack,Superior"/>
+        <On Terms="WeaponStart.*.AttackStart" Send="AnimBracketStart Attack Attack"/>
+        <On Terms="WeaponStop.*.AttackStop" Send="AnimBracketStop Attack"/>
+        <On Terms="Abil.attack.ReadyStop" Send="AnimGroupRemove Ready"/>
+        <On Terms="Behavior.MercGroundDrop.Create" Send="Create WarPigDropModel"/>
+        <On Terms="ActorCreation; ValidateUnit NoMarineShield" Send="AnimPlay Cover Cover PlayForever 0.000000"/>
+        <On Terms="Upgrade.ShieldWall.Add" Send="AnimClear Cover"/>
+        <On Terms="Upgrade.ShieldWall.Remove" Send="AnimPlay Cover Cover PlayForever 0.000000"/>
+        <On Terms="Upgrade.CombatShield.Add" Send="AnimClear Cover"/>
+        <On Terms="Upgrade.CombatShield.Remove" Send="AnimPlay Cover Cover PlayForever 0.000000"/>
+        <On Terms="UnitDeath.WarPig; AnimPlaying Cover" Target="_DeathModel" Send="AnimPlay Cover Cover PlayForever"/>
+        <Model value="WarPig"/>
+        <BuildModel value="WarPig"/>
+        <DeathArray index="Normal" ModelLink="KelmorianMinerDeath" SoundLink="Marine_DeathFXBloodSpray"/>
+        <DeathArray index="Blast" ModelLink="MarineDeathBlast" SoundLink="Marine_DeathFXBlast"/>
+        <DeathArray index="Disintegrate" ModelLink="MarineDeathAcid" SoundLink="Marine_DeathFXFire"/>
+        <DeathArray index="Eat" AnimProps="Stand" ModelLink="MarineDeathEat" SoundLink="Marine_DeathFXEat"/>
+        <DeathArray index="Eviscerate" ModelLink="MarineDeathEviscerate" SoundLink="Marine_DeathFXEviscerate"/>
+        <DeathArray index="Fire" ModelLink="MarineDeathFire" SoundLink="Marine_DeathFXFire"/>
+        <DeathArray index="Silentkill" SoundLink="Marine_DeathFXSilentKill"/>
+        <DeathArray index="Squish" SoundLink="Marine_DeathFXBloodSpray"/>
+        <PlacementModel value="WarPig"/>
+        <PortraitModel value="MarineMercenaryPortrait"/>
+        <StandAnimTurnTime value="5"/>
+        <WalkAnimMoveSpeed value="2.25"/>
+        <BarOffset value="40"/>
+        <BarWidth value="36"/>
+        <GroupIcon>
+            <Image value="Assets\Textures\wireframe-terran-marine-mercenary.dds"/>
+        </GroupIcon>
+        <GroupSoundArray index="What" value="MarineGroupWhat"/>
+        <GroupSoundArray index="Yes" value="MarineGroupYes"/>
+        <GroupSoundArray index="Attack" value="MarineGroupAttack"/>
+        <GroupSoundArray index="Board" value="MarineGroupBoard"/>
+        <HeroIcon value="Assets\Textures\BTN-Unit-Terran-MarineMercenary.dds"/>
+        <HighlightTooltip value="Unit/Name/WarPig"/>
+        <LifeArmorIcon value="Assets\Textures\btn-upgrade-terran-infantryarmorlevel0.dds"/>
+        <SoundArray index="Birth" value="MarineBirth"/>
+        <SoundArray index="Ready" value="Marine_Ready"/>
+        <SoundArray index="Help" value="Marine_Help"/>
+        <SoundArray index="What" value="Marine_What"/>
+        <SoundArray index="Yes" value="Marine_Yes"/>
+        <SoundArray index="Attack" value="Marine_Attack"/>
+        <SoundArray index="Pissed" value="Marine_Pissed"/>
+        <SoundArray index="Movement" value="MarineMovement"/>
+        <SoundArray index="Turning" value="MarineTurning"/>
+        <SoundArray index="Board" value="MarineBoard"/>
+        <SoundArray index="Click" value="MarineClick"/>
+        <SoundArray index="ClickError" value="MarineClickError"/>
+        <SoundArray index="Highlight" value="MarineHighlight"/>
+        <UnitIcon value="Assets\Textures\BTN-Unit-Terran-MarineMercenary.dds"/>
+        <Wireframe>
+            <Image value="Assets\Textures\wireframe-terran-marine-mercenary.dds"/>
+        </Wireframe>
+    </CActorUnit>
+    <CActorUnit id="KelmorianMiner23" parent="GenericUnitBase" unitName="WarPig5">
+        <Aliases value="_UnitSmall"/>
+        <Macros value="UnloadDropAnim"/>
+        <On Terms="Abil.attack.ReadyStart" Send="AnimGroupApply Ready"/>
+        <On Terms="WeaponStart.*.AttackStart; WeaponTargetElevation GE 20.000000" Send="AnimBracketStart Attack Attack,Superior"/>
+        <On Terms="WeaponStart.*.AttackStart" Send="AnimBracketStart Attack Attack"/>
+        <On Terms="WeaponStop.*.AttackStop" Send="AnimBracketStop Attack"/>
+        <On Terms="Abil.attack.ReadyStop" Send="AnimGroupRemove Ready"/>
+        <On Terms="Behavior.MercGroundDrop.Create" Send="Create WarPigDropModel"/>
+        <On Terms="ActorCreation; ValidateUnit NoMarineShield" Send="AnimPlay Cover Cover PlayForever 0.000000"/>
+        <On Terms="Upgrade.ShieldWall.Add" Send="AnimClear Cover"/>
+        <On Terms="Upgrade.ShieldWall.Remove" Send="AnimPlay Cover Cover PlayForever 0.000000"/>
+        <On Terms="Upgrade.CombatShield.Add" Send="AnimClear Cover"/>
+        <On Terms="Upgrade.CombatShield.Remove" Send="AnimPlay Cover Cover PlayForever 0.000000"/>
+        <On Terms="UnitDeath.WarPig; AnimPlaying Cover" Target="_DeathModel" Send="AnimPlay Cover Cover PlayForever"/>
+        <Model value="WarPig"/>
+        <BuildModel value="WarPig"/>
+        <DeathArray index="Normal" ModelLink="KelmorianMinerDeath" SoundLink="Marine_DeathFXBloodSpray"/>
+        <DeathArray index="Blast" ModelLink="MarineDeathBlast" SoundLink="Marine_DeathFXBlast"/>
+        <DeathArray index="Disintegrate" ModelLink="MarineDeathAcid" SoundLink="Marine_DeathFXFire"/>
+        <DeathArray index="Eat" AnimProps="Stand" ModelLink="MarineDeathEat" SoundLink="Marine_DeathFXEat"/>
+        <DeathArray index="Eviscerate" ModelLink="MarineDeathEviscerate" SoundLink="Marine_DeathFXEviscerate"/>
+        <DeathArray index="Fire" ModelLink="MarineDeathFire" SoundLink="Marine_DeathFXFire"/>
+        <DeathArray index="Silentkill" SoundLink="Marine_DeathFXSilentKill"/>
+        <DeathArray index="Squish" SoundLink="Marine_DeathFXBloodSpray"/>
+        <PlacementModel value="WarPig"/>
+        <PortraitModel value="MarineMercenaryPortrait"/>
+        <StandAnimTurnTime value="5"/>
+        <WalkAnimMoveSpeed value="2.25"/>
+        <BarOffset value="40"/>
+        <BarWidth value="36"/>
+        <GroupIcon>
+            <Image value="Assets\Textures\wireframe-terran-marine-mercenary.dds"/>
+        </GroupIcon>
+        <GroupSoundArray index="What" value="MarineGroupWhat"/>
+        <GroupSoundArray index="Yes" value="MarineGroupYes"/>
+        <GroupSoundArray index="Attack" value="MarineGroupAttack"/>
+        <GroupSoundArray index="Board" value="MarineGroupBoard"/>
+        <HeroIcon value="Assets\Textures\BTN-Unit-Terran-MarineMercenary.dds"/>
+        <HighlightTooltip value="Unit/Name/WarPig"/>
+        <LifeArmorIcon value="Assets\Textures\btn-upgrade-terran-infantryarmorlevel0.dds"/>
+        <SoundArray index="Birth" value="MarineBirth"/>
+        <SoundArray index="Ready" value="Marine_Ready"/>
+        <SoundArray index="Help" value="Marine_Help"/>
+        <SoundArray index="What" value="Marine_What"/>
+        <SoundArray index="Yes" value="Marine_Yes"/>
+        <SoundArray index="Attack" value="Marine_Attack"/>
+        <SoundArray index="Pissed" value="Marine_Pissed"/>
+        <SoundArray index="Movement" value="MarineMovement"/>
+        <SoundArray index="Turning" value="MarineTurning"/>
+        <SoundArray index="Board" value="MarineBoard"/>
+        <SoundArray index="Click" value="MarineClick"/>
+        <SoundArray index="ClickError" value="MarineClickError"/>
+        <SoundArray index="Highlight" value="MarineHighlight"/>
+        <UnitIcon value="Assets\Textures\BTN-Unit-Terran-MarineMercenary.dds"/>
+        <Wireframe>
+            <Image value="Assets\Textures\wireframe-terran-marine-mercenary.dds"/>
+        </Wireframe>
+    </CActorUnit>
+    <CActorSound id="Marine_Death">
+        <On Terms="UnitDeath.WarPig2; PassChance 100.000000" Send="Create"/>
+        <On Terms="UnitDeath.WarPig4; PassChance 100.000000" Send="Create"/>
+        <On Terms="UnitDeath.WarPig5; PassChance 100.000000" Send="Create"/>
+    </CActorSound>
+    <CActorRegionCircle id="NukeTreeKiller2">
+        <On Terms="Effect.NukeDamage2.Start; At Effect" Send="Create"/>
+        <On Terms="ActorCreation" Send="QueryRegion ::Self TreeBurnQuery AgainstCenter"/>
+        <On Terms="ActorCreation" Send="QueryRegion ::Self NukedQuery AgainstCenter"/>
+        <On Terms="Effect.NukeDamage2.Stop; At Effect" Send="Destroy"/>
+        <Radius value="12.000000"/>
+    </CActorRegionCircle>
+    <CActorRegionCircle id="NukeTreeKiller22">
+        <On Terms="Effect.MEGANUKEDamage.Start; At Effect" Send="Create"/>
+        <On Terms="ActorCreation" Send="QueryRegion ::Self TreeBurnQuery AgainstCenter"/>
+        <On Terms="ActorCreation" Send="QueryRegion ::Self NukedQuery AgainstCenter"/>
+        <On Terms="Effect.MEGANUKEDamage.Stop; At Effect" Send="Destroy"/>
+        <Radius value="12.000000"/>
+    </CActorRegionCircle>
+    <CActorUnit id="SpartanCompany2" parent="GenericUnitBase" unitName="SpartanCompany2">
+        <Aliases value="_UnitLarge"/>
+        <Macros value="UnloadDropAnim"/>
+        <On Terms="WeaponStart.SpartanCompanyG.AttackStart" Send="AnimBracketStart Attack Attack"/>
+        <On Terms="WeaponStop.SpartanCompanyG.AttackStop" Send="AnimBracketStop Attack"/>
+        <On Terms="WeaponStart.SpartanCompanyA.AttackStart" Send="AnimBracketStart Spell Spell"/>
+        <On Terms="WeaponStop.SpartanCompanyA.AttackStop" Send="AnimBracketStop Spell"/>
+        <On Terms="WeaponStart.SpartanCompanyAUpgraded.AttackStart" Send="AnimBracketStart Spell Spell"/>
+        <On Terms="WeaponStop.SpartanCompanyAUpgraded.AttackStop" Send="AnimBracketStop Spell"/>
+        <On Terms="Behavior.MercGroundDrop.Create" Send="Create SpartanCompanyDropModel"/>
+        <DeathArray index="Normal" ModelLink="SpartanCompanyDeath2" SoundLink="Goliath_Explode2"/>
+        <DeathCustoms index="0" ModelLink="ZergSmallUnitDeathLow2" Name="AntiGravGeneric"/>
+        <DeathCustoms index="1" ModelLink="ProtossSmallUnitDeathLow2" Name="AntiGravProtoss"/>
+        <DeathCustoms index="2" ModelLink="TerranSmallUnitDeathLow2" Name="AntiGravTerran"/>
+        <DeathCustoms index="3" ModelLink="ZergSmallUnitDeathLow2" Name="AntiGravZerg"/>
+        <DeathCustoms index="4" ModelLink="Invisible2" Name="Vortex"/>
+        <PortraitModel value="GoliathMercenaryPortrait2"/>
+        <StandAnimTurnTime value="4"/>
+        <WalkAnimMoveSpeed value="3.6093"/>
+        <BarOffset value="95"/>
+        <BarWidth value="66"/>
+        <GroupIcon>
+            <Image value="Assets\Textures\Wireframe-Terran-goliath-mercenary.dds"/>
+        </GroupIcon>
+        <GroupSoundArray index="Birth" value="Goliath_Birth"/>
+        <GroupSoundArray index="Ready" value="Goliath_Ready2"/>
+        <GroupSoundArray index="Help" value="Goliath_Help2"/>
+        <GroupSoundArray index="What" value="Goliath_What2"/>
+        <GroupSoundArray index="Yes" value="Goliath_Yes2"/>
+        <GroupSoundArray index="Attack" value="Goliath_Attack2"/>
+        <GroupSoundArray index="Pissed" value="Goliath_Pissed2"/>
+        <HeroIcon value="Assets\Textures\BTN-Unit-Terran-GoliathMercenary.dds"/>
+        <LifeArmorIcon value="Assets\Textures\btn-upgrade-terran-vehicleplatinglevel0.dds"/>
+        <SoundArray index="Birth" value="Goliath_Birth"/>
+        <SoundArray index="Ready" value="Goliath_Ready2"/>
+        <SoundArray index="Help" value="Goliath_Help2"/>
+        <SoundArray index="What" value="Goliath_What2"/>
+        <SoundArray index="Yes" value="Goliath_Yes2"/>
+        <SoundArray index="Attack" value="Goliath_Attack2"/>
+        <SoundArray index="Pissed" value="Goliath_Pissed2"/>
+        <UnitIcon value="Assets\Textures\BTN-Unit-Terran-GoliathMercenary.dds"/>
+        <Wireframe>
+            <Image value="Assets\Textures\Wireframe-Terran-goliath-mercenary.dds"/>
+        </Wireframe>
+    </CActorUnit>
+    <CActorUnit id="SpartanCompany22" parent="GenericUnitBase" unitName="SpartanCompany22">
+        <Aliases value="_UnitLarge"/>
+        <Macros value="UnloadDropAnim"/>
+        <On Terms="WeaponStart.SpartanCompanyG.AttackStart" Send="AnimBracketStart Attack Attack"/>
+        <On Terms="WeaponStop.SpartanCompanyG.AttackStop" Send="AnimBracketStop Attack"/>
+        <On Terms="WeaponStart.SpartanCompanyA.AttackStart" Send="AnimBracketStart Spell Spell"/>
+        <On Terms="WeaponStop.SpartanCompanyA.AttackStop" Send="AnimBracketStop Spell"/>
+        <On Terms="WeaponStart.SpartanCompanyAUpgraded.AttackStart" Send="AnimBracketStart Spell Spell"/>
+        <On Terms="WeaponStop.SpartanCompanyAUpgraded.AttackStop" Send="AnimBracketStop Spell"/>
+        <On Terms="Behavior.MercGroundDrop.Create" Send="Create SpartanCompanyDropModel"/>
+        <DeathArray index="Normal" ModelLink="SpartanCompanyDeath22" SoundLink="Goliath_Explode22"/>
+        <DeathCustoms index="0" ModelLink="ZergSmallUnitDeathLow22" Name="AntiGravGeneric"/>
+        <DeathCustoms index="1" ModelLink="ProtossSmallUnitDeathLow22" Name="AntiGravProtoss"/>
+        <DeathCustoms index="2" ModelLink="TerranSmallUnitDeathLow22" Name="AntiGravTerran"/>
+        <DeathCustoms index="3" ModelLink="ZergSmallUnitDeathLow22" Name="AntiGravZerg"/>
+        <DeathCustoms index="4" ModelLink="Invisible22" Name="Vortex"/>
+        <PortraitModel value="GoliathMercenaryPortrait22"/>
+        <StandAnimTurnTime value="4"/>
+        <WalkAnimMoveSpeed value="3.6093"/>
+        <BarOffset value="95"/>
+        <BarWidth value="66"/>
+        <GroupIcon>
+            <Image value="Assets\Textures\Wireframe-Terran-goliath-mercenary.dds"/>
+        </GroupIcon>
+        <GroupSoundArray index="Birth" value="Goliath_Birth"/>
+        <GroupSoundArray index="Ready" value="Goliath_Ready22"/>
+        <GroupSoundArray index="Help" value="Goliath_Help22"/>
+        <GroupSoundArray index="What" value="Goliath_What22"/>
+        <GroupSoundArray index="Yes" value="Goliath_Yes22"/>
+        <GroupSoundArray index="Attack" value="Goliath_Attack22"/>
+        <GroupSoundArray index="Pissed" value="Goliath_Pissed22"/>
+        <HeroIcon value="Assets\Textures\BTN-Unit-Terran-GoliathMercenary.dds"/>
+        <LifeArmorIcon value="Assets\Textures\btn-upgrade-terran-vehicleplatinglevel0.dds"/>
+        <SoundArray index="Birth" value="Goliath_Birth"/>
+        <SoundArray index="Ready" value="Goliath_Ready22"/>
+        <SoundArray index="Help" value="Goliath_Help22"/>
+        <SoundArray index="What" value="Goliath_What22"/>
+        <SoundArray index="Yes" value="Goliath_Yes22"/>
+        <SoundArray index="Attack" value="Goliath_Attack22"/>
+        <SoundArray index="Pissed" value="Goliath_Pissed22"/>
+        <UnitIcon value="Assets\Textures\BTN-Unit-Terran-GoliathMercenary.dds"/>
+        <Wireframe>
+            <Image value="Assets\Textures\Wireframe-Terran-goliath-mercenary.dds"/>
+        </Wireframe>
+    </CActorUnit>
+    <CActorUnit id="SpartanCompany222" parent="GenericUnitBase" unitName="SpartanCompany222">
+        <Aliases value="_UnitLarge"/>
+        <Macros value="UnloadDropAnim"/>
+        <On Terms="WeaponStart.SpartanCompanyG.AttackStart" Send="AnimBracketStart Attack Attack"/>
+        <On Terms="WeaponStop.SpartanCompanyG.AttackStop" Send="AnimBracketStop Attack"/>
+        <On Terms="WeaponStart.SpartanCompanyA.AttackStart" Send="AnimBracketStart Spell Spell"/>
+        <On Terms="WeaponStop.SpartanCompanyA.AttackStop" Send="AnimBracketStop Spell"/>
+        <On Terms="WeaponStart.SpartanCompanyAUpgraded.AttackStart" Send="AnimBracketStart Spell Spell"/>
+        <On Terms="WeaponStop.SpartanCompanyAUpgraded.AttackStop" Send="AnimBracketStop Spell"/>
+        <On Terms="Behavior.MercGroundDrop.Create" Send="Create SpartanCompanyDropModel"/>
+        <DeathArray index="Normal" ModelLink="SpartanCompanyDeath222" SoundLink="Goliath_Explode222"/>
+        <DeathCustoms index="0" ModelLink="ZergSmallUnitDeathLow222" Name="AntiGravGeneric"/>
+        <DeathCustoms index="1" ModelLink="ProtossSmallUnitDeathLow222" Name="AntiGravProtoss"/>
+        <DeathCustoms index="2" ModelLink="TerranSmallUnitDeathLow222" Name="AntiGravTerran"/>
+        <DeathCustoms index="3" ModelLink="ZergSmallUnitDeathLow222" Name="AntiGravZerg"/>
+        <DeathCustoms index="4" ModelLink="Invisible222" Name="Vortex"/>
+        <PortraitModel value="GoliathMercenaryPortrait222"/>
+        <StandAnimTurnTime value="4"/>
+        <WalkAnimMoveSpeed value="3.6093"/>
+        <BarOffset value="95"/>
+        <BarWidth value="66"/>
+        <GroupIcon>
+            <Image value="Assets\Textures\Wireframe-Terran-goliath-mercenary.dds"/>
+        </GroupIcon>
+        <GroupSoundArray index="Birth" value="Goliath_Birth"/>
+        <GroupSoundArray index="Ready" value="Goliath_Ready222"/>
+        <GroupSoundArray index="Help" value="Goliath_Help222"/>
+        <GroupSoundArray index="What" value="Goliath_What222"/>
+        <GroupSoundArray index="Yes" value="Goliath_Yes222"/>
+        <GroupSoundArray index="Attack" value="Goliath_Attack222"/>
+        <GroupSoundArray index="Pissed" value="Goliath_Pissed222"/>
+        <HeroIcon value="Assets\Textures\BTN-Unit-Terran-GoliathMercenary.dds"/>
+        <LifeArmorIcon value="Assets\Textures\btn-upgrade-terran-vehicleplatinglevel0.dds"/>
+        <SoundArray index="Birth" value="Goliath_Birth"/>
+        <SoundArray index="Ready" value="Goliath_Ready222"/>
+        <SoundArray index="Help" value="Goliath_Help222"/>
+        <SoundArray index="What" value="Goliath_What222"/>
+        <SoundArray index="Yes" value="Goliath_Yes222"/>
+        <SoundArray index="Attack" value="Goliath_Attack222"/>
+        <SoundArray index="Pissed" value="Goliath_Pissed222"/>
+        <UnitIcon value="Assets\Textures\BTN-Unit-Terran-GoliathMercenary.dds"/>
+        <Wireframe>
+            <Image value="Assets\Textures\Wireframe-Terran-goliath-mercenary.dds"/>
+        </Wireframe>
+    </CActorUnit>
+    <CActorAction id="SpartanCompanyAirAttack2" parent="GenericAttack" effectImpact="SpartanCompanyAU2" effectLaunch="SpartanCompanyALM2">
+        <LaunchAttachQuery Methods="AMPatternSpartanCompany"/>
+        <LaunchAssets Model="SpartanCompanyAirAttackLaunch2" Sound="VikingFighter_AttackLaunch2"/>
+        <LaunchModel value="GenericAttackLaunchModel2"/>
+        <LaunchSound value="GenericAttackLaunchSound2"/>
+        <ContainerModel value="GenericAttackLaunchModel2"/>
+        <ContainerSound value="GenericAttackLaunchSound2"/>
+        <Missile value="SpartanCompanyAirAttackMissile2"/>
+        <ImpactMap index="None" Model="SpartanCompanyAirAttackImpact2" Sound="VikingFighter_AttackImpact2"/>
+        <ImpactModel value="GenericAttackImpactModel2"/>
+        <ImpactSound value="GenericAttackImpactSound2"/>
+        <DamageModel value="GenericAttackDamageModel2"/>
+        <DamageSound value="GenericAttackDamageSound2"/>
+    </CActorAction>
+    <CActorAction id="SpartanCompanyAirAttack22" parent="GenericAttack" effectImpact="SpartanCompanyAU22" effectLaunch="SpartanCompanyALM22">
+        <LaunchAttachQuery Methods="AMPatternSpartanCompany"/>
+        <LaunchAssets Model="SpartanCompanyAirAttackLaunch22" Sound="VikingFighter_AttackLaunch22"/>
+        <LaunchModel value="GenericAttackLaunchModel22"/>
+        <LaunchSound value="GenericAttackLaunchSound22"/>
+        <ContainerModel value="GenericAttackLaunchModel22"/>
+        <ContainerSound value="GenericAttackLaunchSound22"/>
+        <Missile value="SpartanCompanyAirAttackMissile22"/>
+        <ImpactMap index="None" Model="SpartanCompanyAirAttackImpact22" Sound="VikingFighter_AttackImpact22"/>
+        <ImpactModel value="GenericAttackImpactModel22"/>
+        <ImpactSound value="GenericAttackImpactSound22"/>
+        <DamageModel value="GenericAttackDamageModel22"/>
+        <DamageSound value="GenericAttackDamageSound22"/>
+    </CActorAction>
+    <CActorAction id="SpartanCompanyAirAttack222" parent="GenericAttack" effectImpact="SpartanCompanyAU222" effectLaunch="SpartanCompanyALM222">
+        <LaunchAttachQuery Methods="AMPatternSpartanCompany"/>
+        <LaunchAssets Model="SpartanCompanyAirAttackLaunch222" Sound="VikingFighter_AttackLaunch222"/>
+        <LaunchModel value="GenericAttackLaunchModel222"/>
+        <LaunchSound value="GenericAttackLaunchSound222"/>
+        <ContainerModel value="GenericAttackLaunchModel222"/>
+        <ContainerSound value="GenericAttackLaunchSound222"/>
+        <Missile value="SpartanCompanyAirAttackMissile222"/>
+        <ImpactMap index="None" Model="SpartanCompanyAirAttackImpact222" Sound="VikingFighter_AttackImpact222"/>
+        <ImpactModel value="GenericAttackImpactModel222"/>
+        <ImpactSound value="GenericAttackImpactSound222"/>
+        <DamageModel value="GenericAttackDamageModel222"/>
+        <DamageSound value="GenericAttackDamageSound222"/>
+    </CActorAction>
+    <CActorMissile id="SpartanCompanyAirAttackMissile2" parent="GenericAttackMissile" unitName="SpartanCompanyAWeapon2">
+        <Model value="GoliathAWeapon2"/>
+    </CActorMissile>
+    <CActorMissile id="SpartanCompanyAirAttackMissile22" parent="GenericAttackMissile" unitName="SpartanCompanyAWeapon22">
+        <Model value="GoliathAWeapon22"/>
+    </CActorMissile>
+    <CActorMissile id="SpartanCompanyAirAttackMissile222" parent="GenericAttackMissile" unitName="SpartanCompanyAWeapon222">
+        <Model value="GoliathAWeapon222"/>
+    </CActorMissile>
+    <CActorAction id="SpartanCompanyGroundAttack2" parent="GenericAttack" effectAttack="SpartanCompanyG2">
+        <LaunchAttachQuery Methods="AMFilterWeaponSetA0"/>
+        <LaunchAssets Model="SpartanCompanyGroundAttackLaunch2" Sound="GoliathGroundAttackLaunch2"/>
+        <LaunchModel value="GenericAttackLaunchModel2"/>
+        <LaunchSound value="GenericAttackLaunchSound2"/>
+        <ContainerModel value="GenericAttackLaunchModel2"/>
+        <ContainerSound value="GenericAttackLaunchSound2"/>
+        <ImpactMap index="None" Model="SpartanCompanyGroundAttackImpact2" Sound="Goliath_GroundAttackImpact2"/>
+        <ImpactModel value="GenericAttackImpactModel2"/>
+        <ImpactSound value="GenericAttackImpactSound2"/>
+        <DamageModel value="GenericAttackDamageModel2"/>
+        <DamageSound value="GenericAttackDamageSound2"/>
+    </CActorAction>
+    <CActorAction id="SpartanCompanyGroundAttack22" parent="GenericAttack" effectAttack="SpartanCompanyG22">
+        <LaunchAttachQuery Methods="AMFilterWeaponSetA0"/>
+        <LaunchAssets Model="SpartanCompanyGroundAttackLaunch22" Sound="GoliathGroundAttackLaunch22"/>
+        <LaunchModel value="GenericAttackLaunchModel22"/>
+        <LaunchSound value="GenericAttackLaunchSound22"/>
+        <ContainerModel value="GenericAttackLaunchModel22"/>
+        <ContainerSound value="GenericAttackLaunchSound22"/>
+        <ImpactMap index="None" Model="SpartanCompanyGroundAttackImpact22" Sound="Goliath_GroundAttackImpact22"/>
+        <ImpactModel value="GenericAttackImpactModel22"/>
+        <ImpactSound value="GenericAttackImpactSound22"/>
+        <DamageModel value="GenericAttackDamageModel22"/>
+        <DamageSound value="GenericAttackDamageSound22"/>
+    </CActorAction>
+    <CActorAction id="SpartanCompanyGroundAttack222" parent="GenericAttack" effectAttack="SpartanCompanyG222">
+        <LaunchAttachQuery Methods="AMFilterWeaponSetA0"/>
+        <LaunchAssets Model="SpartanCompanyGroundAttackLaunch222" Sound="GoliathGroundAttackLaunch222"/>
+        <LaunchModel value="GenericAttackLaunchModel222"/>
+        <LaunchSound value="GenericAttackLaunchSound222"/>
+        <ContainerModel value="GenericAttackLaunchModel222"/>
+        <ContainerSound value="GenericAttackLaunchSound222"/>
+        <ImpactMap index="None" Model="SpartanCompanyGroundAttackImpact222" Sound="Goliath_GroundAttackImpact222"/>
+        <ImpactModel value="GenericAttackImpactModel222"/>
+        <ImpactSound value="GenericAttackImpactSound222"/>
+        <DamageModel value="GenericAttackDamageModel222"/>
+        <DamageSound value="GenericAttackDamageSound222"/>
+    </CActorAction>
+    <CActorSiteOpRotationExplicit id="BEAMActorRotator">
+        <EditorCategories value=""/>
+        <Forward value="0.000000,0.000000,-1.000000"/>
+        <IsLocal value="1"/>
+    </CActorSiteOpRotationExplicit>
+    <CActorUnit id="WallOfFire2" parent="GenericUnitMinimal" unitName="BEAMUnit">
+        <HostSiteOps Ops="BEAMActorRotator"/>
+        <Model value="PurifierPlanetCrackerBeam222"/>
+        <BuildModel value="WallOfFire"/>
+        <PlacementModel value="WallOfFire"/>
+        <HighlightTooltip value="Unit/Name/WallOfFire2"/>
+        <StatusBarFlags index="Shields" value="0"/>
+        <StatusBarFlags index="Life" value="0"/>
+        <StatusBarFlags index="Energy" value="0"/>
+        <StatusBarFlags index="Cargo" value="0"/>
+        <StatusBarFlags index="Progress" value="0"/>
+        <UnitFlags index="ShowBlobShadow" value="0"/>
+    </CActorUnit>
+    <CActorUnit id="WallOfFire22" parent="GenericUnitMinimal" unitName="BEAMUnit3">
+        <HostSiteOps Ops="BEAMActorRotator"/>
+        <Model value="PurifierPlanetCrackerBeam2"/>
+        <BuildModel value="WallOfFire"/>
+        <PlacementModel value="WallOfFire"/>
+        <HighlightTooltip value="Unit/Name/WallOfFire22"/>
+        <StatusBarFlags index="Shields" value="0"/>
+        <StatusBarFlags index="Life" value="0"/>
+        <StatusBarFlags index="Energy" value="0"/>
+        <StatusBarFlags index="Cargo" value="0"/>
+        <StatusBarFlags index="Progress" value="0"/>
+        <UnitFlags index="ShowBlobShadow" value="0"/>
+    </CActorUnit>
+    <CActorUnit id="WallOfFire23" parent="GenericUnitMinimal" unitName="BEAMUnit2">
+        <HostSiteOps Ops="BEAMActorRotator"/>
+        <Model value="PurifierPlanetCrackerBeam22"/>
+        <BuildModel value="WallOfFire"/>
+        <PlacementModel value="WallOfFire"/>
+        <HighlightTooltip value="Unit/Name/WallOfFire23"/>
+        <StatusBarFlags index="Shields" value="0"/>
+        <StatusBarFlags index="Life" value="0"/>
+        <StatusBarFlags index="Energy" value="0"/>
+        <StatusBarFlags index="Cargo" value="0"/>
+        <StatusBarFlags index="Progress" value="0"/>
+        <UnitFlags index="ShowBlobShadow" value="0"/>
+    </CActorUnit>
+    <CActorUnit id="Wraith2" parent="GenericUnitBase" unitName="Wraith4">
+        <Aliases value="_UnitLarge"/>
+        <On Terms="Abil.attack.ReadyStart" Send="AnimGroupApply Ready"/>
+        <On Terms="WeaponStart.WraithA.AttackStart" Send="AnimBracketStart Attack Attack,Superior"/>
+        <On Terms="WeaponStart.WraithG.AttackStart" Send="AnimBracketStart Attack Attack"/>
+        <On Terms="WeaponStop.*.AttackStop" Send="AnimBracketStop Attack"/>
+        <On Terms="Abil.attack.ReadyStop" Send="AnimGroupRemove Ready"/>
+        <On Terms="Behavior.MercAirDropB.Create" Send="Create BansheeMercenaryReentry"/>
+        <HostSiteOps Ops="SOpBankerWraith"/>
+        <Model value="Wraith"/>
+        <AnimBlendTime value="0.300000"/>
+        <BuildModel value="Wraith"/>
+        <DeathArray index="Normal" ModelLink="WraithDeath" SoundLink="Wraith_Explode"/>
+        <PlacementModel value="Wraith"/>
+        <PortraitModel value="WraithPortrait"/>
+        <BarOffset value="55"/>
+        <BarWidth value="66"/>
+        <GroupIcon>
+            <Image value="Assets\Textures\Wireframe-Terran-wraith.dds"/>
+        </GroupIcon>
+        <GroupSoundArray index="Birth" value="Wraith_Birth"/>
+        <GroupSoundArray index="Ready" value="Wraith_Ready"/>
+        <GroupSoundArray index="Help" value="Wraith_Help"/>
+        <GroupSoundArray index="What" value="Wraith_What"/>
+        <GroupSoundArray index="Yes" value="Wraith_Yes"/>
+        <GroupSoundArray index="Attack" value="Wraith_Attack"/>
+        <GroupSoundArray index="Pissed" value="Wraith_Pissed"/>
+        <HeroIcon value="Assets\Textures\btn-unit-terran-wraith.dds"/>
+        <HighlightTooltip value="Unit/Name/Wraith2"/>
+        <LifeArmorIcon value="Assets\Textures\btn-upgrade-terran-shipplatinglevel0.dds"/>
+        <SoundArray index="Ready" value="Wraith_Ready"/>
+        <SoundArray index="Help" value="Wraith_Help"/>
+        <SoundArray index="What" value="Wraith_What"/>
+        <SoundArray index="Yes" value="Wraith_Yes"/>
+        <SoundArray index="Attack" value="Wraith_Attack"/>
+        <SoundArray index="Pissed" value="Wraith_Pissed"/>
+        <SoundArray index="Movement" value="Wraith_Movement"/>
+        <UnitIcon value="Assets\Textures\btn-unit-terran-wraith.dds"/>
+        <Wireframe>
+            <Image value="Assets\Textures\Wireframe-Terran-wraith.dds"/>
+        </Wireframe>
+    </CActorUnit>
+    <CActorUnit id="Wraith3" parent="GenericUnitBase" unitName="Wraith3">
+        <Aliases value="_UnitLarge"/>
+        <On Terms="Abil.attack.ReadyStart" Send="AnimGroupApply Ready"/>
+        <On Terms="WeaponStart.WraithA.AttackStart" Send="AnimBracketStart Attack Attack,Superior"/>
+        <On Terms="WeaponStart.WraithG.AttackStart" Send="AnimBracketStart Attack Attack"/>
+        <On Terms="WeaponStop.*.AttackStop" Send="AnimBracketStop Attack"/>
+        <On Terms="Abil.attack.ReadyStop" Send="AnimGroupRemove Ready"/>
+        <On Terms="Behavior.MercAirDropB.Create" Send="Create BansheeMercenaryReentry"/>
+        <HostSiteOps Ops="SOpBankerWraith"/>
+        <Model value="Wraith"/>
+        <AnimBlendTime value="0.300000"/>
+        <BuildModel value="Wraith"/>
+        <DeathArray index="Normal" ModelLink="WraithDeath" SoundLink="Wraith_Explode"/>
+        <PlacementModel value="Wraith"/>
+        <PortraitModel value="WraithPortrait"/>
+        <BarOffset value="55"/>
+        <BarWidth value="66"/>
+        <GroupIcon>
+            <Image value="Assets\Textures\Wireframe-Terran-wraith.dds"/>
+        </GroupIcon>
+        <GroupSoundArray index="Birth" value="Wraith_Birth"/>
+        <GroupSoundArray index="Ready" value="Wraith_Ready"/>
+        <GroupSoundArray index="Help" value="Wraith_Help"/>
+        <GroupSoundArray index="What" value="Wraith_What"/>
+        <GroupSoundArray index="Yes" value="Wraith_Yes"/>
+        <GroupSoundArray index="Attack" value="Wraith_Attack"/>
+        <GroupSoundArray index="Pissed" value="Wraith_Pissed"/>
+        <HeroIcon value="Assets\Textures\btn-unit-terran-wraith.dds"/>
+        <LifeArmorIcon value="Assets\Textures\btn-upgrade-terran-shipplatinglevel0.dds"/>
+        <SoundArray index="Ready" value="Wraith_Ready"/>
+        <SoundArray index="Help" value="Wraith_Help"/>
+        <SoundArray index="What" value="Wraith_What"/>
+        <SoundArray index="Yes" value="Wraith_Yes"/>
+        <SoundArray index="Attack" value="Wraith_Attack"/>
+        <SoundArray index="Pissed" value="Wraith_Pissed"/>
+        <SoundArray index="Movement" value="Wraith_Movement"/>
+        <UnitIcon value="Assets\Textures\btn-unit-terran-wraith.dds"/>
+        <Wireframe>
+            <Image value="Assets\Textures\Wireframe-Terran-wraith.dds"/>
+        </Wireframe>
+    </CActorUnit>
+    <CActorUnit id="Wraith6" parent="GenericUnitBase" unitName="Wraith2">
+        <Aliases value="_UnitLarge"/>
+        <On Terms="Abil.attack.ReadyStart" Send="AnimGroupApply Ready"/>
+        <On Terms="WeaponStart.WraithA.AttackStart" Send="AnimBracketStart Attack Attack,Superior"/>
+        <On Terms="WeaponStart.WraithG.AttackStart" Send="AnimBracketStart Attack Attack"/>
+        <On Terms="WeaponStop.*.AttackStop" Send="AnimBracketStop Attack"/>
+        <On Terms="Abil.attack.ReadyStop" Send="AnimGroupRemove Ready"/>
+        <On Terms="Behavior.MercAirDropB.Create" Send="Create BansheeMercenaryReentry"/>
+        <HostSiteOps Ops="SOpBankerWraith"/>
+        <Model value="Wraith"/>
+        <AnimBlendTime value="0.300000"/>
+        <BuildModel value="Wraith"/>
+        <DeathArray index="Normal" ModelLink="WraithDeath" SoundLink="Wraith_Explode"/>
+        <PlacementModel value="Wraith"/>
+        <PortraitModel value="WraithPortrait"/>
+        <BarOffset value="55"/>
+        <BarWidth value="66"/>
+        <GroupIcon>
+            <Image value="Assets\Textures\Wireframe-Terran-wraith.dds"/>
+        </GroupIcon>
+        <GroupSoundArray index="Birth" value="Wraith_Birth"/>
+        <GroupSoundArray index="Ready" value="Wraith_Ready"/>
+        <GroupSoundArray index="Help" value="Wraith_Help"/>
+        <GroupSoundArray index="What" value="Wraith_What"/>
+        <GroupSoundArray index="Yes" value="Wraith_Yes"/>
+        <GroupSoundArray index="Attack" value="Wraith_Attack"/>
+        <GroupSoundArray index="Pissed" value="Wraith_Pissed"/>
+        <HeroIcon value="Assets\Textures\btn-unit-terran-wraith.dds"/>
+        <HighlightTooltip value="Unit/Name/Wraith6"/>
+        <LifeArmorIcon value="Assets\Textures\btn-upgrade-terran-shipplatinglevel0.dds"/>
+        <SoundArray index="Ready" value="Wraith_Ready"/>
+        <SoundArray index="Help" value="Wraith_Help"/>
+        <SoundArray index="What" value="Wraith_What"/>
+        <SoundArray index="Yes" value="Wraith_Yes"/>
+        <SoundArray index="Attack" value="Wraith_Attack"/>
+        <SoundArray index="Pissed" value="Wraith_Pissed"/>
+        <SoundArray index="Movement" value="Wraith_Movement"/>
+        <UnitIcon value="Assets\Textures\btn-unit-terran-wraith.dds"/>
+        <Wireframe>
+            <Image value="Assets\Textures\Wireframe-Terran-wraith.dds"/>
+        </Wireframe>
+    </CActorUnit>
+</Catalog>

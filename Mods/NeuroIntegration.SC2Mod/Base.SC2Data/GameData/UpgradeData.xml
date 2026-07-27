@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Catalog>
+    <CUpgrade id="CellularReactors">
+        <EffectArray index="5" Reference="Unit,Wraith4,EnergyStart"/>
+        <EffectArray Reference="Unit,Wraith4,EnergyMax" Value="100"/>
+        <EffectArray Reference="Unit,Wraith3,EnergyMax" Value="100"/>
+        <EffectArray Reference="Unit,Wraith2,EnergyMax" Value="100"/>
+        <EffectArray Reference="Unit,Wraith3,EnergyStart" Value="100"/>
+        <EffectArray Reference="Unit,Wraith2,EnergyStart" Value="100"/>
+        <EffectArray Reference="Unit,Wraith,EnergyStart" Value="100"/>
+    </CUpgrade>
+    <CUpgrade id="CombatShield">
+        <EffectArray Operation="Set" Reference="Actor,KelmorianMiner2,GroupIcon.Image[0]" Value="Assets\Textures\wireframe-terran-marine-mercenary-shield.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,KelmorianMiner22,GroupIcon.Image[0]" Value="Assets\Textures\wireframe-terran-marine-mercenary-shield.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,KelmorianMiner23,GroupIcon.Image[0]" Value="Assets\Textures\wireframe-terran-marine-mercenary-shield.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,KelmorianMiner2,Wireframe.Image[0]" Value="Assets\Textures\wireframe-terran-marine-mercenary-shield.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,KelmorianMiner22,Wireframe.Image[0]" Value="Assets\Textures\wireframe-terran-marine-mercenary-shield.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,KelmorianMiner23,Wireframe.Image[0]" Value="Assets\Textures\wireframe-terran-marine-mercenary-shield.dds"/>
+        <EffectArray Reference="Unit,WarPig2,LifeMax" Value="10"/>
+        <EffectArray Reference="Unit,WarPig5,LifeMax" Value="10"/>
+        <EffectArray Reference="Unit,WarPig4,LifeMax" Value="10"/>
+        <EffectArray Reference="Unit,WarPig5,LifeStart" Value="10"/>
+        <EffectArray Reference="Unit,WarPig4,LifeStart" Value="10"/>
+        <EffectArray Reference="Unit,WarPig2,LifeStart" Value="10"/>
+    </CUpgrade>
+    <CUpgrade id="DynamicPowerRouting">
+        <EffectArray Reference="Unit,Wraith4,EnergyStart" Value="100"/>
+        <EffectArray Reference="Unit,Wraith3,EnergyStart" Value="100"/>
+        <EffectArray Reference="Unit,Wraith2,EnergyStart" Value="100"/>
+    </CUpgrade>
+    <CUpgrade id="EnergyStorage">
+        <EffectArray Operation="Multiply" Reference="Unit,Wraith4,EnergyRegenRate" Value="1.250000"/>
+        <EffectArray Operation="Multiply" Reference="Unit,Wraith3,EnergyRegenRate" Value="1.250000"/>
+        <EffectArray Operation="Multiply" Reference="Unit,Wraith2,EnergyRegenRate" Value="1.250000"/>
+    </CUpgrade>
+    <CUpgrade id="KineticFields">
+        <EffectArray Reference="Unit,SpartanCompany2,LifeArmor" Value="1"/>
+        <EffectArray Reference="Unit,SpartanCompany222,LifeArmor" Value="1"/>
+        <EffectArray Reference="Unit,SpartanCompany22,LifeArmor" Value="1"/>
+    </CUpgrade>
+    <CUpgrade id="RegenerativeBioSteel">
+        <EffectArray Operation="Set" Reference="Unit,SpartanCompany22,LifeRegenRate" Value="0.601500"/>
+        <EffectArray Operation="Set" Reference="Unit,SpartanCompany2,LifeRegenRate" Value="0.601500"/>
+        <EffectArray Operation="Set" Reference="Unit,SpartanCompany222,LifeRegenRate" Value="0.601500"/>
+        <EffectArray Operation="Set" Reference="Unit,SpartanCompany222,LifeRegenDelay" Value="3.000000"/>
+        <EffectArray Operation="Set" Reference="Unit,SpartanCompany2,LifeRegenDelay" Value="3.000000"/>
+        <EffectArray Operation="Set" Reference="Unit,SpartanCompany22,LifeRegenDelay" Value="3.000000"/>
+        <EffectArray Operation="Set" Reference="Unit,Wraith4,LifeRegenDelay" Value="3.000000"/>
+        <EffectArray Operation="Set" Reference="Unit,Wraith3,LifeRegenDelay" Value="3.000000"/>
+        <EffectArray Operation="Set" Reference="Unit,Wraith2,LifeRegenDelay" Value="3.000000"/>
+        <EffectArray Operation="Set" Reference="Unit,Wraith4,LifeRegenRate" Value="0.601500"/>
+        <EffectArray Operation="Set" Reference="Unit,Wraith3,LifeRegenRate" Value="0.601500"/>
+        <EffectArray Operation="Set" Reference="Unit,Wraith2,LifeRegenRate" Value="0.601500"/>
+    </CUpgrade>
+    <CUpgrade id="TerranShipWeaponsLevel1">
+        <EffectArray Reference="Effect,WraithGU2,Amount" Value="1"/>
+        <EffectArray Operation="Set" Reference="Weapon,WraithG2,Icon" Value="Assets\Textures\btn-upgrade-terran-shipweaponslevel1.dds"/>
+        <EffectArray Reference="Weapon,WraithG2,Level" Value="1"/>
+    </CUpgrade>
+    <CUpgrade id="TerranShipWeaponsLevel2">
+        <EffectArray Reference="Effect,WraithGU2,Amount" Value="1"/>
+        <EffectArray Operation="Set" Reference="Weapon,WraithG2,Icon" Value="Assets\Textures\btn-upgrade-terran-shipweaponslevel2.dds"/>
+        <EffectArray Reference="Weapon,WraithG2,Level" Value="1"/>
+    </CUpgrade>
+    <CUpgrade id="TerranShipWeaponsLevel3">
+        <EffectArray Reference="Effect,WraithGU2,Amount" Value="1"/>
+        <EffectArray Operation="Set" Reference="Weapon,WraithG2,Icon" Value="Assets\Textures\btn-upgrade-terran-shipweaponslevel3.dds"/>
+        <EffectArray Reference="Weapon,WraithG2,Level" Value="1"/>
+    </CUpgrade>
+    <CUpgrade id="TerranShipWeaponsUltraCapacitorsLevel1">
+        <EffectArray Operation="Set" Reference="Weapon,WraithG2,Icon" Value="Assets\Textures\btn-upgrade-terran-shipweaponslevel1.dds"/>
+        <EffectArray Reference="Weapon,WraithG2,Level" Value="1"/>
+        <EffectArray Reference="Weapon,WraithG2,RateMultiplier" Value="0.05"/>
+        <EffectArray Reference="Effect,WraithGU2,Amount" Value="1"/>
+    </CUpgrade>
+    <CUpgrade id="TerranShipWeaponsUltraCapacitorsLevel2">
+        <EffectArray Reference="Effect,WraithGU2,Amount" Value="1"/>
+        <EffectArray Operation="Set" Reference="Weapon,WraithG2,Icon" Value="Assets\Textures\btn-upgrade-terran-shipweaponslevel2.dds"/>
+        <EffectArray Reference="Weapon,WraithG2,Level" Value="1"/>
+        <EffectArray Reference="Weapon,WraithG2,RateMultiplier" Value="0.05"/>
+    </CUpgrade>
+    <CUpgrade id="TerranShipWeaponsUltraCapacitorsLevel3">
+        <EffectArray Reference="Effect,WraithGU2,Amount" Value="1"/>
+        <EffectArray Operation="Set" Reference="Weapon,WraithG2,Icon" Value="Assets\Textures\btn-upgrade-terran-shipweaponslevel3.dds"/>
+        <EffectArray Reference="Weapon,WraithG2,Level" Value="1"/>
+        <EffectArray Reference="Weapon,WraithG2,RateMultiplier" Value="0.05"/>
+    </CUpgrade>
+</Catalog>
