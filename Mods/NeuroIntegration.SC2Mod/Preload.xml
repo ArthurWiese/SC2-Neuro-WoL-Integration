@@ -6,11 +6,11 @@
 <Asset path="assets\textures\btn-upgrade-terran-weaponrefit.dds" Type="Image"/>
 <Asset path="assets\textures\btn-research-terran-orbitalstrikerally.dds" Type="Image"/>
 <Asset path="assets\textures\blank.dds" Type="Image"/>
-<Asset path="assets\textures\btn-upgrade-terran-corvidreactor.dds" Type="Image"/>
 <Asset path="assets\textures\btn-upgrade-protoss-shieldslevel3.dds" Type="Image"/>
+<Asset path="assets\textures\btn-upgrade-terran-corvidreactor.dds" Type="Image"/>
 <Asset path="assets\textures\btn-research-zerg-cellularreactor.dds" Type="Image"/>
-<Asset path="assets\textures\btn-ability-terran-emp-color.dds" Type="Image"/>
 <Asset path="assets\textures\btn-ability-terran-snipe-color.dds" Type="Image"/>
+<Asset path="assets\textures\btn-ability-terran-emp-color.dds" Type="Image"/>
 <Asset path="assets\textures\btn-ability-terran-nuclearstrike-color.dds" Type="Image"/>
 <Asset path="assets\textures\btn-ability-terran-heal-color.dds" Type="Image"/>
 <Asset path="assets\textures\icon-mineral-nobg.dds" Type="Image"/>
