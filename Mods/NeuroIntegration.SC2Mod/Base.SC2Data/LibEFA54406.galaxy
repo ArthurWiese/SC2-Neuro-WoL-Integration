@@ -24,6 +24,10 @@ void libEFA54406_InitVariables () {
 
     libEFA54406_InitVariables_completed = true;
 
+    libEFA54406_gv_standard_dialog = c_invalidDialogId;
+    libEFA54406_gv_standard_dialog_close = c_invalidDialogControlId;
+    libEFA54406_gv_current_map_string = "";
+    libEFA54406_gv_previous_choice_on_map = "";
     libEFA54406_gv_current_energy = 50.0;
     libEFA54406_gv_max_energy = 300.0;
     libEFA54406_gv_energy_regen_rate = 1.0;
@@ -402,6 +406,1389 @@ bool auto_libEFA54406_gf_create_context_TriggerFunc (bool testConds, bool runAct
     return true;
 }
 
+void libEFA54406_gf_create_standard_dialog (string lp_size, text lp_text) {
+    // Automatic Variable Declarations
+    string auto6CBFA6B6_val;
+
+    // Implementation
+    DialogDestroy(libEFA54406_gv_standard_dialog);
+    auto6CBFA6B6_val = lp_size;
+    if (auto6CBFA6B6_val == "normal") {
+        DialogCreate(550, 300, c_anchorCenter, 800, -400, true);
+        libNtve_gf_CreateDialogItemLabel(DialogLastCreated(), 450, 200, c_anchorTopLeft, 50, 50, lp_text, ColorWithAlpha(0,0,0,0), true, 2.0);
+    }
+    else if (auto6CBFA6B6_val == "small") {
+        DialogCreate(400, 200, c_anchorCenter, 850, -400, true);
+        libNtve_gf_CreateDialogItemLabel(DialogLastCreated(), 300, 150, c_anchorTopLeft, 50, 50, lp_text, ColorWithAlpha(0,0,0,0), false, 2.0);
+    }
+    else {
+    }
+    libEFA54406_gv_standard_dialog = DialogLastCreated();
+    DialogSetVisible(libEFA54406_gv_standard_dialog, PlayerGroupAll(), true);
+    libNtve_gf_CreateDialogItemButton(DialogLastCreated(), 200, 50, c_anchorBottom, 0, 25, StringToText(""), StringExternal("Param/Value/lib_EFA54406_067C0ABE"), "");
+    libEFA54406_gv_standard_dialog_close = DialogControlLastCreated();
+}
+
+trigger auto_libEFA54406_gf_create_ability_choice_Trigger = null;
+int auto_libEFA54406_gf_create_ability_choice_lp_current_map;
+int auto_libEFA54406_gf_create_ability_choice_lp_choose_delay_seconds;
+
+void libEFA54406_gf_create_ability_choice (int lp_current_map, int lp_choose_delay_seconds) {
+    auto_libEFA54406_gf_create_ability_choice_lp_current_map = lp_current_map;
+    auto_libEFA54406_gf_create_ability_choice_lp_choose_delay_seconds = lp_choose_delay_seconds;
+
+    if (auto_libEFA54406_gf_create_ability_choice_Trigger == null) {
+        auto_libEFA54406_gf_create_ability_choice_Trigger = TriggerCreate("auto_libEFA54406_gf_create_ability_choice_TriggerFunc");
+    }
+
+    TriggerExecute(auto_libEFA54406_gf_create_ability_choice_Trigger, false, false);
+}
+
+bool auto_libEFA54406_gf_create_ability_choice_TriggerFunc (bool testConds, bool runActions) {
+    int lp_current_map = auto_libEFA54406_gf_create_ability_choice_lp_current_map;
+    int lp_choose_delay_seconds = auto_libEFA54406_gf_create_ability_choice_lp_choose_delay_seconds;
+
+    int init_i;
+
+    // Variable Declarations
+    int lv_completed_missions;
+    string lv_choice_action;
+    string lv_choice_action_description;
+    int lv_temp_initial_energy;
+    int lv_temp_energy_regeneration;
+    int lv_temp_get_resources;
+    int lv_temp_heal_units;
+    int lv_temp_restore_unit_energy;
+    int lv_temp_shields;
+    int lv_temp_movement_attack_speed;
+    int lv_temp_constuction_production_research_speed;
+    int lv_temp_range;
+    int lv_temp_slow_enemies;
+    int lv_temp_call_structure;
+    int lv_temp_call_backup;
+    int lv_temp_nuke;
+    int lv_temp_purifier_beam;
+    string[30] lv_map_names;
+    int lv_map_index;
+
+    // Automatic Variable Declarations
+    int autoC75285F3_val;
+    const int auto96409AE0_ae = 28;
+    const int auto96409AE0_ai = 1;
+    string autoB30F7B58_val;
+    string auto475BC772_val;
+    string autoF51DE342_val;
+    int autoFFC0C82C_val;
+    int auto37285F62_val;
+    int autoA96170F2_val;
+    int auto5893CA84_val;
+    int autoC373E531_val;
+    int autoF90D0FC6_val;
+    int auto4470A454_val;
+    int auto04297D4D_val;
+    int auto17EAD386_val;
+    int auto79E07500_val;
+    int auto2ABF4585_val;
+    int auto61EB7096_val;
+    int auto04535022_val;
+    int auto01A31814_val;
+
+    // Variable Initialization
+    lv_choice_action = "";
+    lv_choice_action_description = "";
+    for (init_i = 0; init_i <= 29; init_i += 1) {
+        lv_map_names[init_i] = "";
+    }
+
+    // Implementation
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringExternal("Param/Value/lib_EFA54406_0AEAEE25"));
+    Wait(lp_choose_delay_seconds, c_timeGame);
+    autoC75285F3_val = lp_current_map;
+    if (autoC75285F3_val == libCamp_ge_MapID_MapTRaynor01) {
+        libEFA54406_gv_current_map_string = "traynor01";
+    }
+    else if (autoC75285F3_val == libCamp_ge_MapID_MapTRaynor02) {
+        libEFA54406_gv_current_map_string = "traynor02";
+    }
+    else if (autoC75285F3_val == libCamp_ge_MapID_MapTRaynor03) {
+        libEFA54406_gv_current_map_string = "traynor03";
+    }
+    else if (autoC75285F3_val == libCamp_ge_MapID_MapTHanson01) {
+        libEFA54406_gv_current_map_string = "thanson01";
+    }
+    else if (autoC75285F3_val == libCamp_ge_MapID_MapTHanson02) {
+        libEFA54406_gv_current_map_string = "thanson02";
+    }
+    else if (autoC75285F3_val == libCamp_ge_MapID_MapTHanson03A) {
+        libEFA54406_gv_current_map_string = "thanson03a";
+    }
+    else if (autoC75285F3_val == libCamp_ge_MapID_MapTHanson03B) {
+        libEFA54406_gv_current_map_string = "thanson03b";
+    }
+    else if (autoC75285F3_val == libCamp_ge_MapID_MapTTosh01) {
+        libEFA54406_gv_current_map_string = "ttosh01";
+    }
+    else if (autoC75285F3_val == libCamp_ge_MapID_MapTTosh02) {
+        libEFA54406_gv_current_map_string = "ttosh02";
+    }
+    else if (autoC75285F3_val == libCamp_ge_MapID_MapTTosh03A) {
+        libEFA54406_gv_current_map_string = "ttosh03a";
+    }
+    else if (autoC75285F3_val == libCamp_ge_MapID_MapTTosh03B) {
+        libEFA54406_gv_current_map_string = "ttosh03b";
+    }
+    else if (autoC75285F3_val == libCamp_ge_MapID_MapTHorner01) {
+        libEFA54406_gv_current_map_string = "thorner01";
+    }
+    else if (autoC75285F3_val == libCamp_ge_MapID_MapTHorner02) {
+        libEFA54406_gv_current_map_string = "thorner02";
+    }
+    else if (autoC75285F3_val == libCamp_ge_MapID_MapTHorner03) {
+        libEFA54406_gv_current_map_string = "thorner03";
+    }
+    else if (autoC75285F3_val == libCamp_ge_MapID_MapTHorner04) {
+        libEFA54406_gv_current_map_string = "thorner04";
+    }
+    else if (autoC75285F3_val == libCamp_ge_MapID_MapTHorner05S) {
+        libEFA54406_gv_current_map_string = "thorner05s";
+    }
+    else if (autoC75285F3_val == libCamp_ge_MapID_MapTTychus01) {
+        libEFA54406_gv_current_map_string = "ttychus01";
+    }
+    else if (autoC75285F3_val == libCamp_ge_MapID_MapTTychus02) {
+        libEFA54406_gv_current_map_string = "ttychus02";
+    }
+    else if (autoC75285F3_val == libCamp_ge_MapID_MapTTychus03) {
+        libEFA54406_gv_current_map_string = "ttychus03";
+    }
+    else if (autoC75285F3_val == libCamp_ge_MapID_MapTTychus04) {
+        libEFA54406_gv_current_map_string = "ttychus04";
+    }
+    else if (autoC75285F3_val == libCamp_ge_MapID_MapTTychus05) {
+        libEFA54406_gv_current_map_string = "ttychus05";
+    }
+    else if (autoC75285F3_val == libCamp_ge_MapID_MapTZeratul01) {
+        libEFA54406_gv_current_map_string = "tzeratul01";
+    }
+    else if (autoC75285F3_val == libCamp_ge_MapID_MapTZeratul02) {
+        libEFA54406_gv_current_map_string = "tzeratul02";
+    }
+    else if (autoC75285F3_val == libCamp_ge_MapID_MapTZeratul03) {
+        libEFA54406_gv_current_map_string = "tzeratul03";
+    }
+    else if (autoC75285F3_val == libCamp_ge_MapID_MapTZeratul04) {
+        libEFA54406_gv_current_map_string = "tzeratul04";
+    }
+    else if (autoC75285F3_val == libCamp_ge_MapID_MapTValerian01) {
+        libEFA54406_gv_current_map_string = "tvalerian01";
+    }
+    else if (autoC75285F3_val == libCamp_ge_MapID_MapTValerian02A) {
+        libEFA54406_gv_current_map_string = "tvalerian02a";
+    }
+    else if (autoC75285F3_val == libCamp_ge_MapID_MapTValerian02B) {
+        libEFA54406_gv_current_map_string = "tvalerian02b";
+    }
+    else if (autoC75285F3_val == libCamp_ge_MapID_MapTValerian03) {
+        libEFA54406_gv_current_map_string = "tvalerian03";
+    }
+    else {
+    }
+    if ((libEFA54406_gv_is_first_mission == true)) {
+        libEFA54406_gf_create_standard_dialog("normal", (StringExternal("Param/Value/lib_EFA54406_C941B551") + libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_3C823FC6") + libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_F6A3C0F2")));
+    }
+    else {
+        libEFA54406_gf_create_standard_dialog("normal", (libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_16E15859")));
+    }
+    lv_map_names[0] = "traynor01";
+    lv_map_names[1] = "traynor02";
+    lv_map_names[2] = "traynor03";
+    lv_map_names[3] = "thanson01";
+    lv_map_names[4] = "thanson02";
+    lv_map_names[5] = "thanson03a";
+    lv_map_names[6] = "thanson03b";
+    lv_map_names[7] = "ttosh01";
+    lv_map_names[8] = "ttosh02";
+    lv_map_names[9] = "ttosh03a";
+    lv_map_names[10] = "ttosh03b";
+    lv_map_names[11] = "thorner01";
+    lv_map_names[12] = "thorner02";
+    lv_map_names[13] = "thorner03";
+    lv_map_names[14] = "thorner04";
+    lv_map_names[15] = "thorner05s";
+    lv_map_names[16] = "ttychus01";
+    lv_map_names[17] = "ttychus02";
+    lv_map_names[18] = "ttychus03";
+    lv_map_names[19] = "ttychus04";
+    lv_map_names[20] = "ttychus05";
+    lv_map_names[21] = "tzeratul01";
+    lv_map_names[22] = "tzeratul02";
+    lv_map_names[23] = "tzeratul03";
+    lv_map_names[24] = "tzeratul04";
+    lv_map_names[25] = "tvalerian01";
+    lv_map_names[26] = "tvalerian02a";
+    lv_map_names[27] = "tvalerian02b";
+    lv_map_names[28] = "tvalerian03";
+    BankReload(libEFA54406_gv_abilities_bank);
+    BankWait(libEFA54406_gv_abilities_bank);
+    lv_map_index = 0;
+    for ( ; ( (auto96409AE0_ai >= 0 && lv_map_index <= auto96409AE0_ae) || (auto96409AE0_ai < 0 && lv_map_index >= auto96409AE0_ae) ) ; lv_map_index += auto96409AE0_ai ) {
+        if ((lv_map_names[lv_map_index] == libEFA54406_gv_current_map_string)) {
+            auto475BC772_val = BankValueGetAsString(libEFA54406_gv_abilities_bank, "mission_choices", lv_map_names[lv_map_index]);
+            if (auto475BC772_val == "Energy Regeneration") {
+                libEFA54406_gv_previous_choice_on_map = "Energy Regeneration";
+            }
+            else if (auto475BC772_val == "Initial Energy") {
+                libEFA54406_gv_previous_choice_on_map = "Initial Energy";
+            }
+            else if (auto475BC772_val == "Resources") {
+                libEFA54406_gv_previous_choice_on_map = "Resources";
+            }
+            else if (auto475BC772_val == "Heal") {
+                libEFA54406_gv_previous_choice_on_map = "Heal";
+            }
+            else if (auto475BC772_val == "Restore Energy") {
+                libEFA54406_gv_previous_choice_on_map = "Restore Energy";
+            }
+            else if (auto475BC772_val == "Shields") {
+                libEFA54406_gv_previous_choice_on_map = "Shields";
+            }
+            else if (auto475BC772_val == "Stimpack") {
+                libEFA54406_gv_previous_choice_on_map = "Stimpack";
+            }
+            else if (auto475BC772_val == "Building Speed") {
+                libEFA54406_gv_previous_choice_on_map = "Building Speed";
+            }
+            else if (auto475BC772_val == "Range Up") {
+                libEFA54406_gv_previous_choice_on_map = "Range Up";
+            }
+            else if (auto475BC772_val == "Slowdown") {
+                libEFA54406_gv_previous_choice_on_map = "Slowdown";
+            }
+            else if (auto475BC772_val == "Call Structure") {
+                libEFA54406_gv_previous_choice_on_map = "Call Structure";
+            }
+            else if (auto475BC772_val == "Call Backup") {
+                libEFA54406_gv_previous_choice_on_map = "Call Backup";
+            }
+            else if (auto475BC772_val == "Nuke") {
+                libEFA54406_gv_previous_choice_on_map = "Nuke";
+            }
+            else if (auto475BC772_val == "Purifier Beam") {
+                libEFA54406_gv_previous_choice_on_map = "Purifier Beam";
+            }
+            else {
+            }
+            continue;
+        }
+        else {
+            autoB30F7B58_val = lv_map_names[lv_map_index];
+            if (autoB30F7B58_val == "traynor01") {
+                if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTRaynor01) != libCamp_ge_MissionStatus_Completed)) {
+                    continue;
+                }
+
+            }
+            else if (autoB30F7B58_val == "traynor02") {
+                if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTRaynor02) != libCamp_ge_MissionStatus_Completed)) {
+                    continue;
+                }
+
+            }
+            else if (autoB30F7B58_val == "traynor03") {
+                if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTRaynor03) != libCamp_ge_MissionStatus_Completed)) {
+                    continue;
+                }
+
+            }
+            else if (autoB30F7B58_val == "thanson01") {
+                if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTHanson01) != libCamp_ge_MissionStatus_Completed)) {
+                    continue;
+                }
+
+            }
+            else if (autoB30F7B58_val == "thanson02") {
+                if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTHanson02) != libCamp_ge_MissionStatus_Completed)) {
+                    continue;
+                }
+
+            }
+            else if (autoB30F7B58_val == "thanson03a") {
+                if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTHanson03A) != libCamp_ge_MissionStatus_Completed)) {
+                    continue;
+                }
+
+            }
+            else if (autoB30F7B58_val == "thanson03b") {
+                if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTHanson03B) != libCamp_ge_MissionStatus_Completed)) {
+                    continue;
+                }
+
+            }
+            else if (autoB30F7B58_val == "ttosh01") {
+                if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTTosh01) != libCamp_ge_MissionStatus_Completed)) {
+                    continue;
+                }
+
+            }
+            else if (autoB30F7B58_val == "ttosh02") {
+                if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTTosh02) != libCamp_ge_MissionStatus_Completed)) {
+                    continue;
+                }
+
+            }
+            else if (autoB30F7B58_val == "ttosh03a") {
+                if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTTosh03A) != libCamp_ge_MissionStatus_Completed)) {
+                    continue;
+                }
+
+            }
+            else if (autoB30F7B58_val == "ttosh03b") {
+                if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTTosh03B) != libCamp_ge_MissionStatus_Completed)) {
+                    continue;
+                }
+
+            }
+            else if (autoB30F7B58_val == "thorner01") {
+                if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTHorner01) != libCamp_ge_MissionStatus_Completed)) {
+                    continue;
+                }
+
+            }
+            else if (autoB30F7B58_val == "thorner02") {
+                if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTHorner02) != libCamp_ge_MissionStatus_Completed)) {
+                    continue;
+                }
+
+            }
+            else if (autoB30F7B58_val == "thorner03") {
+                if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTHorner03) != libCamp_ge_MissionStatus_Completed)) {
+                    continue;
+                }
+
+            }
+            else if (autoB30F7B58_val == "thorner04") {
+                if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTHorner04) != libCamp_ge_MissionStatus_Completed)) {
+                    continue;
+                }
+
+            }
+            else if (autoB30F7B58_val == "thorner05s") {
+                if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTHorner05S) != libCamp_ge_MissionStatus_Completed)) {
+                    continue;
+                }
+
+            }
+            else if (autoB30F7B58_val == "ttychus01") {
+                if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTTychus01) != libCamp_ge_MissionStatus_Completed)) {
+                    continue;
+                }
+
+            }
+            else if (autoB30F7B58_val == "ttychus02") {
+                if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTTychus02) != libCamp_ge_MissionStatus_Completed)) {
+                    continue;
+                }
+
+            }
+            else if (autoB30F7B58_val == "ttychus03") {
+                if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTTychus03) != libCamp_ge_MissionStatus_Completed)) {
+                    continue;
+                }
+
+            }
+            else if (autoB30F7B58_val == "ttychus04") {
+                if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTTychus04) != libCamp_ge_MissionStatus_Completed)) {
+                    continue;
+                }
+
+            }
+            else if (autoB30F7B58_val == "ttychus05") {
+                if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTTychus05) != libCamp_ge_MissionStatus_Completed)) {
+                    continue;
+                }
+
+            }
+            else if (autoB30F7B58_val == "tzeratul01") {
+                if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTZeratul01) != libCamp_ge_MissionStatus_Completed)) {
+                    continue;
+                }
+
+            }
+            else if (autoB30F7B58_val == "tzeratul02") {
+                if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTZeratul02) != libCamp_ge_MissionStatus_Completed)) {
+                    continue;
+                }
+
+            }
+            else if (autoB30F7B58_val == "tzeratul03") {
+                if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTZeratul03) != libCamp_ge_MissionStatus_Completed)) {
+                    continue;
+                }
+
+            }
+            else if (autoB30F7B58_val == "tzeratul04") {
+                if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTZeratul04) != libCamp_ge_MissionStatus_Completed)) {
+                    continue;
+                }
+
+            }
+            else if (autoB30F7B58_val == "tvalerian01") {
+                if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTValerian01) != libCamp_ge_MissionStatus_Completed)) {
+                    continue;
+                }
+
+            }
+            else if (autoB30F7B58_val == "tvalerian02a") {
+                if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTValerian02A) != libCamp_ge_MissionStatus_Completed)) {
+                    continue;
+                }
+
+            }
+            else if (autoB30F7B58_val == "tvalerian02b") {
+                if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTValerian02B) != libCamp_ge_MissionStatus_Completed)) {
+                    continue;
+                }
+
+            }
+            else if (autoB30F7B58_val == "tvalerian03") {
+                if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTValerian03) != libCamp_ge_MissionStatus_Completed)) {
+                    continue;
+                }
+
+            }
+            else {
+            }
+        }
+        autoF51DE342_val = BankValueGetAsString(libEFA54406_gv_abilities_bank, "mission_choices", lv_map_names[lv_map_index]);
+        if (autoF51DE342_val == "Energy Regeneration") {
+            lv_temp_energy_regeneration += 1;
+        }
+        else if (autoF51DE342_val == "Initial Energy") {
+            lv_temp_initial_energy += 1;
+        }
+        else if (autoF51DE342_val == "Resources") {
+            lv_temp_get_resources += 1;
+        }
+        else if (autoF51DE342_val == "Heal") {
+            lv_temp_heal_units += 1;
+        }
+        else if (autoF51DE342_val == "Restore Energy") {
+            lv_temp_restore_unit_energy += 1;
+        }
+        else if (autoF51DE342_val == "Shields") {
+            lv_temp_shields += 1;
+        }
+        else if (autoF51DE342_val == "Stimpack") {
+            lv_temp_movement_attack_speed += 1;
+        }
+        else if (autoF51DE342_val == "Building Speed") {
+            lv_temp_constuction_production_research_speed += 1;
+        }
+        else if (autoF51DE342_val == "Range Up") {
+            lv_temp_range += 1;
+        }
+        else if (autoF51DE342_val == "Slowdown") {
+            lv_temp_slow_enemies += 1;
+        }
+        else if (autoF51DE342_val == "Call Structure") {
+            lv_temp_call_structure += 1;
+        }
+        else if (autoF51DE342_val == "Call Backup") {
+            lv_temp_call_backup += 1;
+        }
+        else if (autoF51DE342_val == "Nuke") {
+            lv_temp_nuke += 1;
+        }
+        else if (autoF51DE342_val == "Purifier Beam") {
+            lv_temp_purifier_beam += 1;
+        }
+        else {
+        }
+    }
+    lv_completed_missions = libCamp_gf_NumberOfMissions(libCamp_ge_MissionCountOptions_Completed);
+    if ((lv_completed_missions >= 4)) {
+        autoFFC0C82C_val = lv_temp_energy_regeneration;
+        if (autoFFC0C82C_val == 0) {
+            if ((lv_choice_action == "")) {
+                lv_choice_action = "Energy Regeneration Level 1";
+            }
+            else {
+                lv_choice_action = (lv_choice_action + ", " + "Energy Regeneration Level 1");
+            }
+            if ((lv_choice_action_description == "")) {
+                lv_choice_action_description = "Energy Regeneration Level 0->1 - Increases Energy regeneration rate to 112.5%";
+            }
+            else {
+                lv_choice_action_description = (lv_choice_action_description + "; " + "Energy Regeneration Level 0->1 - Increases Energy regeneration rate to 112.5%");
+            }
+        }
+        else if (autoFFC0C82C_val == 1) {
+            if ((lv_choice_action == "")) {
+                lv_choice_action = "Energy Regeneration Level 2";
+            }
+            else {
+                lv_choice_action = (lv_choice_action + ", " + "Energy Regeneration Level 2");
+            }
+            if ((lv_choice_action_description == "")) {
+                lv_choice_action_description = "Energy Regeneration Level 1->2 - Increases Energy regeneration rate to 125% (Current rate: 112.5%)";
+            }
+            else {
+                lv_choice_action_description = (lv_choice_action_description + "; " + "Energy Regeneration Level 1->2 - Increases Energy regeneration rate to 125% (Current rate: 112.5%)");
+            }
+        }
+        else if (autoFFC0C82C_val == 2) {
+            if ((lv_choice_action == "")) {
+                lv_choice_action = "Energy Regeneration Level 3";
+            }
+            else {
+                lv_choice_action = (lv_choice_action + ", " + "Energy Regeneration Level 3");
+            }
+            if ((lv_choice_action_description == "")) {
+                lv_choice_action_description = "Energy Regeneration Level 2->3 - Increases Energy regeneration rate to 137.5% (Current rate: 125%)";
+            }
+            else {
+                lv_choice_action_description = (lv_choice_action_description + "; " + "Energy Regeneration Level 2->3 - Increases Energy regeneration rate to 137.5% (Current rate: 125%)");
+            }
+        }
+        else if (autoFFC0C82C_val == 3) {
+            if ((lv_choice_action == "")) {
+                lv_choice_action = "Energy Regeneration Level 4";
+            }
+            else {
+                lv_choice_action = (lv_choice_action + ", " + "Energy Regeneration Level 4");
+            }
+            if ((lv_choice_action_description == "")) {
+                lv_choice_action_description = "Energy Regeneration Level 3->4 - Increases Energy regeneration rate to 150% (Current rate: 137.5%)";
+            }
+            else {
+                lv_choice_action_description = (lv_choice_action_description + "; " + "Energy Regeneration Level 3->4 - Increases Energy regeneration rate to 150% (Current rate: 137.5%)");
+            }
+        }
+        else if (autoFFC0C82C_val == 4) {
+            if ((lv_choice_action_description == "")) {
+                lv_choice_action_description = "Energy Regeneration is at Max Level";
+            }
+            else {
+                lv_choice_action_description = (lv_choice_action_description + "; " + "Energy Regeneration is at Max Level");
+            }
+        }
+        else {
+        }
+    }
+
+    if ((lv_completed_missions >= 4)) {
+        auto37285F62_val = lv_temp_initial_energy;
+        if (auto37285F62_val == 0) {
+            if ((lv_choice_action == "")) {
+                lv_choice_action = "Initial Energy Level 1";
+            }
+            else {
+                lv_choice_action = (lv_choice_action + ", " + "Initial Energy Level 1");
+            }
+            if ((lv_choice_action_description == "")) {
+                lv_choice_action_description = "Initial Energy Level 0->1 - Increases initial Energy at the start of a misison to 125 (Current initial Energy: 50)";
+            }
+            else {
+                lv_choice_action_description = (lv_choice_action_description + "; " + "Initial Energy Level 0->1 - Increases initial Energy at the start of a misison to 125 (Current initial Energy: 50)");
+            }
+        }
+        else if (auto37285F62_val == 1) {
+            if ((lv_choice_action == "")) {
+                lv_choice_action = "Initial Energy Level 2";
+            }
+            else {
+                lv_choice_action = (lv_choice_action + ", " + "Initial Energy Level 2");
+            }
+            if ((lv_choice_action_description == "")) {
+                lv_choice_action_description = "Initial Energy Level 1->2 - Increases initial Energy at the start of a misison to 200 (Current initial Energy: 125)";
+            }
+            else {
+                lv_choice_action_description = (lv_choice_action_description + "; " + "Initial Energy Level 1->2 - Increases initial Energy at the start of a misison to 200 (Current initial Energy: 125)");
+            }
+        }
+        else if (auto37285F62_val == 2) {
+            if ((lv_choice_action == "")) {
+                lv_choice_action = "Initial Energy Level 3";
+            }
+            else {
+                lv_choice_action = (lv_choice_action + ", " + "Initial Energy Level 3");
+            }
+            if ((lv_choice_action_description == "")) {
+                lv_choice_action_description = "Initial Energy Level 2->3 - Increases initial Energy at the start of a misison to 275 (Current initial Energy: 200)";
+            }
+            else {
+                lv_choice_action_description = (lv_choice_action_description + "; " + "Initial Energy Level 2->3 - Increases initial Energy at the start of a misison to 275 (Current initial Energy: 200)");
+            }
+        }
+        else if (auto37285F62_val == 3) {
+            if ((lv_choice_action_description == "")) {
+                lv_choice_action_description = "Initial Energy is at Max Level";
+            }
+            else {
+                lv_choice_action_description = (lv_choice_action_description + "; " + "Initial Energy is at Max Level");
+            }
+        }
+        else {
+        }
+    }
+
+    autoA96170F2_val = lv_temp_heal_units;
+    if (autoA96170F2_val == 0) {
+        if ((lv_choice_action == "")) {
+            lv_choice_action = "Heal Level 1";
+        }
+        else {
+            lv_choice_action = (lv_choice_action + ", " + "Heal Level 1");
+        }
+        if ((lv_choice_action_description == "")) {
+            lv_choice_action_description = "Heal Level 0->1 - Immediately heal all your units for 25% of their max health. Energy cost: 50";
+        }
+        else {
+            lv_choice_action_description = (lv_choice_action_description + "; " + "Heal Level 0->1 - Immediately heal all your units for 25% of their max health. Energy cost: 50");
+        }
+    }
+    else if (autoA96170F2_val == 1) {
+        if ((lv_choice_action == "")) {
+            lv_choice_action = "Heal Level 2";
+        }
+        else {
+            lv_choice_action = (lv_choice_action + ", " + "Heal Level 2");
+        }
+        if ((lv_choice_action_description == "")) {
+            lv_choice_action_description = "Heal Level 1->2 - Immediately heal all your units for either 25% of their max health with an Energy cost of 50 (small Heal) or 50% of their max health with an Energy cost of 75 (medium Heal)";
+        }
+        else {
+            lv_choice_action_description = (lv_choice_action_description + "; " + "Heal Level 1->2 - Immediately heal all your units for either 25% of their max health with an Energy cost of 50 (small Heal) or 50% of their max health with an Energy cost of 75 (medium Heal)");
+        }
+    }
+    else if (autoA96170F2_val == 2) {
+        if ((lv_choice_action == "")) {
+            lv_choice_action = "Heal Level 3";
+        }
+        else {
+            lv_choice_action = (lv_choice_action + ", " + "Heal Level 3");
+        }
+        if ((lv_choice_action_description == "")) {
+            lv_choice_action_description = "Heal Level 2->3 - Immediately heal all your units for either 25% of their max health with an Energy cost of 50 (small Heal), 50% of their max health with an Energy cost of 75 (medium Heal) or 75% of their max health with an Energy cost of 100 (great Heal)";
+        }
+        else {
+            lv_choice_action_description = (lv_choice_action_description + "; " + "Heal Level 2->3 - Immediately heal all your units for either 25% of their max health with an Energy cost of 50 (small Heal), 50% of their max health with an Energy cost of 75 (medium Heal) or 75% of their max health with an Energy cost of 100 (great Heal)");
+        }
+    }
+    else if (autoA96170F2_val == 3) {
+        if ((lv_choice_action == "")) {
+            lv_choice_action = "Heal Level 4";
+        }
+        else {
+            lv_choice_action = (lv_choice_action + ", " + "Heal Level 4");
+        }
+        if ((lv_choice_action_description == "")) {
+            lv_choice_action_description = "Heal Level 3->4 - Immediately heal all your units for either 33% of their max health with an Energy cost of 50 (small Heal), 67% of their max health with an Energy cost of 75 (medium Heal) or 100% of their max health with an Energy cost of 100 (great Heal)";
+        }
+        else {
+            lv_choice_action_description = (lv_choice_action_description + "; " + "Heal Level 3->4 - Immediately heal all your units for either 33% of their max health with an Energy cost of 50 (small Heal), 67% of their max health with an Energy cost of 75 (medium Heal) or 100% of their max health with an Energy cost of 100 (great Heal)");
+        }
+    }
+    else if (autoA96170F2_val == 4) {
+        if ((lv_choice_action_description == "")) {
+            lv_choice_action_description = "Heal is at Max Level";
+        }
+        else {
+            lv_choice_action_description = (lv_choice_action_description + "; " + "Heal is at Max Level");
+        }
+    }
+    else {
+    }
+    if ((lv_completed_missions >= 2)) {
+        auto5893CA84_val = lv_temp_shields;
+        if (auto5893CA84_val == 0) {
+            if ((lv_choice_action == "")) {
+                lv_choice_action = "Shields Level 1";
+            }
+            else {
+                lv_choice_action = (lv_choice_action + ", " + "Shields Level 1");
+            }
+            if ((lv_choice_action_description == "")) {
+                lv_choice_action_description = "Shields Level 0->1 - Immediately give your units shields with 50 health for 20 seconds. Energy cost: 75";
+            }
+            else {
+                lv_choice_action_description = (lv_choice_action_description + "; " + "Shields Level 0->1 - Immediately give your units shields with 50 health for 20 seconds. Energy cost: 75");
+            }
+        }
+        else if (auto5893CA84_val == 1) {
+            if ((lv_choice_action == "")) {
+                lv_choice_action = "Shields Level 2";
+            }
+            else {
+                lv_choice_action = (lv_choice_action + ", " + "Shields Level 2");
+            }
+            if ((lv_choice_action_description == "")) {
+                lv_choice_action_description = "Shields Level 1->2 - Immediately give your units shields with either 50 health for 75 Energy (small Shield) or 100 health for 100 Energy (medium Shield). The shields lasts for 20 seconds";
+            }
+            else {
+                lv_choice_action_description = (lv_choice_action_description + "; " + "Shields Level 1->2 - Immediately give your units shields with either 50 health for 75 Energy (small Shield) or 100 health for 100 Energy (medium Shield). The shields lasts for 20 seconds");
+            }
+        }
+        else if (auto5893CA84_val == 2) {
+            if ((lv_choice_action == "")) {
+                lv_choice_action = "Shields Level 3";
+            }
+            else {
+                lv_choice_action = (lv_choice_action + ", " + "Shields Level 3");
+            }
+            if ((lv_choice_action_description == "")) {
+                lv_choice_action_description = "Shields Level 2->3 - Immediately give your units shields with either 50 health for 75 Energy (small Shield), 100 health for 100 Energy (medium Shield) or 200 health for 125 Energy (great Shield). The shields lasts for 20 seconds";
+            }
+            else {
+                lv_choice_action_description = (lv_choice_action_description + "; " + "Shields Level 2->3 - Immediately give your units shields with either 50 health for 75 Energy (small Shield), 100 health for 100 Energy (medium Shield) or 200 health for 125 Energy (great Shield). The shields lasts for 20 seconds");
+            }
+        }
+        else if (auto5893CA84_val == 3) {
+            if ((lv_choice_action_description == "")) {
+                lv_choice_action_description = "Shields is at Max Level";
+            }
+            else {
+                lv_choice_action_description = (lv_choice_action_description + "; " + "Shields is at Max Level");
+            }
+        }
+        else {
+        }
+    }
+
+    if ((lv_completed_missions >= 4)) {
+        autoC373E531_val = lv_temp_restore_unit_energy;
+        if (autoC373E531_val == 0) {
+            if ((lv_choice_action == "")) {
+                lv_choice_action = "Restore Energy Level 1";
+            }
+            else {
+                lv_choice_action = (lv_choice_action + ", " + "Restore Energy Level 1");
+            }
+            if ((lv_choice_action_description == "")) {
+                lv_choice_action_description = "Restore Energy Level 0->1 - Immediately restore all your units energy levels by 33%. Energy cost: 75";
+            }
+            else {
+                lv_choice_action_description = (lv_choice_action_description + "; " + "Restore Energy Level 0->1 - Immediately restore all your units energy levels by 33%. Energy cost: 75");
+            }
+        }
+        else if (autoC373E531_val == 1) {
+            if ((lv_choice_action == "")) {
+                lv_choice_action = "Restore Energy Level 2";
+            }
+            else {
+                lv_choice_action = (lv_choice_action + ", " + "Restore Energy Level 2");
+            }
+            if ((lv_choice_action_description == "")) {
+                lv_choice_action_description = "Restore Energy Level 1->2 - Immediately restore all your units energy levels by either 33% with Energy cost of 75 (small energy restoration) or 67% with Energy cost of 125 (great energy restoration)";
+            }
+            else {
+                lv_choice_action_description = (lv_choice_action_description + "; " + "Restore Energy Level 1->2 - Immediately restore all your units energy levels by either 33% with Energy cost of 75 (small energy restoration) or 67% with Energy cost of 125 (great energy restoration)");
+            }
+        }
+        else if (autoC373E531_val == 2) {
+            if ((lv_choice_action == "")) {
+                lv_choice_action = "Restore Energy Level 3";
+            }
+            else {
+                lv_choice_action = (lv_choice_action + ", " + "Restore Energy Level 3");
+            }
+            if ((lv_choice_action_description == "")) {
+                lv_choice_action_description = "Restore Energy Level 2->3 - Immediately restore all your units energy levels by either 50% with Energy cost of 75 (small energy restoration) or 100% with Energy cost of 125 (great energy restoration)";
+            }
+            else {
+                lv_choice_action_description = (lv_choice_action_description + "; " + "Restore Energy Level 2->3 - Immediately restore all your units energy levels by either 50% with Energy cost of 75 (small energy restoration) or 100% with Energy cost of 125 (great energy restoration)");
+            }
+        }
+        else if (autoC373E531_val == 3) {
+            if ((lv_choice_action_description == "")) {
+                lv_choice_action_description = "Restore Energy is at Max Level";
+            }
+            else {
+                lv_choice_action_description = (lv_choice_action_description + "; " + "Restore Energy is at Max Level");
+            }
+        }
+        else {
+        }
+    }
+
+    autoF90D0FC6_val = lv_temp_movement_attack_speed;
+    if (autoF90D0FC6_val == 0) {
+        if ((lv_choice_action == "")) {
+            lv_choice_action = "Stimpack Level 1";
+        }
+        else {
+            lv_choice_action = (lv_choice_action + ", " + "Stimpack Level 1");
+        }
+        if ((lv_choice_action_description == "")) {
+            lv_choice_action_description = "Stimpack Level 0->1 - Immediately increase the movement and attack speed of your combat units by 33% for 15 seconds. Energy cost: 50";
+        }
+        else {
+            lv_choice_action_description = (lv_choice_action_description + "; " + "Stimpack Level 0->1 - Immediately increase the movement and attack speed of your combat units by 33% for 15 seconds. Energy cost: 50");
+        }
+    }
+    else if (autoF90D0FC6_val == 1) {
+        if ((lv_choice_action == "")) {
+            lv_choice_action = "Stimpack Level 2";
+        }
+        else {
+            lv_choice_action = (lv_choice_action + ", " + "Stimpack Level 2");
+        }
+        if ((lv_choice_action_description == "")) {
+            lv_choice_action_description = "Stimpack Level 1->2 - Immediately increase the movement and attack speed of your combat units by either 33% with Energy cost of 50 (small Buff) or 66% with Energy cost of 100 (big Buff). The buff lasts 15 seconds";
+        }
+        else {
+            lv_choice_action_description = (lv_choice_action_description + "; " + "Stimpack Level 1->2 - Immediately increase the movement and attack speed of your combat units by either 33% with Energy cost of 50 (small Buff) or 66% with Energy cost of 100 (big Buff). The buff lasts 15 seconds");
+        }
+    }
+    else if (autoF90D0FC6_val == 2) {
+        if ((lv_choice_action == "")) {
+            lv_choice_action = "Stimpack Level 3";
+        }
+        else {
+            lv_choice_action = (lv_choice_action + ", " + "Stimpack Level 3");
+        }
+        if ((lv_choice_action_description == "")) {
+            lv_choice_action_description = "Stimpack Level 2->3 - Immediately increase the movement and attack speed of your combat units by either 50% with Energy cost of 50 (small Buff) or 100% with Energy cost of 100 (big Buff). The buff lasts 15 seconds";
+        }
+        else {
+            lv_choice_action_description = (lv_choice_action_description + "; " + "Stimpack Level 2->3 - Immediately increase the movement and attack speed of your combat units by either 50% with Energy cost of 50 (small Buff) or 100% with Energy cost of 100 (big Buff). The buff lasts 15 seconds");
+        }
+    }
+    else if (autoF90D0FC6_val == 3) {
+        if ((lv_choice_action_description == "")) {
+            lv_choice_action_description = "Stimpack is at Max Level";
+        }
+        else {
+            lv_choice_action_description = (lv_choice_action_description + "; " + "Stimpack is at Max Level");
+        }
+    }
+    else {
+    }
+    if ((lv_completed_missions >= 4)) {
+        auto4470A454_val = lv_temp_range;
+        if (auto4470A454_val == 0) {
+            if ((lv_choice_action == "")) {
+                lv_choice_action = "Range Up Level 1";
+            }
+            else {
+                lv_choice_action = (lv_choice_action + ", " + "Range Up Level 1");
+            }
+            if ((lv_choice_action_description == "")) {
+                lv_choice_action_description = "Range Up Level 0->1 - Immediately increase the weapons range of your units by 2 for 20 seconds. Energy cost: 50";
+            }
+            else {
+                lv_choice_action_description = (lv_choice_action_description + "; " + "Range Up Level 0->1 - Immediately increase the weapons range of your units by 2 for 20 seconds. Energy cost: 50");
+            }
+        }
+        else if (auto4470A454_val == 1) {
+            if ((lv_choice_action == "")) {
+                lv_choice_action = "Range Up Level 2";
+            }
+            else {
+                lv_choice_action = (lv_choice_action + ", " + "Range Up Level 2");
+            }
+            if ((lv_choice_action_description == "")) {
+                lv_choice_action_description = "Range Up Level 1->2 - Immediately increase the weapons range of your units by either 2 with Energy cost of 50 (small Buff) or 4 with Energy cost of 100 (big Buff). The buff lasts 20 seconds";
+            }
+            else {
+                lv_choice_action_description = (lv_choice_action_description + "; " + "Range Up Level 1->2 - Immediately increase the weapons range of your units by either 2 with Energy cost of 50 (small Buff) or 4 with Energy cost of 100 (big Buff). The buff lasts 20 seconds");
+            }
+        }
+        else if (auto4470A454_val == 2) {
+            if ((lv_choice_action == "")) {
+                lv_choice_action = "Range Up Level 3";
+            }
+            else {
+                lv_choice_action = (lv_choice_action + ", " + "Range Up Level 3");
+            }
+            if ((lv_choice_action_description == "")) {
+                lv_choice_action_description = "Range Up Level 2->3 - Immediately increase the weapons range of your units by either 3 with Energy cost of 50 (small Buff) or 5 with Energy cost of 100 (big Buff). The buff lasts 20 seconds";
+            }
+            else {
+                lv_choice_action_description = (lv_choice_action_description + "; " + "Range Up Level 2->3 - Immediately increase the weapons range of your units by either 3 with Energy cost of 50 (small Buff) or 5 with Energy cost of 100 (big Buff). The buff lasts 20 seconds");
+            }
+        }
+        else if (auto4470A454_val == 3) {
+            if ((lv_choice_action_description == "")) {
+                lv_choice_action_description = "Range Up is at Max Level";
+            }
+            else {
+                lv_choice_action_description = (lv_choice_action_description + "; " + "Range Up is at Max Level");
+            }
+        }
+        else {
+        }
+    }
+
+    if ((lv_completed_missions >= 4)) {
+        auto04297D4D_val = lv_temp_constuction_production_research_speed;
+        if (auto04297D4D_val == 0) {
+            if ((lv_choice_action == "")) {
+                lv_choice_action = "Building Speed Level 1";
+            }
+            else {
+                lv_choice_action = (lv_choice_action + ", " + "Building Speed Level 1");
+            }
+            if ((lv_choice_action_description == "")) {
+                lv_choice_action_description = "Building Speed Level 0->1 - Immediately increase the Construction, Production and Research speed of your buildings by 75% for 25 seconds. Energy cost: 75";
+            }
+            else {
+                lv_choice_action_description = (lv_choice_action_description + "; " + "Building Speed Level 0->1 - Immediately increase the Construction, Production and Research speed of your buildings by 75% for 25 seconds. Energy cost: 75");
+            }
+        }
+        else if (auto04297D4D_val == 1) {
+            if ((lv_choice_action == "")) {
+                lv_choice_action = "Building Speed Level 2";
+            }
+            else {
+                lv_choice_action = (lv_choice_action + ", " + "Building Speed Level 2");
+            }
+            if ((lv_choice_action_description == "")) {
+                lv_choice_action_description = "Building Speed Level 1->2 - Immediately increase the Construction, Production and Research speed of your buildings by either 75% with Energy cost of 75 (small Buff) or 150% with Energy cost of 125 (big Buff). The buff lasts 25 seconds";
+            }
+            else {
+                lv_choice_action_description = (lv_choice_action_description + "; " + "Building Speed Level 1->2 - Immediately increase the Construction, Production and Research speed of your buildings by either 75% with Energy cost of 75 (small Buff) or 150% with Energy cost of 125 (big Buff). The buff lasts 25 seconds");
+            }
+        }
+        else if (auto04297D4D_val == 2) {
+            if ((lv_choice_action == "")) {
+                lv_choice_action = "Building Speed Level 3";
+            }
+            else {
+                lv_choice_action = (lv_choice_action + ", " + "Building Speed Level 3");
+            }
+            if ((lv_choice_action_description == "")) {
+                lv_choice_action_description = "Building Speed Level 2->3 - Immediately increase the Construction, Production and Research speed of your buildings by either 100% with Energy cost of 75 (small Buff) or 200% with Energy cost of 125 (big Buff). The buff lasts 25 seconds";
+            }
+            else {
+                lv_choice_action_description = (lv_choice_action_description + "; " + "Building Speed Level 2->3 - Immediately increase the Construction, Production and Research speed of your buildings by either 100% with Energy cost of 75 (small Buff) or 200% with Energy cost of 125 (big Buff). The buff lasts 25 seconds");
+            }
+        }
+        else if (auto04297D4D_val == 3) {
+            if ((lv_choice_action_description == "")) {
+                lv_choice_action_description = "Building Speed is at Max Level";
+            }
+            else {
+                lv_choice_action_description = (lv_choice_action_description + "; " + "Building Speed is at Max Level");
+            }
+        }
+        else {
+        }
+    }
+
+    if ((lv_completed_missions >= 4)) {
+        auto17EAD386_val = lv_temp_get_resources;
+        if (auto17EAD386_val == 0) {
+            if ((lv_choice_action == "")) {
+                lv_choice_action = "Resources Level 1";
+            }
+            else {
+                lv_choice_action = (lv_choice_action + ", " + "Resources Level 1");
+            }
+            if ((lv_choice_action_description == "")) {
+                lv_choice_action_description = "Resources Level 0->1 - Immediately receive either 100 Minerals or 100 Vespene Gas. Energy cost: 75";
+            }
+            else {
+                lv_choice_action_description = (lv_choice_action_description + "; " + "Resources Level 0->1 - Immediately receive either 100 Minerals or 100 Vespene Gas. Energy cost: 75");
+            }
+        }
+        else if (auto17EAD386_val == 1) {
+            if ((lv_choice_action == "")) {
+                lv_choice_action = "Resources Level 2";
+            }
+            else {
+                lv_choice_action = (lv_choice_action + ", " + "Resources Level 2");
+            }
+            if ((lv_choice_action_description == "")) {
+                lv_choice_action_description = "Resources Level 1->2 - Immediately receive either 150 Minerals and 75 Vespene Gas (more Minerals) or 150 Vespene Gas and 75 Minerals (more Vespene Gas). Energy cost: 75";
+            }
+            else {
+                lv_choice_action_description = (lv_choice_action_description + "; " + "Resources Level 1->2 - Immediately receive either 150 Minerals and 75 Vespene Gas (more Minerals) or 150 Vespene Gas and 75 Minerals (more Vespene Gas). Energy cost: 75");
+            }
+        }
+        else if (auto17EAD386_val == 2) {
+            if ((lv_choice_action == "")) {
+                lv_choice_action = "Resources Level 3";
+            }
+            else {
+                lv_choice_action = (lv_choice_action + ", " + "Resources Level 3");
+            }
+            if ((lv_choice_action_description == "")) {
+                lv_choice_action_description = "Resources Level 2->3 - Immediately receive 200 Minerals and 200 Vespene Gas. Energy cost: 75";
+            }
+            else {
+                lv_choice_action_description = (lv_choice_action_description + "; " + "Resources Level 2->3 - Immediately receive 200 Minerals and 200 Vespene Gas. Energy cost: 75");
+            }
+        }
+        else if (auto17EAD386_val == 3) {
+            if ((lv_choice_action_description == "")) {
+                lv_choice_action_description = "Resources  is at Max Level";
+            }
+            else {
+                lv_choice_action_description = (lv_choice_action_description + "; " + "Resources  is at Max Level");
+            }
+        }
+        else {
+        }
+    }
+
+    if ((lv_completed_missions >= 1)) {
+        auto79E07500_val = lv_temp_call_structure;
+        if (auto79E07500_val == 0) {
+            if ((lv_choice_action == "")) {
+                lv_choice_action = "Call Structure Level 1";
+            }
+            else {
+                lv_choice_action = (lv_choice_action + ", " + "Call Structure Level 1");
+            }
+            if ((lv_choice_action_description == "")) {
+                lv_choice_action_description = "Call Structure Level 0->1 - Call down a Supply Depot which gives +8 useable supply. Energy cost: 50";
+            }
+            else {
+                lv_choice_action_description = (lv_choice_action_description + "; " + "Call Structure Level 0->1 - Call down a Supply Depot which gives +8 useable supply. Energy cost: 50");
+            }
+        }
+        else if (auto79E07500_val == 1) {
+            if ((lv_choice_action == "")) {
+                lv_choice_action = "Call Structure Level 2";
+            }
+            else {
+                lv_choice_action = (lv_choice_action + ", " + "Call Structure Level 2");
+            }
+            if ((lv_choice_action_description == "")) {
+                lv_choice_action_description = "Call Structure Level 1->2 - Call down either a Supply Depot which gives +8 useable supply with Energy cost of 50 (Supply Depot) or a production building with Energy cost of 75 (Barracks, Factory or Starport)";
+            }
+            else {
+                lv_choice_action_description = (lv_choice_action_description + "; " + "Call Structure Level 1->2 - Call down either a Supply Depot which gives +8 useable supply with Energy cost of 50 (Supply Depot) or a production building with Energy cost of 75 (Barracks, Factory or Starport)");
+            }
+        }
+        else if (auto79E07500_val == 2) {
+            if ((lv_choice_action == "")) {
+                lv_choice_action = "Call Structure Level 3";
+            }
+            else {
+                lv_choice_action = (lv_choice_action + ", " + "Call Structure Level 3");
+            }
+            if ((lv_choice_action_description == "")) {
+                lv_choice_action_description = "Call Structure Level 2->3 - Call down either a Supply Depot which gives +8 useable supply with Energy cost of 50 (Supply Depot), a production building with Energy cost of 75 (Barracks, Factory or Starport) or a Command Center which builds workers with Energy cost of 100 (Command Center)";
+            }
+            else {
+                lv_choice_action_description = (lv_choice_action_description + "; " + "Call Structure Level 2->3 - Call down either a Supply Depot which gives +8 useable supply with Energy cost of 50 (Supply Depot), a production building with Energy cost of 75 (Barracks, Factory or Starport) or a Command Center which builds workers with Energy cost of 100 (Command Center)");
+            }
+        }
+        else if (auto79E07500_val == 3) {
+            if ((lv_choice_action_description == "")) {
+                lv_choice_action_description = "Call Structure is at Max Level";
+            }
+            else {
+                lv_choice_action_description = (lv_choice_action_description + "; " + "Call Structure is at Max Level");
+            }
+        }
+        else {
+        }
+    }
+
+    if ((lv_completed_missions >= 1)) {
+        auto2ABF4585_val = lv_temp_call_backup;
+        if (auto2ABF4585_val == 0) {
+            if ((lv_choice_action == "")) {
+                lv_choice_action = "Call Backup Level 1";
+            }
+            else {
+                lv_choice_action = (lv_choice_action + ", " + "Call Backup Level 1");
+            }
+            if ((lv_choice_action_description == "")) {
+                lv_choice_action_description = "Call Backup Level 0->1 - Call down Infantry backup. Energy cost: 50";
+            }
+            else {
+                lv_choice_action_description = (lv_choice_action_description + "; " + "Call Backup Level 0->1 - Call down Infantry backup. Energy cost: 50");
+            }
+        }
+        else if (auto2ABF4585_val == 1) {
+            if ((lv_choice_action == "")) {
+                lv_choice_action = "Call Backup Level 2";
+            }
+            else {
+                lv_choice_action = (lv_choice_action + ", " + "Call Backup Level 2");
+            }
+            if ((lv_choice_action_description == "")) {
+                lv_choice_action_description = "Call Backup Level 1->2 - Call down either Infantry backup with Energy cost of 50 (Infantry) or Vehicle backup with Energy cost of 75 (Vehicle)";
+            }
+            else {
+                lv_choice_action_description = (lv_choice_action_description + "; " + "Call Backup Level 1->2 - Call down either Infantry backup with Energy cost of 50 (Infantry) or Vehicle backup with Energy cost of 75 (Vehicle)");
+            }
+        }
+        else if (auto2ABF4585_val == 2) {
+            if ((lv_choice_action == "")) {
+                lv_choice_action = "Call Backup Level 3";
+            }
+            else {
+                lv_choice_action = (lv_choice_action + ", " + "Call Backup Level 3");
+            }
+            if ((lv_choice_action_description == "")) {
+                lv_choice_action_description = "Call Backup Level 2->3 - Call down either Infantry backup with Energy cost of 50 (Infantry), Vehicle backup with Energy cost of 75 (Vehicle) or Aerial backup with Energy cost of 75 (Aerial)";
+            }
+            else {
+                lv_choice_action_description = (lv_choice_action_description + "; " + "Call Backup Level 2->3 - Call down either Infantry backup with Energy cost of 50 (Infantry), Vehicle backup with Energy cost of 75 (Vehicle) or Aerial backup with Energy cost of 75 (Aerial)");
+            }
+        }
+        else if (auto2ABF4585_val == 3) {
+            if ((lv_choice_action_description == "")) {
+                lv_choice_action_description = "Call Backup is at Max Level";
+            }
+            else {
+                lv_choice_action_description = (lv_choice_action_description + "; " + "Call Backup is at Max Level");
+            }
+        }
+        else {
+        }
+    }
+
+    if ((lv_completed_missions >= 2)) {
+        auto61EB7096_val = lv_temp_slow_enemies;
+        if (auto61EB7096_val == 0) {
+            if ((lv_choice_action == "")) {
+                lv_choice_action = "Slowdown Level 1";
+            }
+            else {
+                lv_choice_action = (lv_choice_action + ", " + "Slowdown Level 1");
+            }
+            if ((lv_choice_action_description == "")) {
+                lv_choice_action_description = "Slowdown Level 0->1 - Immediately slow down all enemies by 33% for 15 seconds. Energy cost: 75";
+            }
+            else {
+                lv_choice_action_description = (lv_choice_action_description + "; " + "Slowdown Level 0->1 - Immediately slow down all enemies by 33% for 15 seconds. Energy cost: 75");
+            }
+        }
+        else if (auto61EB7096_val == 1) {
+            if ((lv_choice_action == "")) {
+                lv_choice_action = "Slowdown Level 2";
+            }
+            else {
+                lv_choice_action = (lv_choice_action + ", " + "Slowdown Level 2");
+            }
+            if ((lv_choice_action_description == "")) {
+                lv_choice_action_description = "Slowdown Level 1->2 - Immediately slow down all enemies by either 33% with Energy cost of 75 (small Slowdown) or 66% with Energy cost of 125 (medium Slowdown). The slowdown lasts for 15 seconds";
+            }
+            else {
+                lv_choice_action_description = (lv_choice_action_description + "; " + "Slowdown Level 1->2 - Immediately slow down all enemies by either 33% with Energy cost of 75 (small Slowdown) or 66% with Energy cost of 125 (medium Slowdown). The slowdown lasts for 15 seconds");
+            }
+        }
+        else if (auto61EB7096_val == 2) {
+            if ((lv_choice_action == "")) {
+                lv_choice_action = "Slowdown Level 3";
+            }
+            else {
+                lv_choice_action = (lv_choice_action + ", " + "Slowdown Level 3");
+            }
+            if ((lv_choice_action_description == "")) {
+                lv_choice_action_description = "Slowdown Level 2->3 - Immediately slow down all enemies by either 33% with Energy cost of 75 (small Slowdown), 66% with Energy cost of 125 (medium Slowdown) or completely stun them with Energy cost of 150 (great Slowdown). The slowdown lasts for 15 seconds";
+            }
+            else {
+                lv_choice_action_description = (lv_choice_action_description + "; " + "Slowdown Level 2->3 - Immediately slow down all enemies by either 33% with Energy cost of 75 (small Slowdown), 66% with Energy cost of 125 (medium Slowdown) or completely stun them with Energy cost of 150 (great Slowdown). The slowdown lasts for 15 seconds");
+            }
+        }
+        else if (auto61EB7096_val == 3) {
+            if ((lv_choice_action_description == "")) {
+                lv_choice_action_description = "Slowdown is at Max Level";
+            }
+            else {
+                lv_choice_action_description = (lv_choice_action_description + "; " + "Slowdown is at Max Level");
+            }
+        }
+        else {
+        }
+    }
+
+    if ((lv_completed_missions >= 3)) {
+        auto04535022_val = lv_temp_nuke;
+        if (auto04535022_val == 0) {
+            if ((lv_choice_action == "")) {
+                lv_choice_action = "Nuke Level 1";
+            }
+            else {
+                lv_choice_action = (lv_choice_action + ", " + "Nuke Level 1");
+            }
+            if ((lv_choice_action_description == "")) {
+                lv_choice_action_description = "Nuke Level 0->1 - Call down a tactical Nuke on the enemy (on Enemy) or where the Player is currently looking at (on Player looking). Energy cost: 75";
+            }
+            else {
+                lv_choice_action_description = (lv_choice_action_description + "; " + "Nuke Level 0->1 - Call down a tactical Nuke on the enemy (on Enemy) or where the Player is currently looking at (on Player looking). Energy cost: 75");
+            }
+        }
+        else if (auto04535022_val == 1) {
+            if ((lv_choice_action == "")) {
+                lv_choice_action = "Nuke Level 2";
+            }
+            else {
+                lv_choice_action = (lv_choice_action + ", " + "Nuke Level 2");
+            }
+            if ((lv_choice_action_description == "")) {
+                lv_choice_action_description = "Nuke Level 1->2 - Call down either a tactical Nuke with Energy cost of 75 (small Nuke) or a larger Nuke with Energy cost of 125 (large Nuke) on the enemy (on Enemy) or where the Player is currently looking at (on Player looking)";
+            }
+            else {
+                lv_choice_action_description = (lv_choice_action_description + "; " + "Nuke Level 1->2 - Call down either a tactical Nuke with Energy cost of 75 (small Nuke) or a larger Nuke with Energy cost of 125 (large Nuke) on the enemy (on Enemy) or where the Player is currently looking at (on Player looking)");
+            }
+        }
+        else if (auto04535022_val == 2) {
+            if ((lv_choice_action == "")) {
+                lv_choice_action = "Nuke Level 3";
+            }
+            else {
+                lv_choice_action = (lv_choice_action + ", " + "Nuke Level 3");
+            }
+            if ((lv_choice_action_description == "")) {
+                lv_choice_action_description = "Nuke Level 2->3 - Call down either a tactical Nuke with Energy cost of 50 (small Nuke) or a larger Nuke with Energy cost of 100 (large Nuke) on the enemy (on Enemy) or where the Player is currently looking at (on Player looking)";
+            }
+            else {
+                lv_choice_action_description = (lv_choice_action_description + "; " + "Nuke Level 2->3 - Call down either a tactical Nuke with Energy cost of 50 (small Nuke) or a larger Nuke with Energy cost of 100 (large Nuke) on the enemy (on Enemy) or where the Player is currently looking at (on Player looking)");
+            }
+        }
+        else if (auto04535022_val == 3) {
+            if ((lv_choice_action == "")) {
+                lv_choice_action = "Nuke Level 4";
+            }
+            else {
+                lv_choice_action = (lv_choice_action + ", " + "Nuke Level 4");
+            }
+            if ((lv_choice_action_description == "")) {
+                lv_choice_action_description = "Nuke Level 3->4 - Call down either a tactical Nuke with Energy cost of 50 (small Nuke) or a larger Nuke with Energy cost of 100 (large Nuke) on the enemy (on Enemy) or where the Player is currently looking at (on Player looking). For an Energy cost of 300 you can call down the MEGA NUKE (MEGA NUKE)";
+            }
+            else {
+                lv_choice_action_description = (lv_choice_action_description + "; " + "Nuke Level 3->4 - Call down either a tactical Nuke with Energy cost of 50 (small Nuke) or a larger Nuke with Energy cost of 100 (large Nuke) on the enemy (on Enemy) or where the Player is currently looking at (on Player looking). For an Energy cost of 300 you can call down the MEGA NUKE (MEGA NUKE)");
+            }
+        }
+        else if (auto04535022_val == 4) {
+            if ((lv_choice_action_description == "")) {
+                lv_choice_action_description = "Nuke is at Max Level";
+            }
+            else {
+                lv_choice_action_description = (lv_choice_action_description + "; " + "Nuke is at Max Level");
+            }
+        }
+        else {
+        }
+    }
+
+    if ((lv_completed_missions >= 3)) {
+        auto01A31814_val = lv_temp_purifier_beam;
+        if (auto01A31814_val == 0) {
+            if ((lv_choice_action == "")) {
+                lv_choice_action = "Purifier Beam Level 1";
+            }
+            else {
+                lv_choice_action = (lv_choice_action + ", " + "Purifier Beam Level 1");
+            }
+            if ((lv_choice_action_description == "")) {
+                lv_choice_action_description = "Purifier Beam Level 0->1 - Call down a small Purifier Beam on the enemy (on Enemy) or where the Player is currently looking at (on Player looking). The Purifier Beam deals continuous damage in an area for 15 seconds and slowly moves to the nearest living enemy. Energy cost: 75";
+            }
+            else {
+                lv_choice_action_description = (lv_choice_action_description + "; " + "Purifier Beam Level 0->1 - Call down a small Purifier Beam on the enemy (on Enemy) or where the Player is currently looking at (on Player looking). The Purifier Beam deals continuous damage in an area for 15 seconds and slowly moves to the nearest living enemy. Energy cost: 75");
+            }
+        }
+        else if (auto01A31814_val == 1) {
+            if ((lv_choice_action == "")) {
+                lv_choice_action = "Purifier Beam Level 2";
+            }
+            else {
+                lv_choice_action = (lv_choice_action + ", " + "Purifier Beam Level 2");
+            }
+            if ((lv_choice_action_description == "")) {
+                lv_choice_action_description = "Purifier Beam Level 1->2 - Call down either a small Purifier Beam with Energy cost of 75 (small Beam) or a medium size Purifier Beam with Energy cost of 100 (medium Beam) on the enemy (on Enemy) or where the Player is currently looking at (on Player looking). The Purifier Beam deals continuous damage in an area for 15 seconds and slowly moves to the nearest living enemy";
+            }
+            else {
+                lv_choice_action_description = (lv_choice_action_description + "; " + "Purifier Beam Level 1->2 - Call down either a small Purifier Beam with Energy cost of 75 (small Beam) or a medium size Purifier Beam with Energy cost of 100 (medium Beam) on the enemy (on Enemy) or where the Player is currently looking at (on Player looking). The Purifier Beam deals continuous damage in an area for 15 seconds and slowly moves to the nearest living enemy");
+            }
+        }
+        else if (auto01A31814_val == 2) {
+            if ((lv_choice_action == "")) {
+                lv_choice_action = "Purifier Beam Level 3";
+            }
+            else {
+                lv_choice_action = (lv_choice_action + ", " + "Purifier Beam Level 3");
+            }
+            if ((lv_choice_action_description == "")) {
+                lv_choice_action_description = "Purifier Beam Level 2->3 - Call down either a small Purifier Beam with Energy cost of 75 (small Beam), a medium size Purifier Beam with Energy cost of 100 (medium Beam) or a large Purifier Beam with Energy cost of 125 (large Beam) on the enemy (on Enemy) or where the Player is currently looking at (on Player looking). The Purifier Beam deals continuous damage in an area for 15 seconds and slowly moves to the nearest living enemy";
+            }
+            else {
+                lv_choice_action_description = (lv_choice_action_description + "; " + "Purifier Beam Level 2->3 - Call down either a small Purifier Beam with Energy cost of 75 (small Beam), a medium size Purifier Beam with Energy cost of 100 (medium Beam) or a large Purifier Beam with Energy cost of 125 (large Beam) on the enemy (on Enemy) or where the Player is currently looking at (on Player looking). The Purifier Beam deals continuous damage in an area for 15 seconds and slowly moves to the nearest living enemy");
+            }
+        }
+        else if (auto01A31814_val == 3) {
+            if ((lv_choice_action_description == "")) {
+                lv_choice_action_description = "Purifier Beam is at Max Level";
+            }
+            else {
+                lv_choice_action_description = (lv_choice_action_description + "; " + "Purifier Beam is at Max Level");
+            }
+        }
+        else {
+        }
+    }
+
+    libEFA54406_gf_create_action_1_arg("upgrade_ability", true, "Choose an ability to upgrade", "string(" + lv_choice_action + ")", 1);
+    lv_choice_action_description = ("At the start of every mission you can upgrade an ability. Abilities have powerful effects and use a regenerating Energy resource. You must now make your choice. Important note: You will not be able to fully upgrade every ability so consider carefully: " + lv_choice_action_description);
+    libEFA54406_gf_create_context("choose_ability_context", lv_choice_action_description, false);
+    Wait(60.0, c_timeReal);
+    if ((libEFA54406_gv_used_choice_this_mission == false)) {
+        libEFA54406_gf_create_force_action("ensure_ability_choice", "upgrade_ability", "At the start of every mission you can upgrade an ability. Abilities have powerful effects and use a regenerating Energy resource", "Upgrade an ability", false, "low");
+    }
+
+    return true;
+}
+
+trigger auto_libEFA54406_gf_NeuroChoosesAbility_Trigger = null;
+string auto_libEFA54406_gf_NeuroChoosesAbility_lp_ability_choice;
+
+void libEFA54406_gf_NeuroChoosesAbility (string lp_ability_choice) {
+    auto_libEFA54406_gf_NeuroChoosesAbility_lp_ability_choice = lp_ability_choice;
+
+    if (auto_libEFA54406_gf_NeuroChoosesAbility_Trigger == null) {
+        auto_libEFA54406_gf_NeuroChoosesAbility_Trigger = TriggerCreate("auto_libEFA54406_gf_NeuroChoosesAbility_TriggerFunc");
+    }
+
+    TriggerExecute(auto_libEFA54406_gf_NeuroChoosesAbility_Trigger, false, false);
+}
+
+bool auto_libEFA54406_gf_NeuroChoosesAbility_TriggerFunc (bool testConds, bool runActions) {
+    string lp_ability_choice = auto_libEFA54406_gf_NeuroChoosesAbility_lp_ability_choice;
+
+    // Variable Declarations
+    string lv_ability_choice_replace;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_ability_choice_replace = "";
+
+    // Implementation
+    libEFA54406_gv_used_choice_this_mission = true;
+    lv_ability_choice_replace = lp_ability_choice;
+    lv_ability_choice_replace = StringReplaceWord(lv_ability_choice_replace, " Level 1", "", c_stringReplaceAll, c_stringCase);
+    lv_ability_choice_replace = StringReplaceWord(lv_ability_choice_replace, " Level 2", "", c_stringReplaceAll, c_stringCase);
+    lv_ability_choice_replace = StringReplaceWord(lv_ability_choice_replace, " Level 3", "", c_stringReplaceAll, c_stringCase);
+    lv_ability_choice_replace = StringReplaceWord(lv_ability_choice_replace, " Level 4", "", c_stringReplaceAll, c_stringCase);
+    lp_ability_choice = StringReplaceWord(lp_ability_choice, "Level", "to Level", c_stringReplaceAll, c_stringCase);
+    BankValueSetFromString(libEFA54406_gv_abilities_bank, "mission_choices", libEFA54406_gv_current_map_string, lv_ability_choice_replace);
+    BankSave(libEFA54406_gv_abilities_bank);
+    Wait(0.5, c_timeReal);
+    if ((StringContains(lp_ability_choice, "Initial Energy", c_stringAnywhere, c_stringNoCase) == true)) {
+        libEFA54406_gv_current_energy = MinF((libEFA54406_gv_current_energy + 75.0), libEFA54406_gv_max_energy);
+    }
+
+    if ((StringContains(lp_ability_choice, "Energy Regeneration", c_stringAnywhere, c_stringNoCase) == true)) {
+        libEFA54406_gv_energy_regen_rate = (libEFA54406_gv_energy_regen_rate + 0.125);
+    }
+
+    if ((libEFA54406_gv_is_blocking == false)) {
+        libEFA54406_gf_create_standard_dialog("small", (libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_16419646") + TextWithColor(StringToText(lp_ability_choice), Color(100.00, 100.00, 0.00))));
+        libEFA54406_gf_ShowAbilities(true);
+    }
+    else {
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, (libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_17F41727") + TextWithColor(StringToText(lp_ability_choice), Color(100.00, 100.00, 0.00))));
+    }
+    return true;
+}
+
 trigger auto_libEFA54406_gf_ShowAbilities_Trigger = null;
 bool auto_libEFA54406_gf_ShowAbilities_lp_show;
 
@@ -418,10 +1805,34 @@ void libEFA54406_gf_ShowAbilities (bool lp_show) {
 bool auto_libEFA54406_gf_ShowAbilities_TriggerFunc (bool testConds, bool runActions) {
     bool lp_show = auto_libEFA54406_gf_ShowAbilities_lp_show;
 
+    int init_i;
+
     // Variable Declarations
     int lv_completed_missions;
+    string[30] lv_map_names;
+    int lv_map_index;
+    string lv_lookat_map_name;
+    string lv_lookat_map_choice;
+    int lv_temp_initial_energy;
+    int lv_temp_energy_regeneration;
+    int lv_temp_get_resources;
+    int lv_temp_heal_units;
+    int lv_temp_restore_unit_energy;
+    int lv_temp_shields;
+    int lv_temp_movement_attack_speed;
+    int lv_temp_constuction_production_research_speed;
+    int lv_temp_range;
+    int lv_temp_slow_enemies;
+    int lv_temp_call_structure;
+    int lv_temp_call_backup;
+    int lv_temp_nuke;
+    int lv_temp_purifier_beam;
 
     // Automatic Variable Declarations
+    const int auto9421F978_ae = 28;
+    const int auto9421F978_ai = 1;
+    string auto6B916A2F_val;
+    string autoE7B54588_val;
     int autoC8109E0E_val;
     int auto3EE00E78_val;
     int autoB9BBCB27_val;
@@ -452,6 +1863,11 @@ bool auto_libEFA54406_gf_ShowAbilities_TriggerFunc (bool testConds, bool runActi
     int auto477D68DE_val;
 
     // Variable Initialization
+    for (init_i = 0; init_i <= 29; init_i += 1) {
+        lv_map_names[init_i] = "";
+    }
+    lv_lookat_map_name = "";
+    lv_lookat_map_choice = "";
 
     // Implementation
     TriggerStop(libEFA54406_gt_AbilityEnergy);
@@ -468,6 +1884,281 @@ bool auto_libEFA54406_gf_ShowAbilities_TriggerFunc (bool testConds, bool runActi
         TriggerExecute(libEFA54406_gt_AbilityEnergy, true, false);
         TriggerExecute(libEFA54406_gt_ShowAbilitiesCooldown, true, false);
         if ((libEFA54406_gv_unlock_all_abilities == false)) {
+            lv_map_names[0] = "traynor01";
+            lv_map_names[1] = "traynor02";
+            lv_map_names[2] = "traynor03";
+            lv_map_names[3] = "thanson01";
+            lv_map_names[4] = "thanson02";
+            lv_map_names[5] = "thanson03a";
+            lv_map_names[6] = "thanson03b";
+            lv_map_names[7] = "ttosh01";
+            lv_map_names[8] = "ttosh02";
+            lv_map_names[9] = "ttosh03a";
+            lv_map_names[10] = "ttosh03b";
+            lv_map_names[11] = "thorner01";
+            lv_map_names[12] = "thorner02";
+            lv_map_names[13] = "thorner03";
+            lv_map_names[14] = "thorner04";
+            lv_map_names[15] = "thorner05s";
+            lv_map_names[16] = "ttychus01";
+            lv_map_names[17] = "ttychus02";
+            lv_map_names[18] = "ttychus03";
+            lv_map_names[19] = "ttychus04";
+            lv_map_names[20] = "ttychus05";
+            lv_map_names[21] = "tzeratul01";
+            lv_map_names[22] = "tzeratul02";
+            lv_map_names[23] = "tzeratul03";
+            lv_map_names[24] = "tzeratul04";
+            lv_map_names[25] = "tvalerian01";
+            lv_map_names[26] = "tvalerian02a";
+            lv_map_names[27] = "tvalerian02b";
+            lv_map_names[28] = "tvalerian03";
+            BankReload(libEFA54406_gv_abilities_bank);
+            BankWait(libEFA54406_gv_abilities_bank);
+            lv_map_index = 0;
+            for ( ; ( (auto9421F978_ai >= 0 && lv_map_index <= auto9421F978_ae) || (auto9421F978_ai < 0 && lv_map_index >= auto9421F978_ae) ) ; lv_map_index += auto9421F978_ai ) {
+                lv_lookat_map_name = lv_map_names[lv_map_index];
+                if ((lv_lookat_map_name != libEFA54406_gv_current_map_string)) {
+                    auto6B916A2F_val = lv_lookat_map_name;
+                    if (auto6B916A2F_val == "traynor01") {
+                        if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTRaynor01) != libCamp_ge_MissionStatus_Completed)) {
+                            continue;
+                        }
+
+                    }
+                    else if (auto6B916A2F_val == "traynor02") {
+                        if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTRaynor02) != libCamp_ge_MissionStatus_Completed)) {
+                            continue;
+                        }
+
+                    }
+                    else if (auto6B916A2F_val == "traynor03") {
+                        if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTRaynor03) != libCamp_ge_MissionStatus_Completed)) {
+                            continue;
+                        }
+
+                    }
+                    else if (auto6B916A2F_val == "thanson01") {
+                        if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTHanson01) != libCamp_ge_MissionStatus_Completed)) {
+                            continue;
+                        }
+
+                    }
+                    else if (auto6B916A2F_val == "thanson02") {
+                        if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTHanson02) != libCamp_ge_MissionStatus_Completed)) {
+                            continue;
+                        }
+
+                    }
+                    else if (auto6B916A2F_val == "thanson03a") {
+                        if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTHanson03A) != libCamp_ge_MissionStatus_Completed)) {
+                            continue;
+                        }
+
+                    }
+                    else if (auto6B916A2F_val == "thanson03b") {
+                        if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTHanson03B) != libCamp_ge_MissionStatus_Completed)) {
+                            continue;
+                        }
+
+                    }
+                    else if (auto6B916A2F_val == "ttosh01") {
+                        if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTTosh01) != libCamp_ge_MissionStatus_Completed)) {
+                            continue;
+                        }
+
+                    }
+                    else if (auto6B916A2F_val == "ttosh02") {
+                        if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTTosh02) != libCamp_ge_MissionStatus_Completed)) {
+                            continue;
+                        }
+
+                    }
+                    else if (auto6B916A2F_val == "ttosh03a") {
+                        if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTTosh03A) != libCamp_ge_MissionStatus_Completed)) {
+                            continue;
+                        }
+
+                    }
+                    else if (auto6B916A2F_val == "ttosh03b") {
+                        if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTTosh03B) != libCamp_ge_MissionStatus_Completed)) {
+                            continue;
+                        }
+
+                    }
+                    else if (auto6B916A2F_val == "thorner01") {
+                        if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTHorner01) != libCamp_ge_MissionStatus_Completed)) {
+                            continue;
+                        }
+
+                    }
+                    else if (auto6B916A2F_val == "thorner02") {
+                        if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTHorner02) != libCamp_ge_MissionStatus_Completed)) {
+                            continue;
+                        }
+
+                    }
+                    else if (auto6B916A2F_val == "thorner03") {
+                        if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTHorner03) != libCamp_ge_MissionStatus_Completed)) {
+                            continue;
+                        }
+
+                    }
+                    else if (auto6B916A2F_val == "thorner04") {
+                        if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTHorner04) != libCamp_ge_MissionStatus_Completed)) {
+                            continue;
+                        }
+
+                    }
+                    else if (auto6B916A2F_val == "thorner05s") {
+                        if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTHorner05S) != libCamp_ge_MissionStatus_Completed)) {
+                            continue;
+                        }
+
+                    }
+                    else if (auto6B916A2F_val == "ttychus01") {
+                        if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTTychus01) != libCamp_ge_MissionStatus_Completed)) {
+                            continue;
+                        }
+
+                    }
+                    else if (auto6B916A2F_val == "ttychus02") {
+                        if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTTychus02) != libCamp_ge_MissionStatus_Completed)) {
+                            continue;
+                        }
+
+                    }
+                    else if (auto6B916A2F_val == "ttychus03") {
+                        if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTTychus03) != libCamp_ge_MissionStatus_Completed)) {
+                            continue;
+                        }
+
+                    }
+                    else if (auto6B916A2F_val == "ttychus04") {
+                        if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTTychus04) != libCamp_ge_MissionStatus_Completed)) {
+                            continue;
+                        }
+
+                    }
+                    else if (auto6B916A2F_val == "ttychus05") {
+                        if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTTychus05) != libCamp_ge_MissionStatus_Completed)) {
+                            continue;
+                        }
+
+                    }
+                    else if (auto6B916A2F_val == "tzeratul01") {
+                        if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTZeratul01) != libCamp_ge_MissionStatus_Completed)) {
+                            continue;
+                        }
+
+                    }
+                    else if (auto6B916A2F_val == "tzeratul02") {
+                        if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTZeratul02) != libCamp_ge_MissionStatus_Completed)) {
+                            continue;
+                        }
+
+                    }
+                    else if (auto6B916A2F_val == "tzeratul03") {
+                        if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTZeratul03) != libCamp_ge_MissionStatus_Completed)) {
+                            continue;
+                        }
+
+                    }
+                    else if (auto6B916A2F_val == "tzeratul04") {
+                        if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTZeratul04) != libCamp_ge_MissionStatus_Completed)) {
+                            continue;
+                        }
+
+                    }
+                    else if (auto6B916A2F_val == "tvalerian01") {
+                        if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTValerian01) != libCamp_ge_MissionStatus_Completed)) {
+                            continue;
+                        }
+
+                    }
+                    else if (auto6B916A2F_val == "tvalerian02a") {
+                        if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTValerian02A) != libCamp_ge_MissionStatus_Completed)) {
+                            continue;
+                        }
+
+                    }
+                    else if (auto6B916A2F_val == "tvalerian02b") {
+                        if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTValerian02B) != libCamp_ge_MissionStatus_Completed)) {
+                            continue;
+                        }
+
+                    }
+                    else if (auto6B916A2F_val == "tvalerian03") {
+                        if ((libCamp_gf_MissionStatus(libCamp_ge_MapID_MapTValerian03) != libCamp_ge_MissionStatus_Completed)) {
+                            continue;
+                        }
+
+                    }
+                    else {
+                    }
+                }
+
+                lv_lookat_map_choice = BankValueGetAsString(libEFA54406_gv_abilities_bank, "mission_choices", lv_lookat_map_name);
+                autoE7B54588_val = lv_lookat_map_choice;
+                if (autoE7B54588_val == "Energy Regeneration") {
+                    lv_temp_energy_regeneration += 1;
+                }
+                else if (autoE7B54588_val == "Initial Energy") {
+                    lv_temp_initial_energy += 1;
+                }
+                else if (autoE7B54588_val == "Heal") {
+                    lv_temp_heal_units += 1;
+                }
+                else if (autoE7B54588_val == "Shields") {
+                    lv_temp_shields += 1;
+                }
+                else if (autoE7B54588_val == "Restore Energy") {
+                    lv_temp_restore_unit_energy += 1;
+                }
+                else if (autoE7B54588_val == "Stimpack") {
+                    lv_temp_movement_attack_speed += 1;
+                }
+                else if (autoE7B54588_val == "Range Up") {
+                    lv_temp_range += 1;
+                }
+                else if (autoE7B54588_val == "Building Speed") {
+                    lv_temp_constuction_production_research_speed += 1;
+                }
+                else if (autoE7B54588_val == "Resources") {
+                    lv_temp_get_resources += 1;
+                }
+                else if (autoE7B54588_val == "Call Structure") {
+                    lv_temp_call_structure += 1;
+                }
+                else if (autoE7B54588_val == "Call Backup") {
+                    lv_temp_call_backup += 1;
+                }
+                else if (autoE7B54588_val == "Slowdown") {
+                    lv_temp_slow_enemies += 1;
+                }
+                else if (autoE7B54588_val == "Nuke") {
+                    lv_temp_nuke += 1;
+                }
+                else if (autoE7B54588_val == "Purifier Beam") {
+                    lv_temp_purifier_beam += 1;
+                }
+                else {
+                }
+            }
+            libEFA54406_gv_level_initial_energy = lv_temp_initial_energy;
+            libEFA54406_gv_level_energy_regeneration = lv_temp_energy_regeneration;
+            libEFA54406_gv_level_get_resources = lv_temp_get_resources;
+            libEFA54406_gv_level_heal_units = lv_temp_heal_units;
+            libEFA54406_gv_level_restore_unit_energy = lv_temp_restore_unit_energy;
+            libEFA54406_gv_level_shields = lv_temp_shields;
+            libEFA54406_gv_level_buff_movement_attack_speed = lv_temp_movement_attack_speed;
+            libEFA54406_gv_level_buff_construction_production_research_speed = lv_temp_constuction_production_research_speed;
+            libEFA54406_gv_level_buff_range = lv_temp_range;
+            libEFA54406_gv_level_slow_enemies = lv_temp_slow_enemies;
+            libEFA54406_gv_level_call_structure = lv_temp_call_structure;
+            libEFA54406_gv_level_call_backup = lv_temp_call_backup;
+            libEFA54406_gv_level_nuke = lv_temp_nuke;
+            libEFA54406_gv_level_purifier_beam = lv_temp_purifier_beam;
         }
         else {
             libEFA54406_gv_level_initial_energy = 3;
@@ -923,6 +2614,10 @@ bool auto_libEFA54406_gf_ShowAbilities_TriggerFunc (bool testConds, bool runActi
                 libEFA54406_gv_current_energy = (libEFA54406_gv_current_energy + 225.0);
             }
             else {
+                if ((libEFA54406_gv_previous_choice_on_map == "Initial Energy")) {
+                    libEFA54406_gv_current_energy = MaxF((libEFA54406_gv_current_energy - 50.0), 0.0);
+                }
+
             }
             auto261047EE_val = libEFA54406_gv_level_energy_regeneration;
             if (auto261047EE_val == 1) {
@@ -938,6 +2633,10 @@ bool auto_libEFA54406_gf_ShowAbilities_TriggerFunc (bool testConds, bool runActi
                 libEFA54406_gv_energy_regen_rate = 1.5;
             }
             else {
+                if ((libEFA54406_gv_previous_choice_on_map == "Energy Regeneration")) {
+                    libEFA54406_gv_energy_regen_rate = (libEFA54406_gv_energy_regen_rate - 0.125);
+                }
+
             }
         }
 
@@ -953,6 +2652,10 @@ bool auto_libEFA54406_gf_ShowAbilities_TriggerFunc (bool testConds, bool runActi
                 libEFA54406_gf_create_action_0_arg("ability_resources", true, "Ability: Resources (LVL 3) - Immediately receive 200 Minerals and 200 Vespene Gas. Energy cost: 75", -1);
             }
             else {
+                if ((libEFA54406_gv_previous_choice_on_map == "Resources")) {
+                    libEFA54406_gf_create_action_0_arg("ability_resources", false, "", -1);
+                }
+
             }
             autoC9536157_val = libEFA54406_gv_level_buff_construction_production_research_speed;
             if (autoC9536157_val == 1) {
@@ -965,6 +2668,10 @@ bool auto_libEFA54406_gf_ShowAbilities_TriggerFunc (bool testConds, bool runActi
                 libEFA54406_gf_create_action_1_arg("ability_building_speed", true, "Ability: Building Speed (LVL 3) - Immediately increase the Construction, Production and Research speed of your buildings by either 100% with Energy cost of 75 (small Buff) or 200% with Energy cost of 125 (big Buff). The buff lasts 25 seconds", "string(small Buff, big Buff)", -1);
             }
             else {
+                if ((libEFA54406_gv_previous_choice_on_map == "Building Speed")) {
+                    libEFA54406_gf_create_action_0_arg("ability_building_speed", false, "", -1);
+                }
+
             }
             auto70A67B43_val = libEFA54406_gv_level_slow_enemies;
             if (auto70A67B43_val == 1) {
@@ -977,6 +2684,10 @@ bool auto_libEFA54406_gf_ShowAbilities_TriggerFunc (bool testConds, bool runActi
                 libEFA54406_gf_create_action_1_arg("ability_slowdown", true, "Ability: Slowdown (LVL 3) - Immediately slow down all enemies by either 33% with Energy cost of 75 (small Slowdown), 66% with Energy cost of 125 (medium Slowdown) or completely stun them with Energy cost of 150 (great Slowdown). The slowdown lasts for 15 seconds", "string(small Slowdown, medium Slowdown, great Slowdown)", -1);
             }
             else {
+                if ((libEFA54406_gv_previous_choice_on_map == "Slowdown")) {
+                    libEFA54406_gf_create_action_0_arg("ability_slowdown", false, "", -1);
+                }
+
             }
             autoFE59E5ED_val = libEFA54406_gv_level_call_structure;
             if (autoFE59E5ED_val == 1) {
@@ -989,6 +2700,10 @@ bool auto_libEFA54406_gf_ShowAbilities_TriggerFunc (bool testConds, bool runActi
                 libEFA54406_gf_create_action_1_arg("ability_call_structure", true, "Ability: Call Structure (LVL 3) - Call down either a Supply Depot which gives +8 useable supply with Energy cost of 50 (Supply Depot), a production building with Energy cost of 75 (Barracks, Factory or Starport) or a Command Center which builds workers with Energy cost of 100 (Command Center)", "string(Supply Depot, Barracks, Factory, Starport, Command Center)", -1);
             }
             else {
+                if ((libEFA54406_gv_previous_choice_on_map == "Call Structure")) {
+                    libEFA54406_gf_create_action_0_arg("ability_call_structure", false, "", -1);
+                }
+
             }
             auto4FF0852D_val = libEFA54406_gv_level_call_backup;
             if (auto4FF0852D_val == 1) {
@@ -1001,6 +2716,10 @@ bool auto_libEFA54406_gf_ShowAbilities_TriggerFunc (bool testConds, bool runActi
                 libEFA54406_gf_create_action_1_arg("ability_call_backup", true, "Ability: Call Backup (LVL 3) - Call down either Infantry backup with Energy cost of 50 (Infantry), Vehicle backup with Energy cost of 75 (Vehicle) or Aerial backup with Energy cost of 75 (Aerial)", "string(Infantry, Vehicle, Aerial)", -1);
             }
             else {
+                if ((libEFA54406_gv_previous_choice_on_map == "Call Backup")) {
+                    libEFA54406_gf_create_action_0_arg("ability_call_backup", false, "", -1);
+                }
+
             }
             auto1C48C79E_val = libEFA54406_gv_level_nuke;
             if (auto1C48C79E_val == 1) {
@@ -1016,6 +2735,10 @@ bool auto_libEFA54406_gf_ShowAbilities_TriggerFunc (bool testConds, bool runActi
                 libEFA54406_gf_create_action_2_arg("ability_nuke", true, "Ability: Nuke (LVL 4) - Call down either a tactical Nuke with Energy cost of 50 (small Nuke) or a larger Nuke with Energy cost of 100 (large Nuke) on the enemy (on Enemy) or where the Player is currently looking at (on Player looking). For an Energy cost of 300 you can call down the MEGA NUKE (MEGA NUKE)", "string(small Nuke, large Nuke, MEGA NUKE)", "string(on Enemy, on Player looking)", -1);
             }
             else {
+                if ((libEFA54406_gv_previous_choice_on_map == "Nuke")) {
+                    libEFA54406_gf_create_action_0_arg("ability_nuke", false, "", -1);
+                }
+
             }
             autoCF443F34_val = libEFA54406_gv_level_purifier_beam;
             if (autoCF443F34_val == 1) {
@@ -1028,6 +2751,10 @@ bool auto_libEFA54406_gf_ShowAbilities_TriggerFunc (bool testConds, bool runActi
                 libEFA54406_gf_create_action_2_arg("ability_purifier_beam", true, "Ability: Purifier Beam (LVL 3) - Call down either a small Purifier Beam with Energy cost of 75 (small Beam), a medium size Purifier Beam with Energy cost of 100 (medium Beam) or a large Purifier Beam with Energy cost of 125 (large Beam) on the enemy (on Enemy) or where the Player is currently looking at (on Player looking). The Purifier Beam deals continuous damage in an area for 15 seconds and slowly moves to the nearest living enemy", "string(small Beam, medium Beam, large Beam)", "string(on Enemy, on Player looking)", -1);
             }
             else {
+                if ((libEFA54406_gv_previous_choice_on_map == "Purifier Beam")) {
+                    libEFA54406_gf_create_action_0_arg("ability_purifier_beam", false, "", -1);
+                }
+
             }
         }
         else {
@@ -1053,6 +2780,10 @@ bool auto_libEFA54406_gf_ShowAbilities_TriggerFunc (bool testConds, bool runActi
             libEFA54406_gf_create_action_1_arg("ability_heal", true, "Ability: Heal (LVL 4) - Immediately heal all your units for either 33% of their max health with an Energy cost of 50 (small Heal), 67% of their max health with an Energy cost of 75 (medium Heal) or 100% of their max health with an Energy cost of 100 (great Heal)", "string(small Heal, medium Heal, great Heal)", -1);
         }
         else {
+            if ((libEFA54406_gv_previous_choice_on_map == "Heal")) {
+                libEFA54406_gf_create_action_0_arg("ability_heal", false, "", -1);
+            }
+
         }
         auto287DC716_val = libEFA54406_gv_level_restore_unit_energy;
         if (auto287DC716_val == 1) {
@@ -1065,6 +2796,10 @@ bool auto_libEFA54406_gf_ShowAbilities_TriggerFunc (bool testConds, bool runActi
             libEFA54406_gf_create_action_1_arg("ability_restore_energy", true, "Ability: Restore Energy (LVL 3) - Immediately restore all your units energy levels by either 50% with Energy cost of 75 (small energy restoration) or 100% with Energy cost of 125 (great energy restoration)", "string(small energy restoration, great energy restoration)", -1);
         }
         else {
+            if ((libEFA54406_gv_previous_choice_on_map == "Restore Energy")) {
+                libEFA54406_gf_create_action_0_arg("ability_restore_energy", false, "", -1);
+            }
+
         }
         auto01227717_val = libEFA54406_gv_level_shields;
         if (auto01227717_val == 1) {
@@ -1077,6 +2812,10 @@ bool auto_libEFA54406_gf_ShowAbilities_TriggerFunc (bool testConds, bool runActi
             libEFA54406_gf_create_action_1_arg("ability_shields", true, "Ability: Shields (LVL 3) - Immediately give your units shields with either 50 health for 75 Energy (small Shield), 100 health for 100 Energy (medium Shield) or 200 health for 125 Energy (great Shield). The shields lasts for 20 seconds", "string(small Shield, medium Shield, great Shield)", -1);
         }
         else {
+            if ((libEFA54406_gv_previous_choice_on_map == "Shields")) {
+                libEFA54406_gf_create_action_0_arg("ability_shields", false, "", -1);
+            }
+
         }
         auto349213DE_val = libEFA54406_gv_level_buff_movement_attack_speed;
         if (auto349213DE_val == 1) {
@@ -1089,6 +2828,10 @@ bool auto_libEFA54406_gf_ShowAbilities_TriggerFunc (bool testConds, bool runActi
             libEFA54406_gf_create_action_1_arg("ability_stimpack", true, "Ability: Stimpack (LVL 3) - Immediately increase the movement and attack speed of your combat units by either 50% with Energy cost of 50 (small Buff) or 100% with Energy cost of 100 (big Buff). The buff lasts 15 seconds", "string(small Buff, big Buff)", -1);
         }
         else {
+            if ((libEFA54406_gv_previous_choice_on_map == "Stimpack")) {
+                libEFA54406_gf_create_action_0_arg("ability_stimpack", false, "", -1);
+            }
+
         }
         auto477D68DE_val = libEFA54406_gv_level_buff_range;
         if (auto477D68DE_val == 1) {
@@ -1101,12 +2844,18 @@ bool auto_libEFA54406_gf_ShowAbilities_TriggerFunc (bool testConds, bool runActi
             libEFA54406_gf_create_action_1_arg("ability_range_up", true, "Ability: Range Up (LVL 3) - Immediately increase the weapons range of your units by either 3 with Energy cost of 50 (small Buff) or 5 with Energy cost of 100 (big Buff). The buff lasts 20 seconds", "string(small Buff, big Buff)", -1);
         }
         else {
+            if ((libEFA54406_gv_previous_choice_on_map == "Range Up")) {
+                libEFA54406_gf_create_action_0_arg("ability_range_up", false, "", -1);
+            }
+
         }
+        libEFA54406_gv_previous_choice_on_map = "";
     }
     else {
         DialogSetVisible(libEFA54406_gv_energy_dialog, PlayerGroupAll(), false);
         DialogSetVisible(libEFA54406_gv_abilities_top_bar, PlayerGroupAll(), false);
         DialogSetVisible(libEFA54406_gv_abilities_info, PlayerGroupAll(), false);
+        DialogSetVisible(libEFA54406_gv_standard_dialog, PlayerGroupAll(), false);
         libEFA54406_gf_create_action_0_arg("ability_resources", false, "", -1);
         libEFA54406_gf_create_action_0_arg("ability_building_speed", false, "", -1);
         libEFA54406_gf_create_action_0_arg("ability_slowdown", false, "", -1);
@@ -1349,8 +3098,13 @@ bool auto_libEFA54406_gf_Abilityheal_units_TriggerFunc (bool testConds, bool run
     unitgroup lv_player_units;
     fixed lv_max_life;
     fixed lv_max_shield;
+    bool lv_not_full_health_exists;
 
     // Automatic Variable Declarations
+    string auto405462CD_val;
+    unitgroup autoC80F41D0_g;
+    int autoC80F41D0_u;
+    unit autoC80F41D0_var;
     string auto5BCC2785_val;
     int auto08AD37D8_val;
     unitgroup autoC38F2111_g;
@@ -1383,40 +3137,61 @@ bool auto_libEFA54406_gf_Abilityheal_units_TriggerFunc (bool testConds, bool run
         return true;
     }
 
-    auto5BCC2785_val = lp_heal_size;
-    if (auto5BCC2785_val == "small Heal") {
+    auto405462CD_val = lp_heal_size;
+    if (auto405462CD_val == "small Heal") {
         if ((libEFA54406_gv_current_energy < 50.0)) {
             libEFA54406_gf_create_context("not_enough_energy", "Couldn't apply the small Heal to your units because you don't have enough energy. Needs 50 Energy and you have " + IntToString(FixedToInt(libEFA54406_gv_current_energy)) + " Energy", true);
             return true;
         }
-        else {
-            libEFA54406_gv_current_energy -= 50.0;
-        }
+
     }
-    else if (auto5BCC2785_val == "medium Heal") {
+    else if (auto405462CD_val == "medium Heal") {
         if ((libEFA54406_gv_current_energy < 75.0)) {
             libEFA54406_gf_create_context("not_enough_energy", "Couldn't apply the medium Heal to your units because you don't have enough energy. Needs 75 Energy and you have " + IntToString(FixedToInt(libEFA54406_gv_current_energy)) + " Energy", true);
             return true;
         }
-        else {
-            libEFA54406_gv_current_energy -= 75.0;
-        }
+
     }
-    else if (auto5BCC2785_val == "great Heal") {
+    else if (auto405462CD_val == "great Heal") {
         if ((libEFA54406_gv_current_energy < 100.0)) {
             libEFA54406_gf_create_context("not_enough_energy", "Couldn't apply the great Heal to your units because you don't have enough energy. Needs 100 Energy and you have " + IntToString(FixedToInt(libEFA54406_gv_current_energy)) + " Energy", true);
             return true;
         }
-        else {
-            libEFA54406_gv_current_energy -= 100.0;
+
+    }
+    else {
+    }
+    lv_player_units = UnitGroup(null, 1, RegionPlayableMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    UnitGroupAddUnitGroup(lv_player_units, libNtve_gf_UnitsInRegionWithAllianceToPlayerMatchingCondition(null, "", "", 1, c_unitAllianceAlly, RegionPlayableMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
+    UnitGroupAddUnitGroup(lv_player_units, UnitGroup("DrakkenLaserDrill", c_playerAny, RegionPlayableMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
+    autoC80F41D0_g = lv_player_units;
+    autoC80F41D0_u = UnitGroupCount(autoC80F41D0_g, c_unitCountAll);
+    for (;; autoC80F41D0_u -= 1) {
+        autoC80F41D0_var = UnitGroupUnitFromEnd(autoC80F41D0_g, autoC80F41D0_u);
+        if (autoC80F41D0_var == null) { break; }
+        if ((UnitGetPropertyFixed(autoC80F41D0_var, c_unitPropLife, c_unitPropCurrent) < UnitGetPropertyFixed(autoC80F41D0_var, c_unitPropLifeMax, c_unitPropCurrent))) {
+            lv_not_full_health_exists = true;
         }
+
+    }
+    if ((lv_not_full_health_exists == false)) {
+        libEFA54406_gf_create_context("no_damaged", "Couldn't use the Heal ability because there are no damaged units to be healed", true);
+        return true;
+    }
+
+    auto5BCC2785_val = lp_heal_size;
+    if (auto5BCC2785_val == "small Heal") {
+        libEFA54406_gv_current_energy -= 50.0;
+    }
+    else if (auto5BCC2785_val == "medium Heal") {
+        libEFA54406_gv_current_energy -= 75.0;
+    }
+    else if (auto5BCC2785_val == "great Heal") {
+        libEFA54406_gv_current_energy -= 100.0;
     }
     else {
     }
     libEFA54406_gf_AbilityCooldown(7, libEFA54406_gv_top_bar_ability_cd_7);
-    lv_player_units = UnitGroup(null, 1, RegionPlayableMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-    UnitGroupAddUnitGroup(lv_player_units, libNtve_gf_UnitsInRegionWithAllianceToPlayerMatchingCondition(null, "", "", 1, c_unitAllianceAlly, RegionPlayableMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
-    UnitGroupAddUnitGroup(lv_player_units, UnitGroup("DrakkenLaserDrill", c_playerAny, RegionPlayableMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
     auto08AD37D8_val = libEFA54406_gv_level_heal_units;
     if (auto08AD37D8_val == 1) {
         autoC38F2111_g = lv_player_units;
@@ -5388,6 +7163,11 @@ bool libEFA54406_gt_Executeactionsglobal_Func (bool testConds, bool runActions) 
         TriggerExecute(libEFA54406_gt_CurrentEnergy, true, false);
     }
 
+    if ((BankValueGetAsFlag(BankLastCreated(), "do_action", "upgrade_ability") == true)) {
+        BankValueSetFromFlag(BankLastCreated(), "do_action", "upgrade_ability", false);
+        libEFA54406_gf_NeuroChoosesAbility(BankValueGetAsString(BankLastCreated(), "do_action", "upgrade_ability_arg_1"));
+    }
+
     if ((BankValueGetAsFlag(BankLastCreated(), "do_action", "ability_resources") == true)) {
         BankValueSetFromFlag(BankLastCreated(), "do_action", "ability_resources", false);
         if ((libEFA54406_gv_level_get_resources == 3)) {
@@ -5539,6 +7319,115 @@ bool libEFA54406_gt_Stopexecutionglobal_Func (bool testConds, bool runActions) {
 void libEFA54406_gt_Stopexecutionglobal_Init () {
     libEFA54406_gt_Stopexecutionglobal = TriggerCreate("libEFA54406_gt_Stopexecutionglobal_Func");
     TriggerAddEventGeneric(libEFA54406_gt_Stopexecutionglobal, "stop_execution");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Close Standard Dialog
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_CloseStandardDialog_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((EventDialogControl() == libEFA54406_gv_standard_dialog_close))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    DialogSetVisible(libEFA54406_gv_standard_dialog, PlayerGroupAll(), false);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_CloseStandardDialog_Init () {
+    libEFA54406_gt_CloseStandardDialog = TriggerCreate("libEFA54406_gt_CloseStandardDialog_Func");
+    TriggerAddEventDialogControl(libEFA54406_gt_CloseStandardDialog, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Load Ability Bank
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_LoadAbilityBank_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    BankLoad("NeuroIntegrationAbilities", 1);
+    libEFA54406_gv_abilities_bank = BankLastCreated();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_LoadAbilityBank_Init () {
+    libEFA54406_gt_LoadAbilityBank = TriggerCreate("libEFA54406_gt_LoadAbilityBank_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Create Ability Bank
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_CreateAbilityBank_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    const int auto6FB21B14_n = 10;
+    int auto6FB21B14_i;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    Wait(2.0, c_timeReal);
+    if ((libEFA54406_gv_is_first_mission == false) && (libEFA54406_gv_is_intermission == false) && (BankExists("NeuroIntegrationAbilities", 1) == false)) {
+        for (auto6FB21B14_i = 1; auto6FB21B14_i <= auto6FB21B14_n; auto6FB21B14_i += 1) {
+            UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringExternal("Param/Value/lib_EFA54406_4E42F314"));
+            Wait(5.0, c_timeReal);
+        }
+    }
+
+    if ((libEFA54406_gv_is_first_mission == true)) {
+        BankValueSetFromString(libEFA54406_gv_abilities_bank, "mission_choices", "traynor01", "none");
+        BankValueSetFromString(libEFA54406_gv_abilities_bank, "mission_choices", "traynor02", "none");
+        BankValueSetFromString(libEFA54406_gv_abilities_bank, "mission_choices", "traynor03", "none");
+        BankValueSetFromString(libEFA54406_gv_abilities_bank, "mission_choices", "thanson01", "none");
+        BankValueSetFromString(libEFA54406_gv_abilities_bank, "mission_choices", "thanson02", "none");
+        BankValueSetFromString(libEFA54406_gv_abilities_bank, "mission_choices", "thanson03a", "none");
+        BankValueSetFromString(libEFA54406_gv_abilities_bank, "mission_choices", "thanson03b", "none");
+        BankValueSetFromString(libEFA54406_gv_abilities_bank, "mission_choices", "ttosh01", "none");
+        BankValueSetFromString(libEFA54406_gv_abilities_bank, "mission_choices", "ttosh02", "none");
+        BankValueSetFromString(libEFA54406_gv_abilities_bank, "mission_choices", "ttosh03a", "none");
+        BankValueSetFromString(libEFA54406_gv_abilities_bank, "mission_choices", "ttosh03b", "none");
+        BankValueSetFromString(libEFA54406_gv_abilities_bank, "mission_choices", "thorner01", "none");
+        BankValueSetFromString(libEFA54406_gv_abilities_bank, "mission_choices", "thorner02", "none");
+        BankValueSetFromString(libEFA54406_gv_abilities_bank, "mission_choices", "thorner03", "none");
+        BankValueSetFromString(libEFA54406_gv_abilities_bank, "mission_choices", "thorner04", "none");
+        BankValueSetFromString(libEFA54406_gv_abilities_bank, "mission_choices", "thorner05s", "none");
+        BankValueSetFromString(libEFA54406_gv_abilities_bank, "mission_choices", "ttychus01", "none");
+        BankValueSetFromString(libEFA54406_gv_abilities_bank, "mission_choices", "ttychus02", "none");
+        BankValueSetFromString(libEFA54406_gv_abilities_bank, "mission_choices", "ttychus03", "none");
+        BankValueSetFromString(libEFA54406_gv_abilities_bank, "mission_choices", "ttychus04", "none");
+        BankValueSetFromString(libEFA54406_gv_abilities_bank, "mission_choices", "ttychus05", "none");
+        BankValueSetFromString(libEFA54406_gv_abilities_bank, "mission_choices", "tzeratul01", "none");
+        BankValueSetFromString(libEFA54406_gv_abilities_bank, "mission_choices", "tzeratul02", "none");
+        BankValueSetFromString(libEFA54406_gv_abilities_bank, "mission_choices", "tzeratul03", "none");
+        BankValueSetFromString(libEFA54406_gv_abilities_bank, "mission_choices", "tzeratul04", "none");
+        BankValueSetFromString(libEFA54406_gv_abilities_bank, "mission_choices", "tvalerian01", "none");
+        BankValueSetFromString(libEFA54406_gv_abilities_bank, "mission_choices", "tvalerian02a", "none");
+        BankValueSetFromString(libEFA54406_gv_abilities_bank, "mission_choices", "tvalerian02b", "none");
+        BankValueSetFromString(libEFA54406_gv_abilities_bank, "mission_choices", "tvalerian03", "none");
+        BankSave(libEFA54406_gv_abilities_bank);
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_CreateAbilityBank_Init () {
+    libEFA54406_gt_CreateAbilityBank = TriggerCreate("libEFA54406_gt_CreateAbilityBank_Func");
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -5713,8 +7602,8 @@ bool libEFA54406_gt_AbilityEnergy_Func (bool testConds, bool runActions) {
         Wait(0.1, c_timeGame);
         if ((libEFA54406_gv_is_blocking == false)) {
             if ((libEFA54406_gv_infinite_energy == false)) {
-                libEFA54406_gv_current_energy = MinF((libEFA54406_gv_current_energy + (0.042 * libEFA54406_gv_energy_regen_rate)), libEFA54406_gv_max_energy);
-                libEFA54406_gv_energy_label_text = (IntToText(FixedToInt(libEFA54406_gv_current_energy)) + StringExternal("Param/Value/lib_EFA54406_83B44779") + IntToText(FixedToInt(libEFA54406_gv_max_energy)));
+                libEFA54406_gv_current_energy = MinF((libEFA54406_gv_current_energy + (0.025 * libEFA54406_gv_energy_regen_rate)), libEFA54406_gv_max_energy);
+                libEFA54406_gv_energy_label_text = (IntToText(FixedToInt(libEFA54406_gv_current_energy)) + StringExternal("Param/Value/lib_EFA54406_D42215F5") + IntToText(FixedToInt(libEFA54406_gv_max_energy)));
                 libNtve_gf_SetDialogItemText(libEFA54406_gv_energy_label, libEFA54406_gv_energy_label_text, PlayerGroupAll());
             }
             else {
@@ -6011,11 +7900,13 @@ bool libEFA54406_gt_ShowAbilitiesInfo_Func (bool testConds, bool runActions) {
 
     if ((libEFA54406_gv_abilities_info_is_showing == true)) {
         DialogSetVisible(libEFA54406_gv_abilities_info, PlayerGroupAll(), false);
+        DialogSetVisible(libEFA54406_gv_standard_dialog, PlayerGroupAll(), false);
         libEFA54406_gv_abilities_info_is_showing = false;
         libEFA54406_gf_ShowAbilities(true);
     }
     else {
         DialogSetVisible(libEFA54406_gv_abilities_info, PlayerGroupAll(), true);
+        DialogSetVisible(libEFA54406_gv_standard_dialog, PlayerGroupAll(), false);
         libEFA54406_gv_abilities_info_is_showing = true;
         libEFA54406_gv_info_not_yet_shown = false;
     }
@@ -6046,6 +7937,7 @@ bool libEFA54406_gt_CloseAbilitiesInfo_Func (bool testConds, bool runActions) {
     }
 
     DialogSetVisible(libEFA54406_gv_abilities_info, PlayerGroupAll(), false);
+    DialogSetVisible(libEFA54406_gv_standard_dialog, PlayerGroupAll(), false);
     libEFA54406_gv_abilities_info_is_showing = false;
     libEFA54406_gf_ShowAbilities(true);
     return true;
@@ -6067,11 +7959,16 @@ bool libEFA54406_gt_UnlockEverything_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringExternal("Param/Value/lib_EFA54406_21346ACA"));
-    libEFA54406_gv_infinite_energy = true;
-    libEFA54406_gv_no_cooldowns = true;
-    libEFA54406_gv_unlock_all_abilities = true;
-    libEFA54406_gf_ShowAbilities(true);
+    if ((libEFA54406_gv_is_intermission == false)) {
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringExternal("Param/Value/lib_EFA54406_21346ACA"));
+        libEFA54406_gv_infinite_energy = true;
+        libEFA54406_gv_no_cooldowns = true;
+        libEFA54406_gv_unlock_all_abilities = true;
+        libEFA54406_gf_ShowAbilities(true);
+    }
+    else {
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringExternal("Param/Value/lib_EFA54406_D3D0AA92"));
+    }
     return true;
 }
 
@@ -6091,9 +7988,14 @@ bool libEFA54406_gt_UnlockAllAbilities_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringExternal("Param/Value/lib_EFA54406_F5970833"));
-    libEFA54406_gv_unlock_all_abilities = true;
-    libEFA54406_gf_ShowAbilities(true);
+    if ((libEFA54406_gv_is_intermission == false)) {
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringExternal("Param/Value/lib_EFA54406_F5970833"));
+        libEFA54406_gv_unlock_all_abilities = true;
+        libEFA54406_gf_ShowAbilities(true);
+    }
+    else {
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringExternal("Param/Value/lib_EFA54406_FB51E2CF"));
+    }
     return true;
 }
 
@@ -6113,8 +8015,13 @@ bool libEFA54406_gt_InfiniteEnergy_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringExternal("Param/Value/lib_EFA54406_A0A9A7FC"));
-    libEFA54406_gv_infinite_energy = true;
+    if ((libEFA54406_gv_is_intermission == false)) {
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringExternal("Param/Value/lib_EFA54406_A0A9A7FC"));
+        libEFA54406_gv_infinite_energy = true;
+    }
+    else {
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringExternal("Param/Value/lib_EFA54406_5933CBDF"));
+    }
     return true;
 }
 
@@ -6134,8 +8041,13 @@ bool libEFA54406_gt_NoCooldowns_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringExternal("Param/Value/lib_EFA54406_B346A1E3"));
-    libEFA54406_gv_no_cooldowns = true;
+    if ((libEFA54406_gv_is_intermission == false)) {
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringExternal("Param/Value/lib_EFA54406_B346A1E3"));
+        libEFA54406_gv_no_cooldowns = true;
+    }
+    else {
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringExternal("Param/Value/lib_EFA54406_4D0EF666"));
+    }
     return true;
 }
 
@@ -6158,6 +8070,7 @@ bool libEFA54406_gt_StartupContext_Func (bool testConds, bool runActions) {
     Wait(0.4, c_timeReal);
     TriggerSendEvent("startup_context");
     if ((libEFA54406_gv_is_intermission == false)) {
+        libEFA54406_gf_create_context("mission_intro", "You have entered a mission. You can assist the player and have access to powerful abilities which use a regenerating Energy resource.", true);
         libEFA54406_gf_ObjectiveContext(false, "");
         if ((libEFA54406_gv_is_blocking == false)) {
             libEFA54406_gf_PlayerUnitsContext("all");
@@ -8776,7 +10689,7 @@ bool libEFA54406_gt_CurrentEnergy_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    libEFA54406_gf_create_context("current_energy", "Your currently available Energy: " + IntToString(FixedToInt(libEFA54406_gv_current_energy)) + " Energy", true);
+    libEFA54406_gf_create_context("current_energy", "Your currently available Energy for abilities: " + IntToString(FixedToInt(libEFA54406_gv_current_energy)) + " Energy", true);
     return true;
 }
 
@@ -10850,6 +12763,8 @@ bool libEFA54406_gt_InitMap_Func (bool testConds, bool runActions) {
     }
 
     TriggerExecute(libEFA54406_gt_CreateNeuroIntegrationbank, true, false);
+    TriggerExecute(libEFA54406_gt_LoadAbilityBank, true, true);
+    TriggerExecute(libEFA54406_gt_CreateAbilityBank, true, false);
     Wait(1.0, c_timeReal);
     TriggerSendEvent("execute_actions_global");
     return true;
@@ -10872,21 +12787,22 @@ bool libEFA54406_gt_CreateNeuroIntegrationbank_Func (bool testConds, bool runAct
     }
 
     BankLoad("NeuroIntegration", 1);
-    BankWait(BankLastCreated());
     libEFA54406_gv_neuroIntegration = BankLastCreated();
-    BankSectionRemove(BankLastCreated(), "game_context");
-    BankSectionRemove(BankLastCreated(), "possible_actions");
-    BankSectionRemove(BankLastCreated(), "do_action");
-    BankSectionRemove(BankLastCreated(), "force_action");
-    BankValueSetFromFlag(BankLastCreated(), "game_state", "in_mission", true);
-    BankValueSetFromInt(BankLastCreated(), "game_state", "active", 0);
-    BankSave(BankLastCreated());
+    BankWait(libEFA54406_gv_neuroIntegration);
+    BankSectionRemove(libEFA54406_gv_neuroIntegration, "game_context");
+    BankSectionRemove(libEFA54406_gv_neuroIntegration, "possible_actions");
+    BankSectionRemove(libEFA54406_gv_neuroIntegration, "do_action");
+    BankSectionRemove(libEFA54406_gv_neuroIntegration, "force_action");
+    BankValueSetFromFlag(libEFA54406_gv_neuroIntegration, "game_state", "in_mission", true);
+    BankValueSetFromInt(libEFA54406_gv_neuroIntegration, "game_state", "active", 0);
+    BankSave(libEFA54406_gv_neuroIntegration);
     TriggerExecute(libEFA54406_gt_ClearQueue, true, false);
     libEFA54406_gf_create_action_1_arg("chat_message", true, "Post a message into the game chat", "string", -1);
     Wait(0.5, c_timeReal);
     if ((libEFA54406_gv_is_intermission == false)) {
         TriggerEnable(libCamp_gt_TS_VSScreenContinue, false);
         TriggerEnable(libCamp_gt_TS_VSScreenPlayAgain, false);
+        libEFA54406_gf_create_context("mission_intro", "You have entered a mission. You can assist the player and have access to powerful abilities which use a regenerating Energy resource.", true);
         if ((libEFA54406_gv_is_blocking == false)) {
             libEFA54406_gf_BlockContext(false);
         }
@@ -11032,10 +12948,13 @@ bool libEFA54406_gt_InitLoad_Func (bool testConds, bool runActions) {
         return true;
     }
 
+    BankSave(libEFA54406_gv_abilities_bank);
     TriggerSendEvent("stop_execution");
     BankRestore(libEFA54406_gv_neuroIntegration, 1, libEFA54406_gv_currentbankbackupid);
     BankSave(libEFA54406_gv_neuroIntegration);
-    Wait(1.0, c_timeReal);
+    Wait(0.5, c_timeReal);
+    TriggerSendEvent("stop_execution");
+    Wait(0.5, c_timeReal);
     TriggerSendEvent("execute_actions_global");
     TriggerExecute(libEFA54406_gt_StartupContext, true, false);
     return true;
@@ -11090,6 +13009,9 @@ void libEFA54406_gt_Savebackupbank_Init () {
 void libEFA54406_InitTriggers () {
     libEFA54406_gt_Executeactionsglobal_Init();
     libEFA54406_gt_Stopexecutionglobal_Init();
+    libEFA54406_gt_CloseStandardDialog_Init();
+    libEFA54406_gt_LoadAbilityBank_Init();
+    libEFA54406_gt_CreateAbilityBank_Init();
     libEFA54406_gt_CreateAbilityBar_Init();
     libEFA54406_gt_ShowAbilitiesCooldown_Init();
     libEFA54406_gt_AbilityEnergy_Init();

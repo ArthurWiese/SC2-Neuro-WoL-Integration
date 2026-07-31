@@ -145,22 +145,27 @@ Param/Value/lib_EFA54406_05755519=<c val="FF80C0">Neuro-sama</c>
 Param/Value/lib_EFA54406_05E82F00=→ <c val="FFFF00">Purifier Beam Level 1</c> - Small beam: Call down a small Purifier Beam that does area damage and follows enemies for 15s. (<c val="0080FF">75</c>)
 Param/Value/lib_EFA54406_063AF6EE=<c val="FFFF00">Heal Level 3</c> - Small Heal: 25% (<c val="0080FF">50</c>), Medium Heal: 50% (<c val="0080FF">75</c>), Large Heal: 50% (<c val="0080FF">100</c>)
 Param/Value/lib_EFA54406_0644BF78=<c val="FFFF00">Call Backup Level 3</c> - Call down Backup: Infantry (Elite-Marine) (<c val="0080FF">50</c>), Vehicle (Elite-Goliath) (<c val="0080FF">75</c>), Aerial (Elite-Wraith) (<c val="0080FF">75</c>)
+Param/Value/lib_EFA54406_067C0ABE=Close
 Param/Value/lib_EFA54406_06B24ACB=Stimpack
 Param/Value/lib_EFA54406_06F37814=Play Again: 
-Param/Value/lib_EFA54406_0720066A=→ <c val="FFFF00">Purifier Beam Level 2</c> - Medium beam: Call down a medium size Purifier Beam that does area damage and follows enemies for 15s. (<c val="0080FF">100</c>)
+Param/Value/lib_EFA54406_0720066A=→ <c val="FFFF00">Purifier Beam Level 2</c> - Medium beam: Call down a medium size Purifier Beam that does area damage for 15s (<c val="0080FF">100</c>)
 Param/Value/lib_EFA54406_07268A2D=Range Up
 Param/Value/lib_EFA54406_0765E66D=Slowdown is not available
 Param/Value/lib_EFA54406_07EADF30=Play Again: 
 Param/Value/lib_EFA54406_085E4DCB=Call Backup is not available
 Param/Value/lib_EFA54406_0A23C1CB=<c val="FFFF00">Stimpack Level 1</c> - Increases Attack & Movement speed. Small: +33% (<c val="0080FF">50</c>). Lasts 15s
+Param/Value/lib_EFA54406_0AEAEE25=Choice started
 Param/Value/lib_EFA54406_0C136664=
 Param/Value/lib_EFA54406_0E3D52B9=→ <c val="FFFF00">Max Level</c> reached
 Param/Value/lib_EFA54406_11CE73BA=<c val="FFFF00">Energy Regeneration Level 0</c>
 Param/Value/lib_EFA54406_12AB22B3=<c val="FFFF00">Range Up Level 2</c> - Increases Weapon Range and Sight. Small: +2 (<c val="0080FF">50</c>), Large: +4 (<c val="0080FF">100</c>). Lasts 20s
+Param/Value/lib_EFA54406_16419646= chose to upgrade 
+Param/Value/lib_EFA54406_16E15859= can choose to upgrade an ability. Get more <c val="FFFF00">info</c> about abilities by clicking '<c val="0080FF">Energy</c>' at the top of the screen
 Param/Value/lib_EFA54406_16F53FD3=→ <c val="FFFF00">Max Level</c> reached
 Param/Value/lib_EFA54406_170EFA64=There is a barracks
 Param/Value/lib_EFA54406_1744872C=/
 Param/Value/lib_EFA54406_177656EF=→ <c val="FFFF00">Max Level</c> reached
+Param/Value/lib_EFA54406_17F41727= chose to upgrade 
 Param/Value/lib_EFA54406_1857A957=Call Backup
 Param/Value/lib_EFA54406_185E32CB=→ <c val="FFFF00">Range Up Level 1</c> - Small Range Up: Increases Weapon and Sight Range for all units by +2 (<c val="0080FF">50</c>)
 Param/Value/lib_EFA54406_18C5D30A=<c val="FFFF00">Slowndown Level 2</c> - Slow enemy Speed: Small: 67% (<c val="0080FF">75</c>), Medium: 33% (<c val="0080FF">125</c>). Lasts 15s
@@ -202,6 +207,7 @@ Param/Value/lib_EFA54406_37925FED=<c val="00FF00">NEW</c> - <c val="FFFF00">Call
 Param/Value/lib_EFA54406_388FE8D1=<c val="FFFF00">???</c> - Not yet available
 Param/Value/lib_EFA54406_3B6DC6AF=Range Up
 Param/Value/lib_EFA54406_3C7D8F9B=→ <c val="FFFF00">Max Level</c> reached
+Param/Value/lib_EFA54406_3C823FC6= can choose to upgrade an ability. Abilities have powerful effects and cost a regenerating <c val="0080FF">Energy</c> resource. Only 
 Param/Value/lib_EFA54406_3F553140=<c val="FFFF00">Call Structure Level 3</c> - Call down a Supply Depot (<c val="0080FF">50</c>), Barracks, Factory or Starport (<c val="0080FF">75</c>) or Command Center (<c val="0080FF">100</c>)
 Param/Value/lib_EFA54406_3FE7D4F1=Call Backup
 Param/Value/lib_EFA54406_40D38E61=Abilities Info
@@ -217,7 +223,9 @@ Param/Value/lib_EFA54406_46298FC6=<c val="FFFF00">Call Backup Level 2</c> - Call
 Param/Value/lib_EFA54406_48AB6FAD=Unknow Difficulty
 Param/Value/lib_EFA54406_4BB6CBFA=→ <c val="FFFF00">Nuke Level 3</c> - Decrease <c val="0080FF">Energy</c> cost. Small Nuke; (<c val="0080FF">75</c>→<c val="00FF00">50</c>), Large Nuke; (<c val="0080FF">125</c>→<c val="00FF00">100</c>)
 Param/Value/lib_EFA54406_4C7B4E87=<c val="FFFF00">Nuke Level 4</c> - Call down a Nuke: Small Nuke (<c val="0080FF">50</c>), Large Nuke (<c val="0080FF">100</c>), MEGA NUKE (<c val="0080FF">300</c>)
+Param/Value/lib_EFA54406_4D0EF666=Cheat not available in intermission
 Param/Value/lib_EFA54406_4E0025FA=<c val="FFFF00">Shields Level 1</c> - Small: 50 Shields (<c val="0080FF">75</c>). Lasts for 20s
+Param/Value/lib_EFA54406_4E42F314=No ability choices found even though there should be. Load a previous save and hopefully that fixes this
 Param/Value/lib_EFA54406_4EFBAEB0=Slowdown is not available
 Param/Value/lib_EFA54406_4F93FE16=Has tech lab
 Param/Value/lib_EFA54406_4F9BE5A8=<c val="FFFF00">Slowndown Level 1</c> - Slow enemy Speed: Small: 67% (<c val="0080FF">75</c>). Lasts 15s
@@ -226,6 +234,7 @@ Param/Value/lib_EFA54406_50DB84FD=→ <c val="FFFF00">Initial Energy Level 3</c>
 Param/Value/lib_EFA54406_52C0F9A1=<c val="00FF00">NEW</c> - <c val="FFFF00">Slowdown Level 0</c>
 Param/Value/lib_EFA54406_560BEF7B=<c val="FFFF00">Energy Regeneration Level 4</c> - Current <c val="0080FF">Energy</c> regeneration rate: 150%
 Param/Value/lib_EFA54406_590D1FF8=Resources is not available
+Param/Value/lib_EFA54406_5933CBDF=Cheat not available in intermission
 Param/Value/lib_EFA54406_59736A6A=<c val="FFFF00">Range Up Level 0</c>
 Param/Value/lib_EFA54406_5A90B68F=→ <c val="FFFF00">Initial Energy Level 2</c> - Increases initial <c val="0080FF">Energy</c>: 125→<c val="00FF00">200</c>
 Param/Value/lib_EFA54406_5C1A026A=→ <c val="FFFF00">Energy Regeneration Level 1</c> - Increases <c val="0080FF">Energy</c>  regeneration rate to <c val="00FF00">112.5%</c>
@@ -240,10 +249,10 @@ Param/Value/lib_EFA54406_686ABA22=<c val="FFFF00">Initial Energy Level 1</c> - C
 Param/Value/lib_EFA54406_6924EA3D=→ <c val="FFFF00">Max Level</c> reached
 Param/Value/lib_EFA54406_69686C3E=→ <c val="FFFF00">Slowndown Level 1</c> - Small Slowdown: Slow enemies to 67% Speed for 15s (<c val="0080FF">75</c>)
 Param/Value/lib_EFA54406_6A0C6BAE=→ <c val="FFFF00">Purifier Beam Level 1</c> - Small beam: Call down a small Purifier Beam that does area damage and follows enemies for 15s. (<c val="0080FF">75</c>)
-Param/Value/lib_EFA54406_6A21A78A=→ <c val="FFFF00">Heal Level 1</c> - Small Heal: Heals all units by <c val="00FF00">25%</c> (<c val="0080FF">50</c>)
+Param/Value/lib_EFA54406_6A21A78A=→ <c val="FFFF00">Heal Level 1</c> - Small Heal: Heals all units by 25% (<c val="0080FF">50</c>)
 Param/Value/lib_EFA54406_6A48F50B=Has planetary fortress
 Param/Value/lib_EFA54406_6A8B3129=<c val="FFFF00">Heal Level 1</c> - Small Heal: 25% (<c val="0080FF">50</c>)
-Param/Value/lib_EFA54406_6AB6CA6C=→ <c val="FFFF00">Heal Level 1</c> - Small Heal: Heals all units by <c val="00FF00">25%</c> (<c val="0080FF">50</c>)
+Param/Value/lib_EFA54406_6AB6CA6C=→ <c val="FFFF00">Heal Level 1</c> - Small Heal: Heals all units by 25% (<c val="0080FF">50</c>)
 Param/Value/lib_EFA54406_6B4782B3=→ <c val="FFFF00">Call Structure Level 1</c> - Call down a Supply Depot (+8 useable Supply) (<c val="0080FF">50</c>)
 Param/Value/lib_EFA54406_6BAC2F5B=<c val="FFFF00">???</c> - Not yet available
 Param/Value/lib_EFA54406_6D8E5020=<c val="FFFF00">Shields Level 2</c> - Small: 50 Shields (<c val="0080FF">75</c>), Medium: 100 Shields (<c val="0080FF">100</c>). Lasts for 20s
@@ -275,7 +284,6 @@ Param/Value/lib_EFA54406_832499AB=<c val="FFFF00">Energy Regeneration Level 1</c
 Param/Value/lib_EFA54406_8335D8D3=→ <c val="FFFF00">Nuke Level 2</c> - Large Nuke: Call down a large tactical Nuke (<c val="0080FF">125</c>)
 Param/Value/lib_EFA54406_83633631=<c val="FFFF00">Resources Level 0</c>
 Param/Value/lib_EFA54406_83715038=There is a command center
-Param/Value/lib_EFA54406_83B44779=/
 Param/Value/lib_EFA54406_84515CCB=→ <c val="FFFF00">Call Backup Level 1</c> - Call down Infantry backup (Elite-Marine) (<c val="0080FF">50</c>)
 Param/Value/lib_EFA54406_87B5E461=Play Again: 
 Param/Value/lib_EFA54406_8905ED95=Purifier Beam
@@ -302,7 +310,7 @@ Param/Value/lib_EFA54406_A4E547C3=<c val="00FF00">NEW</c> - <c val="FFFF00">Init
 Param/Value/lib_EFA54406_A589C53B=→ <c val="FFFF00">Range Up Level 2</c> - Large Range Up: Increases Weapon and Sight Range for all units by +4 (<c val="0080FF">100</c>)
 Param/Value/lib_EFA54406_A77DF87F=→ <c val="FFFF00">Initial Energy Level 1</c> - Increases initial <c val="0080FF">Energy</c>: 50→<c val="00FF00">125</c>
 Param/Value/lib_EFA54406_AB802D5E=<c val="FFFF00">Nuke Level 3</c> - Call down a Nuke: Small Nuke (<c val="0080FF">50</c>), Large Nuke (<c val="0080FF">100</c>)
-Param/Value/lib_EFA54406_AD39B562=→ <c val="FFFF00">Heal Level 2</c> - Medium Heal: Heals all units by <c val="00FF00">50%</c> (<c val="0080FF">75</c>)
+Param/Value/lib_EFA54406_AD39B562=→ <c val="FFFF00">Heal Level 2</c> - Medium Heal: Heals all units by 50% (<c val="0080FF">75</c>)
 Param/Value/lib_EFA54406_ADA6E968=<c val="FFFF00">???</c> - Not yet available
 Param/Value/lib_EFA54406_ADE22C62=→ <c val="FFFF00">Slowndown Level 3</c> - Big Slowdown: Completely stun enemies for 15s (<c val="0080FF">150</c>)
 Param/Value/lib_EFA54406_AFE89D76=Heal
@@ -321,7 +329,7 @@ Param/Value/lib_EFA54406_B8104D3C=Building Speed
 Param/Value/lib_EFA54406_B93BB545=<c val="FFFF00">???</c> - Not yet available
 Param/Value/lib_EFA54406_BA3FADF3=→ <c val="FFFF00">Shields Level 1</c> - Small Shields: 50 Shields on all units for 20s (<c val="0080FF">75</c>)
 Param/Value/lib_EFA54406_BA99FFAE=→ <c val="FFFF00">Call Backup Level 1</c> - Call down Infantry backup (Elite-Marine) (<c val="0080FF">50</c>)
-Param/Value/lib_EFA54406_BBAB3009=→ <c val="FFFF00">Resources Level 2</c> - Increase Values. Either receive 100|0→<c val="00FF00">150 Minerals & 75 Gas</c> or 0|100→<c val="00FF00">150 Vespene Gas and 75 Minerals</c> (<c val="0080FF">75</c>)
+Param/Value/lib_EFA54406_BBAB3009=→ <c val="FFFF00">Resources Level 2</c> - Increase Values. Either receive 100|0→<c val="00FF00">150|75</c> or 0|100→<c val="00FF00">75|150</c> Minerals and Vespene Gas (<c val="0080FF">75</c>)
 Param/Value/lib_EFA54406_BC06E80A=→ <c val="FFFF00">Building Level 3</c> - Increase Values: Small Buff: 75%→<c val="00FF00">100%</c>, Large Buff: 150%→<c val="00FF00">200%</c>
 Param/Value/lib_EFA54406_BC986EA2=Own Unit killed by Enemy
 Param/Value/lib_EFA54406_BDE4FEAE=<c val="FFFF00">Restore Energy Level 3</c> - Small: Restores 50% Energy (<c val="0080FF">75</c>), Large: Restores 100% Energy (<c val="0080FF">125</c>)
@@ -334,6 +342,7 @@ Param/Value/lib_EFA54406_C5CA95F1=<c val="FFFF00">Heal Level 2</c> - Small Heal:
 Param/Value/lib_EFA54406_C669CB77=<c val="FFFF00">Slowndown Level 3</c> - Slow enemy Speed: Small: 67% (<c val="0080FF">75</c>), Medium: 33% (<c val="0080FF">125</c>), Big: Complete Stun (<c val="0080FF">150</c>). Lasts 15s
 Param/Value/lib_EFA54406_C800D89E=<c val="FFFF00">Heal Level 0</c>
 Param/Value/lib_EFA54406_C8663212=<c val="FFFF00">Building Speed Level 0</c>
+Param/Value/lib_EFA54406_C941B551=At the start of every mission 
 Param/Value/lib_EFA54406_CB8FA684=Call Structure is not available
 Param/Value/lib_EFA54406_CC78A746=→ <c val="FFFF00">Resources Level 3</c> - Increase Values. Receive 150|75→<c val="00FF00">200 Minerals & 200 Gas</c> (<c val="0080FF">75</c>)
 Param/Value/lib_EFA54406_CD7F5ACF=<c val="00FF00">NEW</c> - <c val="FFFF00">Nuke Level 0</c>
@@ -344,6 +353,8 @@ Param/Value/lib_EFA54406_D04C190F=<c val="FFFF00">Building Speed Level 1</c> - I
 Param/Value/lib_EFA54406_D13D0B30=→ <c val="FFFF00">Call Structure Level 3</c> - Call down a Command Center (<c val="0080FF">100</c>)
 Param/Value/lib_EFA54406_D320C5A3=→ <c val="FFFF00">Stimpack Level 1</c> - Small Buff: Increase Attack and Movement Speed by 33% for 15s (<c val="0080FF">50</c>)
 Param/Value/lib_EFA54406_D35344ED=→ <c val="FFFF00">Energy Regeneration Level 3</c> - Increases <c val="0080FF">Energy</c>  regeneration rate to <c val="00FF00">137.5%</c>
+Param/Value/lib_EFA54406_D3D0AA92=Cheat not available in intermission
+Param/Value/lib_EFA54406_D42215F5=/
 Param/Value/lib_EFA54406_D4296AE5=<c val="FFFF00">Stimpack Level 2</c> - Increases Attack & Movement speed. Small: +33% (<c val="0080FF">50</c>), Large: +67% (<c val="0080FF">100</c>). Lasts 15s
 Param/Value/lib_EFA54406_D43A23F0=→ <c val="FFFF00">Resources Level 1</c> - Either receive 100 Minerals or 100 Vespene Gas (<c val="0080FF">75</c>)
 Param/Value/lib_EFA54406_D877CBC7=<c val="FFFF00">Call Backup Level 0</c>
@@ -366,13 +377,15 @@ Param/Value/lib_EFA54406_EC253369=→ <c val="FFFF00">Restore Energy Level 1</c>
 Param/Value/lib_EFA54406_EEC1EA70=→ <c val="FFFF00">Building Speed Level 1</c> - Small Buff: Increase Construction, Production & Research Speed by 75% for 25s (<c val="0080FF">75</c>)
 Param/Value/lib_EFA54406_EECCADDF=→ <c val="FFFF00">Restore Energy Level 1</c> - Small Restore: Restores 33% Energy for all units (<c val="0080FF">75</c>)
 Param/Value/lib_EFA54406_EEFEBD42=Own Unit killed by Fire Wall
-Param/Value/lib_EFA54406_EF17038F=→ <c val="FFFF00">Purifier Beam Level 3</c> - Large beam: Call down a large Purifier Beam that does area damage and follows enemies for 15s. (<c val="0080FF">125</c>)
+Param/Value/lib_EFA54406_EF17038F=→ <c val="FFFF00">Purifier Beam Level 3</c> - Large beam: Call down a large Purifier Beam that does area damage for 15s. (<c val="0080FF">125</c>)
 Param/Value/lib_EFA54406_F247EE10=selected something
 Param/Value/lib_EFA54406_F3C69BF9=Call Structure is not available
 Param/Value/lib_EFA54406_F5970833=Activated '<c val="FFFF00">Unlock All Abilities</c>' Cheat
+Param/Value/lib_EFA54406_F6A3C0F2= can cast these abilities. Get more <c val="FFFF00">info</c> about abilities by clicking '<c val="0080FF">Energy</c>' at the top of the screen
 Param/Value/lib_EFA54406_F727F6DF=<c val="FFFF00">Purifier Beam Level 3</c> - Call down a Purifier Beam: Small Beam (<c val="0080FF">75</c>), Medium Beam (<c val="0080FF">100</c>), Large Beam (<c val="0080FF">125</c>). Lasts 15s
 Param/Value/lib_EFA54406_FA364084=→ <c val="FFFF00">Call Backup Level 2</c> - Call down Vehicle backup (Elite-Goliath) (<c val="0080FF">75</c>)
-Param/Value/lib_EFA54406_FBA60E79=→ <c val="FFFF00">Heal Level 3</c> - Large Heal: Heals all units by <c val="00FF00">75%</c> (<c val="0080FF">100</c>)
+Param/Value/lib_EFA54406_FB51E2CF=Cheat not available in intermission
+Param/Value/lib_EFA54406_FBA60E79=→ <c val="FFFF00">Heal Level 3</c> - Large Heal: Heals all units by 75% (<c val="0080FF">100</c>)
 Param/Value/lib_EFA54406_FDB6AD5D=Killer is invisible
 SimpleDisplay/Attack2=<s val="@@@SimpleCommandRow">%hotkey</c> then</s> <IMG path="Assets\Textures\tutorialmouseleftbuttondown.dds" alignment="absolutemiddle"/> <s val="@@@SimpleCommandRow">ground to Auto-attack</s>
 SimpleDisplay/Attack22=<s val="@@@SimpleCommandRow">%hotkey</c> then</s> <IMG path="Assets\Textures\tutorialmouseleftbuttondown.dds" alignment="absolutemiddle"/> <s val="@@@SimpleCommandRow">ground to Auto-attack</s>

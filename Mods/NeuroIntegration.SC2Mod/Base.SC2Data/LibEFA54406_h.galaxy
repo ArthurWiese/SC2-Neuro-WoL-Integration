@@ -4,6 +4,12 @@ include "TriggerLibs/natives"
 // Library: NeuroLib
 //--------------------------------------------------------------------------------------------------
 // Variable Declarations
+int libEFA54406_gv_standard_dialog;
+int libEFA54406_gv_standard_dialog_close;
+bank libEFA54406_gv_abilities_bank;
+bool libEFA54406_gv_used_choice_this_mission;
+string libEFA54406_gv_current_map_string;
+string libEFA54406_gv_previous_choice_on_map;
 int libEFA54406_gv_level_initial_energy;
 int libEFA54406_gv_level_energy_regeneration;
 fixed libEFA54406_gv_current_energy;
@@ -154,6 +160,7 @@ bool libEFA54406_gv_is_intermission;
 bool libEFA54406_gv_is_nobuild;
 bool libEFA54406_gv_is_blocking;
 bool libEFA54406_gv_is_protoss;
+bool libEFA54406_gv_is_first_mission;
 
 // Function Declarations
 void libEFA54406_gf_create_action_0_arg (string lp_action_name, bool lp_action_active, string lp_action_description, int lp_action_uses);
@@ -162,6 +169,9 @@ void libEFA54406_gf_create_action_2_arg (string lp_action_name, bool lp_action_a
 void libEFA54406_gf_create_action_3_arg (string lp_action_name, bool lp_action_active, string lp_action_description, string lp_action_argument_1_type, string lp_action_argument_2_type, string lp_action_argument_3_type, int lp_action_uses);
 void libEFA54406_gf_create_force_action (string lp_force_action_name, string lp_actions, string lp_state, string lp_query, bool lp_ephemeral_context, string lp_priority);
 void libEFA54406_gf_create_context (string lp_context_name, string lp_context, bool lp_silent);
+void libEFA54406_gf_create_standard_dialog (string lp_size, text lp_text);
+void libEFA54406_gf_create_ability_choice (int lp_current_map, int lp_choose_delay_seconds);
+void libEFA54406_gf_NeuroChoosesAbility (string lp_ability_choice);
 void libEFA54406_gf_ShowAbilities (bool lp_show);
 void libEFA54406_gf_AbilityCooldown (int lp_ability_cooldown_number, int lp_top_bar_ability_cd_dialog_item);
 void libEFA54406_gf_Abilityget_resources (string lp_resource_type);
@@ -191,6 +201,9 @@ void libEFA54406_gf_UnblockCommands (bool lp_clear_queue);
 // Trigger Declarations
 trigger libEFA54406_gt_Executeactionsglobal;
 trigger libEFA54406_gt_Stopexecutionglobal;
+trigger libEFA54406_gt_CloseStandardDialog;
+trigger libEFA54406_gt_LoadAbilityBank;
+trigger libEFA54406_gt_CreateAbilityBank;
 trigger libEFA54406_gt_CreateAbilityBar;
 trigger libEFA54406_gt_ShowAbilitiesCooldown;
 trigger libEFA54406_gt_AbilityEnergy;
