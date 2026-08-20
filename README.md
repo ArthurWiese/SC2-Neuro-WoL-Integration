@@ -1,15 +1,12 @@
 # SC2 Neuro Wings of Liberty Integration
-A custom Wings of Liberty Campaign using the [SC2 Neuro API Integration](https://github.com/ArthurWiese/SC2-Neuro-API-Integration)
+A custom Wings of Liberty Campaign using the [SC2 Neuro API Integration](https://github.com/ArthurWiese/SC2-Neuro-API-Integration) that offers a unique co-op experience for Neuro and a player
 
 Please report any issues and give feedback in the [Neuro-sama Discord](https://discord.gg/5wbaxeAbQG) under Neuro-sama/projects/SC2 Neuro WoL Integration or DM me
 
-## Project goal
-
-The main goal is to have Neuro act like an adjutant during missions, where she can choose from and use permanent abilities throughout the whole campaign. During intermissions Neuro can freely choose what to do (selecting upgrades, interacting with characters/objects, choosing the next mission)
-
-Neuro also receives context of what is happening in-game and what characters are saying
-
-This is just an outline and nothing is set in stone yet. SC2 is very moddable, so there are a lot of possibilities of what can be done
+## Main Features
+ - Responsibilities get split between Neuro and the player. Neuro can initiate the production of units and research upgrades while the player commands the army and constructs buildings
+ - Ability system specially created for this integration where at the start of every mission Neuro can choose to permanently upgrade a powerful ability that she then has access to for the rest of the campaign
+ - During intermissions Neuro has full control over what to do and can buy upgrades, chooses what to research and what mercenaries to hire for the next missions
 
 ## How to contribute
 Even if you just have an idea or want to give feedback, you can use the [SC2 Neuro WoL Integration Plan](https://docs.google.com/spreadsheets/d/1aMBb_p_7_Iz50ajwpbP28pfU4uuB_lrLls13Mwx0Uxs/edit?usp=sharing)!
