@@ -154,7 +154,6 @@ Param/Value/lib_EFA54406_0765E66D=Slowdown is not available
 Param/Value/lib_EFA54406_07EADF30=Play Again: 
 Param/Value/lib_EFA54406_085E4DCB=Call Backup is not available
 Param/Value/lib_EFA54406_0A23C1CB=<c val="FFFF00">Stimpack Level 1</c> - Increases Attack & Movement speed. Small: +33% (<c val="0080FF">50</c>). Lasts 15s
-Param/Value/lib_EFA54406_0AEAEE25=Choice started
 Param/Value/lib_EFA54406_0C136664=
 Param/Value/lib_EFA54406_0E3D52B9=→ <c val="FFFF00">Max Level</c> reached
 Param/Value/lib_EFA54406_11CE73BA=<c val="FFFF00">Energy Regeneration Level 0</c>

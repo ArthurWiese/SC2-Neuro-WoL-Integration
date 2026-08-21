@@ -501,7 +501,6 @@ bool auto_libEFA54406_gf_create_ability_choice_TriggerFunc (bool testConds, bool
     }
 
     // Implementation
-    UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringExternal("Param/Value/lib_EFA54406_0AEAEE25"));
     Wait(lp_choose_delay_seconds, c_timeGame);
     autoC75285F3_val = lp_current_map;
     if (autoC75285F3_val == libCamp_ge_MapID_MapTRaynor01) {
