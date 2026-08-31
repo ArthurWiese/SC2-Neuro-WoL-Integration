@@ -20849,7 +20849,7 @@
         </Element>
         <Element Type="Param" Id="C8F7F4BB">
             <ParameterDef Type="ParamDef" Library="EFA54406" Id="E9956746"/>
-            <Value>At the start of every mission you can upgrade an ability. Abilities have powerful effects and use a regenerating Energy resource</Value>
+            <Value>At the start of every mission you can upgrade an ability. Abilities have powerful effects and use a regenerating Energy resource. Important note: You will not be able to fully upgrade every ability so consider carefully</Value>
             <ValueType Type="string"/>
         </Element>
         <Element Type="Param" Id="F02C99A6">
@@ -119034,7 +119034,7 @@
             <ParameterDef Type="ParamDef" Library="Ntve" Id="00000220"/>
             <CustomType Type="string"/>
             <ScriptCode>
-                &quot;Produce a unit. Units you produce cost only 2/3 the resources and take 2/3 the time to produce than if a player does it. You currently cannot produce any units. Units you could produce if the player builds the structure: &quot; + lv_allowed_blocked_units
+                &quot;Produce a unit. Units you produce cost only half the resources and take 2/3 the time to produce than if a player does it. You currently cannot produce any units. Units you could produce if the player builds the structure: &quot; + lv_allowed_blocked_units
             </ScriptCode>
         </Element>
         <Element Type="FunctionCall" Id="85B18DC0">
@@ -119114,7 +119114,7 @@
             <ParameterDef Type="ParamDef" Library="Ntve" Id="00000220"/>
             <CustomType Type="string"/>
             <ScriptCode>
-                &quot;Produce a unit. Units you produce cost only 2/3 the resources and take 2/3 the time to produce than if a player does it. Units you can produce in this format &lt;Name&gt; (Mineral cost/Vespene Gas cost|Supply cost|Production time in seconds): &quot; + lv_action_description
+                &quot;Produce a unit. Units you produce cost only half the resources and take 2/3 the time to produce than if a player does it. Units you can produce in this format &lt;Name&gt; (Mineral cost/Vespene Gas cost|Supply cost|Production time in seconds): &quot; + lv_action_description
             </ScriptCode>
         </Element>
         <Element Type="FunctionCall" Id="C11E7025">
@@ -119188,7 +119188,7 @@
             <ParameterDef Type="ParamDef" Library="Ntve" Id="00000220"/>
             <CustomType Type="string"/>
             <ScriptCode>
-                &quot;Produce a unit. Units you produce cost only 2/3 the resources and take 2/3 the time to produce than if a player does it. Units you can produce in this format &lt;Name&gt; (Mineral cost/Vespene Gas cost|Supply cost|Production time in seconds): &quot; + lv_action_description + &quot;. Units you could produce if the player builds the structure: &quot; + lv_allowed_blocked_units
+                &quot;Produce a unit. Units you produce cost only half the resources and take 2/3 the time to produce than if a player does it. Units you can produce in this format &lt;Name&gt; (Mineral cost/Vespene Gas cost|Supply cost|Production time in seconds): &quot; + lv_action_description + &quot;. Units you could produce if the player builds the structure: &quot; + lv_allowed_blocked_units
             </ScriptCode>
         </Element>
         <Element Type="FunctionCall" Id="D623F414">
@@ -131339,7 +131339,7 @@
             <ParameterDef Type="ParamDef" Library="Ntve" Id="00000220"/>
             <CustomType Type="string"/>
             <ScriptCode>
-                &quot;Call mercenaries. Mercenaries you call cost only 2/3 the resources than if a player calls them. You currently cannot call any Mercenaries. Mercenaries on cooldown: &quot; + lv_cooldown_units
+                &quot;Call mercenaries. Mercenaries you call cost only half the resources than if a player calls them. You currently cannot call any Mercenaries. Mercenaries on cooldown: &quot; + lv_cooldown_units
             </ScriptCode>
         </Element>
         <Element Type="FunctionCall" Id="07915125">
@@ -131420,7 +131420,7 @@
             <ParameterDef Type="ParamDef" Library="Ntve" Id="00000220"/>
             <CustomType Type="string"/>
             <ScriptCode>
-                &quot;Call mercenaries. Mercenaries you call cost only 2/3 the resources than if a player calls them. Callable Mercenaries in this format &lt;name&gt; - &lt;number of elite units&gt; (Mineral cost/Vespene Gas cost|Supply cost): &quot; + lv_action_description
+                &quot;Call mercenaries. Mercenaries you call cost only half the resources than if a player calls them. Callable Mercenaries in this format &lt;name&gt; - &lt;number of elite units&gt; (Mineral cost/Vespene Gas cost|Supply cost): &quot; + lv_action_description
             </ScriptCode>
         </Element>
         <Element Type="FunctionCall" Id="B85CEB0E">
@@ -131495,7 +131495,7 @@
             <ParameterDef Type="ParamDef" Library="Ntve" Id="00000220"/>
             <CustomType Type="string"/>
             <ScriptCode>
-                &quot;Call mercenaries. Mercenaries you call cost only 2/3 the resources than if a player calls them. Callable Mercenaries in this format &lt;name&gt; - &lt;number of elite units&gt; (Mineral cost/Vespene Gas cost|Supply cost): &quot; + lv_action_description + &quot;. Mercenaries on cooldown: &quot; + lv_cooldown_units
+                &quot;Call mercenaries. Mercenaries you call cost only half the resources than if a player calls them. Callable Mercenaries in this format &lt;name&gt; - &lt;number of elite units&gt; (Mineral cost/Vespene Gas cost|Supply cost): &quot; + lv_action_description + &quot;. Mercenaries on cooldown: &quot; + lv_cooldown_units
             </ScriptCode>
         </Element>
         <Element Type="FunctionCall" Id="7833930A">
@@ -141082,7 +141082,7 @@
             <ParameterDef Type="ParamDef" Library="Ntve" Id="00000220"/>
             <CustomType Type="string"/>
             <ScriptCode>
-                &quot;Research an upgrade. Upgrades you research cost only 2/3 the resources and take 2/3 the time to produce than if a player does it. Upgrades you can research in this format &lt;Name&gt; (Mineral cost/Vespene Gas cost|Production time in seconds): &quot; + lv_action_description + &quot;. &quot;
+                &quot;Research an upgrade. Upgrades you research cost only half the resources and take 2/3 the time to finish researching than if a player does it. Upgrades you can research in this format &lt;Name&gt; (Mineral cost/Vespene Gas cost|Production time in seconds): &quot; + lv_action_description + &quot;. &quot;
             </ScriptCode>
         </Element>
         <Element Type="FunctionCall" Id="3583F188">

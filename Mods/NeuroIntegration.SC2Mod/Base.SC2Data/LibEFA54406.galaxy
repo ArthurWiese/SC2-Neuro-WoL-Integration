@@ -1730,7 +1730,7 @@ bool auto_libEFA54406_gf_create_ability_choice_TriggerFunc (bool testConds, bool
     libEFA54406_gf_create_context("choose_ability_context", lv_choice_action_description, false);
     Wait(60.0, c_timeReal);
     if ((libEFA54406_gv_used_choice_this_mission == false)) {
-        libEFA54406_gf_create_force_action("ensure_ability_choice", "upgrade_ability", "At the start of every mission you can upgrade an ability. Abilities have powerful effects and use a regenerating Energy resource", "Upgrade an ability", false, "low");
+        libEFA54406_gf_create_force_action("ensure_ability_choice", "upgrade_ability", "At the start of every mission you can upgrade an ability. Abilities have powerful effects and use a regenerating Energy resource. Important note: You will not be able to fully upgrade every ability so consider carefully", "Upgrade an ability", false, "low");
     }
 
     return true;
@@ -12042,18 +12042,18 @@ bool libEFA54406_gt_NeuroCanProduceUnits_Func (bool testConds, bool runActions) 
     }
 
     if ((lv_producable_units == "")) {
-        lv_action_description = "Produce a unit. Units you produce cost only 2/3 the resources and take 2/3 the time to produce than if a player does it. You currently cannot produce any units. Units you could produce if the player builds the structure: " + lv_allowed_blocked_units;
+        lv_action_description = "Produce a unit. Units you produce cost only half the resources and take 2/3 the time to produce than if a player does it. You currently cannot produce any units. Units you could produce if the player builds the structure: " + lv_allowed_blocked_units;
         libEFA54406_gf_create_action_1_arg("produce_unit", true, lv_action_description, "string(no unit)", -1);
         return true;
     }
 
     if ((lv_allowed_blocked_units == "")) {
-        lv_action_description = "Produce a unit. Units you produce cost only 2/3 the resources and take 2/3 the time to produce than if a player does it. Units you can produce in this format <Name> (Mineral cost/Vespene Gas cost|Supply cost|Production time in seconds): " + lv_action_description;
+        lv_action_description = "Produce a unit. Units you produce cost only half the resources and take 2/3 the time to produce than if a player does it. Units you can produce in this format <Name> (Mineral cost/Vespene Gas cost|Supply cost|Production time in seconds): " + lv_action_description;
         libEFA54406_gf_create_action_1_arg("produce_unit", true, lv_action_description, "string(" + lv_producable_units + ")", -1);
         return true;
     }
 
-    lv_action_description = "Produce a unit. Units you produce cost only 2/3 the resources and take 2/3 the time to produce than if a player does it. Units you can produce in this format <Name> (Mineral cost/Vespene Gas cost|Supply cost|Production time in seconds): " + lv_action_description + ". Units you could produce if the player builds the structure: " + lv_allowed_blocked_units;
+    lv_action_description = "Produce a unit. Units you produce cost only half the resources and take 2/3 the time to produce than if a player does it. Units you can produce in this format <Name> (Mineral cost/Vespene Gas cost|Supply cost|Production time in seconds): " + lv_action_description + ". Units you could produce if the player builds the structure: " + lv_allowed_blocked_units;
     libEFA54406_gf_create_action_1_arg("produce_unit", true, lv_action_description, "string(" + lv_producable_units + ")", -1);
     return true;
 }
@@ -12269,18 +12269,18 @@ bool libEFA54406_gt_NeuroCanCallMercenaries_Func (bool testConds, bool runAction
             }
 
             if ((lv_callable_units == "")) {
-                lv_action_description = "Call mercenaries. Mercenaries you call cost only 2/3 the resources than if a player calls them. You currently cannot call any Mercenaries. Mercenaries on cooldown: " + lv_cooldown_units;
+                lv_action_description = "Call mercenaries. Mercenaries you call cost only half the resources than if a player calls them. You currently cannot call any Mercenaries. Mercenaries on cooldown: " + lv_cooldown_units;
                 libEFA54406_gf_create_action_1_arg("call_merc", true, lv_action_description, "string(no merc)", -1);
                 return true;
             }
 
             if ((lv_cooldown_units == "")) {
-                lv_action_description = "Call mercenaries. Mercenaries you call cost only 2/3 the resources than if a player calls them. Callable Mercenaries in this format <name> - <number of elite units> (Mineral cost/Vespene Gas cost|Supply cost): " + lv_action_description;
+                lv_action_description = "Call mercenaries. Mercenaries you call cost only half the resources than if a player calls them. Callable Mercenaries in this format <name> - <number of elite units> (Mineral cost/Vespene Gas cost|Supply cost): " + lv_action_description;
                 libEFA54406_gf_create_action_1_arg("call_merc", true, lv_action_description, "string(" + lv_callable_units + ")", -1);
                 return true;
             }
 
-            lv_action_description = "Call mercenaries. Mercenaries you call cost only 2/3 the resources than if a player calls them. Callable Mercenaries in this format <name> - <number of elite units> (Mineral cost/Vespene Gas cost|Supply cost): " + lv_action_description + ". Mercenaries on cooldown: " + lv_cooldown_units;
+            lv_action_description = "Call mercenaries. Mercenaries you call cost only half the resources than if a player calls them. Callable Mercenaries in this format <name> - <number of elite units> (Mineral cost/Vespene Gas cost|Supply cost): " + lv_action_description + ". Mercenaries on cooldown: " + lv_cooldown_units;
             libEFA54406_gf_create_action_1_arg("call_merc", true, lv_action_description, "string(" + lv_callable_units + ")", -1);
         }
         else {
@@ -12741,7 +12741,7 @@ bool libEFA54406_gt_NeuroCanResearchUpgrades_Func (bool testConds, bool runActio
         return true;
     }
 
-    lv_action_description = "Research an upgrade. Upgrades you research cost only 2/3 the resources and take 2/3 the time to produce than if a player does it. Upgrades you can research in this format <Name> (Mineral cost/Vespene Gas cost|Production time in seconds): " + lv_action_description + ". ";
+    lv_action_description = "Research an upgrade. Upgrades you research cost only half the resources and take 2/3 the time to finish researching than if a player does it. Upgrades you can research in this format <Name> (Mineral cost/Vespene Gas cost|Production time in seconds): " + lv_action_description + ". ";
     libEFA54406_gf_create_action_1_arg("research_upgrade", true, lv_action_description, "string(" + lv_actions + ")", -1);
     return true;
 }
