@@ -163,6 +163,7 @@ Param/Value/lib_EFA54406_0E3D52B9=→ <c val="FFFF00">Max Level</c> reached
 Param/Value/lib_EFA54406_11CE73BA=<c val="FFFF00">Energy Regeneration Level 0</c>
 Param/Value/lib_EFA54406_12AB22B3=<c val="FFFF00">Range Up Level 2</c> - Increases Weapon Range and Sight. Small: +2 (<c val="0080FF">50</c>), Large: +4 (<c val="0080FF">100</c>). Lasts 20s
 Param/Value/lib_EFA54406_16419646= chose to upgrade 
+Param/Value/lib_EFA54406_16478AC4=TEST
 Param/Value/lib_EFA54406_16E15859= can choose to upgrade an ability. <n/><n/>Get more <c val="FFFF00">info</c> about abilities by clicking '<c val="0080FF">Energy</c>' at the top of the screen.
 Param/Value/lib_EFA54406_16F53FD3=→ <c val="FFFF00">Max Level</c> reached
 Param/Value/lib_EFA54406_16FC4736=<s val="BattlenetSmallButton">LVL 2</s>
@@ -177,6 +178,7 @@ Param/Value/lib_EFA54406_18C5D30A=<c val="FFFF00">Slowndown Level 2</c> - Slow e
 Param/Value/lib_EFA54406_1B920E42=<c val="FF0000">Evil Neuro</c>
 Param/Value/lib_EFA54406_1BF06486=<c val="FFFF00">Purifier Beam Level 2</c> - Call down a Purifier Beam: Small Beam (<c val="0080FF">75</c>), Medium Beam (<c val="0080FF">100</c>). Lasts 15s
 Param/Value/lib_EFA54406_1D0E86A1=<s val="BattlenetSmallButton">LVL 3</s>
+Param/Value/lib_EFA54406_1D4EF994= is researching:<n/>
 Param/Value/lib_EFA54406_1E1BF91F=→ <c val="FFFF00">Max Level</c> reached
 Param/Value/lib_EFA54406_1E431BCE=<c val="FFFF00">Building Speed Level 3</c> - Increases Const., Prod. & Research speed. Small: +100% (<c val="0080FF">75</c>), Large: +200% (<c val="0080FF">125</c>). Lasts 25s
 Param/Value/lib_EFA54406_2033B7BD=Nuke
@@ -195,6 +197,7 @@ Param/Value/lib_EFA54406_26EAC1C8=→ <c val="FFFF00">Range Up Level 3</c> - Inc
 Param/Value/lib_EFA54406_27B19F2C=<c val="FF80C0">Neuro-sama</c>
 Param/Value/lib_EFA54406_2A2F68A6=Play Again: 
 Param/Value/lib_EFA54406_2A81A30C=<c val="FFFF00">Range Up Level 1</c> - Increases Weapon Range and Sight. Small: +2 (<c val="0080FF">50</c>). Lasts 20s
+Param/Value/lib_EFA54406_2B667FF7= is producing:<n/>
 Param/Value/lib_EFA54406_2C2F78EC=<s val="BattlenetSmallButton">LVL 3</s>
 Param/Value/lib_EFA54406_2C5828E7=<c val="00FF00">NEW</c> - <c val="FFFF00">Restore Energy Level 0</c>
 Param/Value/lib_EFA54406_2CCF34B0=<c val="FFFF00">???</c> - Not yet available
@@ -298,6 +301,7 @@ Param/Value/lib_EFA54406_7C08D19A=→ <c val="FFFF00">Building Speed Level 1</c>
 Param/Value/lib_EFA54406_7C2D0F67=<s val="BattlenetSmallButton">LVL 4</s>
 Param/Value/lib_EFA54406_7E0B5F82=<c val="00FF00">NEW</c> - <c val="FFFF00">Building Speed Level 0</c>
 Param/Value/lib_EFA54406_7EE27E22=→ <c val="FFFF00">Restore Energy Level 3</c> - Increase Values: Small Restore: 33%→<c val="00FF00">50%</c>, Large Restore: 67%→<c val="00FF00">100%</c>
+Param/Value/lib_EFA54406_7FA8C428= is warping in:<n/>
 Param/Value/lib_EFA54406_7FD8F508=→ <c val="FFFF00">Call Backup Level 3</c> - Call down Aerial backup (Elite-Wraith) (<c val="0080FF">75</c>)
 Param/Value/lib_EFA54406_80A42958=<c val="FFFF00">Resources Level 3</c> - Receive 200 Minerals & 200 Gas (<c val="0080FF">75</c>)
 Param/Value/lib_EFA54406_80CF7049=Marauder is allowed
@@ -308,6 +312,7 @@ Param/Value/lib_EFA54406_83715038=There is a command center
 Param/Value/lib_EFA54406_84515CCB=→ <c val="FFFF00">Call Backup Level 1</c> - Call down Infantry backup (Elite-Marine) (<c val="0080FF">50</c>)
 Param/Value/lib_EFA54406_87B5E461=Play Again: 
 Param/Value/lib_EFA54406_8905ED95=Purifier Beam
+Param/Value/lib_EFA54406_89A5D568= is calling a merc:<n/>
 Param/Value/lib_EFA54406_89DE73A5=→ <c val="FFFF00">Shields Level 3</c> - Large Shields: 200 Shields on all units for 20s (<c val="0080FF">125</c>)
 Param/Value/lib_EFA54406_8BAE5AD8=
 Param/Value/lib_EFA54406_8D51DB1A=<c val="FFFF00">Initial Energy Level 3</c> - Current initial <c val="0080FF">Energy</c>: 275
@@ -319,6 +324,7 @@ Param/Value/lib_EFA54406_93B25702=<c val="FFFF00">Range Up Level 3</c> - Increas
 Param/Value/lib_EFA54406_93FBA11F=<c val="00FF00">NEW</c> - <c val="FFFF00">Range Up Level 0</c>
 Param/Value/lib_EFA54406_9463B14D=Purifier Beam
 Param/Value/lib_EFA54406_959E3B32=→ <c val="FFFF00">Energy Regeneration Level 4</c> - Increases <c val="0080FF">Energy</c>  regeneration rate to <c val="00FF00">150%</c>
+Param/Value/lib_EFA54406_996ACF17= is warping in:<n/>
 Param/Value/lib_EFA54406_9976AF65=<s val="BattlenetSmallButton">LVL 4</s>
 Param/Value/lib_EFA54406_9A6CF506=Normal
 Param/Value/lib_EFA54406_9AC366E8=<s val="BattlenetSmallButton">LVL 1</s>
@@ -349,6 +355,7 @@ Param/Value/lib_EFA54406_AFE89D76=Heal
 Param/Value/lib_EFA54406_B0270892=→ <c val="FFFF00">Building Speed Level 2</c> - Large Buff: Increase Construction, Production and Research Speed by 150% for 25s (<c val="0080FF">125</c>)
 Param/Value/lib_EFA54406_B035718D=<c val="FFFF00">Slowdown Level 0</c>
 Param/Value/lib_EFA54406_B0803859=Restore Energy
+Param/Value/lib_EFA54406_B0E6ED33= is producing:<n/>
 Param/Value/lib_EFA54406_B10E8F02=Call Structure
 Param/Value/lib_EFA54406_B2B7F34C=Building Speed is not available
 Param/Value/lib_EFA54406_B30458B2=Close

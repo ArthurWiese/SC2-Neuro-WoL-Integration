@@ -6254,6 +6254,10 @@ bool auto_libEFA54406_gf_NeuroProducesUnit_TriggerFunc (bool testConds, bool run
                     lv_pylon_unit = UnitGroupClosestToPoint(lv_pylon_group, CameraGetTarget(1));
                     if ((UnitTypePlacementTestsFromUnit(lv_warp_unit_type, 1, lv_pylon_unit, 7.0, c_placementTestPowerMask) != null)) {
                         UnitIssueOrder(lv_unit, OrderTargetingPoint(lv_ability_command, UnitTypePlacementTestsFromUnit(lv_warp_unit_type, 1, lv_pylon_unit, 7.0, c_placementTestPowerMask)), c_orderQueueAddToEnd);
+                        TextTagCreate((libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_996ACF17") + StringToText(lp_unit_to_produce)), 24, UnitGetPosition(lv_unit), 1.0, true, false, PlayerGroupAll());
+                        TextTagSetVelocity(TextTagLastCreated(), 0.4, 90.0);
+                        TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeOut, 3.0);
+                        TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeDuration, 5.0);
                         return true;
                     }
                     else {
@@ -6276,6 +6280,10 @@ bool auto_libEFA54406_gf_NeuroProducesUnit_TriggerFunc (bool testConds, bool run
     }
     if ((lv_most_available_slots > 0)) {
         UnitIssueOrder(lv_most_available_slots_unit, Order(lv_ability_command), c_orderQueueAddToEnd);
+        TextTagCreate((libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_B0E6ED33") + StringToText(lp_unit_to_produce)), 24, UnitGetPosition(lv_most_available_slots_unit), 1.0, true, false, PlayerGroupAll());
+        TextTagSetVelocity(TextTagLastCreated(), 0.4, 90.0);
+        TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeOut, 3.0);
+        TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeDuration, 5.0);
         return true;
     }
 
@@ -6398,6 +6406,10 @@ bool auto_libEFA54406_gf_NeuroProducesUnit_TriggerFunc (bool testConds, bool run
                         lv_pylon_unit = UnitGroupClosestToPoint(lv_pylon_group, CameraGetTarget(1));
                         if ((UnitTypePlacementTestsFromUnit(lv_warp_unit_type, 1, lv_pylon_unit, 7.0, c_placementTestPowerMask) != null)) {
                             UnitIssueOrder(lv_unit, OrderTargetingPoint(lv_ability_command, UnitTypePlacementTestsFromUnit(lv_warp_unit_type, 1, lv_pylon_unit, 7.0, c_placementTestPowerMask)), c_orderQueueAddToEnd);
+                            TextTagCreate((libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_7FA8C428") + StringToText(lp_unit_to_produce)), 24, UnitGetPosition(lv_unit), 1.0, true, false, PlayerGroupAll());
+                            TextTagSetVelocity(TextTagLastCreated(), 0.4, 90.0);
+                            TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeOut, 3.0);
+                            TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeDuration, 5.0);
                             return true;
                         }
                         else {
@@ -6423,6 +6435,10 @@ bool auto_libEFA54406_gf_NeuroProducesUnit_TriggerFunc (bool testConds, bool run
     if ((lv_eligible_exists == true)) {
         if ((lv_most_available_slots > 0)) {
             UnitIssueOrder(lv_most_available_slots_unit, Order(lv_ability_command), c_orderQueueAddToEnd);
+            TextTagCreate((libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_2B667FF7") + StringToText(lp_unit_to_produce)), 24, UnitGetPosition(lv_most_available_slots_unit), 1.0, true, false, PlayerGroupAll());
+            TextTagSetVelocity(TextTagLastCreated(), 0.4, 90.0);
+            TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeOut, 3.0);
+            TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeDuration, 5.0);
         }
         else {
             lv_name_of_unit = UnitTypeGetName(lv_needed_production_building);
@@ -6570,6 +6586,10 @@ bool auto_libEFA54406_gf_NeuroCallsMercenary_TriggerFunc (bool testConds, bool r
         lv_merc_compound_unit = UnitGroupUnit(lv_mercenary_compounds, 1);
         if ((UnitCheckAbilCmdState(lv_merc_compound_unit, lv_ability_command, c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled | c_cmdStateCooldown) == false) && (UnitCheckAbilCmdState(lv_merc_compound_unit, lv_ability_command, c_cmdStateHasCharges) == true)) {
             UnitIssueOrder(lv_merc_compound_unit, Order(lv_ability_command), c_orderQueueAddToEnd);
+            TextTagCreate((libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_89A5D568") + StringToText(lp_merc_to_call)), 24, UnitGetPosition(lv_merc_compound_unit), 1.0, true, false, PlayerGroupAll());
+            TextTagSetVelocity(TextTagLastCreated(), 0.4, 90.0);
+            TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeOut, 3.0);
+            TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeDuration, 5.0);
             return true;
         }
         else {
@@ -6945,6 +6965,10 @@ void libEFA54406_gf_NeuroReseachesUpgrade (string lp_upgrade_to_research) {
     if ((lv_production_exists == true)) {
         if ((UnitCheckAbilCmdState(lv_most_available_slots_unit, lv_ability_command, c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled | c_cmdStateCooldown) == false)) {
             UnitIssueOrder(lv_most_available_slots_unit, Order(lv_ability_command), c_orderQueueAddToEnd);
+            TextTagCreate((libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_1D4EF994") + StringToText(lp_upgrade_to_research)), 24, UnitGetPosition(lv_most_available_slots_unit), 1.0, true, false, PlayerGroupAll());
+            TextTagSetVelocity(TextTagLastCreated(), 0.2, 90.0);
+            TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeOut, 6.0);
+            TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeDuration, 10.0);
             return ;
         }
         else {
