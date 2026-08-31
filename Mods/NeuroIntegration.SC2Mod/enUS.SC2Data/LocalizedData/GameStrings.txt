@@ -136,6 +136,7 @@ Effect/Name/WraithGLaunchMissile2=Hurricane Laser Elite (Launch Missile)
 Effect/Name/WraithGU2=Hurricane Laser Elite
 Param/Value/lib_EFA54406_00113E21=→ <c val="FFFF00">Nuke Level 1</c> - Small Nuke: Call down a tactical Nuke (<c val="0080FF">75</c>)
 Param/Value/lib_EFA54406_00A0D00E=→ <c val="FFFF00">Energy Regeneration Level 1</c> - Increases <c val="0080FF">Energy</c>  regeneration rate to <c val="00FF00">112.5%</c>
+Param/Value/lib_EFA54406_01E8DC5D=<s val="BattlenetSmallButton">LVL 1</s>
 Param/Value/lib_EFA54406_023A75B8=→ <c val="FFFF00">Shields Level 1</c> - Small Shields: 50 Shields on all units for 20s (<c val="0080FF">75</c>)
 Param/Value/lib_EFA54406_0245F730=<c val="00FF00">NEW</c> - <c val="FFFF00">Call Backup Level 0</c>
 Param/Value/lib_EFA54406_02B0F08E=Own Unit killed by Player
@@ -149,18 +150,23 @@ Param/Value/lib_EFA54406_067C0ABE=Close
 Param/Value/lib_EFA54406_06B24ACB=Stimpack
 Param/Value/lib_EFA54406_06F37814=Play Again: 
 Param/Value/lib_EFA54406_0720066A=→ <c val="FFFF00">Purifier Beam Level 2</c> - Medium beam: Call down a medium size Purifier Beam that does area damage for 15s (<c val="0080FF">100</c>)
+Param/Value/lib_EFA54406_072601A5=<s val="BattlenetSmallButton">LVL 1</s>
 Param/Value/lib_EFA54406_07268A2D=Range Up
 Param/Value/lib_EFA54406_0765E66D=Slowdown is not available
 Param/Value/lib_EFA54406_07EADF30=Play Again: 
 Param/Value/lib_EFA54406_085E4DCB=Call Backup is not available
+Param/Value/lib_EFA54406_09824759=<s val="BattlenetSmallButton">LVL 4</s>
 Param/Value/lib_EFA54406_0A23C1CB=<c val="FFFF00">Stimpack Level 1</c> - Increases Attack & Movement speed. Small: +33% (<c val="0080FF">50</c>). Lasts 15s
+Param/Value/lib_EFA54406_0C074F53=<s val="BattlenetSmallButton">LVL 3</s>
 Param/Value/lib_EFA54406_0C136664=
 Param/Value/lib_EFA54406_0E3D52B9=→ <c val="FFFF00">Max Level</c> reached
 Param/Value/lib_EFA54406_11CE73BA=<c val="FFFF00">Energy Regeneration Level 0</c>
 Param/Value/lib_EFA54406_12AB22B3=<c val="FFFF00">Range Up Level 2</c> - Increases Weapon Range and Sight. Small: +2 (<c val="0080FF">50</c>), Large: +4 (<c val="0080FF">100</c>). Lasts 20s
 Param/Value/lib_EFA54406_16419646= chose to upgrade 
-Param/Value/lib_EFA54406_16E15859= can choose to upgrade an ability. Get more <c val="FFFF00">info</c> about abilities by clicking '<c val="0080FF">Energy</c>' at the top of the screen
+Param/Value/lib_EFA54406_16E15859= can choose to upgrade an ability. <n/><n/>Get more <c val="FFFF00">info</c> about abilities by clicking '<c val="0080FF">Energy</c>' at the top of the screen.
 Param/Value/lib_EFA54406_16F53FD3=→ <c val="FFFF00">Max Level</c> reached
+Param/Value/lib_EFA54406_16FC4736=<s val="BattlenetSmallButton">LVL 2</s>
+Param/Value/lib_EFA54406_170ECA9B=<s val="BattlenetSmallButton">LVL 4</s>
 Param/Value/lib_EFA54406_170EFA64=There is a barracks
 Param/Value/lib_EFA54406_1744872C=/
 Param/Value/lib_EFA54406_177656EF=→ <c val="FFFF00">Max Level</c> reached
@@ -170,14 +176,18 @@ Param/Value/lib_EFA54406_185E32CB=→ <c val="FFFF00">Range Up Level 1</c> - Sma
 Param/Value/lib_EFA54406_18C5D30A=<c val="FFFF00">Slowndown Level 2</c> - Slow enemy Speed: Small: 67% (<c val="0080FF">75</c>), Medium: 33% (<c val="0080FF">125</c>). Lasts 15s
 Param/Value/lib_EFA54406_1B920E42=<c val="FF0000">Evil Neuro</c>
 Param/Value/lib_EFA54406_1BF06486=<c val="FFFF00">Purifier Beam Level 2</c> - Call down a Purifier Beam: Small Beam (<c val="0080FF">75</c>), Medium Beam (<c val="0080FF">100</c>). Lasts 15s
+Param/Value/lib_EFA54406_1D0E86A1=<s val="BattlenetSmallButton">LVL 3</s>
 Param/Value/lib_EFA54406_1E1BF91F=→ <c val="FFFF00">Max Level</c> reached
 Param/Value/lib_EFA54406_1E431BCE=<c val="FFFF00">Building Speed Level 3</c> - Increases Const., Prod. & Research speed. Small: +100% (<c val="0080FF">75</c>), Large: +200% (<c val="0080FF">125</c>). Lasts 25s
 Param/Value/lib_EFA54406_2033B7BD=Nuke
 Param/Value/lib_EFA54406_21346ACA=Activated '<c val="FFFF00">Unlock Everything</c>' Cheat
+Param/Value/lib_EFA54406_217CB97D=<s val="BattlenetSmallButton">LVL 2</s>
 Param/Value/lib_EFA54406_21E5097E=<c val="FFFF00">Call Structure Level 2</c> - Call down a Supply Depot (<c val="0080FF">50</c>) or production building (Barracks, Factory, Starport) (<c val="0080FF">75</c>)
 Param/Value/lib_EFA54406_21F69E60=Nuke is not available
+Param/Value/lib_EFA54406_21F96069=<s val="BattlenetSmallButton">LVL 1</s>
 Param/Value/lib_EFA54406_22BF5861=<c val="FFFF00">Stimpack Level 3</c> - Increases Attack & Movement speed. Small: +50% (<c val="0080FF">50</c>), Large: +100% (<c val="0080FF">100</c>). Lasts 15s
 Param/Value/lib_EFA54406_236A044F=Resources
+Param/Value/lib_EFA54406_245B6064=<s val="BattlenetSmallButton">LVL 3</s>
 Param/Value/lib_EFA54406_24BECD4E=Restore Energy
 Param/Value/lib_EFA54406_2587F3B5=→ <c val="FFFF00">Max Level</c> reached
 Param/Value/lib_EFA54406_267C82AD=→ <c val="FFFF00">Resources Level 1</c> - Either receive 100 Minerals or 100 Vespene Gas (<c val="0080FF">75</c>)
@@ -185,12 +195,14 @@ Param/Value/lib_EFA54406_26EAC1C8=→ <c val="FFFF00">Range Up Level 3</c> - Inc
 Param/Value/lib_EFA54406_27B19F2C=<c val="FF80C0">Neuro-sama</c>
 Param/Value/lib_EFA54406_2A2F68A6=Play Again: 
 Param/Value/lib_EFA54406_2A81A30C=<c val="FFFF00">Range Up Level 1</c> - Increases Weapon Range and Sight. Small: +2 (<c val="0080FF">50</c>). Lasts 20s
+Param/Value/lib_EFA54406_2C2F78EC=<s val="BattlenetSmallButton">LVL 3</s>
 Param/Value/lib_EFA54406_2C5828E7=<c val="00FF00">NEW</c> - <c val="FFFF00">Restore Energy Level 0</c>
 Param/Value/lib_EFA54406_2CCF34B0=<c val="FFFF00">???</c> - Not yet available
 Param/Value/lib_EFA54406_2DBA9E31=<c val="FFFF00">???</c> - Not yet available
 Param/Value/lib_EFA54406_2EC3277C=<c val="FFFF00">???</c> - Not yet available
 Param/Value/lib_EFA54406_302217DB=→ <c val="FFFF00">Nuke Level 1</c> - Small Nuke: Call down a tactical Nuke (<c val="0080FF">75</c>)
 Param/Value/lib_EFA54406_30D0A3C5=There is no killing unit
+Param/Value/lib_EFA54406_30D2824A=<s val="BattlenetSmallButton">LVL 4</s>
 Param/Value/lib_EFA54406_30E427C9=→ <c val="FFFF00">Heal Level 4</c> - Increase Values: Small Heal: 25%→<c val="00FF00">33%</c>, Medium Heal: 50%→<c val="00FF00">67%</c>, Large Heal: 75%→<c val="00FF00">100%</c>
 Param/Value/lib_EFA54406_3129835D=→ <c val="FFFF00">Max Level</c> reached
 Param/Value/lib_EFA54406_312BF7F5=<c val="FFFF00">Building Speed Level 2</c> - Increases Const., Prod. & Research speed. Small: +75% (<c val="0080FF">75</c>), Large: +150% (<c val="0080FF">125</c>). Lasts 25s
@@ -201,12 +213,14 @@ Param/Value/lib_EFA54406_341AF50D=<c val="00FF00">NEW</c> - <c val="FFFF00">Shie
 Param/Value/lib_EFA54406_34485C7E=<c val="FFFF00">???</c> - Not yet available
 Param/Value/lib_EFA54406_349A75E3=Shields
 Param/Value/lib_EFA54406_34E4F618=<c val="FFFF00">Nuke Level 0</c>
+Param/Value/lib_EFA54406_35DE394A=<s val="BattlenetSmallButton">LVL 4</s>
 Param/Value/lib_EFA54406_36A93E17=<c val="FFFF00">Restore Energy Level 0</c>
 Param/Value/lib_EFA54406_37925FED=<c val="00FF00">NEW</c> - <c val="FFFF00">Call Structure Level 0</c>
 Param/Value/lib_EFA54406_388FE8D1=<c val="FFFF00">???</c> - Not yet available
 Param/Value/lib_EFA54406_3B6DC6AF=Range Up
 Param/Value/lib_EFA54406_3C7D8F9B=→ <c val="FFFF00">Max Level</c> reached
 Param/Value/lib_EFA54406_3C823FC6= can choose to upgrade an ability. Abilities have powerful effects and cost a regenerating <c val="0080FF">Energy</c> resource. Only 
+Param/Value/lib_EFA54406_3D794374=<s val="BattlenetSmallButton">LVL 4</s>
 Param/Value/lib_EFA54406_3F553140=<c val="FFFF00">Call Structure Level 3</c> - Call down a Supply Depot (<c val="0080FF">50</c>), Barracks, Factory or Starport (<c val="0080FF">75</c>) or Command Center (<c val="0080FF">100</c>)
 Param/Value/lib_EFA54406_3FE7D4F1=Call Backup
 Param/Value/lib_EFA54406_40D38E61=Abilities Info
@@ -223,11 +237,13 @@ Param/Value/lib_EFA54406_48AB6FAD=Unknow Difficulty
 Param/Value/lib_EFA54406_4BB6CBFA=→ <c val="FFFF00">Nuke Level 3</c> - Decrease <c val="0080FF">Energy</c> cost. Small Nuke; (<c val="0080FF">75</c>→<c val="00FF00">50</c>), Large Nuke; (<c val="0080FF">125</c>→<c val="00FF00">100</c>)
 Param/Value/lib_EFA54406_4C7B4E87=<c val="FFFF00">Nuke Level 4</c> - Call down a Nuke: Small Nuke (<c val="0080FF">50</c>), Large Nuke (<c val="0080FF">100</c>), MEGA NUKE (<c val="0080FF">300</c>)
 Param/Value/lib_EFA54406_4D0EF666=Cheat not available in intermission
+Param/Value/lib_EFA54406_4DAF6CD3=<s val="BattlenetSmallButton">LVL 3</s>
 Param/Value/lib_EFA54406_4E0025FA=<c val="FFFF00">Shields Level 1</c> - Small: 50 Shields (<c val="0080FF">75</c>). Lasts for 20s
 Param/Value/lib_EFA54406_4E42F314=No ability choices found even though there should be. Load a previous save and hopefully that fixes this
 Param/Value/lib_EFA54406_4EFBAEB0=Slowdown is not available
 Param/Value/lib_EFA54406_4F93FE16=Has tech lab
 Param/Value/lib_EFA54406_4F9BE5A8=<c val="FFFF00">Slowndown Level 1</c> - Slow enemy Speed: Small: 67% (<c val="0080FF">75</c>). Lasts 15s
+Param/Value/lib_EFA54406_50461AD1=<s val="BattlenetSmallButton">LVL 3</s>
 Param/Value/lib_EFA54406_507B5CFC=→ <c val="FFFF00">Shields Level 2</c> - Medium Shields: 100 Shields on all units for 20s (<c val="0080FF">100</c>)
 Param/Value/lib_EFA54406_50DB84FD=→ <c val="FFFF00">Initial Energy Level 3</c> - Increases initial <c val="0080FF">Energy</c>: 200→<c val="00FF00">275</c>
 Param/Value/lib_EFA54406_52C0F9A1=<c val="00FF00">NEW</c> - <c val="FFFF00">Slowdown Level 0</c>
@@ -242,6 +258,8 @@ Param/Value/lib_EFA54406_5F2F9E7F=<c val="FFFF00">Shields Level 3</c> - Small: 5
 Param/Value/lib_EFA54406_5F78EABE=<s val="BoardTitle"><c val="169FE9">Energy</c></s>
 Param/Value/lib_EFA54406_6028E76B=Hard
 Param/Value/lib_EFA54406_606281ED=<c val="FFFF00">Initial Energy Level 0</c>
+Param/Value/lib_EFA54406_61C55AD0=<s val="BattlenetSmallButton">LVL 2</s>
+Param/Value/lib_EFA54406_654B1F19=<s val="BattlenetSmallButton">LVL 3</s>
 Param/Value/lib_EFA54406_66C4F005=→ <c val="FFFF00">Restore Energy Level 2</c> - Large Restore: Restores 67% Energy for all units (<c val="0080FF">125</c>)
 Param/Value/lib_EFA54406_66D2B9F4=→ <c val="FFFF00">Energy Regeneration Level 2</c> - Increases <c val="0080FF">Energy</c>  regeneration rate to <c val="00FF00">125%</c>
 Param/Value/lib_EFA54406_686ABA22=<c val="FFFF00">Initial Energy Level 1</c> - Current initial <c val="0080FF">Energy</c>: 125
@@ -254,6 +272,7 @@ Param/Value/lib_EFA54406_6A8B3129=<c val="FFFF00">Heal Level 1</c> - Small Heal:
 Param/Value/lib_EFA54406_6AB6CA6C=→ <c val="FFFF00">Heal Level 1</c> - Small Heal: Heals all units by 25% (<c val="0080FF">50</c>)
 Param/Value/lib_EFA54406_6B4782B3=→ <c val="FFFF00">Call Structure Level 1</c> - Call down a Supply Depot (+8 useable Supply) (<c val="0080FF">50</c>)
 Param/Value/lib_EFA54406_6BAC2F5B=<c val="FFFF00">???</c> - Not yet available
+Param/Value/lib_EFA54406_6BBEFB59=<s val="BattlenetSmallButton">LVL 2</s>
 Param/Value/lib_EFA54406_6D8E5020=<c val="FFFF00">Shields Level 2</c> - Small: 50 Shields (<c val="0080FF">75</c>), Medium: 100 Shields (<c val="0080FF">100</c>). Lasts for 20s
 Param/Value/lib_EFA54406_6E70A496=→ <c val="FFFF00">Stimpack Level 2</c> - Large Buff: Increase Attack and Movement Speed by 67% for 15s (<c val="0080FF">100</c>)
 Param/Value/lib_EFA54406_6FB0B037=<c val="FFFF00">Resources Level 1</c> - Receive either 100 Minerals or 100 Gas (<c val="0080FF">75</c>)
@@ -265,15 +284,18 @@ Param/Value/lib_EFA54406_72DE25B2=<c val="FFFF00">Call Structure Level 0</c>
 Param/Value/lib_EFA54406_73DE562D=→ <c val="FFFF00">Max Level</c> reached
 Param/Value/lib_EFA54406_73E66200=
 Param/Value/lib_EFA54406_73F82F18=Nuke
+Param/Value/lib_EFA54406_746AC084=<s val="BattlenetSmallButton">LVL 1</s>
 Param/Value/lib_EFA54406_74E46320=
 Param/Value/lib_EFA54406_74EE5DF7=<c val="FFFF00">Energy Regeneration Level 3</c> - Current <c val="0080FF">Energy</c> regeneration rate: 137.5%
 Param/Value/lib_EFA54406_74FE864E=Purifier Beam is not available
 Param/Value/lib_EFA54406_75170F41=<c val="FFFF00">???</c> - Not yet available
 Param/Value/lib_EFA54406_77A3E573=<c val="FFFF00">Purifier Beam Level 0</c>
+Param/Value/lib_EFA54406_77BE53AF=<s val="BattlenetSmallButton">LVL 2</s>
 Param/Value/lib_EFA54406_7802F029=<c val="FFFF00">Restore Energy Level 2</c> - Small: Restores 33% Energy (<c val="0080FF">75</c>), Large: Restores 67% Energy (<c val="0080FF">125</c>)
 Param/Value/lib_EFA54406_7A2E2A78=<c val="00FF00">NEW</c> - <c val="FFFF00">Energy Regeneration Level 0</c>
 Param/Value/lib_EFA54406_7A33B378=→ <c val="FFFF00">Slowndown Level 1</c> - Small Slowdown: Slow enemies to 67% Speed for 15s (<c val="0080FF">75</c>)
 Param/Value/lib_EFA54406_7C08D19A=→ <c val="FFFF00">Building Speed Level 1</c> - Small Buff: Increase Construction, Production & Research Speed by 75% for 25s (<c val="0080FF">75</c>)
+Param/Value/lib_EFA54406_7C2D0F67=<s val="BattlenetSmallButton">LVL 4</s>
 Param/Value/lib_EFA54406_7E0B5F82=<c val="00FF00">NEW</c> - <c val="FFFF00">Building Speed Level 0</c>
 Param/Value/lib_EFA54406_7EE27E22=→ <c val="FFFF00">Restore Energy Level 3</c> - Increase Values: Small Restore: 33%→<c val="00FF00">50%</c>, Large Restore: 67%→<c val="00FF00">100%</c>
 Param/Value/lib_EFA54406_7FD8F508=→ <c val="FFFF00">Call Backup Level 3</c> - Call down Aerial backup (Elite-Wraith) (<c val="0080FF">75</c>)
@@ -287,16 +309,22 @@ Param/Value/lib_EFA54406_84515CCB=→ <c val="FFFF00">Call Backup Level 1</c> - 
 Param/Value/lib_EFA54406_87B5E461=Play Again: 
 Param/Value/lib_EFA54406_8905ED95=Purifier Beam
 Param/Value/lib_EFA54406_89DE73A5=→ <c val="FFFF00">Shields Level 3</c> - Large Shields: 200 Shields on all units for 20s (<c val="0080FF">125</c>)
+Param/Value/lib_EFA54406_8BAE5AD8=
 Param/Value/lib_EFA54406_8D51DB1A=<c val="FFFF00">Initial Energy Level 3</c> - Current initial <c val="0080FF">Energy</c>: 275
 Param/Value/lib_EFA54406_8EDD92A2=→ <c val="FFFF00">Max Level</c> reached
+Param/Value/lib_EFA54406_926BF5B6=<s val="BattlenetSmallButton">LVL 2</s>
 Param/Value/lib_EFA54406_934774A3=Stimpack
 Param/Value/lib_EFA54406_93AF0CB7=→ <c val="FFFF00">Call Structure Level 1</c> - Call down a Supply Depot (+8 useable Supply) (<c val="0080FF">50</c>)
 Param/Value/lib_EFA54406_93B25702=<c val="FFFF00">Range Up Level 3</c> - Increases Weapon Range and Sight. Small: +3 (<c val="0080FF">50</c>), Large: +5 (<c val="0080FF">100</c>). Lasts 20s
 Param/Value/lib_EFA54406_93FBA11F=<c val="00FF00">NEW</c> - <c val="FFFF00">Range Up Level 0</c>
 Param/Value/lib_EFA54406_9463B14D=Purifier Beam
 Param/Value/lib_EFA54406_959E3B32=→ <c val="FFFF00">Energy Regeneration Level 4</c> - Increases <c val="0080FF">Energy</c>  regeneration rate to <c val="00FF00">150%</c>
+Param/Value/lib_EFA54406_9976AF65=<s val="BattlenetSmallButton">LVL 4</s>
 Param/Value/lib_EFA54406_9A6CF506=Normal
+Param/Value/lib_EFA54406_9AC366E8=<s val="BattlenetSmallButton">LVL 1</s>
+Param/Value/lib_EFA54406_9BCC6049=<s val="BattlenetSmallButton">LVL 4</s>
 Param/Value/lib_EFA54406_9D008726=Heal
+Param/Value/lib_EFA54406_9DA1AF74=<s val="BattlenetSmallButton">LVL 4</s>
 Param/Value/lib_EFA54406_9DA5C7FC=Shields
 Param/Value/lib_EFA54406_9E19EBC2=<c val="FFFF00">???</c> - Not yet available
 Param/Value/lib_EFA54406_A05CA6C4=<c val="00FF00">NEW</c> - <c val="FFFF00">Stimpack Level 0</c>
@@ -306,12 +334,17 @@ Param/Value/lib_EFA54406_A10DB6BC=Building Speed
 Param/Value/lib_EFA54406_A20B4FB8=
 Param/Value/lib_EFA54406_A32467F5=Resources is not available
 Param/Value/lib_EFA54406_A4E547C3=<c val="00FF00">NEW</c> - <c val="FFFF00">Initial Energy Level 0</c>
+Param/Value/lib_EFA54406_A4E5DAED=<s val="BattlenetSmallButton">LVL 3</s>
 Param/Value/lib_EFA54406_A589C53B=→ <c val="FFFF00">Range Up Level 2</c> - Large Range Up: Increases Weapon and Sight Range for all units by +4 (<c val="0080FF">100</c>)
+Param/Value/lib_EFA54406_A76313CF=<s val="BattlenetSmallButton">LVL 1</s>
 Param/Value/lib_EFA54406_A77DF87F=→ <c val="FFFF00">Initial Energy Level 1</c> - Increases initial <c val="0080FF">Energy</c>: 50→<c val="00FF00">125</c>
+Param/Value/lib_EFA54406_A90EB766=<s val="BattlenetSmallButton">LVL 1</s>
 Param/Value/lib_EFA54406_AB802D5E=<c val="FFFF00">Nuke Level 3</c> - Call down a Nuke: Small Nuke (<c val="0080FF">50</c>), Large Nuke (<c val="0080FF">100</c>)
+Param/Value/lib_EFA54406_ACDF378C=<s val="BattlenetSmallButton">LVL 2</s>
 Param/Value/lib_EFA54406_AD39B562=→ <c val="FFFF00">Heal Level 2</c> - Medium Heal: Heals all units by 50% (<c val="0080FF">75</c>)
 Param/Value/lib_EFA54406_ADA6E968=<c val="FFFF00">???</c> - Not yet available
 Param/Value/lib_EFA54406_ADE22C62=→ <c val="FFFF00">Slowndown Level 3</c> - Big Slowdown: Completely stun enemies for 15s (<c val="0080FF">150</c>)
+Param/Value/lib_EFA54406_AFC99109=<s val="BattlenetSmallButton">LVL 3</s>
 Param/Value/lib_EFA54406_AFE89D76=Heal
 Param/Value/lib_EFA54406_B0270892=→ <c val="FFFF00">Building Speed Level 2</c> - Large Buff: Increase Construction, Production and Research Speed by 150% for 25s (<c val="0080FF">125</c>)
 Param/Value/lib_EFA54406_B035718D=<c val="FFFF00">Slowdown Level 0</c>
@@ -321,19 +354,25 @@ Param/Value/lib_EFA54406_B2B7F34C=Building Speed is not available
 Param/Value/lib_EFA54406_B30458B2=Close
 Param/Value/lib_EFA54406_B346A1E3=Activated '<c val="FFFF00">No Cooldowns</c>' Cheat
 Param/Value/lib_EFA54406_B3CE13EB=Call Structure
+Param/Value/lib_EFA54406_B58662E6=<s val="BattlenetSmallButton">LVL 1</s>
+Param/Value/lib_EFA54406_B5B26A83=<s val="BattlenetSmallButton">LVL 3</s>
 Param/Value/lib_EFA54406_B5B94B86=<c val="FFFF00">Heal Level 4</c> - Small Heal: 33% (<c val="0080FF">50</c>), Medium Heal: 67% (<c val="0080FF">75</c>), Large Heal: 100% (<c val="0080FF">100</c>)
 Param/Value/lib_EFA54406_B6A6FBD0=<c val="00FF00">NEW</c> - <c val="FFFF00">Heal Level 0</c>
 Param/Value/lib_EFA54406_B6F0C532=<c val="FFFF00">Energy Regeneration Level 2</c> - Current <c val="0080FF">Energy</c> regeneration rate: 125%
 Param/Value/lib_EFA54406_B8104D3C=Building Speed
+Param/Value/lib_EFA54406_B911CA7D=<s val="BattlenetSmallButton">LVL 2</s>
 Param/Value/lib_EFA54406_B93BB545=<c val="FFFF00">???</c> - Not yet available
 Param/Value/lib_EFA54406_BA3FADF3=→ <c val="FFFF00">Shields Level 1</c> - Small Shields: 50 Shields on all units for 20s (<c val="0080FF">75</c>)
 Param/Value/lib_EFA54406_BA99FFAE=→ <c val="FFFF00">Call Backup Level 1</c> - Call down Infantry backup (Elite-Marine) (<c val="0080FF">50</c>)
 Param/Value/lib_EFA54406_BBAB3009=→ <c val="FFFF00">Resources Level 2</c> - Increase Values. Either receive 100|0→<c val="00FF00">150|75</c> or 0|100→<c val="00FF00">75|150</c> Minerals and Vespene Gas (<c val="0080FF">75</c>)
 Param/Value/lib_EFA54406_BC06E80A=→ <c val="FFFF00">Building Level 3</c> - Increase Values: Small Buff: 75%→<c val="00FF00">100%</c>, Large Buff: 150%→<c val="00FF00">200%</c>
+Param/Value/lib_EFA54406_BC2C55DD=<s val="BattlenetSmallButton">LVL 2</s>
 Param/Value/lib_EFA54406_BC986EA2=Own Unit killed by Enemy
 Param/Value/lib_EFA54406_BDE4FEAE=<c val="FFFF00">Restore Energy Level 3</c> - Small: Restores 50% Energy (<c val="0080FF">75</c>), Large: Restores 100% Energy (<c val="0080FF">125</c>)
+Param/Value/lib_EFA54406_BE8A5504=<s val="BattlenetSmallButton">LVL 1</s>
 Param/Value/lib_EFA54406_BF4352B9=→ <c val="FFFF00">Call Structure Level 2</c> - Call down a production building (Barracks, Factory, Starport) (<c val="0080FF">75</c>)
 Param/Value/lib_EFA54406_BF9A23B1=<c val="FFFF00">Resources Level 2</c> - Receive either 150 Minerals & 75 Gas or 150 Gas & 75 Minerals (<c val="0080FF">75</c>)
+Param/Value/lib_EFA54406_BFA2CD41=<s val="BattlenetSmallButton">LVL 3</s>
 Param/Value/lib_EFA54406_BFA6836D=Medic is allowed
 Param/Value/lib_EFA54406_C35211AA=Slowdown
 Param/Value/lib_EFA54406_C5BAAEEF=Killer is visible
@@ -343,12 +382,14 @@ Param/Value/lib_EFA54406_C800D89E=<c val="FFFF00">Heal Level 0</c>
 Param/Value/lib_EFA54406_C8663212=<c val="FFFF00">Building Speed Level 0</c>
 Param/Value/lib_EFA54406_C941B551=At the start of every mission 
 Param/Value/lib_EFA54406_CB8FA684=Call Structure is not available
+Param/Value/lib_EFA54406_CC54C3B2=<s val="BattlenetSmallButton">LVL 2</s>
 Param/Value/lib_EFA54406_CC78A746=→ <c val="FFFF00">Resources Level 3</c> - Increase Values. Receive 150|75→<c val="00FF00">200 Minerals & 200 Gas</c> (<c val="0080FF">75</c>)
 Param/Value/lib_EFA54406_CD7F5ACF=<c val="00FF00">NEW</c> - <c val="FFFF00">Nuke Level 0</c>
 Param/Value/lib_EFA54406_CDFF85B5=Resources
 Param/Value/lib_EFA54406_CE2D6AEE=Call Backup is not available
 Param/Value/lib_EFA54406_D02A0A7E=<c val="FFFF00">Restore Energy Level 1</c> - Small: Restores 33% Energy (<c val="0080FF">75</c>)
 Param/Value/lib_EFA54406_D04C190F=<c val="FFFF00">Building Speed Level 1</c> - Increases Construction, Production & Research speed. Small: +75% (<c val="0080FF">75</c>). Lasts 25s
+Param/Value/lib_EFA54406_D0645553=<s val="BattlenetSmallButton">LVL 3</s>
 Param/Value/lib_EFA54406_D13D0B30=→ <c val="FFFF00">Call Structure Level 3</c> - Call down a Command Center (<c val="0080FF">100</c>)
 Param/Value/lib_EFA54406_D320C5A3=→ <c val="FFFF00">Stimpack Level 1</c> - Small Buff: Increase Attack and Movement Speed by 33% for 15s (<c val="0080FF">50</c>)
 Param/Value/lib_EFA54406_D35344ED=→ <c val="FFFF00">Energy Regeneration Level 3</c> - Increases <c val="0080FF">Energy</c>  regeneration rate to <c val="00FF00">137.5%</c>
@@ -356,6 +397,8 @@ Param/Value/lib_EFA54406_D3D0AA92=Cheat not available in intermission
 Param/Value/lib_EFA54406_D42215F5=/
 Param/Value/lib_EFA54406_D4296AE5=<c val="FFFF00">Stimpack Level 2</c> - Increases Attack & Movement speed. Small: +33% (<c val="0080FF">50</c>), Large: +67% (<c val="0080FF">100</c>). Lasts 15s
 Param/Value/lib_EFA54406_D43A23F0=→ <c val="FFFF00">Resources Level 1</c> - Either receive 100 Minerals or 100 Vespene Gas (<c val="0080FF">75</c>)
+Param/Value/lib_EFA54406_D6CFDE81=<s val="BattlenetSmallButton">LVL 1</s>
+Param/Value/lib_EFA54406_D7B421B9=<s val="BattlenetSmallButton">LVL 1</s>
 Param/Value/lib_EFA54406_D877CBC7=<c val="FFFF00">Call Backup Level 0</c>
 Param/Value/lib_EFA54406_DA6EB14B=→ <c val="FFFF00">Nuke Level 4</c> - Call down the MEGA NUKE (<c val="0080FF">300</c>)
 Param/Value/lib_EFA54406_DB32E192=→ <c val="FFFF00">Max Level</c> reached
@@ -365,6 +408,7 @@ Param/Value/lib_EFA54406_DCD42E87=Insane
 Param/Value/lib_EFA54406_DD9E348E=<c val="00FF00">NEW</c> - <c val="FFFF00">Resources Level 0</c>
 Param/Value/lib_EFA54406_E0775BF5=Slowdown
 Param/Value/lib_EFA54406_E25FC40B=→ <c val="FFFF00">Stimpack Level 3</c> - Increase Values: Small Buff: 33%→<c val="00FF00">50%</c>, Large Buff: 67%→<c val="00FF00">100%</c>
+Param/Value/lib_EFA54406_E290761E=<s val="BattlenetSmallButton">LVL 4</s>
 Param/Value/lib_EFA54406_E3C15975=<c val="FFFF00">Nuke Level 2</c> - Call down a Nuke: Small Nuke (<c val="0080FF">75</c>), Large Nuke (<c val="0080FF">125</c>)
 Param/Value/lib_EFA54406_E4015963=<c val="FFFF00">???</c> - Not yet available
 Param/Value/lib_EFA54406_E4777634=→ <c val="FFFF00">Initial Energy Level 1</c>- Increases initial <c val="0080FF">Energy</c>: 50→<c val="00FF00">125</c>
@@ -372,15 +416,20 @@ Param/Value/lib_EFA54406_E4E29553=→ <c val="FFFF00">Max Level</c> reached
 Param/Value/lib_EFA54406_E58F93C9=<c val="FFFF00">Initial Energy Level 2</c> - Current initial <c val="0080FF">Energy</c>: 200
 Param/Value/lib_EFA54406_E675F2F5=Play Again: 
 Param/Value/lib_EFA54406_E7169425=<c val="FFFF00">???</c> - Not yet available
+Param/Value/lib_EFA54406_E7F7E2CE=<s val="BattlenetSmallButton">LVL 4</s>
+Param/Value/lib_EFA54406_E90EAE34=<s val="BattlenetSmallButton">LVL 1</s>
 Param/Value/lib_EFA54406_EC253369=→ <c val="FFFF00">Restore Energy Level 1</c> - Small Restore: Restores 33% Energy for all units (<c val="0080FF">75</c>)
+Param/Value/lib_EFA54406_ECFBA0DB=<s val="BattlenetSmallButton">LVL 2</s>
+Param/Value/lib_EFA54406_ED9B4839=<s val="BattlenetSmallButton">LVL 2</s>
 Param/Value/lib_EFA54406_EEC1EA70=→ <c val="FFFF00">Building Speed Level 1</c> - Small Buff: Increase Construction, Production & Research Speed by 75% for 25s (<c val="0080FF">75</c>)
 Param/Value/lib_EFA54406_EECCADDF=→ <c val="FFFF00">Restore Energy Level 1</c> - Small Restore: Restores 33% Energy for all units (<c val="0080FF">75</c>)
 Param/Value/lib_EFA54406_EEFEBD42=Own Unit killed by Fire Wall
 Param/Value/lib_EFA54406_EF17038F=→ <c val="FFFF00">Purifier Beam Level 3</c> - Large beam: Call down a large Purifier Beam that does area damage for 15s. (<c val="0080FF">125</c>)
+Param/Value/lib_EFA54406_F1884B6D=<s val="BattlenetSmallButton">LVL 4</s>
 Param/Value/lib_EFA54406_F247EE10=selected something
 Param/Value/lib_EFA54406_F3C69BF9=Call Structure is not available
 Param/Value/lib_EFA54406_F5970833=Activated '<c val="FFFF00">Unlock All Abilities</c>' Cheat
-Param/Value/lib_EFA54406_F6A3C0F2= can cast these abilities. Get more <c val="FFFF00">info</c> about abilities by clicking '<c val="0080FF">Energy</c>' at the top of the screen
+Param/Value/lib_EFA54406_F6A3C0F2= can cast these abilities. <n/>Get more <c val="FFFF00">info</c> about abilities by clicking '<c val="0080FF">Energy</c>' at the top of the screen.
 Param/Value/lib_EFA54406_F727F6DF=<c val="FFFF00">Purifier Beam Level 3</c> - Call down a Purifier Beam: Small Beam (<c val="0080FF">75</c>), Medium Beam (<c val="0080FF">100</c>), Large Beam (<c val="0080FF">125</c>). Lasts 15s
 Param/Value/lib_EFA54406_FA364084=→ <c val="FFFF00">Call Backup Level 2</c> - Call down Vehicle backup (Elite-Goliath) (<c val="0080FF">75</c>)
 Param/Value/lib_EFA54406_FB51E2CF=Cheat not available in intermission

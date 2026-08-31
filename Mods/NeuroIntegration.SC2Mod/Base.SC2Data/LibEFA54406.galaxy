@@ -46,6 +46,18 @@ void libEFA54406_InitVariables () {
     libEFA54406_gv_top_bar_ability_10 = c_invalidDialogControlId;
     libEFA54406_gv_top_bar_ability_11 = c_invalidDialogControlId;
     libEFA54406_gv_top_bar_ability_12 = c_invalidDialogControlId;
+    libEFA54406_gv_top_bar_ability_lvl_1 = c_invalidDialogControlId;
+    libEFA54406_gv_top_bar_ability_lvl_2 = c_invalidDialogControlId;
+    libEFA54406_gv_top_bar_ability_lvl_3 = c_invalidDialogControlId;
+    libEFA54406_gv_top_bar_ability_lvl_4 = c_invalidDialogControlId;
+    libEFA54406_gv_top_bar_ability_lvl_5 = c_invalidDialogControlId;
+    libEFA54406_gv_top_bar_ability_lvl_6 = c_invalidDialogControlId;
+    libEFA54406_gv_top_bar_ability_lvl_7 = c_invalidDialogControlId;
+    libEFA54406_gv_top_bar_ability_lvl_8 = c_invalidDialogControlId;
+    libEFA54406_gv_top_bar_ability_lvl_9 = c_invalidDialogControlId;
+    libEFA54406_gv_top_bar_ability_lvl_10 = c_invalidDialogControlId;
+    libEFA54406_gv_top_bar_ability_lvl_11 = c_invalidDialogControlId;
+    libEFA54406_gv_top_bar_ability_lvl_12 = c_invalidDialogControlId;
     libEFA54406_gv_top_bar_ability_cd_1 = c_invalidDialogControlId;
     libEFA54406_gv_top_bar_ability_cd_2 = c_invalidDialogControlId;
     libEFA54406_gv_top_bar_ability_cd_3 = c_invalidDialogControlId;
@@ -7446,52 +7458,76 @@ bool libEFA54406_gt_CreateAbilityBar_Func (bool testConds, bool runActions) {
     libEFA54406_gv_top_bar_abilities_info_button = DialogControlLastCreated();
     libNtve_gf_CreateDialogItemImage(libEFA54406_gv_abilities_top_bar, 75, 75, c_anchorBottom, -530, 30, StringToText(""), "Assets\\Textures\\blank.dds", c_triggerImageTypeNormal, false, Color(100,100,100), c_triggerBlendModeNormal);
     libEFA54406_gv_top_bar_ability_1 = DialogControlLastCreated();
-    libNtve_gf_CreateDialogItemLabel(libEFA54406_gv_abilities_top_bar, 75, 50, c_anchorBottom, -510, 26, StringToText(""), ColorWithAlpha(0,0,0,0), false, 2.0);
-    libEFA54406_gv_top_bar_ability_cd_1 = DialogControlLastCreated();
     libNtve_gf_CreateDialogItemImage(libEFA54406_gv_abilities_top_bar, 75, 75, c_anchorBottom, -450, 30, StringToText(""), "Assets\\Textures\\blank.dds", c_triggerImageTypeNormal, false, Color(100,100,100), c_triggerBlendModeNormal);
     libEFA54406_gv_top_bar_ability_2 = DialogControlLastCreated();
-    libNtve_gf_CreateDialogItemLabel(libEFA54406_gv_abilities_top_bar, 75, 50, c_anchorBottom, -430, 26, StringToText(""), ColorWithAlpha(0,0,0,0), false, 2.0);
-    libEFA54406_gv_top_bar_ability_cd_2 = DialogControlLastCreated();
     libNtve_gf_CreateDialogItemImage(libEFA54406_gv_abilities_top_bar, 75, 75, c_anchorBottom, -370, 30, StringToText(""), "Assets\\Textures\\blank.dds", c_triggerImageTypeNormal, false, Color(100,100,100), c_triggerBlendModeNormal);
     libEFA54406_gv_top_bar_ability_3 = DialogControlLastCreated();
-    libNtve_gf_CreateDialogItemLabel(libEFA54406_gv_abilities_top_bar, 75, 50, c_anchorBottom, -350, 26, StringToText(""), ColorWithAlpha(0,0,0,0), false, 2.0);
-    libEFA54406_gv_top_bar_ability_cd_3 = DialogControlLastCreated();
     libNtve_gf_CreateDialogItemImage(libEFA54406_gv_abilities_top_bar, 75, 75, c_anchorBottom, -290, 30, StringToText(""), "Assets\\Textures\\blank.dds", c_triggerImageTypeNormal, false, Color(100,100,100), c_triggerBlendModeNormal);
     libEFA54406_gv_top_bar_ability_4 = DialogControlLastCreated();
-    libNtve_gf_CreateDialogItemLabel(libEFA54406_gv_abilities_top_bar, 75, 50, c_anchorBottom, -270, 26, StringToText(""), ColorWithAlpha(0,0,0,0), false, 2.0);
-    libEFA54406_gv_top_bar_ability_cd_4 = DialogControlLastCreated();
     libNtve_gf_CreateDialogItemImage(libEFA54406_gv_abilities_top_bar, 75, 75, c_anchorBottom, -210, 30, StringToText(""), "Assets\\Textures\\blank.dds", c_triggerImageTypeNormal, false, Color(100,100,100), c_triggerBlendModeNormal);
     libEFA54406_gv_top_bar_ability_5 = DialogControlLastCreated();
-    libNtve_gf_CreateDialogItemLabel(libEFA54406_gv_abilities_top_bar, 75, 50, c_anchorBottom, -190, 26, StringToText(""), ColorWithAlpha(0,0,0,0), false, 2.0);
-    libEFA54406_gv_top_bar_ability_cd_5 = DialogControlLastCreated();
     libNtve_gf_CreateDialogItemImage(libEFA54406_gv_abilities_top_bar, 75, 75, c_anchorBottom, -130, 30, StringToText(""), "Assets\\Textures\\blank.dds", c_triggerImageTypeNormal, false, Color(100,100,100), c_triggerBlendModeNormal);
     libEFA54406_gv_top_bar_ability_6 = DialogControlLastCreated();
-    libNtve_gf_CreateDialogItemLabel(libEFA54406_gv_abilities_top_bar, 75, 50, c_anchorBottom, -110, 26, StringToText(""), ColorWithAlpha(0,0,0,0), false, 2.0);
-    libEFA54406_gv_top_bar_ability_cd_6 = DialogControlLastCreated();
     libNtve_gf_CreateDialogItemImage(libEFA54406_gv_abilities_top_bar, 75, 75, c_anchorBottom, 130, 30, StringToText(""), "Assets\\Textures\\blank.dds", c_triggerImageTypeNormal, false, Color(100,100,100), c_triggerBlendModeNormal);
     libEFA54406_gv_top_bar_ability_7 = DialogControlLastCreated();
-    libNtve_gf_CreateDialogItemLabel(libEFA54406_gv_abilities_top_bar, 75, 50, c_anchorBottom, 150, 26, StringToText(""), ColorWithAlpha(0,0,0,0), false, 2.0);
-    libEFA54406_gv_top_bar_ability_cd_7 = DialogControlLastCreated();
     libNtve_gf_CreateDialogItemImage(libEFA54406_gv_abilities_top_bar, 75, 75, c_anchorBottom, 210, 30, StringToText(""), "Assets\\Textures\\blank.dds", c_triggerImageTypeNormal, false, Color(100,100,100), c_triggerBlendModeNormal);
     libEFA54406_gv_top_bar_ability_8 = DialogControlLastCreated();
-    libNtve_gf_CreateDialogItemLabel(libEFA54406_gv_abilities_top_bar, 75, 50, c_anchorBottom, 230, 26, StringToText(""), ColorWithAlpha(0,0,0,0), false, 2.0);
-    libEFA54406_gv_top_bar_ability_cd_8 = DialogControlLastCreated();
     libNtve_gf_CreateDialogItemImage(libEFA54406_gv_abilities_top_bar, 75, 75, c_anchorBottom, 290, 30, StringToText(""), "Assets\\Textures\\blank.dds", c_triggerImageTypeNormal, false, Color(100,100,100), c_triggerBlendModeNormal);
     libEFA54406_gv_top_bar_ability_9 = DialogControlLastCreated();
-    libNtve_gf_CreateDialogItemLabel(libEFA54406_gv_abilities_top_bar, 75, 50, c_anchorBottom, 310, 26, StringToText(""), ColorWithAlpha(0,0,0,0), false, 2.0);
-    libEFA54406_gv_top_bar_ability_cd_9 = DialogControlLastCreated();
     libNtve_gf_CreateDialogItemImage(libEFA54406_gv_abilities_top_bar, 75, 75, c_anchorBottom, 370, 30, StringToText(""), "Assets\\Textures\\blank.dds", c_triggerImageTypeNormal, false, Color(100,100,100), c_triggerBlendModeNormal);
     libEFA54406_gv_top_bar_ability_10 = DialogControlLastCreated();
-    libNtve_gf_CreateDialogItemLabel(libEFA54406_gv_abilities_top_bar, 75, 50, c_anchorBottom, 390, 26, StringToText(""), ColorWithAlpha(0,0,0,0), false, 2.0);
-    libEFA54406_gv_top_bar_ability_cd_10 = DialogControlLastCreated();
     libNtve_gf_CreateDialogItemImage(libEFA54406_gv_abilities_top_bar, 75, 75, c_anchorBottom, 450, 30, StringToText(""), "Assets\\Textures\\blank.dds", c_triggerImageTypeNormal, false, Color(100,100,100), c_triggerBlendModeNormal);
     libEFA54406_gv_top_bar_ability_11 = DialogControlLastCreated();
-    libNtve_gf_CreateDialogItemLabel(libEFA54406_gv_abilities_top_bar, 75, 50, c_anchorBottom, 470, 26, StringToText(""), ColorWithAlpha(0,0,0,0), false, 2.0);
-    libEFA54406_gv_top_bar_ability_cd_11 = DialogControlLastCreated();
     libNtve_gf_CreateDialogItemImage(libEFA54406_gv_abilities_top_bar, 75, 75, c_anchorBottom, 530, 30, StringToText(""), "Assets\\Textures\\blank.dds", c_triggerImageTypeNormal, false, Color(100,100,100), c_triggerBlendModeNormal);
     libEFA54406_gv_top_bar_ability_12 = DialogControlLastCreated();
+    libNtve_gf_CreateDialogItemLabel(libEFA54406_gv_abilities_top_bar, 75, 50, c_anchorBottom, -510, 26, StringToText(""), ColorWithAlpha(0,0,0,0), false, 2.0);
+    libEFA54406_gv_top_bar_ability_cd_1 = DialogControlLastCreated();
+    libNtve_gf_CreateDialogItemLabel(libEFA54406_gv_abilities_top_bar, 75, 50, c_anchorBottom, -430, 26, StringToText(""), ColorWithAlpha(0,0,0,0), false, 2.0);
+    libEFA54406_gv_top_bar_ability_cd_2 = DialogControlLastCreated();
+    libNtve_gf_CreateDialogItemLabel(libEFA54406_gv_abilities_top_bar, 75, 50, c_anchorBottom, -350, 26, StringToText(""), ColorWithAlpha(0,0,0,0), false, 2.0);
+    libEFA54406_gv_top_bar_ability_cd_3 = DialogControlLastCreated();
+    libNtve_gf_CreateDialogItemLabel(libEFA54406_gv_abilities_top_bar, 75, 50, c_anchorBottom, -270, 26, StringToText(""), ColorWithAlpha(0,0,0,0), false, 2.0);
+    libEFA54406_gv_top_bar_ability_cd_4 = DialogControlLastCreated();
+    libNtve_gf_CreateDialogItemLabel(libEFA54406_gv_abilities_top_bar, 75, 50, c_anchorBottom, -190, 26, StringToText(""), ColorWithAlpha(0,0,0,0), false, 2.0);
+    libEFA54406_gv_top_bar_ability_cd_5 = DialogControlLastCreated();
+    libNtve_gf_CreateDialogItemLabel(libEFA54406_gv_abilities_top_bar, 75, 50, c_anchorBottom, -110, 26, StringToText(""), ColorWithAlpha(0,0,0,0), false, 2.0);
+    libEFA54406_gv_top_bar_ability_cd_6 = DialogControlLastCreated();
+    libNtve_gf_CreateDialogItemLabel(libEFA54406_gv_abilities_top_bar, 75, 50, c_anchorBottom, 150, 26, StringToText(""), ColorWithAlpha(0,0,0,0), false, 2.0);
+    libEFA54406_gv_top_bar_ability_cd_7 = DialogControlLastCreated();
+    libNtve_gf_CreateDialogItemLabel(libEFA54406_gv_abilities_top_bar, 75, 50, c_anchorBottom, 230, 26, StringToText(""), ColorWithAlpha(0,0,0,0), false, 2.0);
+    libEFA54406_gv_top_bar_ability_cd_8 = DialogControlLastCreated();
+    libNtve_gf_CreateDialogItemLabel(libEFA54406_gv_abilities_top_bar, 75, 50, c_anchorBottom, 310, 26, StringToText(""), ColorWithAlpha(0,0,0,0), false, 2.0);
+    libEFA54406_gv_top_bar_ability_cd_9 = DialogControlLastCreated();
+    libNtve_gf_CreateDialogItemLabel(libEFA54406_gv_abilities_top_bar, 75, 50, c_anchorBottom, 390, 26, StringToText(""), ColorWithAlpha(0,0,0,0), false, 2.0);
+    libEFA54406_gv_top_bar_ability_cd_10 = DialogControlLastCreated();
+    libNtve_gf_CreateDialogItemLabel(libEFA54406_gv_abilities_top_bar, 75, 50, c_anchorBottom, 470, 26, StringToText(""), ColorWithAlpha(0,0,0,0), false, 2.0);
+    libEFA54406_gv_top_bar_ability_cd_11 = DialogControlLastCreated();
     libNtve_gf_CreateDialogItemLabel(libEFA54406_gv_abilities_top_bar, 75, 50, c_anchorBottom, 550, 26, StringToText(""), ColorWithAlpha(0,0,0,0), false, 2.0);
     libEFA54406_gv_top_bar_ability_cd_12 = DialogControlLastCreated();
+    libNtve_gf_CreateDialogItemLabel(libEFA54406_gv_abilities_top_bar, 75, 50, c_anchorBottom, -500, 2, StringToText(""), ColorWithAlpha(0,0,0,0), false, 2.0);
+    libEFA54406_gv_top_bar_ability_lvl_1 = DialogControlLastCreated();
+    libNtve_gf_CreateDialogItemLabel(libEFA54406_gv_abilities_top_bar, 75, 50, c_anchorBottom, -420, 2, StringToText(""), ColorWithAlpha(0,0,0,0), false, 2.0);
+    libEFA54406_gv_top_bar_ability_lvl_2 = DialogControlLastCreated();
+    libNtve_gf_CreateDialogItemLabel(libEFA54406_gv_abilities_top_bar, 75, 50, c_anchorBottom, -340, 2, StringToText(""), ColorWithAlpha(0,0,0,0), false, 2.0);
+    libEFA54406_gv_top_bar_ability_lvl_3 = DialogControlLastCreated();
+    libNtve_gf_CreateDialogItemLabel(libEFA54406_gv_abilities_top_bar, 75, 50, c_anchorBottom, -260, 2, StringToText(""), ColorWithAlpha(0,0,0,0), false, 2.0);
+    libEFA54406_gv_top_bar_ability_lvl_4 = DialogControlLastCreated();
+    libNtve_gf_CreateDialogItemLabel(libEFA54406_gv_abilities_top_bar, 75, 50, c_anchorBottom, -180, 2, StringToText(""), ColorWithAlpha(0,0,0,0), false, 2.0);
+    libEFA54406_gv_top_bar_ability_lvl_5 = DialogControlLastCreated();
+    libNtve_gf_CreateDialogItemLabel(libEFA54406_gv_abilities_top_bar, 75, 50, c_anchorBottom, -100, 2, StringToText(""), ColorWithAlpha(0,0,0,0), false, 2.0);
+    libEFA54406_gv_top_bar_ability_lvl_6 = DialogControlLastCreated();
+    libNtve_gf_CreateDialogItemLabel(libEFA54406_gv_abilities_top_bar, 75, 50, c_anchorBottom, 160, 2, StringToText(""), ColorWithAlpha(0,0,0,0), false, 2.0);
+    libEFA54406_gv_top_bar_ability_lvl_7 = DialogControlLastCreated();
+    libNtve_gf_CreateDialogItemLabel(libEFA54406_gv_abilities_top_bar, 75, 50, c_anchorBottom, 240, 2, StringToText(""), ColorWithAlpha(0,0,0,0), false, 2.0);
+    libEFA54406_gv_top_bar_ability_lvl_8 = DialogControlLastCreated();
+    libNtve_gf_CreateDialogItemLabel(libEFA54406_gv_abilities_top_bar, 75, 50, c_anchorBottom, 320, 2, StringToText(""), ColorWithAlpha(0,0,0,0), false, 2.0);
+    libEFA54406_gv_top_bar_ability_lvl_9 = DialogControlLastCreated();
+    libNtve_gf_CreateDialogItemLabel(libEFA54406_gv_abilities_top_bar, 75, 50, c_anchorBottom, 400, 2, StringToText(""), ColorWithAlpha(0,0,0,0), false, 2.0);
+    libEFA54406_gv_top_bar_ability_lvl_10 = DialogControlLastCreated();
+    libNtve_gf_CreateDialogItemLabel(libEFA54406_gv_abilities_top_bar, 75, 50, c_anchorBottom, 480, 2, StringToText(""), ColorWithAlpha(0,0,0,0), false, 2.0);
+    libEFA54406_gv_top_bar_ability_lvl_11 = DialogControlLastCreated();
+    libNtve_gf_CreateDialogItemLabel(libEFA54406_gv_abilities_top_bar, 75, 50, c_anchorBottom, 560, 2, StringToText(""), ColorWithAlpha(0,0,0,0), false, 2.0);
+    libEFA54406_gv_top_bar_ability_lvl_12 = DialogControlLastCreated();
     DialogCreate(200, 200, c_anchorTop, 0, -75, true);
     libEFA54406_gv_energy_dialog = DialogLastCreated();
     libNtve_gf_CreateDialogItemLabel(libEFA54406_gv_energy_dialog, 200, 50, c_anchorBottom, 48, 50, StringExternal("Param/Value/lib_EFA54406_45CE56CE"), ColorWithAlpha(0,0,0,0), false, 2.0);
@@ -7591,7 +7627,25 @@ void libEFA54406_gt_ShowAbilitiesCooldown_Init () {
 // Trigger: Ability Energy
 //--------------------------------------------------------------------------------------------------
 bool libEFA54406_gt_AbilityEnergy_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    text lv_ability_level_text;
+
     // Automatic Variable Declarations
+    int auto701AFF26_val;
+    int auto1921B9BB_val;
+    int auto3AD4C8D7_val;
+    int auto7CCF4F38_val;
+    int autoEC04B20F_val;
+    int autoF1792BF4_val;
+    int autoD8FDCC08_val;
+    int auto30B962F6_val;
+    int auto90C704F9_val;
+    int autoE81F7E57_val;
+    int autoEEBC8B85_val;
+    int auto07D3ED93_val;
+
+    // Variable Initialization
+
     // Actions
     if (!runActions) {
         return true;
@@ -7601,7 +7655,7 @@ bool libEFA54406_gt_AbilityEnergy_Func (bool testConds, bool runActions) {
         Wait(0.1, c_timeGame);
         if ((libEFA54406_gv_is_blocking == false)) {
             if ((libEFA54406_gv_infinite_energy == false)) {
-                libEFA54406_gv_current_energy = MinF((libEFA54406_gv_current_energy + (0.025 * libEFA54406_gv_energy_regen_rate)), libEFA54406_gv_max_energy);
+                libEFA54406_gv_current_energy = MinF((libEFA54406_gv_current_energy + (0.03 * libEFA54406_gv_energy_regen_rate)), libEFA54406_gv_max_energy);
                 libEFA54406_gv_energy_label_text = (IntToText(FixedToInt(libEFA54406_gv_current_energy)) + StringExternal("Param/Value/lib_EFA54406_D42215F5") + IntToText(FixedToInt(libEFA54406_gv_max_energy)));
                 libNtve_gf_SetDialogItemText(libEFA54406_gv_energy_label, libEFA54406_gv_energy_label_text, PlayerGroupAll());
             }
@@ -7612,6 +7666,22 @@ bool libEFA54406_gt_AbilityEnergy_Func (bool testConds, bool runActions) {
             }
             if ((libEFA54406_gv_level_call_backup > 0)) {
                 if ((libEFA54406_gv_is_nobuild == false)) {
+                    auto701AFF26_val = libEFA54406_gv_level_call_backup;
+                    if (auto701AFF26_val == 1) {
+                        lv_ability_level_text = StringExternal("Param/Value/lib_EFA54406_A76313CF");
+                    }
+                    else if (auto701AFF26_val == 2) {
+                        lv_ability_level_text = StringExternal("Param/Value/lib_EFA54406_ED9B4839");
+                    }
+                    else if (auto701AFF26_val == 3) {
+                        lv_ability_level_text = StringExternal("Param/Value/lib_EFA54406_A4E5DAED");
+                    }
+                    else if (auto701AFF26_val == 4) {
+                        lv_ability_level_text = StringExternal("Param/Value/lib_EFA54406_9DA1AF74");
+                    }
+                    else {
+                    }
+                    libNtve_gf_SetDialogItemText(libEFA54406_gv_top_bar_ability_lvl_1, lv_ability_level_text, PlayerGroupAll());
                     if (((libEFA54406_gv_current_energy < 50.0) || (libEFA54406_gv_ability_cd_1 > 0))) {
                         libNtve_gf_SetDialogItemTooltip(libEFA54406_gv_top_bar_ability_1, StringExternal("Param/Value/lib_EFA54406_3FE7D4F1"), PlayerGroupAll());
                         libNtve_gf_SetDialogItemImage(libEFA54406_gv_top_bar_ability_1, "Assets\\Textures\\btn-research-terran-orbitalstrikerally.dds", PlayerGroupAll());
@@ -7624,6 +7694,7 @@ bool libEFA54406_gt_AbilityEnergy_Func (bool testConds, bool runActions) {
                     }
                 }
                 else {
+                    libNtve_gf_SetDialogItemText(libEFA54406_gv_top_bar_ability_lvl_1, StringToText(""), PlayerGroupAll());
                     if ((libEFA54406_gv_ability_cd_1 > 0)) {
                         libNtve_gf_SetDialogItemTooltip(libEFA54406_gv_top_bar_ability_1, StringExternal("Param/Value/lib_EFA54406_085E4DCB"), PlayerGroupAll());
                         libNtve_gf_SetDialogItemImage(libEFA54406_gv_top_bar_ability_1, "Assets\\Textures\\btn-command-cancel.dds", PlayerGroupAll());
@@ -7636,9 +7707,27 @@ bool libEFA54406_gt_AbilityEnergy_Func (bool testConds, bool runActions) {
                     }
                 }
             }
-
+            else {
+                libNtve_gf_SetDialogItemText(libEFA54406_gv_top_bar_ability_lvl_1, StringToText(""), PlayerGroupAll());
+            }
             if ((libEFA54406_gv_level_call_structure > 0)) {
                 if ((libEFA54406_gv_is_nobuild == false)) {
+                    auto1921B9BB_val = libEFA54406_gv_level_call_structure;
+                    if (auto1921B9BB_val == 1) {
+                        lv_ability_level_text = StringExternal("Param/Value/lib_EFA54406_B58662E6");
+                    }
+                    else if (auto1921B9BB_val == 2) {
+                        lv_ability_level_text = StringExternal("Param/Value/lib_EFA54406_BC2C55DD");
+                    }
+                    else if (auto1921B9BB_val == 3) {
+                        lv_ability_level_text = StringExternal("Param/Value/lib_EFA54406_AFC99109");
+                    }
+                    else if (auto1921B9BB_val == 4) {
+                        lv_ability_level_text = StringExternal("Param/Value/lib_EFA54406_E7F7E2CE");
+                    }
+                    else {
+                    }
+                    libNtve_gf_SetDialogItemText(libEFA54406_gv_top_bar_ability_lvl_2, lv_ability_level_text, PlayerGroupAll());
                     if (((libEFA54406_gv_current_energy < 50.0) || (libEFA54406_gv_ability_cd_2 > 0))) {
                         libNtve_gf_SetDialogItemTooltip(libEFA54406_gv_top_bar_ability_2, StringExternal("Param/Value/lib_EFA54406_B10E8F02"), PlayerGroupAll());
                         libNtve_gf_SetDialogItemImage(libEFA54406_gv_top_bar_ability_2, "Assets\\Textures\\btn-research-terran-orbitaldepots.dds", PlayerGroupAll());
@@ -7651,6 +7740,7 @@ bool libEFA54406_gt_AbilityEnergy_Func (bool testConds, bool runActions) {
                     }
                 }
                 else {
+                    libNtve_gf_SetDialogItemText(libEFA54406_gv_top_bar_ability_lvl_2, StringToText(""), PlayerGroupAll());
                     if ((libEFA54406_gv_ability_cd_2 > 0)) {
                         libNtve_gf_SetDialogItemTooltip(libEFA54406_gv_top_bar_ability_2, StringExternal("Param/Value/lib_EFA54406_F3C69BF9"), PlayerGroupAll());
                         libNtve_gf_SetDialogItemImage(libEFA54406_gv_top_bar_ability_2, "Assets\\Textures\\btn-command-cancel.dds", PlayerGroupAll());
@@ -7663,9 +7753,27 @@ bool libEFA54406_gt_AbilityEnergy_Func (bool testConds, bool runActions) {
                     }
                 }
             }
-
+            else {
+                libNtve_gf_SetDialogItemText(libEFA54406_gv_top_bar_ability_lvl_2, StringToText(""), PlayerGroupAll());
+            }
             if ((libEFA54406_gv_level_get_resources > 0)) {
                 if ((libEFA54406_gv_is_nobuild == false)) {
+                    auto3AD4C8D7_val = libEFA54406_gv_level_get_resources;
+                    if (auto3AD4C8D7_val == 1) {
+                        lv_ability_level_text = StringExternal("Param/Value/lib_EFA54406_746AC084");
+                    }
+                    else if (auto3AD4C8D7_val == 2) {
+                        lv_ability_level_text = StringExternal("Param/Value/lib_EFA54406_217CB97D");
+                    }
+                    else if (auto3AD4C8D7_val == 3) {
+                        lv_ability_level_text = StringExternal("Param/Value/lib_EFA54406_D0645553");
+                    }
+                    else if (auto3AD4C8D7_val == 4) {
+                        lv_ability_level_text = StringExternal("Param/Value/lib_EFA54406_35DE394A");
+                    }
+                    else {
+                    }
+                    libNtve_gf_SetDialogItemText(libEFA54406_gv_top_bar_ability_lvl_3, lv_ability_level_text, PlayerGroupAll());
                     if (((libEFA54406_gv_current_energy < 75.0) || (libEFA54406_gv_ability_cd_3 > 0))) {
                         libNtve_gf_SetDialogItemTooltip(libEFA54406_gv_top_bar_ability_3, StringExternal("Param/Value/lib_EFA54406_236A044F"), PlayerGroupAll());
                         libNtve_gf_SetDialogItemImage(libEFA54406_gv_top_bar_ability_3, "Assets\\Textures\\icon-mineral-nobg.dds", PlayerGroupAll());
@@ -7678,6 +7786,7 @@ bool libEFA54406_gt_AbilityEnergy_Func (bool testConds, bool runActions) {
                     }
                 }
                 else {
+                    libNtve_gf_SetDialogItemText(libEFA54406_gv_top_bar_ability_lvl_3, StringToText(""), PlayerGroupAll());
                     if ((libEFA54406_gv_ability_cd_3 > 0)) {
                         libNtve_gf_SetDialogItemTooltip(libEFA54406_gv_top_bar_ability_3, StringExternal("Param/Value/lib_EFA54406_A32467F5"), PlayerGroupAll());
                         libNtve_gf_SetDialogItemImage(libEFA54406_gv_top_bar_ability_3, "Assets\\Textures\\btn-command-cancel.dds", PlayerGroupAll());
@@ -7690,9 +7799,27 @@ bool libEFA54406_gt_AbilityEnergy_Func (bool testConds, bool runActions) {
                     }
                 }
             }
-
+            else {
+                libNtve_gf_SetDialogItemText(libEFA54406_gv_top_bar_ability_lvl_3, StringToText(""), PlayerGroupAll());
+            }
             if ((libEFA54406_gv_level_buff_construction_production_research_speed > 0)) {
                 if ((libEFA54406_gv_is_nobuild == false)) {
+                    auto7CCF4F38_val = libEFA54406_gv_level_buff_construction_production_research_speed;
+                    if (auto7CCF4F38_val == 1) {
+                        lv_ability_level_text = StringExternal("Param/Value/lib_EFA54406_9AC366E8");
+                    }
+                    else if (auto7CCF4F38_val == 2) {
+                        lv_ability_level_text = StringExternal("Param/Value/lib_EFA54406_B911CA7D");
+                    }
+                    else if (auto7CCF4F38_val == 3) {
+                        lv_ability_level_text = StringExternal("Param/Value/lib_EFA54406_0C074F53");
+                    }
+                    else if (auto7CCF4F38_val == 4) {
+                        lv_ability_level_text = StringExternal("Param/Value/lib_EFA54406_7C2D0F67");
+                    }
+                    else {
+                    }
+                    libNtve_gf_SetDialogItemText(libEFA54406_gv_top_bar_ability_lvl_4, lv_ability_level_text, PlayerGroupAll());
                     if (((libEFA54406_gv_current_energy < 75.0) || (libEFA54406_gv_ability_cd_4 > 0))) {
                         libNtve_gf_SetDialogItemTooltip(libEFA54406_gv_top_bar_ability_4, StringExternal("Param/Value/lib_EFA54406_B8104D3C"), PlayerGroupAll());
                         libNtve_gf_SetDialogItemImage(libEFA54406_gv_top_bar_ability_4, "Assets\\Textures\\btn-upgrade-terran-weaponrefit.dds", PlayerGroupAll());
@@ -7705,6 +7832,7 @@ bool libEFA54406_gt_AbilityEnergy_Func (bool testConds, bool runActions) {
                     }
                 }
                 else {
+                    libNtve_gf_SetDialogItemText(libEFA54406_gv_top_bar_ability_lvl_4, StringToText(""), PlayerGroupAll());
                     if ((libEFA54406_gv_ability_cd_4 > 0)) {
                         libNtve_gf_SetDialogItemTooltip(libEFA54406_gv_top_bar_ability_4, StringExternal("Param/Value/lib_EFA54406_B2B7F34C"), PlayerGroupAll());
                         libNtve_gf_SetDialogItemImage(libEFA54406_gv_top_bar_ability_4, "Assets\\Textures\\btn-command-cancel.dds", PlayerGroupAll());
@@ -7717,8 +7845,26 @@ bool libEFA54406_gt_AbilityEnergy_Func (bool testConds, bool runActions) {
                     }
                 }
             }
-
+            else {
+                libNtve_gf_SetDialogItemText(libEFA54406_gv_top_bar_ability_lvl_4, StringToText(""), PlayerGroupAll());
+            }
             if ((libEFA54406_gv_level_buff_range > 0)) {
+                autoEC04B20F_val = libEFA54406_gv_level_buff_range;
+                if (autoEC04B20F_val == 1) {
+                    lv_ability_level_text = StringExternal("Param/Value/lib_EFA54406_D7B421B9");
+                }
+                else if (autoEC04B20F_val == 2) {
+                    lv_ability_level_text = StringExternal("Param/Value/lib_EFA54406_16FC4736");
+                }
+                else if (autoEC04B20F_val == 3) {
+                    lv_ability_level_text = StringExternal("Param/Value/lib_EFA54406_2C2F78EC");
+                }
+                else if (autoEC04B20F_val == 4) {
+                    lv_ability_level_text = StringExternal("Param/Value/lib_EFA54406_E290761E");
+                }
+                else {
+                }
+                libNtve_gf_SetDialogItemText(libEFA54406_gv_top_bar_ability_lvl_5, lv_ability_level_text, PlayerGroupAll());
                 if (((libEFA54406_gv_current_energy < 50.0) || (libEFA54406_gv_ability_cd_5 > 0))) {
                     libNtve_gf_SetDialogItemTooltip(libEFA54406_gv_top_bar_ability_5, StringExternal("Param/Value/lib_EFA54406_3B6DC6AF"), PlayerGroupAll());
                     libNtve_gf_SetDialogItemImage(libEFA54406_gv_top_bar_ability_5, "Assets\\Textures\\btn-ability-terran-snipe-color.dds", PlayerGroupAll());
@@ -7730,8 +7876,26 @@ bool libEFA54406_gt_AbilityEnergy_Func (bool testConds, bool runActions) {
                     libNtve_gf_SetDialogItemBlendMode(libEFA54406_gv_top_bar_ability_5, c_triggerBlendModeNormal, PlayerGroupAll());
                 }
             }
-
+            else {
+                libNtve_gf_SetDialogItemText(libEFA54406_gv_top_bar_ability_lvl_5, StringToText(""), PlayerGroupAll());
+            }
             if ((libEFA54406_gv_level_buff_movement_attack_speed > 0)) {
+                autoF1792BF4_val = libEFA54406_gv_level_buff_movement_attack_speed;
+                if (autoF1792BF4_val == 1) {
+                    lv_ability_level_text = StringExternal("Param/Value/lib_EFA54406_E90EAE34");
+                }
+                else if (autoF1792BF4_val == 2) {
+                    lv_ability_level_text = StringExternal("Param/Value/lib_EFA54406_6BBEFB59");
+                }
+                else if (autoF1792BF4_val == 3) {
+                    lv_ability_level_text = StringExternal("Param/Value/lib_EFA54406_B5B26A83");
+                }
+                else if (autoF1792BF4_val == 4) {
+                    lv_ability_level_text = StringExternal("Param/Value/lib_EFA54406_3D794374");
+                }
+                else {
+                }
+                libNtve_gf_SetDialogItemText(libEFA54406_gv_top_bar_ability_lvl_6, lv_ability_level_text, PlayerGroupAll());
                 if (((libEFA54406_gv_current_energy < 50.0) || (libEFA54406_gv_ability_cd_6 > 0))) {
                     libNtve_gf_SetDialogItemTooltip(libEFA54406_gv_top_bar_ability_6, StringExternal("Param/Value/lib_EFA54406_934774A3"), PlayerGroupAll());
                     libNtve_gf_SetDialogItemImage(libEFA54406_gv_top_bar_ability_6, "Assets\\Textures\\btn-ability-terran-stimpack-color.dds", PlayerGroupAll());
@@ -7743,8 +7907,26 @@ bool libEFA54406_gt_AbilityEnergy_Func (bool testConds, bool runActions) {
                     libNtve_gf_SetDialogItemBlendMode(libEFA54406_gv_top_bar_ability_6, c_triggerBlendModeNormal, PlayerGroupAll());
                 }
             }
-
+            else {
+                libNtve_gf_SetDialogItemText(libEFA54406_gv_top_bar_ability_lvl_6, StringToText(""), PlayerGroupAll());
+            }
             if ((libEFA54406_gv_level_heal_units > 0)) {
+                autoD8FDCC08_val = libEFA54406_gv_level_heal_units;
+                if (autoD8FDCC08_val == 1) {
+                    lv_ability_level_text = StringExternal("Param/Value/lib_EFA54406_A90EB766");
+                }
+                else if (autoD8FDCC08_val == 2) {
+                    lv_ability_level_text = StringExternal("Param/Value/lib_EFA54406_77BE53AF");
+                }
+                else if (autoD8FDCC08_val == 3) {
+                    lv_ability_level_text = StringExternal("Param/Value/lib_EFA54406_654B1F19");
+                }
+                else if (autoD8FDCC08_val == 4) {
+                    lv_ability_level_text = StringExternal("Param/Value/lib_EFA54406_F1884B6D");
+                }
+                else {
+                }
+                libNtve_gf_SetDialogItemText(libEFA54406_gv_top_bar_ability_lvl_7, lv_ability_level_text, PlayerGroupAll());
                 if (((libEFA54406_gv_current_energy < 50.0) || (libEFA54406_gv_ability_cd_7 > 0))) {
                     libNtve_gf_SetDialogItemTooltip(libEFA54406_gv_top_bar_ability_7, StringExternal("Param/Value/lib_EFA54406_9D008726"), PlayerGroupAll());
                     libNtve_gf_SetDialogItemImage(libEFA54406_gv_top_bar_ability_7, "Assets\\Textures\\btn-ability-terran-heal-color.dds", PlayerGroupAll());
@@ -7756,8 +7938,26 @@ bool libEFA54406_gt_AbilityEnergy_Func (bool testConds, bool runActions) {
                     libNtve_gf_SetDialogItemBlendMode(libEFA54406_gv_top_bar_ability_7, c_triggerBlendModeNormal, PlayerGroupAll());
                 }
             }
-
+            else {
+                libNtve_gf_SetDialogItemText(libEFA54406_gv_top_bar_ability_lvl_7, StringToText(""), PlayerGroupAll());
+            }
             if ((libEFA54406_gv_level_shields > 0)) {
+                auto30B962F6_val = libEFA54406_gv_level_shields;
+                if (auto30B962F6_val == 1) {
+                    lv_ability_level_text = StringExternal("Param/Value/lib_EFA54406_D6CFDE81");
+                }
+                else if (auto30B962F6_val == 2) {
+                    lv_ability_level_text = StringExternal("Param/Value/lib_EFA54406_61C55AD0");
+                }
+                else if (auto30B962F6_val == 3) {
+                    lv_ability_level_text = StringExternal("Param/Value/lib_EFA54406_245B6064");
+                }
+                else if (auto30B962F6_val == 4) {
+                    lv_ability_level_text = StringExternal("Param/Value/lib_EFA54406_30D2824A");
+                }
+                else {
+                }
+                libNtve_gf_SetDialogItemText(libEFA54406_gv_top_bar_ability_lvl_8, lv_ability_level_text, PlayerGroupAll());
                 if (((libEFA54406_gv_current_energy < 75.0) || (libEFA54406_gv_ability_cd_8 > 0))) {
                     libNtve_gf_SetDialogItemTooltip(libEFA54406_gv_top_bar_ability_8, StringExternal("Param/Value/lib_EFA54406_9DA5C7FC"), PlayerGroupAll());
                     libNtve_gf_SetDialogItemImage(libEFA54406_gv_top_bar_ability_8, "Assets\\Textures\\btn-upgrade-protoss-shieldslevel3.dds", PlayerGroupAll());
@@ -7769,8 +7969,26 @@ bool libEFA54406_gt_AbilityEnergy_Func (bool testConds, bool runActions) {
                     libNtve_gf_SetDialogItemBlendMode(libEFA54406_gv_top_bar_ability_8, c_triggerBlendModeNormal, PlayerGroupAll());
                 }
             }
-
+            else {
+                libNtve_gf_SetDialogItemText(libEFA54406_gv_top_bar_ability_lvl_8, StringToText(""), PlayerGroupAll());
+            }
             if ((libEFA54406_gv_level_restore_unit_energy > 0)) {
+                auto90C704F9_val = libEFA54406_gv_level_restore_unit_energy;
+                if (auto90C704F9_val == 1) {
+                    lv_ability_level_text = StringExternal("Param/Value/lib_EFA54406_072601A5");
+                }
+                else if (auto90C704F9_val == 2) {
+                    lv_ability_level_text = StringExternal("Param/Value/lib_EFA54406_ACDF378C");
+                }
+                else if (auto90C704F9_val == 3) {
+                    lv_ability_level_text = StringExternal("Param/Value/lib_EFA54406_BFA2CD41");
+                }
+                else if (auto90C704F9_val == 4) {
+                    lv_ability_level_text = StringExternal("Param/Value/lib_EFA54406_170ECA9B");
+                }
+                else {
+                }
+                libNtve_gf_SetDialogItemText(libEFA54406_gv_top_bar_ability_lvl_9, lv_ability_level_text, PlayerGroupAll());
                 if (((libEFA54406_gv_current_energy < 75.0) || (libEFA54406_gv_ability_cd_9 > 0))) {
                     libNtve_gf_SetDialogItemTooltip(libEFA54406_gv_top_bar_ability_9, StringExternal("Param/Value/lib_EFA54406_24BECD4E"), PlayerGroupAll());
                     libNtve_gf_SetDialogItemImage(libEFA54406_gv_top_bar_ability_9, "Assets\\Textures\\btn-research-zerg-cellularreactor.dds", PlayerGroupAll());
@@ -7782,9 +8000,27 @@ bool libEFA54406_gt_AbilityEnergy_Func (bool testConds, bool runActions) {
                     libNtve_gf_SetDialogItemBlendMode(libEFA54406_gv_top_bar_ability_9, c_triggerBlendModeNormal, PlayerGroupAll());
                 }
             }
-
+            else {
+                libNtve_gf_SetDialogItemText(libEFA54406_gv_top_bar_ability_lvl_9, StringToText(""), PlayerGroupAll());
+            }
             if ((libEFA54406_gv_level_slow_enemies > 0)) {
                 if ((libEFA54406_gv_is_nobuild == false)) {
+                    autoE81F7E57_val = libEFA54406_gv_level_slow_enemies;
+                    if (autoE81F7E57_val == 1) {
+                        lv_ability_level_text = StringExternal("Param/Value/lib_EFA54406_01E8DC5D");
+                    }
+                    else if (autoE81F7E57_val == 2) {
+                        lv_ability_level_text = StringExternal("Param/Value/lib_EFA54406_CC54C3B2");
+                    }
+                    else if (autoE81F7E57_val == 3) {
+                        lv_ability_level_text = StringExternal("Param/Value/lib_EFA54406_1D0E86A1");
+                    }
+                    else if (autoE81F7E57_val == 4) {
+                        lv_ability_level_text = StringExternal("Param/Value/lib_EFA54406_9976AF65");
+                    }
+                    else {
+                    }
+                    libNtve_gf_SetDialogItemText(libEFA54406_gv_top_bar_ability_lvl_10, lv_ability_level_text, PlayerGroupAll());
                     if (((libEFA54406_gv_current_energy < 75.0) || (libEFA54406_gv_ability_cd_10 > 0))) {
                         libNtve_gf_SetDialogItemTooltip(libEFA54406_gv_top_bar_ability_10, StringExternal("Param/Value/lib_EFA54406_E0775BF5"), PlayerGroupAll());
                         libNtve_gf_SetDialogItemImage(libEFA54406_gv_top_bar_ability_10, "Assets\\Textures\\btn-upgrade-terran-corvidreactor.dds", PlayerGroupAll());
@@ -7797,6 +8033,7 @@ bool libEFA54406_gt_AbilityEnergy_Func (bool testConds, bool runActions) {
                     }
                 }
                 else {
+                    libNtve_gf_SetDialogItemText(libEFA54406_gv_top_bar_ability_lvl_10, StringToText(""), PlayerGroupAll());
                     if ((libEFA54406_gv_ability_cd_10 > 0)) {
                         libNtve_gf_SetDialogItemTooltip(libEFA54406_gv_top_bar_ability_10, StringExternal("Param/Value/lib_EFA54406_0765E66D"), PlayerGroupAll());
                         libNtve_gf_SetDialogItemImage(libEFA54406_gv_top_bar_ability_10, "Assets\\Textures\\btn-command-cancel.dds", PlayerGroupAll());
@@ -7809,9 +8046,27 @@ bool libEFA54406_gt_AbilityEnergy_Func (bool testConds, bool runActions) {
                     }
                 }
             }
-
+            else {
+                libNtve_gf_SetDialogItemText(libEFA54406_gv_top_bar_ability_lvl_10, StringToText(""), PlayerGroupAll());
+            }
             if ((libEFA54406_gv_level_nuke > 0)) {
                 if ((libEFA54406_gv_is_nobuild == false)) {
+                    autoEEBC8B85_val = libEFA54406_gv_level_nuke;
+                    if (autoEEBC8B85_val == 1) {
+                        lv_ability_level_text = StringExternal("Param/Value/lib_EFA54406_BE8A5504");
+                    }
+                    else if (autoEEBC8B85_val == 2) {
+                        lv_ability_level_text = StringExternal("Param/Value/lib_EFA54406_ECFBA0DB");
+                    }
+                    else if (autoEEBC8B85_val == 3) {
+                        lv_ability_level_text = StringExternal("Param/Value/lib_EFA54406_4DAF6CD3");
+                    }
+                    else if (autoEEBC8B85_val == 4) {
+                        lv_ability_level_text = StringExternal("Param/Value/lib_EFA54406_09824759");
+                    }
+                    else {
+                    }
+                    libNtve_gf_SetDialogItemText(libEFA54406_gv_top_bar_ability_lvl_11, lv_ability_level_text, PlayerGroupAll());
                     if ((((libEFA54406_gv_level_nuke >= 3) && ((libEFA54406_gv_current_energy < 50.0) || (libEFA54406_gv_ability_cd_11 > 0))) || ((libEFA54406_gv_level_nuke < 3) && ((libEFA54406_gv_current_energy < 75.0) || (libEFA54406_gv_ability_cd_11 > 0))))) {
                         libNtve_gf_SetDialogItemTooltip(libEFA54406_gv_top_bar_ability_11, StringExternal("Param/Value/lib_EFA54406_2033B7BD"), PlayerGroupAll());
                         libNtve_gf_SetDialogItemImage(libEFA54406_gv_top_bar_ability_11, "Assets\\Textures\\btn-ability-terran-nuclearstrike-color.dds", PlayerGroupAll());
@@ -7824,6 +8079,7 @@ bool libEFA54406_gt_AbilityEnergy_Func (bool testConds, bool runActions) {
                     }
                 }
                 else {
+                    libNtve_gf_SetDialogItemText(libEFA54406_gv_top_bar_ability_lvl_11, StringToText(""), PlayerGroupAll());
                     if ((libEFA54406_gv_ability_cd_11 > 0)) {
                         libNtve_gf_SetDialogItemTooltip(libEFA54406_gv_top_bar_ability_11, StringExternal("Param/Value/lib_EFA54406_032AE845"), PlayerGroupAll());
                         libNtve_gf_SetDialogItemImage(libEFA54406_gv_top_bar_ability_11, "Assets\\Textures\\btn-command-cancel.dds", PlayerGroupAll());
@@ -7836,9 +8092,27 @@ bool libEFA54406_gt_AbilityEnergy_Func (bool testConds, bool runActions) {
                     }
                 }
             }
-
+            else {
+                libNtve_gf_SetDialogItemText(libEFA54406_gv_top_bar_ability_lvl_11, StringToText(""), PlayerGroupAll());
+            }
             if ((libEFA54406_gv_level_purifier_beam > 0)) {
                 if ((libEFA54406_gv_is_nobuild == false)) {
+                    auto07D3ED93_val = libEFA54406_gv_level_purifier_beam;
+                    if (auto07D3ED93_val == 1) {
+                        lv_ability_level_text = StringExternal("Param/Value/lib_EFA54406_21F96069");
+                    }
+                    else if (auto07D3ED93_val == 2) {
+                        lv_ability_level_text = StringExternal("Param/Value/lib_EFA54406_926BF5B6");
+                    }
+                    else if (auto07D3ED93_val == 3) {
+                        lv_ability_level_text = StringExternal("Param/Value/lib_EFA54406_50461AD1");
+                    }
+                    else if (auto07D3ED93_val == 4) {
+                        lv_ability_level_text = StringExternal("Param/Value/lib_EFA54406_9BCC6049");
+                    }
+                    else {
+                    }
+                    libNtve_gf_SetDialogItemText(libEFA54406_gv_top_bar_ability_lvl_12, lv_ability_level_text, PlayerGroupAll());
                     if (((libEFA54406_gv_current_energy < 75.0) || (libEFA54406_gv_ability_cd_12 > 0))) {
                         libNtve_gf_SetDialogItemTooltip(libEFA54406_gv_top_bar_ability_12, StringExternal("Param/Value/lib_EFA54406_8905ED95"), PlayerGroupAll());
                         libNtve_gf_SetDialogItemImage(libEFA54406_gv_top_bar_ability_12, "Assets\\Textures\\btn-ability-terran-emp-color.dds", PlayerGroupAll());
@@ -7851,6 +8125,7 @@ bool libEFA54406_gt_AbilityEnergy_Func (bool testConds, bool runActions) {
                     }
                 }
                 else {
+                    libNtve_gf_SetDialogItemText(libEFA54406_gv_top_bar_ability_lvl_12, StringToText(""), PlayerGroupAll());
                     if ((libEFA54406_gv_ability_cd_12 > 0)) {
                         libNtve_gf_SetDialogItemTooltip(libEFA54406_gv_top_bar_ability_12, StringExternal("Param/Value/lib_EFA54406_4378E92B"), PlayerGroupAll());
                         libNtve_gf_SetDialogItemImage(libEFA54406_gv_top_bar_ability_12, "Assets\\Textures\\btn-command-cancel.dds", PlayerGroupAll());
@@ -7863,7 +8138,9 @@ bool libEFA54406_gt_AbilityEnergy_Func (bool testConds, bool runActions) {
                     }
                 }
             }
-
+            else {
+                libNtve_gf_SetDialogItemText(libEFA54406_gv_top_bar_ability_lvl_12, StringToText(""), PlayerGroupAll());
+            }
         }
 
     }
