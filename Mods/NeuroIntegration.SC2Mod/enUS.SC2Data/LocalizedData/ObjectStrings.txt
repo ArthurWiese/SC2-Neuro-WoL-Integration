@@ -298,6 +298,7 @@ Model/Name/GoliathMercenaryPortrait222=Portrait - Goliath Mercenary
 Model/Name/Invisible2=Invisible
 Model/Name/Invisible22=Invisible
 Model/Name/Invisible222=Invisible
+Model/Name/MedicHealModel2=Medic Heal Larger Effect
 Model/Name/ProtossSmallUnitDeathLow2=Protoss Small Unit Death Low
 Model/Name/ProtossSmallUnitDeathLow22=Protoss Small Unit Death Low
 Model/Name/ProtossSmallUnitDeathLow222=Protoss Small Unit Death Low

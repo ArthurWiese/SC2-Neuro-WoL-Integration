@@ -46,6 +46,7 @@
 <Model id="GhostNukeIndicator"/>
 <Model id="GhostNukeIndicator2"/>
 <Model id="GhostNukeIndicator3"/>
+<Model id="MedicHealModel2"/>
 <Sound id="Ghost_NukeSeek"/>
 <Sound id="Ghost_DropPodImpact"/>
 <Sound id="PurifierPlanetCrackerStage2Sound"/>

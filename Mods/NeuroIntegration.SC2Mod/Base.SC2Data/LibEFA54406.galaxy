@@ -3063,23 +3063,28 @@ bool auto_libEFA54406_gf_Abilityget_resources_TriggerFunc (bool testConds, bool 
     autoAF0FF822_val = libEFA54406_gv_level_get_resources;
     if (autoAF0FF822_val == 1) {
         if ((lp_resource_type == "Minerals")) {
+            UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, (libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_27113935")));
             PlayerModifyPropertyInt(1, c_playerPropMinerals, c_playerPropOperAdd, 100);
         }
         else {
+            UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, (libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_6E362B62")));
             PlayerModifyPropertyInt(1, c_playerPropVespene, c_playerPropOperAdd, 100);
         }
     }
     else if (autoAF0FF822_val == 2) {
         if ((lp_resource_type == "more Minerals")) {
+            UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, (libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_0E000648")));
             PlayerModifyPropertyInt(1, c_playerPropMinerals, c_playerPropOperAdd, 150);
             PlayerModifyPropertyInt(1, c_playerPropVespene, c_playerPropOperAdd, 75);
         }
         else {
+            UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, (libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_EB433AB7")));
             PlayerModifyPropertyInt(1, c_playerPropMinerals, c_playerPropOperAdd, 75);
             PlayerModifyPropertyInt(1, c_playerPropVespene, c_playerPropOperAdd, 150);
         }
     }
     else if (autoAF0FF822_val == 3) {
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, (libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_8CAA06B5")));
         PlayerModifyPropertyInt(1, c_playerPropMinerals, c_playerPropOperAdd, 200);
         PlayerModifyPropertyInt(1, c_playerPropVespene, c_playerPropOperAdd, 200);
     }
@@ -3180,7 +3185,7 @@ bool auto_libEFA54406_gf_Abilityheal_units_TriggerFunc (bool testConds, bool run
     for (;; autoC80F41D0_u -= 1) {
         autoC80F41D0_var = UnitGroupUnitFromEnd(autoC80F41D0_g, autoC80F41D0_u);
         if (autoC80F41D0_var == null) { break; }
-        if ((UnitGetPropertyFixed(autoC80F41D0_var, c_unitPropLife, c_unitPropCurrent) < UnitGetPropertyFixed(autoC80F41D0_var, c_unitPropLifeMax, c_unitPropCurrent))) {
+        if (((UnitGetPropertyFixed(autoC80F41D0_var, c_unitPropLife, c_unitPropCurrent) < UnitGetPropertyFixed(autoC80F41D0_var, c_unitPropLifeMax, c_unitPropCurrent)) || (UnitGetPropertyFixed(autoC80F41D0_var, c_unitPropShields, c_unitPropCurrent) < UnitGetPropertyFixed(autoC80F41D0_var, c_unitPropShieldsMax, c_unitPropCurrent)))) {
             lv_not_full_health_exists = true;
         }
 
@@ -3205,11 +3210,13 @@ bool auto_libEFA54406_gf_Abilityheal_units_TriggerFunc (bool testConds, bool run
     libEFA54406_gf_AbilityCooldown(7, libEFA54406_gv_top_bar_ability_cd_7);
     auto08AD37D8_val = libEFA54406_gv_level_heal_units;
     if (auto08AD37D8_val == 1) {
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, (libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_A4F6CF1A")));
         autoC38F2111_g = lv_player_units;
         autoC38F2111_u = UnitGroupCount(autoC38F2111_g, c_unitCountAll);
         for (;; autoC38F2111_u -= 1) {
             lv_unit = UnitGroupUnitFromEnd(autoC38F2111_g, autoC38F2111_u);
             if (lv_unit == null) { break; }
+            libNtve_gf_AttachModelToUnitInheritVisibility(lv_unit, "MedicHealModel2", "Ref_Center");
             lv_max_life = UnitGetPropertyFixed(lv_unit, c_unitPropLifeMax, c_unitPropCurrent);
             UnitSetPropertyFixed(lv_unit, c_unitPropLife, MinF((UnitGetPropertyFixed(lv_unit, c_unitPropLife, c_unitPropCurrent) + 0.25 * lv_max_life), lv_max_life));
             lv_max_shield = UnitGetPropertyFixed(lv_unit, c_unitPropShieldsMax, c_unitPropCurrent);
@@ -3218,11 +3225,13 @@ bool auto_libEFA54406_gf_Abilityheal_units_TriggerFunc (bool testConds, bool run
     }
     else if (auto08AD37D8_val == 2) {
         if ((lp_heal_size == "small Heal")) {
+            UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, (libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_5D626C92")));
             auto564563AE_g = lv_player_units;
             auto564563AE_u = UnitGroupCount(auto564563AE_g, c_unitCountAll);
             for (;; auto564563AE_u -= 1) {
                 lv_unit = UnitGroupUnitFromEnd(auto564563AE_g, auto564563AE_u);
                 if (lv_unit == null) { break; }
+                libNtve_gf_AttachModelToUnitInheritVisibility(lv_unit, "MedicHealModel2", "Ref_Center");
                 lv_max_life = UnitGetPropertyFixed(lv_unit, c_unitPropLifeMax, c_unitPropCurrent);
                 UnitSetPropertyFixed(lv_unit, c_unitPropLife, MinF((UnitGetPropertyFixed(lv_unit, c_unitPropLife, c_unitPropCurrent) + 0.25 * lv_max_life), lv_max_life));
                 lv_max_shield = UnitGetPropertyFixed(lv_unit, c_unitPropShieldsMax, c_unitPropCurrent);
@@ -3230,11 +3239,13 @@ bool auto_libEFA54406_gf_Abilityheal_units_TriggerFunc (bool testConds, bool run
             }
         }
         else {
+            UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, (libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_2FDA0621")));
             autoD0AD9673_g = lv_player_units;
             autoD0AD9673_u = UnitGroupCount(autoD0AD9673_g, c_unitCountAll);
             for (;; autoD0AD9673_u -= 1) {
                 lv_unit = UnitGroupUnitFromEnd(autoD0AD9673_g, autoD0AD9673_u);
                 if (lv_unit == null) { break; }
+                libNtve_gf_AttachModelToUnitInheritVisibility(lv_unit, "MedicHealModel2", "Ref_Center");
                 lv_max_life = UnitGetPropertyFixed(lv_unit, c_unitPropLifeMax, c_unitPropCurrent);
                 UnitSetPropertyFixed(lv_unit, c_unitPropLife, MinF((UnitGetPropertyFixed(lv_unit, c_unitPropLife, c_unitPropCurrent) + 0.5 * lv_max_life), lv_max_life));
                 lv_max_shield = UnitGetPropertyFixed(lv_unit, c_unitPropShieldsMax, c_unitPropCurrent);
@@ -3245,11 +3256,13 @@ bool auto_libEFA54406_gf_Abilityheal_units_TriggerFunc (bool testConds, bool run
     else if (auto08AD37D8_val == 3) {
         auto318FF86B_val = lp_heal_size;
         if (auto318FF86B_val == "small Heal") {
+            UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, (libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_84E24874")));
             auto5926F073_g = lv_player_units;
             auto5926F073_u = UnitGroupCount(auto5926F073_g, c_unitCountAll);
             for (;; auto5926F073_u -= 1) {
                 lv_unit = UnitGroupUnitFromEnd(auto5926F073_g, auto5926F073_u);
                 if (lv_unit == null) { break; }
+                libNtve_gf_AttachModelToUnitInheritVisibility(lv_unit, "MedicHealModel2", "Ref_Center");
                 lv_max_life = UnitGetPropertyFixed(lv_unit, c_unitPropLifeMax, c_unitPropCurrent);
                 UnitSetPropertyFixed(lv_unit, c_unitPropLife, MinF((UnitGetPropertyFixed(lv_unit, c_unitPropLife, c_unitPropCurrent) + 0.25 * lv_max_life), lv_max_life));
                 lv_max_shield = UnitGetPropertyFixed(lv_unit, c_unitPropShieldsMax, c_unitPropCurrent);
@@ -3257,11 +3270,13 @@ bool auto_libEFA54406_gf_Abilityheal_units_TriggerFunc (bool testConds, bool run
             }
         }
         else if (auto318FF86B_val == "medium Heal") {
+            UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, (libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_A0103374")));
             autoAE8FB953_g = lv_player_units;
             autoAE8FB953_u = UnitGroupCount(autoAE8FB953_g, c_unitCountAll);
             for (;; autoAE8FB953_u -= 1) {
                 lv_unit = UnitGroupUnitFromEnd(autoAE8FB953_g, autoAE8FB953_u);
                 if (lv_unit == null) { break; }
+                libNtve_gf_AttachModelToUnitInheritVisibility(lv_unit, "MedicHealModel2", "Ref_Center");
                 lv_max_life = UnitGetPropertyFixed(lv_unit, c_unitPropLifeMax, c_unitPropCurrent);
                 UnitSetPropertyFixed(lv_unit, c_unitPropLife, MinF((UnitGetPropertyFixed(lv_unit, c_unitPropLife, c_unitPropCurrent) + 0.5 * lv_max_life), lv_max_life));
                 lv_max_shield = UnitGetPropertyFixed(lv_unit, c_unitPropShieldsMax, c_unitPropCurrent);
@@ -3269,11 +3284,13 @@ bool auto_libEFA54406_gf_Abilityheal_units_TriggerFunc (bool testConds, bool run
             }
         }
         else if (auto318FF86B_val == "great Heal") {
+            UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, (libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_EE3C6734")));
             auto5FC6D42A_g = lv_player_units;
             auto5FC6D42A_u = UnitGroupCount(auto5FC6D42A_g, c_unitCountAll);
             for (;; auto5FC6D42A_u -= 1) {
                 lv_unit = UnitGroupUnitFromEnd(auto5FC6D42A_g, auto5FC6D42A_u);
                 if (lv_unit == null) { break; }
+                libNtve_gf_AttachModelToUnitInheritVisibility(lv_unit, "MedicHealModel2", "Ref_Center");
                 lv_max_life = UnitGetPropertyFixed(lv_unit, c_unitPropLifeMax, c_unitPropCurrent);
                 UnitSetPropertyFixed(lv_unit, c_unitPropLife, MinF((UnitGetPropertyFixed(lv_unit, c_unitPropLife, c_unitPropCurrent) + 0.75 * lv_max_life), lv_max_life));
                 lv_max_shield = UnitGetPropertyFixed(lv_unit, c_unitPropShieldsMax, c_unitPropCurrent);
@@ -3286,11 +3303,13 @@ bool auto_libEFA54406_gf_Abilityheal_units_TriggerFunc (bool testConds, bool run
     else if (auto08AD37D8_val == 4) {
         auto0105D5F9_val = lp_heal_size;
         if (auto0105D5F9_val == "small Heal") {
+            UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, (libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_A0DD8577")));
             autoA07CE5D5_g = lv_player_units;
             autoA07CE5D5_u = UnitGroupCount(autoA07CE5D5_g, c_unitCountAll);
             for (;; autoA07CE5D5_u -= 1) {
                 lv_unit = UnitGroupUnitFromEnd(autoA07CE5D5_g, autoA07CE5D5_u);
                 if (lv_unit == null) { break; }
+                libNtve_gf_AttachModelToUnitInheritVisibility(lv_unit, "MedicHealModel2", "Ref_Center");
                 lv_max_life = UnitGetPropertyFixed(lv_unit, c_unitPropLifeMax, c_unitPropCurrent);
                 UnitSetPropertyFixed(lv_unit, c_unitPropLife, MinF((UnitGetPropertyFixed(lv_unit, c_unitPropLife, c_unitPropCurrent) + 0.33 * lv_max_life), lv_max_life));
                 lv_max_shield = UnitGetPropertyFixed(lv_unit, c_unitPropShieldsMax, c_unitPropCurrent);
@@ -3298,11 +3317,13 @@ bool auto_libEFA54406_gf_Abilityheal_units_TriggerFunc (bool testConds, bool run
             }
         }
         else if (auto0105D5F9_val == "medium Heal") {
+            UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, (libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_65B103F9")));
             autoD6703BB6_g = lv_player_units;
             autoD6703BB6_u = UnitGroupCount(autoD6703BB6_g, c_unitCountAll);
             for (;; autoD6703BB6_u -= 1) {
                 lv_unit = UnitGroupUnitFromEnd(autoD6703BB6_g, autoD6703BB6_u);
                 if (lv_unit == null) { break; }
+                libNtve_gf_AttachModelToUnitInheritVisibility(lv_unit, "MedicHealModel2", "Ref_Center");
                 lv_max_life = UnitGetPropertyFixed(lv_unit, c_unitPropLifeMax, c_unitPropCurrent);
                 UnitSetPropertyFixed(lv_unit, c_unitPropLife, MinF((UnitGetPropertyFixed(lv_unit, c_unitPropLife, c_unitPropCurrent) + 0.67 * lv_max_life), lv_max_life));
                 lv_max_shield = UnitGetPropertyFixed(lv_unit, c_unitPropShieldsMax, c_unitPropCurrent);
@@ -3310,11 +3331,13 @@ bool auto_libEFA54406_gf_Abilityheal_units_TriggerFunc (bool testConds, bool run
             }
         }
         else if (auto0105D5F9_val == "great Heal") {
+            UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, (libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_5600A8AD")));
             auto767013DE_g = lv_player_units;
             auto767013DE_u = UnitGroupCount(auto767013DE_g, c_unitCountAll);
             for (;; auto767013DE_u -= 1) {
                 lv_unit = UnitGroupUnitFromEnd(auto767013DE_g, auto767013DE_u);
                 if (lv_unit == null) { break; }
+                libNtve_gf_AttachModelToUnitInheritVisibility(lv_unit, "MedicHealModel2", "Ref_Center");
                 lv_max_life = UnitGetPropertyFixed(lv_unit, c_unitPropLifeMax, c_unitPropCurrent);
                 UnitSetPropertyFixed(lv_unit, c_unitPropLife, lv_max_life);
                 lv_max_shield = UnitGetPropertyFixed(lv_unit, c_unitPropShieldsMax, c_unitPropCurrent);
@@ -6254,7 +6277,7 @@ bool auto_libEFA54406_gf_NeuroProducesUnit_TriggerFunc (bool testConds, bool run
                     lv_pylon_unit = UnitGroupClosestToPoint(lv_pylon_group, CameraGetTarget(1));
                     if ((UnitTypePlacementTestsFromUnit(lv_warp_unit_type, 1, lv_pylon_unit, 7.0, c_placementTestPowerMask) != null)) {
                         UnitIssueOrder(lv_unit, OrderTargetingPoint(lv_ability_command, UnitTypePlacementTestsFromUnit(lv_warp_unit_type, 1, lv_pylon_unit, 7.0, c_placementTestPowerMask)), c_orderQueueAddToEnd);
-                        TextTagCreate((libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_996ACF17") + StringToText(lp_unit_to_produce)), 24, UnitGetPosition(lv_unit), 1.0, true, false, PlayerGroupAll());
+                        TextTagCreate((libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_996ACF17") + TextWithColor(StringToText(lp_unit_to_produce), Color(100.00, 100.00, 0.00))), 24, UnitGetPosition(lv_unit), 1.0, true, false, PlayerGroupAll());
                         TextTagSetVelocity(TextTagLastCreated(), 0.4, 90.0);
                         TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeOut, 3.0);
                         TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeDuration, 5.0);
@@ -6280,7 +6303,7 @@ bool auto_libEFA54406_gf_NeuroProducesUnit_TriggerFunc (bool testConds, bool run
     }
     if ((lv_most_available_slots > 0)) {
         UnitIssueOrder(lv_most_available_slots_unit, Order(lv_ability_command), c_orderQueueAddToEnd);
-        TextTagCreate((libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_B0E6ED33") + StringToText(lp_unit_to_produce)), 24, UnitGetPosition(lv_most_available_slots_unit), 1.0, true, false, PlayerGroupAll());
+        TextTagCreate((libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_B0E6ED33") + TextWithColor(StringToText(lp_unit_to_produce), Color(100.00, 100.00, 0.00))), 24, UnitGetPosition(lv_most_available_slots_unit), 1.0, true, false, PlayerGroupAll());
         TextTagSetVelocity(TextTagLastCreated(), 0.4, 90.0);
         TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeOut, 3.0);
         TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeDuration, 5.0);
@@ -6406,7 +6429,7 @@ bool auto_libEFA54406_gf_NeuroProducesUnit_TriggerFunc (bool testConds, bool run
                         lv_pylon_unit = UnitGroupClosestToPoint(lv_pylon_group, CameraGetTarget(1));
                         if ((UnitTypePlacementTestsFromUnit(lv_warp_unit_type, 1, lv_pylon_unit, 7.0, c_placementTestPowerMask) != null)) {
                             UnitIssueOrder(lv_unit, OrderTargetingPoint(lv_ability_command, UnitTypePlacementTestsFromUnit(lv_warp_unit_type, 1, lv_pylon_unit, 7.0, c_placementTestPowerMask)), c_orderQueueAddToEnd);
-                            TextTagCreate((libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_7FA8C428") + StringToText(lp_unit_to_produce)), 24, UnitGetPosition(lv_unit), 1.0, true, false, PlayerGroupAll());
+                            TextTagCreate((libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_7FA8C428") + TextWithColor(StringToText(lp_unit_to_produce), Color(100.00, 100.00, 0.00))), 24, UnitGetPosition(lv_unit), 1.0, true, false, PlayerGroupAll());
                             TextTagSetVelocity(TextTagLastCreated(), 0.4, 90.0);
                             TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeOut, 3.0);
                             TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeDuration, 5.0);
@@ -6435,7 +6458,7 @@ bool auto_libEFA54406_gf_NeuroProducesUnit_TriggerFunc (bool testConds, bool run
     if ((lv_eligible_exists == true)) {
         if ((lv_most_available_slots > 0)) {
             UnitIssueOrder(lv_most_available_slots_unit, Order(lv_ability_command), c_orderQueueAddToEnd);
-            TextTagCreate((libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_2B667FF7") + StringToText(lp_unit_to_produce)), 24, UnitGetPosition(lv_most_available_slots_unit), 1.0, true, false, PlayerGroupAll());
+            TextTagCreate((libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_2B667FF7") + TextWithColor(StringToText(lp_unit_to_produce), Color(100.00, 100.00, 0.00))), 24, UnitGetPosition(lv_most_available_slots_unit), 1.0, true, false, PlayerGroupAll());
             TextTagSetVelocity(TextTagLastCreated(), 0.4, 90.0);
             TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeOut, 3.0);
             TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeDuration, 5.0);
@@ -6586,7 +6609,7 @@ bool auto_libEFA54406_gf_NeuroCallsMercenary_TriggerFunc (bool testConds, bool r
         lv_merc_compound_unit = UnitGroupUnit(lv_mercenary_compounds, 1);
         if ((UnitCheckAbilCmdState(lv_merc_compound_unit, lv_ability_command, c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled | c_cmdStateCooldown) == false) && (UnitCheckAbilCmdState(lv_merc_compound_unit, lv_ability_command, c_cmdStateHasCharges) == true)) {
             UnitIssueOrder(lv_merc_compound_unit, Order(lv_ability_command), c_orderQueueAddToEnd);
-            TextTagCreate((libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_89A5D568") + StringToText(lp_merc_to_call)), 24, UnitGetPosition(lv_merc_compound_unit), 1.0, true, false, PlayerGroupAll());
+            TextTagCreate((libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_89A5D568") + TextWithColor(StringToText(lp_merc_to_call), Color(100.00, 100.00, 0.00))), 24, UnitGetPosition(lv_merc_compound_unit), 1.0, true, false, PlayerGroupAll());
             TextTagSetVelocity(TextTagLastCreated(), 0.4, 90.0);
             TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeOut, 3.0);
             TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeDuration, 5.0);
@@ -6965,7 +6988,7 @@ void libEFA54406_gf_NeuroReseachesUpgrade (string lp_upgrade_to_research) {
     if ((lv_production_exists == true)) {
         if ((UnitCheckAbilCmdState(lv_most_available_slots_unit, lv_ability_command, c_cmdStateHidden | c_cmdStateExecuting | c_cmdStateDisabled | c_cmdStateCooldown) == false)) {
             UnitIssueOrder(lv_most_available_slots_unit, Order(lv_ability_command), c_orderQueueAddToEnd);
-            TextTagCreate((libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_1D4EF994") + StringToText(lp_upgrade_to_research)), 24, UnitGetPosition(lv_most_available_slots_unit), 1.0, true, false, PlayerGroupAll());
+            TextTagCreate((libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_1D4EF994") + TextWithColor(StringToText(lp_upgrade_to_research), Color(100.00, 100.00, 0.00))), 24, UnitGetPosition(lv_most_available_slots_unit), 1.0, true, false, PlayerGroupAll());
             TextTagSetVelocity(TextTagLastCreated(), 0.2, 90.0);
             TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeOut, 6.0);
             TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeDuration, 10.0);
@@ -7424,7 +7447,7 @@ bool libEFA54406_gt_CreateAbilityBank_Func (bool testConds, bool runActions) {
         }
     }
 
-    if ((libEFA54406_gv_is_first_mission == true)) {
+    if ((libEFA54406_gv_is_first_mission == true) && (BankExists("NeuroIntegrationAbilities", 1) == false)) {
         BankValueSetFromString(libEFA54406_gv_abilities_bank, "mission_choices", "traynor01", "none");
         BankValueSetFromString(libEFA54406_gv_abilities_bank, "mission_choices", "traynor02", "none");
         BankValueSetFromString(libEFA54406_gv_abilities_bank, "mission_choices", "traynor03", "none");

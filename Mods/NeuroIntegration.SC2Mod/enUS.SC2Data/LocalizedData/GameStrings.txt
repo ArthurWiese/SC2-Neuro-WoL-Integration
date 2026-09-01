@@ -159,6 +159,7 @@ Param/Value/lib_EFA54406_09824759=<s val="BattlenetSmallButton">LVL 4</s>
 Param/Value/lib_EFA54406_0A23C1CB=<c val="FFFF00">Stimpack Level 1</c> - Increases Attack & Movement speed. Small: +33% (<c val="0080FF">50</c>). Lasts 15s
 Param/Value/lib_EFA54406_0C074F53=<s val="BattlenetSmallButton">LVL 3</s>
 Param/Value/lib_EFA54406_0C136664=
+Param/Value/lib_EFA54406_0E000648= used the <c val="FFFF00">Resources Ability (more Minerals)</c>. You receive <c val="00FF00">150 Minerals</c> and <c val="00FF00">75 Vespene Gas</c>
 Param/Value/lib_EFA54406_0E3D52B9=→ <c val="FFFF00">Max Level</c> reached
 Param/Value/lib_EFA54406_11CE73BA=<c val="FFFF00">Energy Regeneration Level 0</c>
 Param/Value/lib_EFA54406_12AB22B3=<c val="FFFF00">Range Up Level 2</c> - Increases Weapon Range and Sight. Small: +2 (<c val="0080FF">50</c>), Large: +4 (<c val="0080FF">100</c>). Lasts 20s
@@ -194,6 +195,7 @@ Param/Value/lib_EFA54406_24BECD4E=Restore Energy
 Param/Value/lib_EFA54406_2587F3B5=→ <c val="FFFF00">Max Level</c> reached
 Param/Value/lib_EFA54406_267C82AD=→ <c val="FFFF00">Resources Level 1</c> - Either receive 100 Minerals or 100 Vespene Gas (<c val="0080FF">75</c>)
 Param/Value/lib_EFA54406_26EAC1C8=→ <c val="FFFF00">Range Up Level 3</c> - Increase Values: Small Range Up: +2→<c val="00FF00">+3</c>, Large Range Up: +4→<c val="00FF00">+5</c>
+Param/Value/lib_EFA54406_27113935= used the <c val="FFFF00">Resources Ability (Minerals)</c>. You receive <c val="00FF00">100 Minerals</c>
 Param/Value/lib_EFA54406_27B19F2C=<c val="FF80C0">Neuro-sama</c>
 Param/Value/lib_EFA54406_2A2F68A6=Play Again: 
 Param/Value/lib_EFA54406_2A81A30C=<c val="FFFF00">Range Up Level 1</c> - Increases Weapon Range and Sight. Small: +2 (<c val="0080FF">50</c>). Lasts 20s
@@ -203,6 +205,7 @@ Param/Value/lib_EFA54406_2C5828E7=<c val="00FF00">NEW</c> - <c val="FFFF00">Rest
 Param/Value/lib_EFA54406_2CCF34B0=<c val="FFFF00">???</c> - Not yet available
 Param/Value/lib_EFA54406_2DBA9E31=<c val="FFFF00">???</c> - Not yet available
 Param/Value/lib_EFA54406_2EC3277C=<c val="FFFF00">???</c> - Not yet available
+Param/Value/lib_EFA54406_2FDA0621= used the <c val="FFFF00">Heal Ability (Medium Heal)</c>. All units <c val="00FF00">healed</c> by <c val="00FF00">50%</c>
 Param/Value/lib_EFA54406_302217DB=→ <c val="FFFF00">Nuke Level 1</c> - Small Nuke: Call down a tactical Nuke (<c val="0080FF">75</c>)
 Param/Value/lib_EFA54406_30D0A3C5=There is no killing unit
 Param/Value/lib_EFA54406_30D2824A=<s val="BattlenetSmallButton">LVL 4</s>
@@ -250,12 +253,14 @@ Param/Value/lib_EFA54406_50461AD1=<s val="BattlenetSmallButton">LVL 3</s>
 Param/Value/lib_EFA54406_507B5CFC=→ <c val="FFFF00">Shields Level 2</c> - Medium Shields: 100 Shields on all units for 20s (<c val="0080FF">100</c>)
 Param/Value/lib_EFA54406_50DB84FD=→ <c val="FFFF00">Initial Energy Level 3</c> - Increases initial <c val="0080FF">Energy</c>: 200→<c val="00FF00">275</c>
 Param/Value/lib_EFA54406_52C0F9A1=<c val="00FF00">NEW</c> - <c val="FFFF00">Slowdown Level 0</c>
+Param/Value/lib_EFA54406_5600A8AD= used the <c val="FFFF00">Heal Ability (Great Heal)</c>. All units <c val="00FF00">fully healed</c>
 Param/Value/lib_EFA54406_560BEF7B=<c val="FFFF00">Energy Regeneration Level 4</c> - Current <c val="0080FF">Energy</c> regeneration rate: 150%
 Param/Value/lib_EFA54406_590D1FF8=Resources is not available
 Param/Value/lib_EFA54406_5933CBDF=Cheat not available in intermission
 Param/Value/lib_EFA54406_59736A6A=<c val="FFFF00">Range Up Level 0</c>
 Param/Value/lib_EFA54406_5A90B68F=→ <c val="FFFF00">Initial Energy Level 2</c> - Increases initial <c val="0080FF">Energy</c>: 125→<c val="00FF00">200</c>
 Param/Value/lib_EFA54406_5C1A026A=→ <c val="FFFF00">Energy Regeneration Level 1</c> - Increases <c val="0080FF">Energy</c>  regeneration rate to <c val="00FF00">112.5%</c>
+Param/Value/lib_EFA54406_5D626C92= used the <c val="FFFF00">Heal Ability (Small Heal)</c>. All units <c val="00FF00">healed</c> by <c val="00FF00">25%</c>
 Param/Value/lib_EFA54406_5D6F5D6C=Building Speed is not available
 Param/Value/lib_EFA54406_5F2F9E7F=<c val="FFFF00">Shields Level 3</c> - Small: 50 Shields (<c val="0080FF">75</c>), Medium: 100 Shields (<c val="0080FF">100</c>), Large: 200 Shields (<c val="0080FF">125</c>). Lasts for 20s
 Param/Value/lib_EFA54406_5F78EABE=<s val="BoardTitle"><c val="169FE9">Energy</c></s>
@@ -263,6 +268,7 @@ Param/Value/lib_EFA54406_6028E76B=Hard
 Param/Value/lib_EFA54406_606281ED=<c val="FFFF00">Initial Energy Level 0</c>
 Param/Value/lib_EFA54406_61C55AD0=<s val="BattlenetSmallButton">LVL 2</s>
 Param/Value/lib_EFA54406_654B1F19=<s val="BattlenetSmallButton">LVL 3</s>
+Param/Value/lib_EFA54406_65B103F9= used the <c val="FFFF00">Heal Ability (Medium Heal)</c>. All units <c val="00FF00">healed</c> by <c val="00FF00">67%</c>
 Param/Value/lib_EFA54406_66C4F005=→ <c val="FFFF00">Restore Energy Level 2</c> - Large Restore: Restores 67% Energy for all units (<c val="0080FF">125</c>)
 Param/Value/lib_EFA54406_66D2B9F4=→ <c val="FFFF00">Energy Regeneration Level 2</c> - Increases <c val="0080FF">Energy</c>  regeneration rate to <c val="00FF00">125%</c>
 Param/Value/lib_EFA54406_686ABA22=<c val="FFFF00">Initial Energy Level 1</c> - Current initial <c val="0080FF">Energy</c>: 125
@@ -277,6 +283,7 @@ Param/Value/lib_EFA54406_6B4782B3=→ <c val="FFFF00">Call Structure Level 1</c>
 Param/Value/lib_EFA54406_6BAC2F5B=<c val="FFFF00">???</c> - Not yet available
 Param/Value/lib_EFA54406_6BBEFB59=<s val="BattlenetSmallButton">LVL 2</s>
 Param/Value/lib_EFA54406_6D8E5020=<c val="FFFF00">Shields Level 2</c> - Small: 50 Shields (<c val="0080FF">75</c>), Medium: 100 Shields (<c val="0080FF">100</c>). Lasts for 20s
+Param/Value/lib_EFA54406_6E362B62= used the <c val="FFFF00">Resources Ability (Vespene Gas)</c>. You receive <c val="00FF00">100 Vespene Gas</c>
 Param/Value/lib_EFA54406_6E70A496=→ <c val="FFFF00">Stimpack Level 2</c> - Large Buff: Increase Attack and Movement Speed by 67% for 15s (<c val="0080FF">100</c>)
 Param/Value/lib_EFA54406_6FB0B037=<c val="FFFF00">Resources Level 1</c> - Receive either 100 Minerals or 100 Gas (<c val="0080FF">75</c>)
 Param/Value/lib_EFA54406_700C22A8=<c val="FFFF00">Nuke Level 1</c> - Call down a Nuke: Small Nuke (<c val="0080FF">75</c>)
@@ -310,11 +317,13 @@ Param/Value/lib_EFA54406_8335D8D3=→ <c val="FFFF00">Nuke Level 2</c> - Large N
 Param/Value/lib_EFA54406_83633631=<c val="FFFF00">Resources Level 0</c>
 Param/Value/lib_EFA54406_83715038=There is a command center
 Param/Value/lib_EFA54406_84515CCB=→ <c val="FFFF00">Call Backup Level 1</c> - Call down Infantry backup (Elite-Marine) (<c val="0080FF">50</c>)
+Param/Value/lib_EFA54406_84E24874= used the <c val="FFFF00">Heal Ability (Small Heal)</c>. All units <c val="00FF00">healed</c> by <c val="00FF00">25%</c>
 Param/Value/lib_EFA54406_87B5E461=Play Again: 
 Param/Value/lib_EFA54406_8905ED95=Purifier Beam
 Param/Value/lib_EFA54406_89A5D568= is calling a merc:<n/>
 Param/Value/lib_EFA54406_89DE73A5=→ <c val="FFFF00">Shields Level 3</c> - Large Shields: 200 Shields on all units for 20s (<c val="0080FF">125</c>)
 Param/Value/lib_EFA54406_8BAE5AD8=
+Param/Value/lib_EFA54406_8CAA06B5= used the <c val="FFFF00">Resources Ability</c>. You receive <c val="00FF00">200 Minerals</c> and <c val="00FF00">200 Vespene Gas</c>
 Param/Value/lib_EFA54406_8D51DB1A=<c val="FFFF00">Initial Energy Level 3</c> - Current initial <c val="0080FF">Energy</c>: 275
 Param/Value/lib_EFA54406_8EDD92A2=→ <c val="FFFF00">Max Level</c> reached
 Param/Value/lib_EFA54406_926BF5B6=<s val="BattlenetSmallButton">LVL 2</s>
@@ -333,14 +342,17 @@ Param/Value/lib_EFA54406_9D008726=Heal
 Param/Value/lib_EFA54406_9DA1AF74=<s val="BattlenetSmallButton">LVL 4</s>
 Param/Value/lib_EFA54406_9DA5C7FC=Shields
 Param/Value/lib_EFA54406_9E19EBC2=<c val="FFFF00">???</c> - Not yet available
+Param/Value/lib_EFA54406_A0103374= used the <c val="FFFF00">Heal Ability (Medium Heal)</c>. All units <c val="00FF00">healed</c> by <c val="00FF00">50%</c>
 Param/Value/lib_EFA54406_A05CA6C4=<c val="00FF00">NEW</c> - <c val="FFFF00">Stimpack Level 0</c>
 Param/Value/lib_EFA54406_A0A9A7FC=Activated '<c val="FFFF00">Infinite Energy</c>' Cheat
 Param/Value/lib_EFA54406_A0D309A4=→ <c val="FFFF00">Range Up Level 1</c> - Small Range Up: Increases Weapon and Sight Range for all units by +2 (<c val="0080FF">50</c>)
+Param/Value/lib_EFA54406_A0DD8577= used the <c val="FFFF00">Heal Ability (Small Heal)</c>. All units <c val="00FF00">healed</c> by <c val="00FF00">33%</c>
 Param/Value/lib_EFA54406_A10DB6BC=Building Speed
 Param/Value/lib_EFA54406_A20B4FB8=
 Param/Value/lib_EFA54406_A32467F5=Resources is not available
 Param/Value/lib_EFA54406_A4E547C3=<c val="00FF00">NEW</c> - <c val="FFFF00">Initial Energy Level 0</c>
 Param/Value/lib_EFA54406_A4E5DAED=<s val="BattlenetSmallButton">LVL 3</s>
+Param/Value/lib_EFA54406_A4F6CF1A= used the <c val="FFFF00">Heal Ability</c>. All units <c val="00FF00">healed</c> by <c val="00FF00">25%</c>
 Param/Value/lib_EFA54406_A589C53B=→ <c val="FFFF00">Range Up Level 2</c> - Large Range Up: Increases Weapon and Sight Range for all units by +4 (<c val="0080FF">100</c>)
 Param/Value/lib_EFA54406_A76313CF=<s val="BattlenetSmallButton">LVL 1</s>
 Param/Value/lib_EFA54406_A77DF87F=→ <c val="FFFF00">Initial Energy Level 1</c> - Increases initial <c val="0080FF">Energy</c>: 50→<c val="00FF00">125</c>
@@ -425,9 +437,11 @@ Param/Value/lib_EFA54406_E675F2F5=Play Again:
 Param/Value/lib_EFA54406_E7169425=<c val="FFFF00">???</c> - Not yet available
 Param/Value/lib_EFA54406_E7F7E2CE=<s val="BattlenetSmallButton">LVL 4</s>
 Param/Value/lib_EFA54406_E90EAE34=<s val="BattlenetSmallButton">LVL 1</s>
+Param/Value/lib_EFA54406_EB433AB7= used the <c val="FFFF00">Resources Ability (more Gas)</c>. You receive <c val="00FF00">150 Vespene Gas</c> and <c val="00FF00">75 Minerals</c>
 Param/Value/lib_EFA54406_EC253369=→ <c val="FFFF00">Restore Energy Level 1</c> - Small Restore: Restores 33% Energy for all units (<c val="0080FF">75</c>)
 Param/Value/lib_EFA54406_ECFBA0DB=<s val="BattlenetSmallButton">LVL 2</s>
 Param/Value/lib_EFA54406_ED9B4839=<s val="BattlenetSmallButton">LVL 2</s>
+Param/Value/lib_EFA54406_EE3C6734= used the <c val="FFFF00">Heal Ability (Great Heal)</c>. All units <c val="00FF00">healed</c> by <c val="00FF00">75%</c>
 Param/Value/lib_EFA54406_EEC1EA70=→ <c val="FFFF00">Building Speed Level 1</c> - Small Buff: Increase Construction, Production & Research Speed by 75% for 25s (<c val="0080FF">75</c>)
 Param/Value/lib_EFA54406_EECCADDF=→ <c val="FFFF00">Restore Energy Level 1</c> - Small Restore: Restores 33% Energy for all units (<c val="0080FF">75</c>)
 Param/Value/lib_EFA54406_EEFEBD42=Own Unit killed by Fire Wall
