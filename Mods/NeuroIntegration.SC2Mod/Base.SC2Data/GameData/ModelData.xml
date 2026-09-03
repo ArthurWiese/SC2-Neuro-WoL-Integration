@@ -419,6 +419,22 @@
         <Model value="Assets\Effects\Terran\VikingAssaultWeaponLaunch\VikingAssaultWeaponLaunch.m3"/>
         <EditorCategories value="Race:Terran"/>
     </CModel>
+    <CModel id="StimpackEndImpact2" parent="OneShotSpellFX">
+        <Model value="Assets\Effects\Terran\StimpackEndImpact\StimpackEndImpact.m3"/>
+        <AnimSpeed value="1.200000"/>
+        <EditorCategories value="Race:Terran"/>
+        <Lighting value="StimpackEndImpact"/>
+        <ScaleMax value="1.800000,1.800000,1.800000"/>
+        <ScaleMin value="1.800000,1.800000,1.800000"/>
+    </CModel>
+    <CModel id="StimpackStartImpact2" parent="OneShotSpellFX">
+        <Model value="Assets\Effects\Terran\StimpackStartImpact\StimpackStartImpact.m3"/>
+        <AnimSpeed value="1.200000"/>
+        <EditorCategories value="Race:Terran"/>
+        <Lighting value="StimpackStartImpact"/>
+        <ScaleMax value="1.800000,1.800000,1.800000"/>
+        <ScaleMin value="1.800000,1.800000,1.800000"/>
+    </CModel>
     <CModel id="TerranSmallUnitDeathLow2" parent="UnitDeath" Race="Terran">
         <Model value="Assets\Effects\Terran\TerranSmallUnitDeath\TerranSmallUnitDeath_Low.m3"/>
         <Flags index="TeenSafe" value="1"/>
@@ -442,6 +458,14 @@
         <ScaleMin value="1.100000,1.100000,1.100000"/>
         <SelectionRadius value="0.454300"/>
         <ShadowRadius value="0.454300"/>
+    </CModel>
+    <CModel id="TimeWarp2" parent="PersistentSpellFX">
+        <Model value="Assets\Effects\Protoss\TimeWarpImpact\TimeWarpImpact.m3"/>
+        <EditorCategories value="Race:Protoss"/>
+        <Lighting value="TimeWarp"/>
+        <RadiusLoose value="1.000000"/>
+        <ScaleMax value="0.400000,0.400000,0.400000"/>
+        <ScaleMin value="0.400000,0.400000,0.400000"/>
     </CModel>
     <CModel id="ZergSmallUnitDeathLow2" parent="UnitDeath" Race="Zerg">
         <Model value="Assets\Effects\Zerg\ZergSmallUnitDeath\ZergSmallUnitDeath_low.m3"/>

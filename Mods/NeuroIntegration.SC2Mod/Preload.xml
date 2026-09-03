@@ -43,10 +43,17 @@
 <Effect id="NukeDamage232"/>
 <Effect id="NukeDetonate2"/>
 <Effect id="MEGANUKE"/>
+<Model id="RestoreShieldsImpactModel"/>
+<Model id="InhibitorZoneTemporalFieldImpactModel"/>
 <Model id="GhostNukeIndicator"/>
+<Model id="OracleCastLaunch"/>
+<Model id="OracleStasisTrapTarget"/>
 <Model id="GhostNukeIndicator2"/>
 <Model id="GhostNukeIndicator3"/>
 <Model id="MedicHealModel2"/>
+<Model id="StimpackEndImpact2"/>
+<Model id="StimpackStartImpact2"/>
+<Model id="TimeWarp2"/>
 <Sound id="Ghost_NukeSeek"/>
 <Sound id="Ghost_DropPodImpact"/>
 <Sound id="PurifierPlanetCrackerStage2Sound"/>
