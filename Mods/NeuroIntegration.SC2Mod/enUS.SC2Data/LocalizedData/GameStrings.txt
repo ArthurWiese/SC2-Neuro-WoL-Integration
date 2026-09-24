@@ -167,7 +167,6 @@ Param/Value/lib_EFA54406_121958F8= used the <c val="FFFF00">Stimpack Ability (Bi
 Param/Value/lib_EFA54406_1297C5B9= used the <c val="FFFF00">Restore Energy Ability (Small Energy Restoration)</c>. All units <c val="00FF00">Energy restored</c> by <c val="00FF00">50%</c>
 Param/Value/lib_EFA54406_12AB22B3=<c val="FFFF00">Range Up Level 2</c> - Increases Weapon Range and Sight. Small: +2 (<c val="0080FF">50</c>), Large: +4 (<c val="0080FF">100</c>). Lasts 20s
 Param/Value/lib_EFA54406_16419646= chose to upgrade 
-Param/Value/lib_EFA54406_16478AC4=TEST
 Param/Value/lib_EFA54406_16E15859= can choose to upgrade an ability. <n/><n/>Get more <c val="FFFF00">info</c> about abilities by clicking '<c val="0080FF">Energy</c>' at the top of the screen.
 Param/Value/lib_EFA54406_16F53FD3=→ <c val="FFFF00">Max Level</c> reached
 Param/Value/lib_EFA54406_16FC4736=<s val="BattlenetSmallButton">LVL 2</s>
@@ -176,11 +175,13 @@ Param/Value/lib_EFA54406_170EFA64=There is a barracks
 Param/Value/lib_EFA54406_1744872C=/
 Param/Value/lib_EFA54406_177656EF=→ <c val="FFFF00">Max Level</c> reached
 Param/Value/lib_EFA54406_17F41727= chose to upgrade 
+Param/Value/lib_EFA54406_1834AD51= is arming the silo<n/>      with a <c val="FFFF00">Nuke</c>
 Param/Value/lib_EFA54406_1857A957=Call Backup
 Param/Value/lib_EFA54406_185E32CB=→ <c val="FFFF00">Range Up Level 1</c> - Small Range Up: Increases Weapon and Sight Range for all units by +2 (<c val="0080FF">50</c>)
 Param/Value/lib_EFA54406_18C5D30A=<c val="FFFF00">Slowndown Level 2</c> - Slow enemy Speed: Small: 67% (<c val="0080FF">75</c>), Medium: 33% (<c val="0080FF">125</c>). Lasts 15s
 Param/Value/lib_EFA54406_1B920E42=<c val="FF0000">Evil Neuro</c>
 Param/Value/lib_EFA54406_1BF06486=<c val="FFFF00">Purifier Beam Level 2</c> - Call down a Purifier Beam: Small Beam (<c val="0080FF">75</c>), Medium Beam (<c val="0080FF">100</c>). Lasts 15s
+Param/Value/lib_EFA54406_1CA9DAE1= is producing:<n/>
 Param/Value/lib_EFA54406_1D0E86A1=<s val="BattlenetSmallButton">LVL 3</s>
 Param/Value/lib_EFA54406_1D4EF994= is researching:<n/>
 Param/Value/lib_EFA54406_1E1BF91F=→ <c val="FFFF00">Max Level</c> reached
@@ -206,7 +207,6 @@ Param/Value/lib_EFA54406_29897D66= used the <c val="FFFF00">Call Structure Abili
 Param/Value/lib_EFA54406_2A2F68A6=Play Again: 
 Param/Value/lib_EFA54406_2A5B82C1= used the <c val="FFFF00">Slowdown Ability (Small Slowdown)</c>.<c val="00FF00"> Enemies slowed</c> by <c val="00FF00">33%</c> for <c val="00FF00">15s</c>
 Param/Value/lib_EFA54406_2A81A30C=<c val="FFFF00">Range Up Level 1</c> - Increases Weapon Range and Sight. Small: +2 (<c val="0080FF">50</c>). Lasts 20s
-Param/Value/lib_EFA54406_2B667FF7= is producing:<n/>
 Param/Value/lib_EFA54406_2C2F78EC=<s val="BattlenetSmallButton">LVL 3</s>
 Param/Value/lib_EFA54406_2C5828E7=<c val="00FF00">NEW</c> - <c val="FFFF00">Restore Energy Level 0</c>
 Param/Value/lib_EFA54406_2CCF34B0=<c val="FFFF00">???</c> - Not yet available
@@ -266,6 +266,7 @@ Param/Value/lib_EFA54406_507B5CFC=→ <c val="FFFF00">Shields Level 2</c> - Medi
 Param/Value/lib_EFA54406_50DB84FD=→ <c val="FFFF00">Initial Energy Level 3</c> - Increases initial <c val="0080FF">Energy</c>: 200→<c val="00FF00">275</c>
 Param/Value/lib_EFA54406_516F053E= used the <c val="FFFF00">Call Backup Ability (Infantry)</c>. An <c val="00FF00">Elite Marine</c> will aid you
 Param/Value/lib_EFA54406_52C0F9A1=<c val="00FF00">NEW</c> - <c val="FFFF00">Slowdown Level 0</c>
+Param/Value/lib_EFA54406_55283EC0= is arming the silo<n/>      with a <c val="FFFF00">Nuke</c>
 Param/Value/lib_EFA54406_5600A8AD= used the <c val="FFFF00">Heal Ability (Great Heal)</c>. All units <c val="00FF00">fully healed</c>
 Param/Value/lib_EFA54406_560BEF7B=<c val="FFFF00">Energy Regeneration Level 4</c> - Current <c val="0080FF">Energy</c> regeneration rate: 150%
 Param/Value/lib_EFA54406_5726B516= used the <c val="FFFF00">Building Speed Ability (Big Buff)</c>. <c val="00FF00">Increased Construction, Production</c> and <c val="00FF00">Research Speed</c> by <c val="00FF00">150%</c> for <c val="00FF00">25s</c>
@@ -330,7 +331,6 @@ Param/Value/lib_EFA54406_7D1A2F9B= used the <c val="FFFF00">Nuke Ability (MEGA N
 Param/Value/lib_EFA54406_7E0B5F82=<c val="00FF00">NEW</c> - <c val="FFFF00">Building Speed Level 0</c>
 Param/Value/lib_EFA54406_7EE27E22=→ <c val="FFFF00">Restore Energy Level 3</c> - Increase Values: Small Restore: 33%→<c val="00FF00">50%</c>, Large Restore: 67%→<c val="00FF00">100%</c>
 Param/Value/lib_EFA54406_7F79EC0F= used the <c val="FFFF00">Range Up Ability (Big Buff)</c>. <c val="00FF00">Increased Weapons Range</c> and <c val="00FF00">Sight</c> by <c val="00FF00">5</c> for <c val="00FF00">20s</c>
-Param/Value/lib_EFA54406_7FA8C428= is warping in:<n/>
 Param/Value/lib_EFA54406_7FAD78B0= used the <c val="FFFF00">Stimpack Ability (Big Buff)</c>. <c val="00FF00">Increased Attack</c> and <c val="00FF00">Movement Speed</c> by <c val="00FF00">67%</c> for <c val="00FF00">15s</c>
 Param/Value/lib_EFA54406_7FD8F508=→ <c val="FFFF00">Call Backup Level 3</c> - Call down Aerial backup (Elite-Wraith) (<c val="0080FF">75</c>)
 Param/Value/lib_EFA54406_80A42958=<c val="FFFF00">Resources Level 3</c> - Receive 200 Minerals & 200 Gas (<c val="0080FF">75</c>)
@@ -361,7 +361,6 @@ Param/Value/lib_EFA54406_93B25702=<c val="FFFF00">Range Up Level 3</c> - Increas
 Param/Value/lib_EFA54406_93FBA11F=<c val="00FF00">NEW</c> - <c val="FFFF00">Range Up Level 0</c>
 Param/Value/lib_EFA54406_9463B14D=Purifier Beam
 Param/Value/lib_EFA54406_959E3B32=→ <c val="FFFF00">Energy Regeneration Level 4</c> - Increases <c val="0080FF">Energy</c>  regeneration rate to <c val="00FF00">150%</c>
-Param/Value/lib_EFA54406_996ACF17= is warping in:<n/>
 Param/Value/lib_EFA54406_9976AF65=<s val="BattlenetSmallButton">LVL 4</s>
 Param/Value/lib_EFA54406_99994641= used the <c val="FFFF00">Restore Energy Ability</c>. All units <c val="00FF00">Energy restored</c> by <c val="00FF00">33%</c>
 Param/Value/lib_EFA54406_9A6CF506=Normal
@@ -396,8 +395,8 @@ Param/Value/lib_EFA54406_AFC99109=<s val="BattlenetSmallButton">LVL 3</s>
 Param/Value/lib_EFA54406_AFE89D76=Heal
 Param/Value/lib_EFA54406_B0270892=→ <c val="FFFF00">Building Speed Level 2</c> - Large Buff: Increase Construction, Production and Research Speed by 150% for 25s (<c val="0080FF">125</c>)
 Param/Value/lib_EFA54406_B035718D=<c val="FFFF00">Slowdown Level 0</c>
+Param/Value/lib_EFA54406_B06107CA= is producing:<n/>
 Param/Value/lib_EFA54406_B0803859=Restore Energy
-Param/Value/lib_EFA54406_B0E6ED33= is producing:<n/>
 Param/Value/lib_EFA54406_B10E8F02=Call Structure
 Param/Value/lib_EFA54406_B2B7F34C=Building Speed is not available
 Param/Value/lib_EFA54406_B30458B2=Close
@@ -468,6 +467,7 @@ Param/Value/lib_EFA54406_DC86675C=→ <c val="FFFF00">Max Level</c> reached
 Param/Value/lib_EFA54406_DCD42E87=Insane
 Param/Value/lib_EFA54406_DD0024BA= used the <c val="FFFF00">Slowdown Ability (Great Slowdown)</c>.<c val="00FF00"> Enemies frozen</c> for <c val="00FF00">15s</c>
 Param/Value/lib_EFA54406_DD9E348E=<c val="00FF00">NEW</c> - <c val="FFFF00">Resources Level 0</c>
+Param/Value/lib_EFA54406_DDF6D520= is warping in:<n/>
 Param/Value/lib_EFA54406_DEB824B2= used the <c val="FFFF00">Call Structure Ability (Supply Depot)</c>
 Param/Value/lib_EFA54406_E0775BF5=Slowdown
 Param/Value/lib_EFA54406_E25FC40B=→ <c val="FFFF00">Stimpack Level 3</c> - Increase Values: Small Buff: 33%→<c val="00FF00">50%</c>, Large Buff: 67%→<c val="00FF00">100%</c>
@@ -485,6 +485,7 @@ Param/Value/lib_EFA54406_E90EAE34=<s val="BattlenetSmallButton">LVL 1</s>
 Param/Value/lib_EFA54406_EB433AB7= used the <c val="FFFF00">Resources Ability (more Gas)</c>. You receive <c val="00FF00">150 Vespene Gas</c> and <c val="00FF00">75 Minerals</c>
 Param/Value/lib_EFA54406_EC253369=→ <c val="FFFF00">Restore Energy Level 1</c> - Small Restore: Restores 33% Energy for all units (<c val="0080FF">75</c>)
 Param/Value/lib_EFA54406_ECFBA0DB=<s val="BattlenetSmallButton">LVL 2</s>
+Param/Value/lib_EFA54406_ED4523DB= is warping in:<n/>
 Param/Value/lib_EFA54406_ED9B4839=<s val="BattlenetSmallButton">LVL 2</s>
 Param/Value/lib_EFA54406_EDFA4F13= used the <c val="FFFF00">Slowdown Ability</c>.<c val="00FF00"> Enemies slowed</c> by <c val="00FF00">33%</c> for <c val="00FF00">15s</c>
 Param/Value/lib_EFA54406_EE3C6734= used the <c val="FFFF00">Heal Ability (Great Heal)</c>. All units <c val="00FF00">healed</c> by <c val="00FF00">75%</c>

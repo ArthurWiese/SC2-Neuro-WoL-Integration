@@ -6269,9 +6269,11 @@ bool auto_libEFA54406_gf_PlayerUnitsContext_TriggerFunc (bool testConds, bool ru
 
 trigger auto_libEFA54406_gf_NeuroProducesUnit_Trigger = null;
 string auto_libEFA54406_gf_NeuroProducesUnit_lp_unit_to_produce;
+int auto_libEFA54406_gf_NeuroProducesUnit_lp_number_to_produce;
 
-void libEFA54406_gf_NeuroProducesUnit (string lp_unit_to_produce) {
+void libEFA54406_gf_NeuroProducesUnit (string lp_unit_to_produce, int lp_number_to_produce) {
     auto_libEFA54406_gf_NeuroProducesUnit_lp_unit_to_produce = lp_unit_to_produce;
+    auto_libEFA54406_gf_NeuroProducesUnit_lp_number_to_produce = lp_number_to_produce;
 
     if (auto_libEFA54406_gf_NeuroProducesUnit_Trigger == null) {
         auto_libEFA54406_gf_NeuroProducesUnit_Trigger = TriggerCreate("auto_libEFA54406_gf_NeuroProducesUnit_TriggerFunc");
@@ -6282,18 +6284,19 @@ void libEFA54406_gf_NeuroProducesUnit (string lp_unit_to_produce) {
 
 bool auto_libEFA54406_gf_NeuroProducesUnit_TriggerFunc (bool testConds, bool runActions) {
     string lp_unit_to_produce = auto_libEFA54406_gf_NeuroProducesUnit_lp_unit_to_produce;
+    int lp_number_to_produce = auto_libEFA54406_gf_NeuroProducesUnit_lp_number_to_produce;
 
     // Variable Declarations
     int lv_mineral_count;
     int lv_gas_count;
     int lv_needed_minerals;
     int lv_needed_gas;
-    bool lv_not_enough_resources;
     int lv_supply_count;
     int lv_supply_max_count;
     int lv_supply_limit_count;
     int lv_needed_supply;
-    bool lv_not_enough_supply;
+    int lv_number_of_units_with_current_resources;
+    int lv_produced_units_counter;
     string lv_needed_production_building;
     string lv_needed_requirement_building;
     string lv_needed_addon_building;
@@ -6302,6 +6305,7 @@ bool auto_libEFA54406_gf_NeuroProducesUnit_TriggerFunc (bool testConds, bool run
     unitgroup lv_lookingat_group;
     unitgroup lv_lookingat_required_group;
     unitgroup lv_eligible_group;
+    unitgroup lv_eligible_warping_production;
     unit lv_unit;
     unit lv_unit_required;
     bool lv_production_exists;
@@ -6327,9 +6331,15 @@ bool auto_libEFA54406_gf_NeuroProducesUnit_TriggerFunc (bool testConds, bool run
     int auto92F03147_u;
     unitgroup auto4A8779BA_g;
     int auto4A8779BA_u;
-    unitgroup auto0AE17672_g;
-    int auto0AE17672_u;
-    string auto78F33098_val;
+    unitgroup autoF69C5233_g;
+    int autoF69C5233_u;
+    unit autoF69C5233_var;
+    unitgroup autoDE406DE3_g;
+    int autoDE406DE3_u;
+    string autoF05F826D_val;
+    string autoE3BBE709_val;
+    unitgroup auto5F0D911E_g;
+    int auto5F0D911E_u;
     unitgroup autoCBC14714_g;
     int autoCBC14714_u;
     string autoCFD21505_val;
@@ -6337,16 +6347,24 @@ bool auto_libEFA54406_gf_NeuroProducesUnit_TriggerFunc (bool testConds, bool run
     int auto1F937CCA_u;
     unitgroup auto24A51D50_g;
     int auto24A51D50_u;
-    unitgroup auto40FFAE91_g;
-    int auto40FFAE91_u;
-    string auto5DBC1EE3_val;
+    unitgroup auto8FB7EBE7_g;
+    int auto8FB7EBE7_u;
+    unit auto8FB7EBE7_var;
+    unitgroup autoA82A9081_g;
+    int autoA82A9081_u;
+    string auto984A8344_val;
+    string auto9BB68510_val;
+    unitgroup auto1C4EEEDE_g;
+    int auto1C4EEEDE_u;
 
     // Variable Initialization
+    lv_produced_units_counter = 1;
     lv_player_units = UnitGroupEmpty();
     lv_selected_units = UnitGroupEmpty();
     lv_lookingat_group = UnitGroupEmpty();
     lv_lookingat_required_group = UnitGroupEmpty();
     lv_eligible_group = UnitGroupEmpty();
+    lv_eligible_warping_production = UnitGroupEmpty();
     lv_name_of_unit_string = "";
     lv_pylon_group = UnitGroupEmpty();
 
@@ -6636,30 +6654,29 @@ bool auto_libEFA54406_gf_NeuroProducesUnit_TriggerFunc (bool testConds, bool run
     else {
     }
     if (((lv_needed_supply + lv_supply_count) > lv_supply_max_count)) {
-        lv_not_enough_supply = true;
-    }
-
-    if ((lv_not_enough_supply == true)) {
         if (((lv_needed_supply + lv_supply_count) > lv_supply_limit_count)) {
-            libEFA54406_gf_create_context("not_enough_supply", lp_unit_to_produce + " needs " + IntToString(lv_needed_supply) + " supply. You have reachend the supply limit of " + IntToString(lv_supply_limit_count) + " and cannot produce any more units. ", true);
+            libEFA54406_gf_create_context("not_enough_supply", lp_unit_to_produce + " needs " + IntToString(lv_needed_supply) + " supply.", true);
         }
         else {
-            libEFA54406_gf_create_context("not_enough_supply", lp_unit_to_produce + " needs " + IntToString(lv_needed_supply) + " supply. You are using all your available supply and cannot produce any more units until the player increases the available supply. ", true);
+            libEFA54406_gf_create_context("not_enough_supply", lp_unit_to_produce + " needs " + IntToString(lv_needed_supply) + " supply.", true);
         }
         TriggerExecute(libEFA54406_gt_Currentsupply, true, false);
         return true;
     }
 
     if (((lv_mineral_count < lv_needed_minerals) || (lv_gas_count < lv_needed_gas))) {
-        lv_not_enough_resources = true;
-    }
-
-    if ((lv_not_enough_resources == true)) {
-        libEFA54406_gf_create_context("not_enough_resources", "You don't have enough resources to produce this unit. You need " + IntToString(lv_needed_minerals) + " Minerals | " + IntToString(lv_needed_gas) + " Vespene Gas. ", true);
+        libEFA54406_gf_create_context("not_enough_resources", "You don't have enough resources to produce one " + lp_unit_to_produce + ". You need " + IntToString(lv_needed_minerals) + " Minerals | " + IntToString(lv_needed_gas) + " Vespene Gas. ", true);
         TriggerExecute(libEFA54406_gt_Currentresources, true, false);
         return true;
     }
-
+    else {
+        do {
+            lv_number_of_units_with_current_resources += 1;
+            lv_mineral_count -= lv_needed_minerals;
+            lv_gas_count -= lv_needed_gas;
+        }while ((lv_mineral_count >= lv_needed_minerals) && (lv_gas_count >= lv_needed_gas));
+        lv_number_of_units_with_current_resources = MinI(lv_number_of_units_with_current_resources, lp_number_to_produce);
+    }
     lv_lookingat_group = UnitGroupFilter(lv_needed_production_building, c_playerAny, lv_selected_units, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
     if ((lv_needed_production_building == "CommandCenter")) {
         UnitGroupAddUnitGroup(lv_lookingat_group, UnitGroupFilter("OrbitalCommand", c_playerAny, lv_selected_units, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
@@ -6675,6 +6692,64 @@ bool auto_libEFA54406_gf_NeuroProducesUnit_TriggerFunc (bool testConds, bool run
     for (;; auto4AFE229D_u -= 1) {
         lv_unit = UnitGroupUnitFromEnd(auto4AFE229D_g, auto4AFE229D_u);
         if (lv_unit == null) { break; }
+        if ((lv_needed_production_building == "Barracks")) {
+            if ((TechTreeAbilityIsAllowed(1, AbilityCommand("BarracksTrain", 0)) == true)) {
+                if ((UnitCheckAbilCmdState(lv_unit, AbilityCommand("BarracksTrain", 0), c_cmdStateDisabled) == true)) {
+                    continue;
+                }
+
+            }
+
+        }
+
+        if ((lv_needed_production_building == "Factory")) {
+            if ((TechTreeAbilityIsAllowed(1, AbilityCommand("FactoryTrain", 5)) == true)) {
+                if ((UnitCheckAbilCmdState(lv_unit, AbilityCommand("FactoryTrain", 5), c_cmdStateDisabled) == true)) {
+                    continue;
+                }
+
+            }
+
+            if ((TechTreeAbilityIsAllowed(1, AbilityCommand("FactoryTrain", 8)) == true)) {
+                if ((UnitCheckAbilCmdState(lv_unit, AbilityCommand("FactoryTrain", 8), c_cmdStateDisabled) == true)) {
+                    continue;
+                }
+
+            }
+
+        }
+
+        if ((lv_needed_production_building == "Starport")) {
+            if ((TechTreeAbilityIsAllowed(1, AbilityCommand("StarportTrain", 4)) == true)) {
+                if ((UnitCheckAbilCmdState(lv_unit, AbilityCommand("StarportTrain", 4), c_cmdStateDisabled) == true)) {
+                    continue;
+                }
+
+            }
+
+            if ((TechTreeAbilityIsAllowed(1, AbilityCommand("StarportTrain", 0)) == true)) {
+                if ((UnitCheckAbilCmdState(lv_unit, AbilityCommand("StarportTrain", 0), c_cmdStateDisabled) == true)) {
+                    continue;
+                }
+
+            }
+
+        }
+
+        if ((UnitGetType(lv_unit) == "Gateway")) {
+            if ((UnitCheckAbilCmdState(lv_unit, AbilityCommand("GatewayTrain", 0), c_cmdStateExecuting | c_cmdStateDisabled) == true)) {
+                continue;
+            }
+
+        }
+
+        if ((UnitGetType(lv_unit) == "WarpGate")) {
+            if ((UnitCheckAbilCmdState(lv_unit, AbilityCommand("WarpGateTrain", 0), c_cmdStateExecuting | c_cmdStateDisabled) == true)) {
+                continue;
+            }
+
+        }
+
         lv_production_exists = true;
         if ((lv_needed_addon_building != null)) {
             autoB74DADE7_val = lv_needed_addon_building;
@@ -6738,32 +6813,38 @@ bool auto_libEFA54406_gf_NeuroProducesUnit_TriggerFunc (bool testConds, bool run
             }
         }
     }
-    auto0AE17672_g = lv_eligible_group;
-    auto0AE17672_u = UnitGroupCount(auto0AE17672_g, c_unitCountAll);
-    for (;; auto0AE17672_u -= 1) {
-        lv_unit = UnitGroupUnitFromEnd(auto0AE17672_g, auto0AE17672_u);
-        if (lv_unit == null) { break; }
-        if ((lp_unit_to_produce == "Nuke")) {
-            UnitIssueOrder(lv_unit, Order(lv_ability_command), c_orderQueueAddToEnd);
-            return true;
+    autoF69C5233_g = lv_eligible_group;
+    autoF69C5233_u = UnitGroupCount(autoF69C5233_g, c_unitCountAll);
+    for (;; autoF69C5233_u -= 1) {
+        autoF69C5233_var = UnitGroupUnitFromEnd(autoF69C5233_g, autoF69C5233_u);
+        if (autoF69C5233_var == null) { break; }
+        if ((UnitGetType(autoF69C5233_var) == "WarpGate")) {
+            UnitGroupRemove(lv_eligible_group, autoF69C5233_var);
+            UnitGroupAdd(lv_eligible_warping_production, autoF69C5233_var);
         }
 
-        if ((UnitGetType(lv_unit) == "WarpGate")) {
+    }
+    do {
+        autoDE406DE3_g = lv_eligible_warping_production;
+        autoDE406DE3_u = UnitGroupCount(autoDE406DE3_g, c_unitCountAll);
+        for (;; autoDE406DE3_u -= 1) {
+            lv_unit = UnitGroupUnitFromEnd(autoDE406DE3_g, autoDE406DE3_u);
+            if (lv_unit == null) { break; }
             if ((UnitCheckAbilCmdState(lv_unit, AbilityCommand("WarpGateTrain", 0), c_cmdStateExecuting | c_cmdStateDisabled | c_cmdStateCooldown) == false)) {
-                auto78F33098_val = lp_unit_to_produce;
-                if (auto78F33098_val == "Zealot") {
+                autoF05F826D_val = lp_unit_to_produce;
+                if (autoF05F826D_val == "Zealot") {
                     lv_ability_command = AbilityCommand("WarpGateTrain", 6);
                     lv_warp_unit_type = "Zealot";
                 }
-                else if (auto78F33098_val == "Stalker") {
+                else if (autoF05F826D_val == "Stalker") {
                     lv_ability_command = AbilityCommand("WarpGateTrain", 7);
                     lv_warp_unit_type = "Stalker";
                 }
-                else if (auto78F33098_val == "High Templar") {
+                else if (autoF05F826D_val == "High Templar") {
                     lv_ability_command = AbilityCommand("WarpGateTrain", 8);
                     lv_warp_unit_type = "HighTemplar";
                 }
-                else if (auto78F33098_val == "Dark Templar") {
+                else if (autoF05F826D_val == "Dark Templar") {
                     lv_ability_command = AbilityCommand("WarpGateTrain", 9);
                     lv_warp_unit_type = "DarkTemplar";
                 }
@@ -6774,36 +6855,96 @@ bool auto_libEFA54406_gf_NeuroProducesUnit_TriggerFunc (bool testConds, bool run
                     lv_pylon_unit = UnitGroupClosestToPoint(lv_pylon_group, CameraGetTarget(1));
                     if ((UnitTypePlacementTestsFromUnit(lv_warp_unit_type, 1, lv_pylon_unit, 7.0, c_placementTestPowerMask) != null)) {
                         UnitIssueOrder(lv_unit, OrderTargetingPoint(lv_ability_command, UnitTypePlacementTestsFromUnit(lv_warp_unit_type, 1, lv_pylon_unit, 7.0, c_placementTestPowerMask)), c_orderQueueAddToEnd);
-                        TextTagCreate((libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_996ACF17") + TextWithColor(StringToText(lp_unit_to_produce), Color(100.00, 100.00, 0.00))), 24, UnitGetPosition(lv_unit), 1.0, true, false, PlayerGroupAll());
+                        TextTagCreate((libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_ED4523DB") + TextWithColor(StringToText(lp_unit_to_produce), Color(100.00, 100.00, 0.00))), 24, UnitGetPosition(lv_unit), 1.0, true, false, PlayerGroupAll());
                         TextTagSetVelocity(TextTagLastCreated(), 0.4, 90.0);
                         TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeOut, 3.0);
                         TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeDuration, 5.0);
-                        return true;
+                        lv_produced_units_counter += 1;
+                        break;
                     }
                     else {
                         UnitGroupRemove(lv_pylon_group, lv_pylon_unit);
                     }
                 }while ((UnitGroupCount(lv_pylon_group, c_unitCountAlive) != 0));
-                continue;
+                UnitGroupRemove(lv_eligible_warping_production, lv_unit);
+                break;
             }
             else {
-                continue;
+                UnitGroupRemove(lv_eligible_warping_production, lv_unit);
+                break;
             }
         }
-
-        lv_available_slots = UnitQueueGetProperty(lv_unit, c_unitQueuePropertyAvailable);
-        if ((lv_available_slots > lv_most_available_slots)) {
-            lv_most_available_slots = lv_available_slots;
-            lv_most_available_slots_unit = lv_unit;
+        if ((UnitGroupCount(lv_eligible_warping_production, c_unitCountAlive) != 0) && (lv_produced_units_counter <= lp_number_to_produce) && (lv_produced_units_counter <= lv_number_of_units_with_current_resources)) {
+            continue;
         }
+        else {
+            if (((lv_produced_units_counter > lp_number_to_produce) || (lv_produced_units_counter > lv_number_of_units_with_current_resources))) {
+                break;
+            }
+            else {
+                autoE3BBE709_val = lp_unit_to_produce;
+                if (autoE3BBE709_val == "Zealot") {
+                    lv_ability_command = AbilityCommand("GatewayTrain", 6);
+                }
+                else if (autoE3BBE709_val == "Stalker") {
+                    lv_ability_command = AbilityCommand("GatewayTrain", 7);
+                }
+                else if (autoE3BBE709_val == "High Templar") {
+                    lv_ability_command = AbilityCommand("GatewayTrain", 8);
+                }
+                else if (autoE3BBE709_val == "Dark Templar") {
+                    lv_ability_command = AbilityCommand("GatewayTrain", 9);
+                }
+                else {
+                }
+            }
+        }
+        lv_most_available_slots = 0;
+        auto5F0D911E_g = lv_eligible_group;
+        auto5F0D911E_u = UnitGroupCount(auto5F0D911E_g, c_unitCountAll);
+        for (;; auto5F0D911E_u -= 1) {
+            lv_unit = UnitGroupUnitFromEnd(auto5F0D911E_g, auto5F0D911E_u);
+            if (lv_unit == null) { break; }
+            if ((lp_unit_to_produce == "Nuke")) {
+                if ((((TechTreeAbilityIsAllowed(1, AbilityCommand("BarracksTrain", 2)) == true) && (UnitCheckAbilCmdState(lv_unit, AbilityCommand("ArmSiloWithNuke", 0), c_cmdStateExecuting | c_cmdStateDisabled | c_cmdStateCooldown) == false)) || ((TechTreeAbilityIsAllowed(1, AbilityCommand("BarracksTrain", 6)) == true) && (UnitCheckAbilCmdState(lv_unit, AbilityCommand("SpectreNukeSiloArmMagazine", 1), c_cmdStateExecuting | c_cmdStateDisabled | c_cmdStateCooldown) == false)))) {
+                    UnitIssueOrder(lv_unit, Order(lv_ability_command), c_orderQueueAddToEnd);
+                    TextTagCreate((libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_1834AD51")), 24, UnitGetPosition(lv_unit), 1.0, true, false, PlayerGroupAll());
+                    TextTagSetVelocity(TextTagLastCreated(), 0.4, 90.0);
+                    TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeOut, 3.0);
+                    TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeDuration, 5.0);
+                    UnitGroupRemove(lv_eligible_group, lv_unit);
+                    lv_produced_units_counter += 1;
+                    break;
+                }
 
+            }
+
+            lv_available_slots = UnitQueueGetProperty(lv_unit, c_unitQueuePropertyAvailable);
+            if ((lv_available_slots > lv_most_available_slots)) {
+                lv_most_available_slots = lv_available_slots;
+                lv_most_available_slots_unit = lv_unit;
+            }
+
+        }
+        if ((lv_most_available_slots > 0)) {
+            UnitIssueOrder(lv_most_available_slots_unit, Order(lv_ability_command), c_orderQueueAddToEnd);
+            TextTagCreate((libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_B06107CA") + TextWithColor(StringToText(lp_unit_to_produce), Color(100.00, 100.00, 0.00))), 24, UnitGetPosition(lv_most_available_slots_unit), 1.0, true, false, PlayerGroupAll());
+            TextTagSetVelocity(TextTagLastCreated(), 0.4, 90.0);
+            TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeOut, 3.0);
+            TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeDuration, 5.0);
+            lv_produced_units_counter += 1;
+        }
+        else {
+            break;
+        }
+    }while ((lv_produced_units_counter <= lp_number_to_produce) && (lv_produced_units_counter <= lv_number_of_units_with_current_resources));
+    if ((lv_produced_units_counter > lp_number_to_produce)) {
+        return true;
     }
-    if ((lv_most_available_slots > 0)) {
-        UnitIssueOrder(lv_most_available_slots_unit, Order(lv_ability_command), c_orderQueueAddToEnd);
-        TextTagCreate((libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_B0E6ED33") + TextWithColor(StringToText(lp_unit_to_produce), Color(100.00, 100.00, 0.00))), 24, UnitGetPosition(lv_most_available_slots_unit), 1.0, true, false, PlayerGroupAll());
-        TextTagSetVelocity(TextTagLastCreated(), 0.4, 90.0);
-        TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeOut, 3.0);
-        TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeDuration, 5.0);
+
+    if ((lv_produced_units_counter > lv_number_of_units_with_current_resources)) {
+        libEFA54406_gf_create_context("not_enough_resources", "Could only start producing " + IntToString(lv_number_of_units_with_current_resources) + " " + lp_unit_to_produce + " with the available resources. You need " + IntToString(lv_needed_minerals) + " Minerals | " + IntToString(lv_needed_gas) + " Vespene Gas for one " + lp_unit_to_produce + ". ", true);
+        TriggerExecute(libEFA54406_gt_Currentresources, true, false);
         return true;
     }
 
@@ -6822,6 +6963,64 @@ bool auto_libEFA54406_gf_NeuroProducesUnit_TriggerFunc (bool testConds, bool run
     for (;; autoCBC14714_u -= 1) {
         lv_unit = UnitGroupUnitFromEnd(autoCBC14714_g, autoCBC14714_u);
         if (lv_unit == null) { break; }
+        if ((lv_needed_production_building == "Barracks")) {
+            if ((TechTreeAbilityIsAllowed(1, AbilityCommand("BarracksTrain", 0)) == true)) {
+                if ((UnitCheckAbilCmdState(lv_unit, AbilityCommand("BarracksTrain", 0), c_cmdStateDisabled) == true)) {
+                    continue;
+                }
+
+            }
+
+        }
+
+        if ((lv_needed_production_building == "Factory")) {
+            if ((TechTreeAbilityIsAllowed(1, AbilityCommand("FactoryTrain", 5)) == true)) {
+                if ((UnitCheckAbilCmdState(lv_unit, AbilityCommand("FactoryTrain", 5), c_cmdStateDisabled) == true)) {
+                    continue;
+                }
+
+            }
+
+            if ((TechTreeAbilityIsAllowed(1, AbilityCommand("FactoryTrain", 8)) == true)) {
+                if ((UnitCheckAbilCmdState(lv_unit, AbilityCommand("FactoryTrain", 8), c_cmdStateDisabled) == true)) {
+                    continue;
+                }
+
+            }
+
+        }
+
+        if ((lv_needed_production_building == "Starport")) {
+            if ((TechTreeAbilityIsAllowed(1, AbilityCommand("StarportTrain", 4)) == true)) {
+                if ((UnitCheckAbilCmdState(lv_unit, AbilityCommand("StarportTrain", 4), c_cmdStateDisabled) == true)) {
+                    continue;
+                }
+
+            }
+
+            if ((TechTreeAbilityIsAllowed(1, AbilityCommand("StarportTrain", 0)) == true)) {
+                if ((UnitCheckAbilCmdState(lv_unit, AbilityCommand("StarportTrain", 0), c_cmdStateDisabled) == true)) {
+                    continue;
+                }
+
+            }
+
+        }
+
+        if ((UnitGetType(lv_unit) == "Gateway")) {
+            if ((UnitCheckAbilCmdState(lv_unit, AbilityCommand("GatewayTrain", 0), c_cmdStateExecuting | c_cmdStateDisabled) == true)) {
+                continue;
+            }
+
+        }
+
+        if ((UnitGetType(lv_unit) == "WarpGate")) {
+            if ((UnitCheckAbilCmdState(lv_unit, AbilityCommand("WarpGateTrain", 0), c_cmdStateExecuting | c_cmdStateDisabled) == true)) {
+                continue;
+            }
+
+        }
+
         lv_production_exists = true;
         if ((lv_needed_addon_building != null)) {
             autoCFD21505_val = lv_needed_addon_building;
@@ -6885,89 +7084,148 @@ bool auto_libEFA54406_gf_NeuroProducesUnit_TriggerFunc (bool testConds, bool run
             }
         }
     }
-    auto40FFAE91_g = lv_eligible_group;
-    auto40FFAE91_u = UnitGroupCount(auto40FFAE91_g, c_unitCountAll);
-    for (;; auto40FFAE91_u -= 1) {
-        lv_unit = UnitGroupUnitFromEnd(auto40FFAE91_g, auto40FFAE91_u);
-        if (lv_unit == null) { break; }
-        if ((lp_unit_to_produce == "Nuke")) {
-            UnitIssueOrder(lv_unit, Order(lv_ability_command), c_orderQueueAddToEnd);
-            return true;
-        }
-
-        if ((UnitGetType(lv_unit) == "WarpGate")) {
-            if ((UnitCheckAbilCmdState(lv_unit, AbilityCommand("WarpGateTrain", 0), c_cmdStateExecuting | c_cmdStateDisabled) == false)) {
-                if ((UnitCheckAbilCmdState(lv_unit, AbilityCommand("WarpGateTrain", 0), c_cmdStateCooldown) == true)) {
-                    lv_eligible_exists = true;
-                    continue;
-                }
-                else {
-                    auto5DBC1EE3_val = lp_unit_to_produce;
-                    if (auto5DBC1EE3_val == "Zealot") {
-                        lv_ability_command = AbilityCommand("WarpGateTrain", 6);
-                        lv_warp_unit_type = "Zealot";
-                    }
-                    else if (auto5DBC1EE3_val == "Stalker") {
-                        lv_ability_command = AbilityCommand("WarpGateTrain", 7);
-                        lv_warp_unit_type = "Stalker";
-                    }
-                    else if (auto5DBC1EE3_val == "High Templar") {
-                        lv_ability_command = AbilityCommand("WarpGateTrain", 8);
-                        lv_warp_unit_type = "HighTemplar";
-                    }
-                    else if (auto5DBC1EE3_val == "Dark Templar") {
-                        lv_ability_command = AbilityCommand("WarpGateTrain", 9);
-                        lv_warp_unit_type = "DarkTemplar";
-                    }
-                    else {
-                    }
-                    lv_pylon_group = UnitGroupFilter("Pylon", c_playerAny, lv_player_units, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-                    do {
-                        lv_pylon_unit = UnitGroupClosestToPoint(lv_pylon_group, CameraGetTarget(1));
-                        if ((UnitTypePlacementTestsFromUnit(lv_warp_unit_type, 1, lv_pylon_unit, 7.0, c_placementTestPowerMask) != null)) {
-                            UnitIssueOrder(lv_unit, OrderTargetingPoint(lv_ability_command, UnitTypePlacementTestsFromUnit(lv_warp_unit_type, 1, lv_pylon_unit, 7.0, c_placementTestPowerMask)), c_orderQueueAddToEnd);
-                            TextTagCreate((libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_7FA8C428") + TextWithColor(StringToText(lp_unit_to_produce), Color(100.00, 100.00, 0.00))), 24, UnitGetPosition(lv_unit), 1.0, true, false, PlayerGroupAll());
-                            TextTagSetVelocity(TextTagLastCreated(), 0.4, 90.0);
-                            TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeOut, 3.0);
-                            TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeDuration, 5.0);
-                            return true;
-                        }
-                        else {
-                            UnitGroupRemove(lv_pylon_group, lv_pylon_unit);
-                        }
-                    }while ((UnitGroupCount(lv_pylon_group, c_unitCountAlive) != 0));
-                    continue;
-                }
-            }
-            else {
-                continue;
-            }
-        }
-
-        lv_eligible_exists = true;
-        lv_available_slots = UnitQueueGetProperty(lv_unit, c_unitQueuePropertyAvailable);
-        if ((lv_available_slots > lv_most_available_slots)) {
-            lv_most_available_slots = lv_available_slots;
-            lv_most_available_slots_unit = lv_unit;
+    auto8FB7EBE7_g = lv_eligible_group;
+    auto8FB7EBE7_u = UnitGroupCount(auto8FB7EBE7_g, c_unitCountAll);
+    for (;; auto8FB7EBE7_u -= 1) {
+        auto8FB7EBE7_var = UnitGroupUnitFromEnd(auto8FB7EBE7_g, auto8FB7EBE7_u);
+        if (auto8FB7EBE7_var == null) { break; }
+        if ((UnitGetType(auto8FB7EBE7_var) == "WarpGate")) {
+            UnitGroupRemove(lv_eligible_group, auto8FB7EBE7_var);
+            UnitGroupAdd(lv_eligible_warping_production, auto8FB7EBE7_var);
         }
 
     }
-    if ((lv_eligible_exists == true)) {
+    do {
+        autoA82A9081_g = lv_eligible_warping_production;
+        autoA82A9081_u = UnitGroupCount(autoA82A9081_g, c_unitCountAll);
+        for (;; autoA82A9081_u -= 1) {
+            lv_unit = UnitGroupUnitFromEnd(autoA82A9081_g, autoA82A9081_u);
+            if (lv_unit == null) { break; }
+            if ((UnitCheckAbilCmdState(lv_unit, AbilityCommand("WarpGateTrain", 0), c_cmdStateExecuting | c_cmdStateDisabled | c_cmdStateCooldown) == false)) {
+                auto984A8344_val = lp_unit_to_produce;
+                if (auto984A8344_val == "Zealot") {
+                    lv_ability_command = AbilityCommand("WarpGateTrain", 6);
+                    lv_warp_unit_type = "Zealot";
+                }
+                else if (auto984A8344_val == "Stalker") {
+                    lv_ability_command = AbilityCommand("WarpGateTrain", 7);
+                    lv_warp_unit_type = "Stalker";
+                }
+                else if (auto984A8344_val == "High Templar") {
+                    lv_ability_command = AbilityCommand("WarpGateTrain", 8);
+                    lv_warp_unit_type = "HighTemplar";
+                }
+                else if (auto984A8344_val == "Dark Templar") {
+                    lv_ability_command = AbilityCommand("WarpGateTrain", 9);
+                    lv_warp_unit_type = "DarkTemplar";
+                }
+                else {
+                }
+                lv_pylon_group = UnitGroup("Pylon", 1, RegionPlayableMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+                do {
+                    lv_pylon_unit = UnitGroupClosestToPoint(lv_pylon_group, CameraGetTarget(1));
+                    if ((UnitTypePlacementTestsFromUnit(lv_warp_unit_type, 1, lv_pylon_unit, 7.0, c_placementTestPowerMask) != null)) {
+                        UnitIssueOrder(lv_unit, OrderTargetingPoint(lv_ability_command, UnitTypePlacementTestsFromUnit(lv_warp_unit_type, 1, lv_pylon_unit, 7.0, c_placementTestPowerMask)), c_orderQueueAddToEnd);
+                        TextTagCreate((libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_DDF6D520") + TextWithColor(StringToText(lp_unit_to_produce), Color(100.00, 100.00, 0.00))), 24, UnitGetPosition(lv_unit), 1.0, true, false, PlayerGroupAll());
+                        TextTagSetVelocity(TextTagLastCreated(), 0.4, 90.0);
+                        TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeOut, 3.0);
+                        TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeDuration, 5.0);
+                        lv_produced_units_counter += 1;
+                        break;
+                    }
+                    else {
+                        UnitGroupRemove(lv_pylon_group, lv_pylon_unit);
+                    }
+                }while ((UnitGroupCount(lv_pylon_group, c_unitCountAlive) != 0));
+                UnitGroupRemove(lv_eligible_warping_production, lv_unit);
+                break;
+            }
+            else {
+                UnitGroupRemove(lv_eligible_warping_production, lv_unit);
+                break;
+            }
+        }
+        if ((UnitGroupCount(lv_eligible_warping_production, c_unitCountAlive) != 0) && (lv_produced_units_counter <= lp_number_to_produce) && (lv_produced_units_counter <= lv_number_of_units_with_current_resources)) {
+            continue;
+        }
+        else {
+            if (((lv_produced_units_counter > lp_number_to_produce) || (lv_produced_units_counter > lv_number_of_units_with_current_resources))) {
+                break;
+            }
+            else {
+                auto9BB68510_val = lp_unit_to_produce;
+                if (auto9BB68510_val == "Zealot") {
+                    lv_ability_command = AbilityCommand("GatewayTrain", 6);
+                }
+                else if (auto9BB68510_val == "Stalker") {
+                    lv_ability_command = AbilityCommand("GatewayTrain", 7);
+                }
+                else if (auto9BB68510_val == "High Templar") {
+                    lv_ability_command = AbilityCommand("GatewayTrain", 8);
+                }
+                else if (auto9BB68510_val == "Dark Templar") {
+                    lv_ability_command = AbilityCommand("GatewayTrain", 9);
+                }
+                else {
+                }
+            }
+        }
+        lv_most_available_slots = 0;
+        auto1C4EEEDE_g = lv_eligible_group;
+        auto1C4EEEDE_u = UnitGroupCount(auto1C4EEEDE_g, c_unitCountAll);
+        for (;; auto1C4EEEDE_u -= 1) {
+            lv_unit = UnitGroupUnitFromEnd(auto1C4EEEDE_g, auto1C4EEEDE_u);
+            if (lv_unit == null) { break; }
+            if ((lp_unit_to_produce == "Nuke")) {
+                if ((((TechTreeAbilityIsAllowed(1, AbilityCommand("BarracksTrain", 2)) == true) && (UnitCheckAbilCmdState(lv_unit, AbilityCommand("ArmSiloWithNuke", 0), c_cmdStateExecuting | c_cmdStateDisabled | c_cmdStateCooldown) == false)) || ((TechTreeAbilityIsAllowed(1, AbilityCommand("BarracksTrain", 6)) == true) && (UnitCheckAbilCmdState(lv_unit, AbilityCommand("SpectreNukeSiloArmMagazine", 1), c_cmdStateExecuting | c_cmdStateDisabled | c_cmdStateCooldown) == false)))) {
+                    UnitIssueOrder(lv_unit, Order(lv_ability_command), c_orderQueueAddToEnd);
+                    TextTagCreate((libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_55283EC0")), 24, UnitGetPosition(lv_unit), 1.0, true, false, PlayerGroupAll());
+                    TextTagSetVelocity(TextTagLastCreated(), 0.4, 90.0);
+                    TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeOut, 3.0);
+                    TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeDuration, 5.0);
+                    UnitGroupRemove(lv_eligible_group, lv_unit);
+                    lv_produced_units_counter += 1;
+                    break;
+                }
+
+            }
+
+            lv_available_slots = UnitQueueGetProperty(lv_unit, c_unitQueuePropertyAvailable);
+            if ((lv_available_slots > lv_most_available_slots)) {
+                lv_most_available_slots = lv_available_slots;
+                lv_most_available_slots_unit = lv_unit;
+            }
+
+        }
         if ((lv_most_available_slots > 0)) {
             UnitIssueOrder(lv_most_available_slots_unit, Order(lv_ability_command), c_orderQueueAddToEnd);
-            TextTagCreate((libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_2B667FF7") + TextWithColor(StringToText(lp_unit_to_produce), Color(100.00, 100.00, 0.00))), 24, UnitGetPosition(lv_most_available_slots_unit), 1.0, true, false, PlayerGroupAll());
+            TextTagCreate((libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_1CA9DAE1") + TextWithColor(StringToText(lp_unit_to_produce), Color(100.00, 100.00, 0.00))), 24, UnitGetPosition(lv_most_available_slots_unit), 1.0, true, false, PlayerGroupAll());
             TextTagSetVelocity(TextTagLastCreated(), 0.4, 90.0);
             TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeOut, 3.0);
             TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeDuration, 5.0);
+            lv_produced_units_counter += 1;
         }
         else {
-            lv_name_of_unit = UnitTypeGetName(lv_needed_production_building);
-            lv_name_of_unit_string = TextToString(lv_name_of_unit);
-            libEFA54406_gf_create_context("cant_produce", "Couldn't produce the requested unit: " + lp_unit_to_produce + ". All of your " + lv_name_of_unit_string + " have full production queues. You have to wait until a production slot becomes available or the player needs to build more " + lv_name_of_unit_string + ". ", true);
+            break;
         }
+    }while ((lv_produced_units_counter <= lp_number_to_produce) && (lv_produced_units_counter <= lv_number_of_units_with_current_resources));
+    if ((lv_produced_units_counter > lp_number_to_produce)) {
+        return true;
+    }
+
+    if ((lv_produced_units_counter > lv_number_of_units_with_current_resources)) {
+        libEFA54406_gf_create_context("not_enough_resources", "Could only start producing " + IntToString(lv_number_of_units_with_current_resources) + " " + lp_unit_to_produce + " with the available resources. You need " + IntToString(lv_needed_minerals) + " Minerals | " + IntToString(lv_needed_gas) + " Vespene Gas for one " + lp_unit_to_produce + ". ", true);
+        TriggerExecute(libEFA54406_gt_Currentresources, true, false);
     }
     else {
-        libEFA54406_gf_create_context("cant_produce", "Couldn't produce the requested unit: " + lp_unit_to_produce + ". Required building doesn't exist anymore. ", true);
+        lv_name_of_unit = UnitTypeGetName(lv_needed_production_building);
+        lv_name_of_unit_string = TextToString(lv_name_of_unit);
+        if ((lv_produced_units_counter == 1)) {
+            libEFA54406_gf_create_context("cant_produce", "Couldn't produce the requested unit(s): " + IntToString(lp_number_to_produce) + " " + lp_unit_to_produce + ". All of your " + lv_name_of_unit_string + " have full production queues. You have to wait until a production slot becomes available or the player needs to build more " + lv_name_of_unit_string + ". ", true);
+        }
+        else {
+            libEFA54406_gf_create_context("cant_produce", "Could only start producing " + IntToString(lv_produced_units_counter - 1) + " " + lp_unit_to_produce + " because all of your " + lv_name_of_unit_string + " have full production queues. You have to wait until a production slot becomes available or the player needs to build more " + lv_name_of_unit_string + ". ", true);
+        }
     }
     return true;
 }
@@ -7700,7 +7958,7 @@ bool libEFA54406_gt_Executeactionsglobal_Func (bool testConds, bool runActions) 
 
     if ((BankValueGetAsFlag(BankLastCreated(), "do_action", "produce_unit") == true)) {
         BankValueSetFromFlag(BankLastCreated(), "do_action", "produce_unit", false);
-        libEFA54406_gf_NeuroProducesUnit(BankValueGetAsString(BankLastCreated(), "do_action", "produce_unit_arg_1"));
+        libEFA54406_gf_NeuroProducesUnit(BankValueGetAsString(BankLastCreated(), "do_action", "produce_unit_arg_1"), BankValueGetAsInt(BankLastCreated(), "do_action", "produce_unit_arg_2"));
     }
 
     if ((BankValueGetAsFlag(BankLastCreated(), "do_action", "call_merc") == true)) {
@@ -11694,6 +11952,13 @@ bool libEFA54406_gt_NeuroCanProduceUnits_Func (bool testConds, bool runActions) 
         for (;; autoA2008913_u -= 1) {
             lv_unit = UnitGroupUnitFromEnd(autoA2008913_g, autoA2008913_u);
             if (lv_unit == null) { break; }
+            if ((TechTreeAbilityIsAllowed(1, AbilityCommand("BarracksTrain", 0)) == true)) {
+                if ((UnitCheckAbilCmdState(lv_unit, AbilityCommand("BarracksTrain", 0), c_cmdStateDisabled) == true)) {
+                    continue;
+                }
+
+            }
+
             lv_barracks_exists = true;
             if (((UnitGetType(UnitAddOnChild(lv_unit, 0)) == "BarracksTechLab") || (UnitGetType(UnitAddOnChild(lv_unit, 0)) == "BarracksTechReactor"))) {
                 lv_barracks_with_tech_lab_exists = true;
@@ -11728,6 +11993,20 @@ bool libEFA54406_gt_NeuroCanProduceUnits_Func (bool testConds, bool runActions) 
         for (;; auto22772BCB_u -= 1) {
             lv_unit = UnitGroupUnitFromEnd(auto22772BCB_g, auto22772BCB_u);
             if (lv_unit == null) { break; }
+            if ((TechTreeAbilityIsAllowed(1, AbilityCommand("FactoryTrain", 5)) == true)) {
+                if ((UnitCheckAbilCmdState(lv_unit, AbilityCommand("FactoryTrain", 5), c_cmdStateDisabled) == true)) {
+                    continue;
+                }
+
+            }
+
+            if ((TechTreeAbilityIsAllowed(1, AbilityCommand("FactoryTrain", 8)) == true)) {
+                if ((UnitCheckAbilCmdState(lv_unit, AbilityCommand("FactoryTrain", 8), c_cmdStateDisabled) == true)) {
+                    continue;
+                }
+
+            }
+
             lv_factory_exists = true;
             if (((UnitGetType(UnitAddOnChild(lv_unit, 0)) == "FactoryTechLab") || (UnitGetType(UnitAddOnChild(lv_unit, 0)) == "FactoryTechReactor"))) {
                 lv_factory_with_tech_lab_exists = true;
@@ -11748,6 +12027,20 @@ bool libEFA54406_gt_NeuroCanProduceUnits_Func (bool testConds, bool runActions) 
         for (;; autoE61A5932_u -= 1) {
             lv_unit = UnitGroupUnitFromEnd(autoE61A5932_g, autoE61A5932_u);
             if (lv_unit == null) { break; }
+            if ((TechTreeAbilityIsAllowed(1, AbilityCommand("StarportTrain", 4)) == true)) {
+                if ((UnitCheckAbilCmdState(lv_unit, AbilityCommand("StarportTrain", 4), c_cmdStateDisabled) == true)) {
+                    continue;
+                }
+
+            }
+
+            if ((TechTreeAbilityIsAllowed(1, AbilityCommand("StarportTrain", 0)) == true)) {
+                if ((UnitCheckAbilCmdState(lv_unit, AbilityCommand("StarportTrain", 0), c_cmdStateDisabled) == true)) {
+                    continue;
+                }
+
+            }
+
             lv_starport_exists = true;
             if (((UnitGetType(UnitAddOnChild(lv_unit, 0)) == "StarportTechLab") || (UnitGetType(UnitAddOnChild(lv_unit, 0)) == "StarportTechReactor"))) {
                 lv_starport_with_tech_lab_exists = true;
@@ -12863,19 +13156,19 @@ bool libEFA54406_gt_NeuroCanProduceUnits_Func (bool testConds, bool runActions) 
     }
 
     if ((lv_producable_units == "")) {
-        lv_action_description = "Produce a unit. Units you produce cost only half the resources and take 2/3 the time to produce than if a player does it. You currently cannot produce any units. Units you could produce if the player builds the structure: " + lv_allowed_blocked_units;
+        lv_action_description = "Start producing units. Units you produce cost only half the resources and take 2/3 the time to produce than if a player does it. You currently cannot produce any units. Units you could produce if the player builds the structure: " + lv_allowed_blocked_units;
         libEFA54406_gf_create_action_1_arg("produce_unit", true, lv_action_description, "string(no unit)", -1);
         return true;
     }
 
     if ((lv_allowed_blocked_units == "")) {
-        lv_action_description = "Produce a unit. Units you produce cost only half the resources and take 2/3 the time to produce than if a player does it. Units you can produce in this format <Name> (Mineral cost/Vespene Gas cost|Supply cost|Production time in seconds): " + lv_action_description;
-        libEFA54406_gf_create_action_1_arg("produce_unit", true, lv_action_description, "string(" + lv_producable_units + ")", -1);
+        lv_action_description = "Start producing units. Units you produce cost only half the resources and take 2/3 the time to produce than if a player does it. Units you can produce in this format <Name> (Mineral cost/Vespene Gas cost|Supply cost|Production time in seconds): " + lv_action_description + ". You can request up to five units at the same time.";
+        libEFA54406_gf_create_action_2_arg("produce_unit", true, lv_action_description, "string(" + lv_producable_units + ")", "int(1,5)", -1);
         return true;
     }
 
-    lv_action_description = "Produce a unit. Units you produce cost only half the resources and take 2/3 the time to produce than if a player does it. Units you can produce in this format <Name> (Mineral cost/Vespene Gas cost|Supply cost|Production time in seconds): " + lv_action_description + ". Units you could produce if the player builds the structure: " + lv_allowed_blocked_units;
-    libEFA54406_gf_create_action_1_arg("produce_unit", true, lv_action_description, "string(" + lv_producable_units + ")", -1);
+    lv_action_description = "Start producing units. Units you produce cost only half the resources and take 2/3 the time to produce than if a player does it. Units you can produce in this format <Name> (Mineral cost/Vespene Gas cost|Supply cost|Production time in seconds): " + lv_action_description + ". Units you could produce if the player builds the structure: " + lv_allowed_blocked_units+ "You can request up to five units at the same time.";
+    libEFA54406_gf_create_action_2_arg("produce_unit", true, lv_action_description, "string(" + lv_producable_units + ")", "int(1,5)", -1);
     return true;
 }
 

@@ -203,7 +203,7 @@ void libEFA54406_gf_MissionFailure (string lp_failure_reason);
 void libEFA54406_gf_ObjectiveContext (bool lp_is_update, string lp_additional_context);
 void libEFA54406_gf_VictoryScreenContext (text lp_mission_summary, int lp_mission);
 void libEFA54406_gf_PlayerUnitsContext (string lp_requested_units);
-void libEFA54406_gf_NeuroProducesUnit (string lp_unit_to_produce);
+void libEFA54406_gf_NeuroProducesUnit (string lp_unit_to_produce, int lp_number_to_produce);
 void libEFA54406_gf_NeuroCallsMercenary (string lp_merc_to_call);
 void libEFA54406_gf_NeuroReseachesUpgrade (string lp_upgrade_to_research);
 void libEFA54406_gf_BlockContext (bool lp_block);
