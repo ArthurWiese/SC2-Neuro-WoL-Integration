@@ -178,6 +178,7 @@ Param/Value/lib_EFA54406_17F41727= chose to upgrade
 Param/Value/lib_EFA54406_1834AD51= is arming the silo<n/>      with a <c val="FFFF00">Nuke</c>
 Param/Value/lib_EFA54406_1857A957=Call Backup
 Param/Value/lib_EFA54406_185E32CB=→ <c val="FFFF00">Range Up Level 1</c> - Small Range Up: Increases Weapon and Sight Range for all units by +2 (<c val="0080FF">50</c>)
+Param/Value/lib_EFA54406_189E5726= can cast these abilities. <n/>Get more <c val="FFFF00">info</c> about abilities by clicking '<c val="0080FF">Energy</c>' at the top of the screen.
 Param/Value/lib_EFA54406_18C5D30A=<c val="FFFF00">Slowndown Level 2</c> - Slow enemy Speed: Small: 67% (<c val="0080FF">75</c>), Medium: 33% (<c val="0080FF">125</c>). Lasts 15s
 Param/Value/lib_EFA54406_1B920E42=<c val="FF0000">Evil Neuro</c>
 Param/Value/lib_EFA54406_1BF06486=<c val="FFFF00">Purifier Beam Level 2</c> - Call down a Purifier Beam: Small Beam (<c val="0080FF">75</c>), Medium Beam (<c val="0080FF">100</c>). Lasts 15s
@@ -232,7 +233,6 @@ Param/Value/lib_EFA54406_37925FED=<c val="00FF00">NEW</c> - <c val="FFFF00">Call
 Param/Value/lib_EFA54406_388FE8D1=<c val="FFFF00">???</c> - Not yet available
 Param/Value/lib_EFA54406_3B6DC6AF=Range Up
 Param/Value/lib_EFA54406_3C7D8F9B=→ <c val="FFFF00">Max Level</c> reached
-Param/Value/lib_EFA54406_3C823FC6= can choose to upgrade an ability. Abilities have powerful effects and cost a regenerating <c val="0080FF">Energy</c> resource. Only 
 Param/Value/lib_EFA54406_3D794374=<s val="BattlenetSmallButton">LVL 4</s>
 Param/Value/lib_EFA54406_3F553140=<c val="FFFF00">Call Structure Level 3</c> - Call down a Supply Depot (<c val="0080FF">50</c>), Barracks, Factory or Starport (<c val="0080FF">75</c>) or Command Center (<c val="0080FF">100</c>)
 Param/Value/lib_EFA54406_3F8DCA6E= used the <c val="FFFF00">Purifier Beam Ability (Small Beam)</c>
@@ -241,6 +241,7 @@ Param/Value/lib_EFA54406_3FFCA21F= used the <c val="FFFF00">Shields Ability (Med
 Param/Value/lib_EFA54406_40D38E61=Abilities Info
 Param/Value/lib_EFA54406_40DF07EF=<c val="FFFF00">Call Backup Level 1</c> - Call down Backup: Infantry (Elite-Marine) (<c val="0080FF">50</c>)
 Param/Value/lib_EFA54406_424B90FA=→ <c val="FFFF00">Max Level</c> reached
+Param/Value/lib_EFA54406_42638218=<s val="BoardTitle"><c val="FFFF00">Energy</c></s>
 Param/Value/lib_EFA54406_4322D92F=<c val="FFFF00">Call Structure Level 1</c> - Call down a Supply Depot (<c val="0080FF">50</c>)
 Param/Value/lib_EFA54406_4378E92B=Purifier Beam is not available
 Param/Value/lib_EFA54406_4537635B=Easy
@@ -309,6 +310,7 @@ Param/Value/lib_EFA54406_700C22A8=<c val="FFFF00">Nuke Level 1</c> - Call down a
 Param/Value/lib_EFA54406_70236798=Own Unit killed
 Param/Value/lib_EFA54406_70EC73BB=→ <c val="FFFF00">Stimpack Level 1</c> - Small Buff: Increase Attack and Movement Speed by 33% for 15s (<c val="0080FF">50</c>)
 Param/Value/lib_EFA54406_72576F2B=→ <c val="FFFF00">Slowndown Level 2</c> - Medium Slowdown: Slow enemies to 33% Speed for 15s (<c val="0080FF">125</c>)
+Param/Value/lib_EFA54406_72DB4627=<s val="BoardTitle"><c val="0080FF">Energy</c></s>
 Param/Value/lib_EFA54406_72DE25B2=<c val="FFFF00">Call Structure Level 0</c>
 Param/Value/lib_EFA54406_73DE562D=→ <c val="FFFF00">Max Level</c> reached
 Param/Value/lib_EFA54406_73E66200=
@@ -367,6 +369,7 @@ Param/Value/lib_EFA54406_9A6CF506=Normal
 Param/Value/lib_EFA54406_9AC366E8=<s val="BattlenetSmallButton">LVL 1</s>
 Param/Value/lib_EFA54406_9BCC6049=<s val="BattlenetSmallButton">LVL 4</s>
 Param/Value/lib_EFA54406_9D008726=Heal
+Param/Value/lib_EFA54406_9D4D3C3A= can upgrade an ability. Abilities have powerful effects and cost a regenerating <c val="0080FF">Energy</c> resource. Only 
 Param/Value/lib_EFA54406_9DA1AF74=<s val="BattlenetSmallButton">LVL 4</s>
 Param/Value/lib_EFA54406_9DA5C7FC=Shields
 Param/Value/lib_EFA54406_9E19EBC2=<c val="FFFF00">???</c> - Not yet available
@@ -382,6 +385,7 @@ Param/Value/lib_EFA54406_A4E547C3=<c val="00FF00">NEW</c> - <c val="FFFF00">Init
 Param/Value/lib_EFA54406_A4E5DAED=<s val="BattlenetSmallButton">LVL 3</s>
 Param/Value/lib_EFA54406_A4F6CF1A= used the <c val="FFFF00">Heal Ability</c>. All units <c val="00FF00">healed</c> by <c val="00FF00">25%</c>
 Param/Value/lib_EFA54406_A589C53B=→ <c val="FFFF00">Range Up Level 2</c> - Large Range Up: Increases Weapon and Sight Range for all units by +4 (<c val="0080FF">100</c>)
+Param/Value/lib_EFA54406_A633A18C=At the start of every mission 
 Param/Value/lib_EFA54406_A76313CF=<s val="BattlenetSmallButton">LVL 1</s>
 Param/Value/lib_EFA54406_A77DF87F=→ <c val="FFFF00">Initial Energy Level 1</c> - Increases initial <c val="0080FF">Energy</c>: 50→<c val="00FF00">125</c>
 Param/Value/lib_EFA54406_A8C76FF5= used the <c val="FFFF00">Building Speed Ability</c>. <c val="00FF00">Increased Construction, Production</c> and <c val="00FF00">Research Speed</c> by <c val="00FF00">75%</c> for <c val="00FF00">25s</c>
@@ -429,12 +433,13 @@ Param/Value/lib_EFA54406_BF9A23B1=<c val="FFFF00">Resources Level 2</c> - Receiv
 Param/Value/lib_EFA54406_BFA2CD41=<s val="BattlenetSmallButton">LVL 3</s>
 Param/Value/lib_EFA54406_BFA6836D=Medic is allowed
 Param/Value/lib_EFA54406_C35211AA=Slowdown
+Param/Value/lib_EFA54406_C50E3100=<s val="BoardTitle"><c val="0080FF">Energy</c></s>
 Param/Value/lib_EFA54406_C5BAAEEF=Killer is visible
 Param/Value/lib_EFA54406_C5CA95F1=<c val="FFFF00">Heal Level 2</c> - Small Heal: 25% (<c val="0080FF">50</c>), Medium Heal: 50% (<c val="0080FF">75</c>)
 Param/Value/lib_EFA54406_C669CB77=<c val="FFFF00">Slowndown Level 3</c> - Slow enemy Speed: Small: 67% (<c val="0080FF">75</c>), Medium: 33% (<c val="0080FF">125</c>), Big: Complete Stun (<c val="0080FF">150</c>). Lasts 15s
 Param/Value/lib_EFA54406_C800D89E=<c val="FFFF00">Heal Level 0</c>
 Param/Value/lib_EFA54406_C8663212=<c val="FFFF00">Building Speed Level 0</c>
-Param/Value/lib_EFA54406_C941B551=At the start of every mission 
+Param/Value/lib_EFA54406_C941B551=<s val="BoardTitle"><c val="FFFF00">Ability Upgrade</c></s><n/>
 Param/Value/lib_EFA54406_CB8FA684=Call Structure is not available
 Param/Value/lib_EFA54406_CC54C3B2=<s val="BattlenetSmallButton">LVL 2</s>
 Param/Value/lib_EFA54406_CC78A746=→ <c val="FFFF00">Resources Level 3</c> - Increase Values. Receive 150|75→<c val="00FF00">200 Minerals & 200 Gas</c> (<c val="0080FF">75</c>)
@@ -478,6 +483,7 @@ Param/Value/lib_EFA54406_E4777634=→ <c val="FFFF00">Initial Energy Level 1</c>
 Param/Value/lib_EFA54406_E4E29553=→ <c val="FFFF00">Max Level</c> reached
 Param/Value/lib_EFA54406_E4EA18BF= used the <c val="FFFF00">Purifier Beam Ability (Large Beam)</c>
 Param/Value/lib_EFA54406_E58F93C9=<c val="FFFF00">Initial Energy Level 2</c> - Current initial <c val="0080FF">Energy</c>: 200
+Param/Value/lib_EFA54406_E610F021= can upgrade an ability. <n/><n/>Get more <c val="FFFF00">info</c> about abilities by clicking '<c val="0080FF">Energy</c>' at the top of the screen.
 Param/Value/lib_EFA54406_E675F2F5=Play Again: 
 Param/Value/lib_EFA54406_E7169425=<c val="FFFF00">???</c> - Not yet available
 Param/Value/lib_EFA54406_E7F7E2CE=<s val="BattlenetSmallButton">LVL 4</s>
@@ -497,11 +503,11 @@ Param/Value/lib_EFA54406_F1884B6D=<s val="BattlenetSmallButton">LVL 4</s>
 Param/Value/lib_EFA54406_F247EE10=selected something
 Param/Value/lib_EFA54406_F3C69BF9=Call Structure is not available
 Param/Value/lib_EFA54406_F5970833=Activated '<c val="FFFF00">Unlock All Abilities</c>' Cheat
-Param/Value/lib_EFA54406_F6A3C0F2= can cast these abilities. <n/>Get more <c val="FFFF00">info</c> about abilities by clicking '<c val="0080FF">Energy</c>' at the top of the screen.
 Param/Value/lib_EFA54406_F727F6DF=<c val="FFFF00">Purifier Beam Level 3</c> - Call down a Purifier Beam: Small Beam (<c val="0080FF">75</c>), Medium Beam (<c val="0080FF">100</c>), Large Beam (<c val="0080FF">125</c>). Lasts 15s
 Param/Value/lib_EFA54406_FA364084=→ <c val="FFFF00">Call Backup Level 2</c> - Call down Vehicle backup (Elite-Goliath) (<c val="0080FF">75</c>)
 Param/Value/lib_EFA54406_FB51E2CF=Cheat not available in intermission
 Param/Value/lib_EFA54406_FBA60E79=→ <c val="FFFF00">Heal Level 3</c> - Large Heal: Heals all units by 75% (<c val="0080FF">100</c>)
+Param/Value/lib_EFA54406_FD5C3B9E=<s val="BoardTitle"><c val="FFFF00">Ability Upgrade</c></s><n/>
 Param/Value/lib_EFA54406_FDB6AD5D=Killer is invisible
 SimpleDisplay/Attack2=<s val="@@@SimpleCommandRow">%hotkey</c> then</s> <IMG path="Assets\Textures\tutorialmouseleftbuttondown.dds" alignment="absolutemiddle"/> <s val="@@@SimpleCommandRow">ground to Auto-attack</s>
 SimpleDisplay/Attack22=<s val="@@@SimpleCommandRow">%hotkey</c> then</s> <IMG path="Assets\Textures\tutorialmouseleftbuttondown.dds" alignment="absolutemiddle"/> <s val="@@@SimpleCommandRow">ground to Auto-attack</s>

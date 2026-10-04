@@ -32,6 +32,7 @@ void libEFA54406_InitVariables () {
     libEFA54406_gv_max_energy = 300.0;
     libEFA54406_gv_energy_regen_rate = 1.0;
     libEFA54406_gv_energy_dialog = c_invalidDialogId;
+    libEFA54406_gv_energy_title = c_invalidDialogControlId;
     libEFA54406_gv_energy_label = c_invalidDialogControlId;
     libEFA54406_gv_abilities_top_bar = c_invalidDialogId;
     libEFA54406_gv_top_bar_ability_1 = c_invalidDialogControlId;
@@ -605,11 +606,12 @@ bool auto_libEFA54406_gf_create_ability_choice_TriggerFunc (bool testConds, bool
     else {
     }
     if ((libEFA54406_gv_is_first_mission == true)) {
-        libEFA54406_gf_create_standard_dialog("normal", (StringExternal("Param/Value/lib_EFA54406_C941B551") + libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_3C823FC6") + libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_F6A3C0F2")));
+        libEFA54406_gf_create_standard_dialog("normal", (StringExternal("Param/Value/lib_EFA54406_C941B551") + StringExternal("Param/Value/lib_EFA54406_A633A18C") + libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_9D4D3C3A") + libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_189E5726")));
     }
     else {
-        libEFA54406_gf_create_standard_dialog("normal", (libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_16E15859")));
+        libEFA54406_gf_create_standard_dialog("normal", (StringExternal("Param/Value/lib_EFA54406_FD5C3B9E") + libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_E610F021")));
     }
+    TriggerExecute(libEFA54406_gt_EnergyTitleBlinking, true, false);
     lv_map_names[0] = "traynor01";
     lv_map_names[1] = "traynor02";
     lv_map_names[2] = "traynor03";
@@ -1742,7 +1744,7 @@ bool auto_libEFA54406_gf_create_ability_choice_TriggerFunc (bool testConds, bool
     libEFA54406_gf_create_context("choose_ability_context", lv_choice_action_description, false);
     Wait(60.0, c_timeReal);
     if ((libEFA54406_gv_used_choice_this_mission == false)) {
-        libEFA54406_gf_create_force_action("ensure_ability_choice", "upgrade_ability", "At the start of every mission you can upgrade an ability. Abilities have powerful effects and use a regenerating Energy resource. Important note: You will not be able to fully upgrade every ability so consider carefully", "Upgrade an ability", false, "low");
+        libEFA54406_gf_create_force_action("ensure_ability_choice", "upgrade_ability", "At the start of every mission you can upgrade an ability. Abilities have powerful effects and use a regenerating Energy resource. Important note: You will not be able to fully upgrade every ability, so consider carefully", "Upgrade an ability", false, "low");
     }
 
     return true;
@@ -8244,6 +8246,31 @@ void libEFA54406_gt_CreateAbilityBank_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: Energy Title Blinking
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_EnergyTitleBlinking_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    do {
+        libNtve_gf_SetDialogItemText(libEFA54406_gv_energy_title, StringExternal("Param/Value/lib_EFA54406_42638218"), PlayerGroupAll());
+        Wait(0.8, c_timeReal);
+        libNtve_gf_SetDialogItemText(libEFA54406_gv_energy_title, StringExternal("Param/Value/lib_EFA54406_C50E3100"), PlayerGroupAll());
+        Wait(0.8, c_timeReal);
+    }while ((libEFA54406_gv_used_choice_this_mission == false));
+    libNtve_gf_SetDialogItemText(libEFA54406_gv_energy_title, StringExternal("Param/Value/lib_EFA54406_72DB4627"), PlayerGroupAll());
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_EnergyTitleBlinking_Init () {
+    libEFA54406_gt_EnergyTitleBlinking = TriggerCreate("libEFA54406_gt_EnergyTitleBlinking_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: Create Ability Bar
 //--------------------------------------------------------------------------------------------------
 bool libEFA54406_gt_CreateAbilityBar_Func (bool testConds, bool runActions) {
@@ -8333,6 +8360,7 @@ bool libEFA54406_gt_CreateAbilityBar_Func (bool testConds, bool runActions) {
     DialogCreate(200, 200, c_anchorTop, 0, -75, true);
     libEFA54406_gv_energy_dialog = DialogLastCreated();
     libNtve_gf_CreateDialogItemLabel(libEFA54406_gv_energy_dialog, 200, 50, c_anchorBottom, 48, 50, StringExternal("Param/Value/lib_EFA54406_45CE56CE"), ColorWithAlpha(0,0,0,0), false, 2.0);
+    libEFA54406_gv_energy_title = DialogControlLastCreated();
     libEFA54406_gv_energy_label_text = (IntToText(FixedToInt(libEFA54406_gv_current_energy)) + StringExternal("Param/Value/lib_EFA54406_1744872C") + IntToText(FixedToInt(libEFA54406_gv_max_energy)));
     libNtve_gf_CreateDialogItemLabel(libEFA54406_gv_energy_dialog, 200, 50, c_anchorBottom, 50, 10, libEFA54406_gv_energy_label_text, ColorWithAlpha(0,0,0,0), false, 2.0);
     libEFA54406_gv_energy_label = DialogControlLastCreated();
@@ -14125,6 +14153,7 @@ void libEFA54406_InitTriggers () {
     libEFA54406_gt_CloseStandardDialog_Init();
     libEFA54406_gt_LoadAbilityBank_Init();
     libEFA54406_gt_CreateAbilityBank_Init();
+    libEFA54406_gt_EnergyTitleBlinking_Init();
     libEFA54406_gt_CreateAbilityBar_Init();
     libEFA54406_gt_ShowAbilitiesCooldown_Init();
     libEFA54406_gt_AbilityEnergy_Init();
