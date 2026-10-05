@@ -9173,6 +9173,12 @@ bool libEFA54406_gt_StartupContext_Func (bool testConds, bool runActions) {
         return true;
     }
 
+    if ((libEFA54406_gv_startup_context_cd == true)) {
+        return true;
+    }
+
+    libEFA54406_gv_startup_context_cd = true;
+    TriggerExecute(libEFA54406_gt_StartupContextCooldown, true, false);
     Wait(0.4, c_timeReal);
     TriggerSendEvent("startup_context");
     if ((libEFA54406_gv_is_intermission == false)) {
@@ -9196,6 +9202,26 @@ bool libEFA54406_gt_StartupContext_Func (bool testConds, bool runActions) {
 //--------------------------------------------------------------------------------------------------
 void libEFA54406_gt_StartupContext_Init () {
     libEFA54406_gt_StartupContext = TriggerCreate("libEFA54406_gt_StartupContext_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Startup Context Cooldown
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_StartupContextCooldown_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    Wait(5.0, c_timeReal);
+    libEFA54406_gv_startup_context_cd = false;
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_StartupContextCooldown_Init () {
+    libEFA54406_gt_StartupContextCooldown = TriggerCreate("libEFA54406_gt_StartupContextCooldown_Func");
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -14164,6 +14190,7 @@ void libEFA54406_InitTriggers () {
     libEFA54406_gt_InfiniteEnergy_Init();
     libEFA54406_gt_NoCooldowns_Init();
     libEFA54406_gt_StartupContext_Init();
+    libEFA54406_gt_StartupContextCooldown_Init();
     libEFA54406_gt_Playerchatmessage_Init();
     libEFA54406_gt_PlayerActivityContext_Init();
     libEFA54406_gt_UnitAbility_Init();
