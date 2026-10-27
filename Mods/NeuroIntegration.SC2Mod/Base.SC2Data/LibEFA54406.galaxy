@@ -5439,6 +5439,8 @@ bool auto_libEFA54406_gf_AbilityNuke_TriggerFunc (bool testConds, bool runAction
     unitgroup auto891B928A_g;
     int auto891B928A_u;
     unit auto891B928A_var;
+    const int auto700D99A0_n = 10;
+    int auto700D99A0_i;
     unitgroup autoBDAEFC4B_g;
     int autoBDAEFC4B_u;
     unit autoBDAEFC4B_var;
@@ -5613,17 +5615,17 @@ bool auto_libEFA54406_gf_AbilityNuke_TriggerFunc (bool testConds, bool runAction
         Wait(0.5, c_timeAI);
         PlayerCreateEffectPoint(1, "MEGANUKE", lv_target_location);
         SoundStop(lv_nuke_seek_sound, true);
-        Wait(0.5, c_timeAI);
-        while (true) {
+        Wait(1.5, c_timeAI);
+        for (auto700D99A0_i = 1; auto700D99A0_i <= auto700D99A0_n; auto700D99A0_i += 1) {
             lv_player_units = UnitGroup(null, c_playerAny, RegionPlayableMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-            autoBDAEFC4B_g = UnitLastCreatedGroup();
+            autoBDAEFC4B_g = lv_player_units;
             autoBDAEFC4B_u = UnitGroupCount(autoBDAEFC4B_g, c_unitCountAll);
             for (;; autoBDAEFC4B_u -= 1) {
                 autoBDAEFC4B_var = UnitGroupUnitFromEnd(autoBDAEFC4B_g, autoBDAEFC4B_u);
                 if (autoBDAEFC4B_var == null) { break; }
                 UnitBehaviorAddPlayer(autoBDAEFC4B_var, "WallOfFireBurn", 1, 1);
             }
-            Wait(0.5, c_timeGame);
+            Wait(0.5, c_timeAI);
         }
     }
     else {
