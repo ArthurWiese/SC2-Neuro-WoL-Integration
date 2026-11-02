@@ -11500,6 +11500,34 @@ void libEFA54406_gt_GhostSnipe_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: Ghost EMP
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_GhostEMP_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    if ((EventPlayer() == 1)) {
+        libEFA54406_gf_create_context("ghost_emp", ("Player commanded a Ghost to shoot an EMP round, draining the energy of all enemy units in an area"), true);
+    }
+    else {
+        libEFA54406_gf_create_context("ghost_emp", ("Enemy Ghost shot an EMP round, draining the energy of all your units in an area"), true);
+    }
+    Wait(3.0, c_timeReal);
+    TriggerEnable(TriggerGetCurrent(), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_GhostEMP_Init () {
+    libEFA54406_gt_GhostEMP = TriggerCreate("libEFA54406_gt_GhostEMP_Func");
+    TriggerAddEventUnitAbility(libEFA54406_gt_GhostEMP, null, AbilityCommand("EMP", 0), c_unitAbilStageExecute, false);
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: Spectre Stun
 //--------------------------------------------------------------------------------------------------
 bool libEFA54406_gt_SpectreStun_Func (bool testConds, bool runActions) {
@@ -11982,6 +12010,72 @@ void libEFA54406_gt_PsiStorm_Init () {
     libEFA54406_gt_PsiStorm = TriggerCreate("libEFA54406_gt_PsiStorm_Func");
     TriggerAddEventUnitAbility(libEFA54406_gt_PsiStorm, null, AbilityCommand("PsiStorm", 0), c_unitAbilStageExecute, false);
     TriggerAddEventUnitAbility(libEFA54406_gt_PsiStorm, null, AbilityCommand("KarassPsiStorm", 0), c_unitAbilStageExecute, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: High Templar Feedback
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_HighTemplarFeedback_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    text lv_unit_name_text_2;
+    string lv_unit_name_2;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_unit_name_2 = "";
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    lv_unit_name_text_2 = UnitGetName(EventUnitTargetUnit());
+    lv_unit_name_2 = TextToString(lv_unit_name_text_2);
+    if ((EventPlayer() == 1)) {
+        libEFA54406_gf_create_context("templar_feedback", ("Player commanded a High Templar to trigger a Feedback on " + lv_unit_name_2 + ", using their own energy against them"), true);
+    }
+    else {
+        if ((UnitGetOwner(EventUnitTargetUnit()) == 1)) {
+            libEFA54406_gf_create_context("templar_feedback", ("Enemy High Templar triggered a Feedback on " + lv_unit_name_2 + ", using their own energy against them"), true);
+        }
+
+    }
+    Wait(3.0, c_timeReal);
+    TriggerEnable(TriggerGetCurrent(), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_HighTemplarFeedback_Init () {
+    libEFA54406_gt_HighTemplarFeedback = TriggerCreate("libEFA54406_gt_HighTemplarFeedback_Func");
+    TriggerAddEventUnitAbility(libEFA54406_gt_HighTemplarFeedback, null, AbilityCommand("Feedback", 0), c_unitAbilStageExecute, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: High Templar Archon Merge
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_HighTemplarArchonMerge_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    if ((EventPlayer() == 1)) {
+        libEFA54406_gf_create_context("archon_merge", ("Player commanded two High Templars to sacrifice themselves and merge into an Archon"), true);
+    }
+
+    Wait(3.0, c_timeReal);
+    TriggerEnable(TriggerGetCurrent(), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_HighTemplarArchonMerge_Init () {
+    libEFA54406_gt_HighTemplarArchonMerge = TriggerCreate("libEFA54406_gt_HighTemplarArchonMerge_Func");
+    TriggerAddEventUnitAbility(libEFA54406_gt_HighTemplarArchonMerge, null, AbilityCommand("ArchonWarp", 0), c_unitAbilStageExecute, false);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -15498,6 +15592,7 @@ void libEFA54406_InitTriggers () {
     libEFA54406_gt_PlayerAttacks_Init();
     libEFA54406_gt_Cloak_Init();
     libEFA54406_gt_GhostSnipe_Init();
+    libEFA54406_gt_GhostEMP_Init();
     libEFA54406_gt_SpectreStun_Init();
     libEFA54406_gt_SpectrePsionicLash_Init();
     libEFA54406_gt_Nukeislaunched_Init();
@@ -15511,6 +15606,8 @@ void libEFA54406_InitTriggers () {
     libEFA54406_gt_BattlecruiserMatrix_Init();
     libEFA54406_gt_BattlecruiserYamatoCannon_Init();
     libEFA54406_gt_PsiStorm_Init();
+    libEFA54406_gt_HighTemplarFeedback_Init();
+    libEFA54406_gt_HighTemplarArchonMerge_Init();
     libEFA54406_gt_MothershipVortex_Init();
     libEFA54406_gt_MothershipWormholeTransit_Init();
     libEFA54406_gt_MothershipMassRecall_Init();
