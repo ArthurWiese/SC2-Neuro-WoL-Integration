@@ -11623,44 +11623,6 @@ void libEFA54406_gt_Nukeislaunched_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: Spectre Stun 2
-//--------------------------------------------------------------------------------------------------
-bool libEFA54406_gt_SpectreStun2_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    text lv_unit_name_text;
-    string lv_unit_name;
-
-    // Automatic Variable Declarations
-    // Variable Initialization
-    lv_unit_name = "";
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    TriggerEnable(TriggerGetCurrent(), false);
-    lv_unit_name_text = UnitGetName(EventUnit());
-    lv_unit_name = TextToString(lv_unit_name_text);
-    if ((EventPlayer() == 1)) {
-        libEFA54406_gf_create_context("spectre_stun", ("Player commanded " + lv_unit_name + " to Mindblast a small area, stunning all enemies within it for a short time"), true);
-    }
-    else {
-        libEFA54406_gf_create_context("spectre_stun", ("Enemy Spectre Mindblasted your units, stunning them for a short time"), true);
-    }
-    Wait(15.0, c_timeReal);
-    TriggerEnable(TriggerGetCurrent(), true);
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void libEFA54406_gt_SpectreStun2_Init () {
-    libEFA54406_gt_SpectreStun2 = TriggerCreate("libEFA54406_gt_SpectreStun2_Func");
-    TriggerAddEventUnitAbility(libEFA54406_gt_SpectreStun2, null, AbilityCommand("UltrasonicPulse", 0), c_unitAbilStageExecute, false);
-    TriggerAddEventUnitAbility(libEFA54406_gt_SpectreStun2, null, AbilityCommand("MindBlast", 0), c_unitAbilStageExecute, false);
-}
-
-//--------------------------------------------------------------------------------------------------
 // Trigger: Thor Barrage
 //--------------------------------------------------------------------------------------------------
 bool libEFA54406_gt_ThorBarrage_Func (bool testConds, bool runActions) {
@@ -15539,7 +15501,6 @@ void libEFA54406_InitTriggers () {
     libEFA54406_gt_SpectreStun_Init();
     libEFA54406_gt_SpectrePsionicLash_Init();
     libEFA54406_gt_Nukeislaunched_Init();
-    libEFA54406_gt_SpectreStun2_Init();
     libEFA54406_gt_ThorBarrage_Init();
     libEFA54406_gt_ThorImmortalityProtocol_Init();
     libEFA54406_gt_RavenSeekerMissile_Init();

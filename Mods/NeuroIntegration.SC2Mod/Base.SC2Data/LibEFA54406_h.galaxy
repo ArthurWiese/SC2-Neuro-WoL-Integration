@@ -250,7 +250,6 @@ trigger libEFA54406_gt_GhostSnipe;
 trigger libEFA54406_gt_SpectreStun;
 trigger libEFA54406_gt_SpectrePsionicLash;
 trigger libEFA54406_gt_Nukeislaunched;
-trigger libEFA54406_gt_SpectreStun2;
 trigger libEFA54406_gt_ThorBarrage;
 trigger libEFA54406_gt_ThorImmortalityProtocol;
 trigger libEFA54406_gt_RavenSeekerMissile;
