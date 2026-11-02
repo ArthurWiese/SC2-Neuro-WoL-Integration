@@ -155,6 +155,7 @@ Param/Value/lib_EFA54406_07268A2D=Range Up
 Param/Value/lib_EFA54406_0765E66D=Slowdown is not available
 Param/Value/lib_EFA54406_07EADF30=Play Again: 
 Param/Value/lib_EFA54406_085E4DCB=Call Backup is not available
+Param/Value/lib_EFA54406_08D7319B= is arming the silo<n/>      with a <c val="FFFF00">Nuke</c>
 Param/Value/lib_EFA54406_09824759=<s val="BattlenetSmallButton">LVL 4</s>
 Param/Value/lib_EFA54406_0A23C1CB=<c val="FFFF00">Stimpack Level 1</c> - Increases Attack & Movement speed. Small: +33% (<c val="0080FF">50</c>). Lasts 15s
 Param/Value/lib_EFA54406_0BD9A728= used the <c val="FFFF00">Range Up Ability (Small Buff)</c>. <c val="00FF00">Increased Weapons Range</c> and <c val="00FF00">Sight</c> by <c val="00FF00">2</c> for <c val="00FF00">20s</c>
@@ -175,7 +176,6 @@ Param/Value/lib_EFA54406_170EFA64=There is a barracks
 Param/Value/lib_EFA54406_1744872C=/
 Param/Value/lib_EFA54406_177656EF=→ <c val="FFFF00">Max Level</c> reached
 Param/Value/lib_EFA54406_17F41727= chose to upgrade 
-Param/Value/lib_EFA54406_1834AD51= is arming the silo<n/>      with a <c val="FFFF00">Nuke</c>
 Param/Value/lib_EFA54406_1857A957=Call Backup
 Param/Value/lib_EFA54406_185E32CB=→ <c val="FFFF00">Range Up Level 1</c> - Small Range Up: Increases Weapon and Sight Range for all units by +2 (<c val="0080FF">50</c>)
 Param/Value/lib_EFA54406_189E5726= can cast these abilities. <n/>Get more <c val="FFFF00">info</c> about abilities by clicking '<c val="0080FF">Energy</c>' at the top of the screen.
@@ -434,7 +434,6 @@ Param/Value/lib_EFA54406_BFA2CD41=<s val="BattlenetSmallButton">LVL 3</s>
 Param/Value/lib_EFA54406_BFA6836D=Medic is allowed
 Param/Value/lib_EFA54406_C35211AA=Slowdown
 Param/Value/lib_EFA54406_C50E3100=<s val="BoardTitle"><c val="0080FF">Energy</c></s>
-Param/Value/lib_EFA54406_C5BAAEEF=Killer is visible
 Param/Value/lib_EFA54406_C5CA95F1=<c val="FFFF00">Heal Level 2</c> - Small Heal: 25% (<c val="0080FF">50</c>), Medium Heal: 50% (<c val="0080FF">75</c>)
 Param/Value/lib_EFA54406_C669CB77=<c val="FFFF00">Slowndown Level 3</c> - Slow enemy Speed: Small: 67% (<c val="0080FF">75</c>), Medium: 33% (<c val="0080FF">125</c>), Big: Complete Stun (<c val="0080FF">150</c>). Lasts 15s
 Param/Value/lib_EFA54406_C800D89E=<c val="FFFF00">Heal Level 0</c>

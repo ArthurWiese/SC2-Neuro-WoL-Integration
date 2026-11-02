@@ -103,7 +103,6 @@ void libEFA54406_InitVariables () {
     libEFA54406_gv_abilities_info_next_Slowdown = c_invalidDialogControlId;
     libEFA54406_gv_abilities_info_next_Nuke = c_invalidDialogControlId;
     libEFA54406_gv_abilities_info_next_Purifier_Beam = c_invalidDialogControlId;
-    libEFA54406_gv_attacked_unit = "";
     libEFA54406_gv_attacker_enemy_group = UnitGroupEmpty();
     for (init_i = 0; init_i <= 20; init_i += 1) {
         libEFA54406_gv_attacker_unit_array[init_i] = "";
@@ -1739,6 +1738,7 @@ bool auto_libEFA54406_gf_create_ability_choice_TriggerFunc (bool testConds, bool
         }
     }
 
+    Wait(3.0, c_timeReal);
     libEFA54406_gf_create_action_1_arg("upgrade_ability", true, "Choose an ability to upgrade", "string(" + lv_choice_action + ")", 1);
     lv_choice_action_description = ("At the start of every mission you can upgrade an ability. Abilities have powerful effects and use a regenerating Energy resource. You must now make your choice. Important note: You will not be able to fully upgrade every ability so consider carefully: " + lv_choice_action_description);
     libEFA54406_gf_create_context("choose_ability_context", lv_choice_action_description, false);
@@ -6910,17 +6910,22 @@ bool auto_libEFA54406_gf_NeuroProducesUnit_TriggerFunc (bool testConds, bool run
             lv_unit = UnitGroupUnitFromEnd(auto5F0D911E_g, auto5F0D911E_u);
             if (lv_unit == null) { break; }
             if ((lp_unit_to_produce == "Nuke")) {
-                if ((((TechTreeAbilityIsAllowed(1, AbilityCommand("BarracksTrain", 2)) == true) && (UnitCheckAbilCmdState(lv_unit, AbilityCommand("ArmSiloWithNuke", 0), c_cmdStateExecuting | c_cmdStateDisabled | c_cmdStateCooldown) == false)) || ((TechTreeAbilityIsAllowed(1, AbilityCommand("BarracksTrain", 6)) == true) && (UnitCheckAbilCmdState(lv_unit, AbilityCommand("SpectreNukeSiloArmMagazine", 1), c_cmdStateExecuting | c_cmdStateDisabled | c_cmdStateCooldown) == false)))) {
-                    UnitIssueOrder(lv_unit, Order(lv_ability_command), c_orderQueueAddToEnd);
-                    TextTagCreate((libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_1834AD51")), 24, UnitGetPosition(lv_unit), 1.0, true, false, PlayerGroupAll());
-                    TextTagSetVelocity(TextTagLastCreated(), 0.4, 90.0);
-                    TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeOut, 3.0);
-                    TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeDuration, 5.0);
+                if ((lv_produced_units_counter <= lp_number_to_produce) && (lv_produced_units_counter <= lv_number_of_units_with_current_resources)) {
+                    if ((((TechTreeAbilityIsAllowed(1, AbilityCommand("BarracksTrain", 2)) == true) && (UnitCheckAbilCmdState(lv_unit, AbilityCommand("ArmSiloWithNuke", 0), c_cmdStateDisabled) == false)) || ((TechTreeAbilityIsAllowed(1, AbilityCommand("BarracksTrain", 6)) == true) && (UnitCheckAbilCmdState(lv_unit, AbilityCommand("SpectreNukeSiloArmMagazine", 1), c_cmdStateDisabled) == false)))) {
+                        UnitIssueOrder(lv_unit, Order(lv_ability_command), c_orderQueueAddToEnd);
+                        TextTagCreate((libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_08D7319B")), 24, UnitGetPosition(lv_unit), 1.0, true, false, PlayerGroupAll());
+                        TextTagSetVelocity(TextTagLastCreated(), 0.4, 90.0);
+                        TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeOut, 3.0);
+                        TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeDuration, 5.0);
+                        lv_produced_units_counter += 1;
+                    }
+
                     UnitGroupRemove(lv_eligible_group, lv_unit);
-                    lv_produced_units_counter += 1;
+                    continue;
+                }
+                else {
                     break;
                 }
-
             }
 
             lv_available_slots = UnitQueueGetProperty(lv_unit, c_unitQueuePropertyAvailable);
@@ -7181,17 +7186,22 @@ bool auto_libEFA54406_gf_NeuroProducesUnit_TriggerFunc (bool testConds, bool run
             lv_unit = UnitGroupUnitFromEnd(auto1C4EEEDE_g, auto1C4EEEDE_u);
             if (lv_unit == null) { break; }
             if ((lp_unit_to_produce == "Nuke")) {
-                if ((((TechTreeAbilityIsAllowed(1, AbilityCommand("BarracksTrain", 2)) == true) && (UnitCheckAbilCmdState(lv_unit, AbilityCommand("ArmSiloWithNuke", 0), c_cmdStateExecuting | c_cmdStateDisabled | c_cmdStateCooldown) == false)) || ((TechTreeAbilityIsAllowed(1, AbilityCommand("BarracksTrain", 6)) == true) && (UnitCheckAbilCmdState(lv_unit, AbilityCommand("SpectreNukeSiloArmMagazine", 1), c_cmdStateExecuting | c_cmdStateDisabled | c_cmdStateCooldown) == false)))) {
-                    UnitIssueOrder(lv_unit, Order(lv_ability_command), c_orderQueueAddToEnd);
-                    TextTagCreate((libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_55283EC0")), 24, UnitGetPosition(lv_unit), 1.0, true, false, PlayerGroupAll());
-                    TextTagSetVelocity(TextTagLastCreated(), 0.4, 90.0);
-                    TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeOut, 3.0);
-                    TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeDuration, 5.0);
+                if ((lv_produced_units_counter <= lp_number_to_produce) && (lv_produced_units_counter <= lv_number_of_units_with_current_resources)) {
+                    if ((((TechTreeAbilityIsAllowed(1, AbilityCommand("BarracksTrain", 2)) == true) && (UnitCheckAbilCmdState(lv_unit, AbilityCommand("ArmSiloWithNuke", 0), c_cmdStateDisabled) == false)) || ((TechTreeAbilityIsAllowed(1, AbilityCommand("BarracksTrain", 6)) == true) && (UnitCheckAbilCmdState(lv_unit, AbilityCommand("SpectreNukeSiloArmMagazine", 1), c_cmdStateDisabled) == false)))) {
+                        UnitIssueOrder(lv_unit, Order(lv_ability_command), c_orderQueueAddToEnd);
+                        TextTagCreate((libEFA54406_gv_displayNameText + StringExternal("Param/Value/lib_EFA54406_55283EC0")), 24, UnitGetPosition(lv_unit), 1.0, true, false, PlayerGroupAll());
+                        TextTagSetVelocity(TextTagLastCreated(), 0.4, 90.0);
+                        TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeOut, 3.0);
+                        TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeDuration, 5.0);
+                        lv_produced_units_counter += 1;
+                    }
+
                     UnitGroupRemove(lv_eligible_group, lv_unit);
-                    lv_produced_units_counter += 1;
+                    continue;
+                }
+                else {
                     break;
                 }
-
             }
 
             lv_available_slots = UnitQueueGetProperty(lv_unit, c_unitQueuePropertyAvailable);
@@ -9259,7 +9269,6 @@ bool libEFA54406_gt_PlayerActivityContext_Func (bool testConds, bool runActions)
     if ((libEFA54406_gv_is_intermission == false) && (libEFA54406_gv_is_blocking == false)) {
         Wait(0.3, c_timeReal);
         TriggerExecute(libEFA54406_gt_PlayerSelectedUnitsContextCompare, true, false);
-        TriggerExecute(libEFA54406_gt_UnitCommandContext, true, false);
         TriggerExecute(libEFA54406_gt_CombatContext, true, false);
         TriggerExecute(libEFA54406_gt_UnitAttackedContext, true, false);
         if ((libEFA54406_gv_is_nobuild == false)) {
@@ -9277,140 +9286,6 @@ bool libEFA54406_gt_PlayerActivityContext_Func (bool testConds, bool runActions)
 //--------------------------------------------------------------------------------------------------
 void libEFA54406_gt_PlayerActivityContext_Init () {
     libEFA54406_gt_PlayerActivityContext = TriggerCreate("libEFA54406_gt_PlayerActivityContext_Func");
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Unit Ability
-//--------------------------------------------------------------------------------------------------
-bool libEFA54406_gt_UnitAbility_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    text lv_attacked_unit_text;
-
-    // Automatic Variable Declarations
-    abilcmd autoF983FFD6_val;
-
-    // Variable Initialization
-
-    // Conditions
-    if (testConds) {
-        if (!((EventPlayer() == 1))) {
-            return false;
-        }
-
-        if (!((UnitGetOwner(EventUnit()) == 1))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    autoF983FFD6_val = EventUnitAbility();
-    if (autoF983FFD6_val == AbilityCommand("attack", 0)) {
-        if ((EventUnitAbilityStage() == c_unitAbilStageExecute) && (UnitGroupHasUnit(UnitGroupSelected(1), EventUnit()) == true)) {
-            if ((UnitGetOwner(EventUnitTargetUnit()) == 1)) {
-                libEFA54406_gv_player_attack_selected_units = true;
-                lv_attacked_unit_text = UnitGetName(EventUnitTargetUnit());
-                libEFA54406_gv_attacked_unit = TextToString(lv_attacked_unit_text);
-                libEFA54406_gv_attacked_unit = "YOUR OWN UNIT: " + libEFA54406_gv_attacked_unit;
-            }
-            else if ((libNtve_gf_PlayerIsEnemy(1, UnitGetOwner(EventUnitTargetUnit()), libNtve_ge_PlayerRelation_Neutral) == true)) {
-                libEFA54406_gv_player_attack_selected_units = true;
-                lv_attacked_unit_text = UnitGetName(EventUnitTargetUnit());
-                libEFA54406_gv_attacked_unit = TextToString(lv_attacked_unit_text);
-                libEFA54406_gv_attacked_unit = "NEUTRAL unit: " + libEFA54406_gv_attacked_unit;
-            }
-            else if ((libNtve_gf_PlayerIsEnemy(1, UnitGetOwner(EventUnitTargetUnit()), libNtve_ge_PlayerRelation_Ally) == true)) {
-                libEFA54406_gv_player_attack_selected_units = true;
-                lv_attacked_unit_text = UnitGetName(EventUnitTargetUnit());
-                libEFA54406_gv_attacked_unit = TextToString(lv_attacked_unit_text);
-                libEFA54406_gv_attacked_unit = "YOUR ALLIES UNIT: " + libEFA54406_gv_attacked_unit;
-            }
-        }
-
-    }
-    else if (autoF983FFD6_val == AbilityCommand("CommandCenterTrain", 0)) {
-        if ((EventUnitAbilityStage() == c_unitAbilStageExecute)) {
-        }
-
-    }
-    else if (autoF983FFD6_val == AbilityCommand("TacNukeStrike", 0)) {
-        if ((EventUnitAbilityStage() == c_unitAbilStageComplete)) {
-            libEFA54406_gv_player_use_nuke = true;
-        }
-
-    }
-    else if (autoF983FFD6_val == AbilityCommand("HeroNuclearStrike", 0)) {
-        if ((EventUnitAbilityStage() == c_unitAbilStageComplete)) {
-            libEFA54406_gv_player_use_nuke = true;
-        }
-
-    }
-    else {
-    }
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void libEFA54406_gt_UnitAbility_Init () {
-    libEFA54406_gt_UnitAbility = TriggerCreate("libEFA54406_gt_UnitAbility_Func");
-    TriggerAddEventUnitAbility(libEFA54406_gt_UnitAbility, null, null, c_unitAbilStageAll, false);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Unit Command Context
-//--------------------------------------------------------------------------------------------------
-bool libEFA54406_gt_UnitCommandContext_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    if ((libEFA54406_gv_player_moved_selected_units == true)) {
-        libEFA54406_gv_player_moved_selected_units = false;
-        libEFA54406_gf_create_context("player_moves", "Player commanded the selected units to move", true);
-    }
-
-    if ((libEFA54406_gv_player_hold_selected_units == true)) {
-        libEFA54406_gv_player_hold_selected_units = false;
-        libEFA54406_gf_create_context("player_holds", "Player commanded the selected units to hold position", true);
-    }
-
-    if ((libEFA54406_gv_player_patrol_selected_units == true)) {
-        libEFA54406_gv_player_patrol_selected_units = false;
-        libEFA54406_gf_create_context("player_patrols", "Player commanded the selected units to patrol", true);
-    }
-
-    if ((libEFA54406_gv_player_stop_selected_units == true)) {
-        libEFA54406_gv_player_stop_selected_units = false;
-        libEFA54406_gf_create_context("player_stops", "Player commanded the selected units to stop what they are doing and stay at their position", true);
-    }
-
-    if ((libEFA54406_gv_player_attack_selected_units == true)) {
-        libEFA54406_gv_player_attack_selected_units = false;
-        if ((libEFA54406_gv_attacked_unit == "")) {
-            libEFA54406_gf_create_context("player_attacks", "Player commanded the selected units to attack move", true);
-        }
-        else {
-            libEFA54406_gf_create_context("player_attacks", "Player commanded the selected units to attack " + libEFA54406_gv_attacked_unit, true);
-        }
-        libEFA54406_gv_attacked_unit = "";
-    }
-
-    if ((libEFA54406_gv_player_use_nuke == true)) {
-        libEFA54406_gv_player_use_nuke = false;
-        libEFA54406_gf_create_context("player_nuke", "Player launched a tactical nuke", true);
-    }
-
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void libEFA54406_gt_UnitCommandContext_Init () {
-    libEFA54406_gt_UnitCommandContext = TriggerCreate("libEFA54406_gt_UnitCommandContext_Func");
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -9631,6 +9506,21 @@ bool libEFA54406_gt_UnitDies_Func (bool testConds, bool runActions) {
     lv_name_of_unit_string_player_player = "";
     lv_name_of_unit_string_player_enemy = "";
 
+    // Conditions
+    if (testConds) {
+        if (!((UnitGetType(EventUnit()) != "HeroNuke"))) {
+            return false;
+        }
+
+        if (!((UnitGetType(EventUnit()) != "SpectreNuke"))) {
+            return false;
+        }
+
+        if (!((UnitGetType(EventUnit()) != "Nuke"))) {
+            return false;
+        }
+    }
+
     // Actions
     if (!runActions) {
         return true;
@@ -9639,55 +9529,43 @@ bool libEFA54406_gt_UnitDies_Func (bool testConds, bool runActions) {
     lv_name_of_unit = UnitGetName(EventUnit());
     lv_name_of_unit_string = TextToString(lv_name_of_unit);
     if ((EventPlayer() == 1)) {
-        if ((UnitFilterMatch(EventUnit(), 1, UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterHidden - 32)))) == true)) {
-            if ((UnitGetOwner(libNtve_gf_KillingUnit()) == 1)) {
-                lv_name_of_unit_string_player_player = (lv_name_of_unit_string + "_player_player");
-                if ((DataTableValueExists(true, lv_name_of_unit_string_player_player) == true)) {
-                    DataTableSetInt(true, lv_name_of_unit_string_player_player, (DataTableGetInt(true, lv_name_of_unit_string_player_player) + 1));
-                }
-                else {
-                    DataTableSetInt(true, lv_name_of_unit_string_player_player, 1);
-                }
-                lv_unique_index = 0;
-                for ( ; ( (auto49922E7D_ai >= 0 && lv_unique_index <= auto49922E7D_ae) || (auto49922E7D_ai < 0 && lv_unique_index >= auto49922E7D_ae) ) ; lv_unique_index += auto49922E7D_ai ) {
-                    if (((libEFA54406_gv_player_killed_by_player[lv_unique_index] == "") || (libEFA54406_gv_player_killed_by_player[lv_unique_index] == lv_name_of_unit_string_player_player))) {
-                        libEFA54406_gv_player_killed_by_player[lv_unique_index] = lv_name_of_unit_string_player_player;
-                        break;
-                    }
-
-                }
+        if ((libNtve_gf_KillingPlayer() == 1)) {
+            lv_name_of_unit_string_player_player = (lv_name_of_unit_string + "_player_player");
+            if ((DataTableValueExists(true, lv_name_of_unit_string_player_player) == true)) {
+                DataTableSetInt(true, lv_name_of_unit_string_player_player, (DataTableGetInt(true, lv_name_of_unit_string_player_player) + 1));
             }
             else {
-                lv_name_of_unit_string_player_enemy = (lv_name_of_unit_string + "_player_enemy");
-                if ((DataTableValueExists(true, lv_name_of_unit_string_player_enemy) == true)) {
-                    DataTableSetInt(true, lv_name_of_unit_string_player_enemy, (DataTableGetInt(true, lv_name_of_unit_string_player_enemy) + 1));
+                DataTableSetInt(true, lv_name_of_unit_string_player_player, 1);
+            }
+            lv_unique_index = 0;
+            for ( ; ( (auto49922E7D_ai >= 0 && lv_unique_index <= auto49922E7D_ae) || (auto49922E7D_ai < 0 && lv_unique_index >= auto49922E7D_ae) ) ; lv_unique_index += auto49922E7D_ai ) {
+                if (((libEFA54406_gv_player_killed_by_player[lv_unique_index] == "") || (libEFA54406_gv_player_killed_by_player[lv_unique_index] == lv_name_of_unit_string_player_player))) {
+                    libEFA54406_gv_player_killed_by_player[lv_unique_index] = lv_name_of_unit_string_player_player;
+                    break;
                 }
-                else {
-                    DataTableSetInt(true, lv_name_of_unit_string_player_enemy, 1);
-                }
-                lv_unique_index = 0;
-                for ( ; ( (auto415204D4_ai >= 0 && lv_unique_index <= auto415204D4_ae) || (auto415204D4_ai < 0 && lv_unique_index >= auto415204D4_ae) ) ; lv_unique_index += auto415204D4_ai ) {
-                    if (((libEFA54406_gv_player_killed_by_enemy[lv_unique_index] == "") || (libEFA54406_gv_player_killed_by_enemy[lv_unique_index] == lv_name_of_unit_string_player_enemy))) {
-                        libEFA54406_gv_player_killed_by_enemy[lv_unique_index] = lv_name_of_unit_string_player_enemy;
-                        break;
-                    }
 
-                }
             }
         }
         else {
-            if ((UnitGetType(libNtve_gf_KillingUnit()) == "WallOfFire")) {
-                return true;
+            lv_name_of_unit_string_player_enemy = (lv_name_of_unit_string + "_player_enemy");
+            if ((DataTableValueExists(true, lv_name_of_unit_string_player_enemy) == true)) {
+                DataTableSetInt(true, lv_name_of_unit_string_player_enemy, (DataTableGetInt(true, lv_name_of_unit_string_player_enemy) + 1));
             }
-
-            if ((libNtve_gf_KillingUnit() == null) && (EventUnitDamageDeathCheck(c_deathTypeRemove) == false) && (EventUnitDamageDeathCheck(c_deathTypeUnlink) == false) && (EventUnitDamageDeathCheck(c_deathTypeNormal) == true) && (libEFA54406_gv_is_special_case_no_unit_killer == true)) {
-                return true;
+            else {
+                DataTableSetInt(true, lv_name_of_unit_string_player_enemy, 1);
             }
+            lv_unique_index = 0;
+            for ( ; ( (auto415204D4_ai >= 0 && lv_unique_index <= auto415204D4_ae) || (auto415204D4_ai < 0 && lv_unique_index >= auto415204D4_ae) ) ; lv_unique_index += auto415204D4_ai ) {
+                if (((libEFA54406_gv_player_killed_by_enemy[lv_unique_index] == "") || (libEFA54406_gv_player_killed_by_enemy[lv_unique_index] == lv_name_of_unit_string_player_enemy))) {
+                    libEFA54406_gv_player_killed_by_enemy[lv_unique_index] = lv_name_of_unit_string_player_enemy;
+                    break;
+                }
 
+            }
         }
     }
     else {
-        if ((UnitGetOwner(libNtve_gf_KillingUnit()) == 1)) {
+        if ((libNtve_gf_KillingPlayer() == 1)) {
             if ((libNtve_gf_PlayerIsEnemy(1, EventPlayer(), libNtve_ge_PlayerRelation_Enemy) == true)) {
                 lv_name_of_unit_string_enemy_player = (lv_name_of_unit_string + "_enemy_player");
                 if ((DataTableValueExists(true, lv_name_of_unit_string_enemy_player) == true)) {
@@ -11474,6 +11352,1447 @@ void libEFA54406_gt_EconomyContextCooldown_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: Player Attacks
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_PlayerAttacks_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    text lv_attacked_unit_text;
+    string lv_attacked_unit;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_attacked_unit = "";
+
+    // Conditions
+    if (testConds) {
+        if (!((EventPlayer() == 1))) {
+            return false;
+        }
+
+        if (!((UnitGetOwner(EventUnit()) == 1))) {
+            return false;
+        }
+
+        if (!((UnitGroupHasUnit(UnitGroupSelected(1), EventUnit()) == true))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((UnitGetOwner(EventUnitTargetUnit()) == 1)) {
+        lv_attacked_unit_text = UnitGetName(EventUnitTargetUnit());
+        lv_attacked_unit = TextToString(lv_attacked_unit_text);
+        lv_attacked_unit = ("YOUR OWN UNIT: " + lv_attacked_unit);
+    }
+    else if ((libNtve_gf_PlayerIsEnemy(1, UnitGetOwner(EventUnitTargetUnit()), libNtve_ge_PlayerRelation_Neutral) == true)) {
+        lv_attacked_unit_text = UnitGetName(EventUnitTargetUnit());
+        lv_attacked_unit = TextToString(lv_attacked_unit_text);
+        lv_attacked_unit = ("NEUTRAL unit: " + lv_attacked_unit);
+    }
+    else if ((libNtve_gf_PlayerIsEnemy(1, UnitGetOwner(EventUnitTargetUnit()), libNtve_ge_PlayerRelation_Ally) == true)) {
+        lv_attacked_unit_text = UnitGetName(EventUnitTargetUnit());
+        lv_attacked_unit = TextToString(lv_attacked_unit_text);
+        lv_attacked_unit = ("YOUR ALLIES UNIT: " + lv_attacked_unit);
+    }
+    if ((lv_attacked_unit == "")) {
+    }
+    else {
+        libEFA54406_gf_create_context("player_attacks", "Player commanded the selected units to attack " + lv_attacked_unit, true);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_PlayerAttacks_Init () {
+    libEFA54406_gt_PlayerAttacks = TriggerCreate("libEFA54406_gt_PlayerAttacks_Func");
+    TriggerAddEventUnitAbility(libEFA54406_gt_PlayerAttacks, null, AbilityCommand("attack", 0), c_unitAbilStageExecute, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Cloak
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_Cloak_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    text lv_unit_name_text;
+    string lv_unit_name;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_unit_name = "";
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    lv_unit_name_text = UnitGetName(EventUnit());
+    lv_unit_name = TextToString(lv_unit_name_text);
+    if ((EventPlayer() == 1) && (libNtve_gf_UnitIsVisibleToPlayer(EventUnit(), 1) == true)) {
+        libEFA54406_gf_create_context("cloak", ("Player commanded " + lv_unit_name + " to cloak themself, making them impossible to detect for most enemy units"), true);
+    }
+    else {
+        libEFA54406_gf_create_context("cloak", ("Enemy " + lv_unit_name + " cloaked themself. Only detector units can make them visible to you"), true);
+    }
+    Wait(5.0, c_timeReal);
+    TriggerEnable(TriggerGetCurrent(), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_Cloak_Init () {
+    libEFA54406_gt_Cloak = TriggerCreate("libEFA54406_gt_Cloak_Func");
+    TriggerAddEventUnitAbility(libEFA54406_gt_Cloak, null, AbilityCommand("BansheeCloak", 0), c_unitAbilStageExecute, false);
+    TriggerAddEventUnitAbility(libEFA54406_gt_Cloak, null, AbilityCommand("DuskWingBansheeCloakingField", 0), c_unitAbilStageExecute, false);
+    TriggerAddEventUnitAbility(libEFA54406_gt_Cloak, null, AbilityCommand("GhostCloak", 0), c_unitAbilStageExecute, false);
+    TriggerAddEventUnitAbility(libEFA54406_gt_Cloak, null, AbilityCommand("RogueGhostCloak", 0), c_unitAbilStageExecute, false);
+    TriggerAddEventUnitAbility(libEFA54406_gt_Cloak, null, AbilityCommand("WraithCloak", 0), c_unitAbilStageExecute, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Ghost Snipe
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_GhostSnipe_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    text lv_unit_name_text;
+    string lv_unit_name;
+    text lv_unit_name_text_2;
+    string lv_unit_name_2;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_unit_name = "";
+    lv_unit_name_2 = "";
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    lv_unit_name_text = UnitGetName(EventUnit());
+    lv_unit_name = TextToString(lv_unit_name_text);
+    lv_unit_name_text_2 = UnitGetName(EventUnitTargetUnit());
+    lv_unit_name_2 = TextToString(lv_unit_name_text_2);
+    if ((EventPlayer() == 1)) {
+        libEFA54406_gf_create_context("ghost_snipe", ("Player commanded " + lv_unit_name + " to snipe " + lv_unit_name_2), true);
+    }
+    else {
+        if ((UnitGetOwner(EventUnitTargetUnit()) == 1)) {
+            libEFA54406_gf_create_context("ghost_snipe", ("Enemy Ghost is sniping " + lv_unit_name_2), true);
+        }
+
+    }
+    Wait(3.0, c_timeReal);
+    TriggerEnable(TriggerGetCurrent(), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_GhostSnipe_Init () {
+    libEFA54406_gt_GhostSnipe = TriggerCreate("libEFA54406_gt_GhostSnipe_Func");
+    TriggerAddEventUnitAbility(libEFA54406_gt_GhostSnipe, null, AbilityCommand("Snipe", 0), c_unitAbilStageExecute, false);
+    TriggerAddEventUnitAbility(libEFA54406_gt_GhostSnipe, null, AbilityCommand("NovaSnipe", 0), c_unitAbilStageExecute, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Spectre Stun
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_SpectreStun_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    text lv_unit_name_text;
+    string lv_unit_name;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_unit_name = "";
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    lv_unit_name_text = UnitGetName(EventUnit());
+    lv_unit_name = TextToString(lv_unit_name_text);
+    if ((EventPlayer() == 1)) {
+        libEFA54406_gf_create_context("spectre_stun", ("Player commanded " + lv_unit_name + " to Mindblast a small area, stunning all enemies within it for a short time"), true);
+    }
+    else {
+        libEFA54406_gf_create_context("spectre_stun", ("Enemy Spectre Mindblasted your units, stunning them for a short time"), true);
+    }
+    Wait(15.0, c_timeReal);
+    TriggerEnable(TriggerGetCurrent(), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_SpectreStun_Init () {
+    libEFA54406_gt_SpectreStun = TriggerCreate("libEFA54406_gt_SpectreStun_Func");
+    TriggerAddEventUnitAbility(libEFA54406_gt_SpectreStun, null, AbilityCommand("UltrasonicPulse", 0), c_unitAbilStageExecute, false);
+    TriggerAddEventUnitAbility(libEFA54406_gt_SpectreStun, null, AbilityCommand("MindBlast", 0), c_unitAbilStageExecute, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Spectre Psionic Lash
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_SpectrePsionicLash_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    text lv_unit_name_text_2;
+    string lv_unit_name_2;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_unit_name_2 = "";
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    lv_unit_name_text_2 = UnitGetName(EventUnitTargetUnit());
+    lv_unit_name_2 = TextToString(lv_unit_name_text_2);
+    if ((EventPlayer() == 1)) {
+        libEFA54406_gf_create_context("spectre_lash", ("Player commanded a Spectre to psionically lash " + lv_unit_name_2 + ", dealing massive damage to them"), true);
+    }
+    else {
+        if ((UnitGetOwner(EventUnitTargetUnit()) == 1)) {
+            libEFA54406_gf_create_context("spectre_lash", ("Enemy Spectre is psionically lashing " + lv_unit_name_2 + ", dealing massive damage to them"), true);
+        }
+
+    }
+    Wait(3.0, c_timeReal);
+    TriggerEnable(TriggerGetCurrent(), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_SpectrePsionicLash_Init () {
+    libEFA54406_gt_SpectrePsionicLash = TriggerCreate("libEFA54406_gt_SpectrePsionicLash_Func");
+    TriggerAddEventUnitAbility(libEFA54406_gt_SpectrePsionicLash, null, AbilityCommand("Obliterate", 0), c_unitAbilStageExecute, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Nuke is launched
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_Nukeislaunched_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    text lv_unit_name_text;
+    string lv_unit_name;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_unit_name = "";
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    lv_unit_name_text = UnitGetName(EventUnit());
+    lv_unit_name = TextToString(lv_unit_name_text);
+    if ((EventPlayer() == 1)) {
+        libEFA54406_gf_create_context("nuke_launch", ("Player commanded " + lv_unit_name + " to launch a tactical nuke"), true);
+    }
+    else {
+        if ((UnitGetType(EventUnit()) == "Odin")) {
+            libEFA54406_gf_create_context("nuke_launch", ("The Odin is launching a tactical nuke at the remaining Dominion forces"), true);
+        }
+        else {
+            libEFA54406_gf_create_context("nuke_launch", ("An enemy " + lv_unit_name + " is launching a tactical nuke on your army!"), true);
+        }
+    }
+    Wait(3.0, c_timeReal);
+    TriggerEnable(TriggerGetCurrent(), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_Nukeislaunched_Init () {
+    libEFA54406_gt_Nukeislaunched = TriggerCreate("libEFA54406_gt_Nukeislaunched_Func");
+    TriggerAddEventUnitAbility(libEFA54406_gt_Nukeislaunched, null, AbilityCommand("TacNukeStrike", 0), c_unitAbilStageExecute, false);
+    TriggerAddEventUnitAbility(libEFA54406_gt_Nukeislaunched, null, AbilityCommand("SpectreNuke", 0), c_unitAbilStageExecute, false);
+    TriggerAddEventUnitAbility(libEFA54406_gt_Nukeislaunched, null, AbilityCommand("HeroNuclearStrike", 0), c_unitAbilStageExecute, false);
+    TriggerAddEventUnitAbility(libEFA54406_gt_Nukeislaunched, null, AbilityCommand("OdinNuclearStrike", 0), c_unitAbilStageExecute, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Spectre Stun 2
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_SpectreStun2_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    text lv_unit_name_text;
+    string lv_unit_name;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_unit_name = "";
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    lv_unit_name_text = UnitGetName(EventUnit());
+    lv_unit_name = TextToString(lv_unit_name_text);
+    if ((EventPlayer() == 1)) {
+        libEFA54406_gf_create_context("spectre_stun", ("Player commanded " + lv_unit_name + " to Mindblast a small area, stunning all enemies within it for a short time"), true);
+    }
+    else {
+        libEFA54406_gf_create_context("spectre_stun", ("Enemy Spectre Mindblasted your units, stunning them for a short time"), true);
+    }
+    Wait(15.0, c_timeReal);
+    TriggerEnable(TriggerGetCurrent(), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_SpectreStun2_Init () {
+    libEFA54406_gt_SpectreStun2 = TriggerCreate("libEFA54406_gt_SpectreStun2_Func");
+    TriggerAddEventUnitAbility(libEFA54406_gt_SpectreStun2, null, AbilityCommand("UltrasonicPulse", 0), c_unitAbilStageExecute, false);
+    TriggerAddEventUnitAbility(libEFA54406_gt_SpectreStun2, null, AbilityCommand("MindBlast", 0), c_unitAbilStageExecute, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Thor Barrage
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_ThorBarrage_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    text lv_unit_name_text;
+    string lv_unit_name;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_unit_name = "";
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    lv_unit_name_text = UnitGetName(EventUnit());
+    lv_unit_name = TextToString(lv_unit_name_text);
+    if ((EventPlayer() == 1)) {
+        libEFA54406_gf_create_context("thor_barrage", ("Player commanded " + lv_unit_name + " to use its 330mm Barrage Cannons to annihilate an area"), true);
+    }
+    else {
+        libEFA54406_gf_create_context("thor_barrage", ("The Odin is using its 330mm Barrage Cannons to annihilate an area"), true);
+    }
+    Wait(5.0, c_timeReal);
+    TriggerEnable(TriggerGetCurrent(), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_ThorBarrage_Init () {
+    libEFA54406_gt_ThorBarrage = TriggerCreate("libEFA54406_gt_ThorBarrage_Func");
+    TriggerAddEventUnitAbility(libEFA54406_gt_ThorBarrage, null, AbilityCommand("330mmBarrageCannons", 0), c_unitAbilStageExecute, false);
+    TriggerAddEventUnitAbility(libEFA54406_gt_ThorBarrage, null, AbilityCommand("OdinBarrage", 0), c_unitAbilStageExecute, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Thor Immortality Protocol
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_ThorImmortalityProtocol_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    if ((EventPlayer() == 1)) {
+        libEFA54406_gf_create_context("thor_immortality", ("Player activated the Immortality Protocol of a fallen Thor. It'll be back"), true);
+    }
+
+    Wait(3.0, c_timeReal);
+    TriggerEnable(TriggerGetCurrent(), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_ThorImmortalityProtocol_Init () {
+    libEFA54406_gt_ThorImmortalityProtocol = TriggerCreate("libEFA54406_gt_ThorImmortalityProtocol_Func");
+    TriggerAddEventUnitAbility(libEFA54406_gt_ThorImmortalityProtocol, null, AbilityCommand("ThorReborn", 0), c_unitAbilStageExecute, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Raven Seeker Missile
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_RavenSeekerMissile_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    text lv_unit_name_text_2;
+    string lv_unit_name_2;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_unit_name_2 = "";
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    lv_unit_name_text_2 = UnitGetName(EventUnitTargetUnit());
+    lv_unit_name_2 = TextToString(lv_unit_name_text_2);
+    if ((EventPlayer() == 1)) {
+        libEFA54406_gf_create_context("raven_missile", ("Player commanded a Raven to launch a Seeker Missile at " + lv_unit_name_2), true);
+    }
+    else {
+        if ((UnitGetOwner(EventUnitTargetUnit()) == 1)) {
+            libEFA54406_gf_create_context("raven_missile", ("Enemy Raven is launching a Seeker Missile at " + lv_unit_name_2), true);
+        }
+
+    }
+    Wait(3.0, c_timeReal);
+    TriggerEnable(TriggerGetCurrent(), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_RavenSeekerMissile_Init () {
+    libEFA54406_gt_RavenSeekerMissile = TriggerCreate("libEFA54406_gt_RavenSeekerMissile_Func");
+    TriggerAddEventUnitAbility(libEFA54406_gt_RavenSeekerMissile, null, AbilityCommand("SeekerMissile", 0), c_unitAbilStageExecute, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Raven Turret
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_RavenTurret_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    if ((EventPlayer() == 1)) {
+        libEFA54406_gf_create_context("raven_turret", ("Player commanded a Raven to place an Auto-Turret"), true);
+    }
+    else {
+        libEFA54406_gf_create_context("raven_turret", ("Enemy Raven has placed an Auto-Turret"), true);
+    }
+    Wait(3.0, c_timeReal);
+    TriggerEnable(TriggerGetCurrent(), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_RavenTurret_Init () {
+    libEFA54406_gt_RavenTurret = TriggerCreate("libEFA54406_gt_RavenTurret_Func");
+    TriggerAddEventUnitAbility(libEFA54406_gt_RavenTurret, null, AbilityCommand("BuildAutoTurret", 0), c_unitAbilStageExecute, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Raven Defense Drone
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_RavenDefenseDrone_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    if ((EventPlayer() == 1)) {
+        libEFA54406_gf_create_context("raven_drone", ("Player commanded a Raven to deploy a Point Defense Drone, shielding the area around them from air attacks"), true);
+    }
+    else {
+        libEFA54406_gf_create_context("raven_drone", ("Enemy Raven to deployed a Point Defense Drone, shielding the area around them from air attacks"), true);
+    }
+    Wait(3.0, c_timeReal);
+    TriggerEnable(TriggerGetCurrent(), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_RavenDefenseDrone_Init () {
+    libEFA54406_gt_RavenDefenseDrone = TriggerCreate("libEFA54406_gt_RavenDefenseDrone_Func");
+    TriggerAddEventUnitAbility(libEFA54406_gt_RavenDefenseDrone, null, AbilityCommand("PlacePointDefenseDrone", 0), c_unitAbilStageExecute, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Science Vessel Irradiate
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_ScienceVesselIrradiate_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    text lv_unit_name_text_2;
+    string lv_unit_name_2;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_unit_name_2 = "";
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    lv_unit_name_text_2 = UnitGetName(EventUnitTargetUnit());
+    lv_unit_name_2 = TextToString(lv_unit_name_text_2);
+    if ((EventPlayer() == 1)) {
+        libEFA54406_gf_create_context("vessel_irradiate", ("Player commanded a Science Vessel to irradiate " + lv_unit_name_2 + ", damaging all biological units around the target"), true);
+    }
+    else {
+        if ((UnitGetOwner(EventUnitTargetUnit()) == 1)) {
+            libEFA54406_gf_create_context("vessel_irradiate", ("Enemy Science Vessel irradiated " + lv_unit_name_2 + ", damaging all biological units around the target"), true);
+        }
+
+    }
+    Wait(3.0, c_timeReal);
+    TriggerEnable(TriggerGetCurrent(), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_ScienceVesselIrradiate_Init () {
+    libEFA54406_gt_ScienceVesselIrradiate = TriggerCreate("libEFA54406_gt_ScienceVesselIrradiate_Func");
+    TriggerAddEventUnitAbility(libEFA54406_gt_ScienceVesselIrradiate, null, AbilityCommand("Irradiate", 0), c_unitAbilStageExecute, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Battlecruiser Missile Pods
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_BattlecruiserMissilePods_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    text lv_unit_name_text;
+    string lv_unit_name;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_unit_name = "";
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    lv_unit_name_text = UnitGetName(EventUnit());
+    lv_unit_name = TextToString(lv_unit_name_text);
+    if ((EventPlayer() == 1)) {
+        libEFA54406_gf_create_context("battlecruiser_missile_pods", ("Player commanded " + lv_unit_name + " to launch its Hurricane Missiles, damaging all air units in an area"), true);
+    }
+    else {
+        libEFA54406_gf_create_context("battlecruiser_missile_pods", ("An enemy " + lv_unit_name + " is launching its Hurricane Missiles, damaging all air units in an area"), true);
+    }
+    Wait(3.0, c_timeReal);
+    TriggerEnable(TriggerGetCurrent(), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_BattlecruiserMissilePods_Init () {
+    libEFA54406_gt_BattlecruiserMissilePods = TriggerCreate("libEFA54406_gt_BattlecruiserMissilePods_Func");
+    TriggerAddEventUnitAbility(libEFA54406_gt_BattlecruiserMissilePods, null, AbilityCommand("MissilePods", 0), c_unitAbilStageExecute, false);
+    TriggerAddEventUnitAbility(libEFA54406_gt_BattlecruiserMissilePods, null, AbilityCommand("DukesRevengeMissilePods", 0), c_unitAbilStageExecute, false);
+    TriggerAddEventUnitAbility(libEFA54406_gt_BattlecruiserMissilePods, null, AbilityCommand("LokiMissilePods", 0), c_unitAbilStageExecute, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Battlecruiser Matrix
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_BattlecruiserMatrix_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    text lv_unit_name_text;
+    string lv_unit_name;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_unit_name = "";
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    lv_unit_name_text = UnitGetName(EventUnit());
+    lv_unit_name = TextToString(lv_unit_name_text);
+    if ((EventPlayer() == 1)) {
+        libEFA54406_gf_create_context("battlecruiser_matrix", ("Player commanded " + lv_unit_name + " to activate its Defensive Matrix, temporarily giving them a shield"), true);
+    }
+    else {
+        libEFA54406_gf_create_context("battlecruiser_matrix", (lv_unit_name + " uses activate Defensive Matrix, temporarily giving them a shield"), true);
+    }
+    Wait(3.0, c_timeReal);
+    TriggerEnable(TriggerGetCurrent(), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_BattlecruiserMatrix_Init () {
+    libEFA54406_gt_BattlecruiserMatrix = TriggerCreate("libEFA54406_gt_BattlecruiserMatrix_Func");
+    TriggerAddEventUnitAbility(libEFA54406_gt_BattlecruiserMatrix, null, AbilityCommand("DefensiveMatrix", 0), c_unitAbilStageExecute, false);
+    TriggerAddEventUnitAbility(libEFA54406_gt_BattlecruiserMatrix, null, AbilityCommand("DukesRevengeDefensiveMatrix", 0), c_unitAbilStageExecute, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Battlecruiser Yamato Cannon
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_BattlecruiserYamatoCannon_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    text lv_unit_name_text;
+    string lv_unit_name;
+    text lv_unit_name_text_2;
+    string lv_unit_name_2;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_unit_name = "";
+    lv_unit_name_2 = "";
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    lv_unit_name_text = UnitGetName(EventUnit());
+    lv_unit_name = TextToString(lv_unit_name_text);
+    lv_unit_name_text_2 = UnitGetName(EventUnitTargetUnit());
+    lv_unit_name_2 = TextToString(lv_unit_name_text_2);
+    if ((EventPlayer() == 1)) {
+        libEFA54406_gf_create_context("battlecruiser_yamato", ("Player commanded " + lv_unit_name + " to use its Yamato Cannon against " + lv_unit_name_2), true);
+    }
+    else {
+        if ((UnitGetOwner(EventUnitTargetUnit()) == 1)) {
+            libEFA54406_gf_create_context("battlecruiser_yamato", (lv_unit_name + " is using its Yamato Cannon against your " + lv_unit_name_2), true);
+        }
+
+    }
+    Wait(3.0, c_timeReal);
+    TriggerEnable(TriggerGetCurrent(), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_BattlecruiserYamatoCannon_Init () {
+    libEFA54406_gt_BattlecruiserYamatoCannon = TriggerCreate("libEFA54406_gt_BattlecruiserYamatoCannon_Func");
+    TriggerAddEventUnitAbility(libEFA54406_gt_BattlecruiserYamatoCannon, null, AbilityCommand("Yamato", 0), c_unitAbilStageExecute, false);
+    TriggerAddEventUnitAbility(libEFA54406_gt_BattlecruiserYamatoCannon, null, AbilityCommand("DukesRevengeYamato", 0), c_unitAbilStageExecute, false);
+    TriggerAddEventUnitAbility(libEFA54406_gt_BattlecruiserYamatoCannon, null, AbilityCommand("LokiYamato", 0), c_unitAbilStageExecute, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Psi Storm
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_PsiStorm_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    text lv_unit_name_text;
+    string lv_unit_name;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_unit_name = "";
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    lv_unit_name_text = UnitGetName(EventUnit());
+    lv_unit_name = TextToString(lv_unit_name_text);
+    if ((EventPlayer() == 1)) {
+        libEFA54406_gf_create_context("psi_storm", ("Player commanded " + lv_unit_name + " to conjure a Psi Storm, dealing damage in an area"), true);
+    }
+    else {
+        libEFA54406_gf_create_context("psi_storm", ("Enemy " + lv_unit_name + " conjured a Psi Storm on your units, dealing damage in an area"), true);
+    }
+    Wait(3.0, c_timeReal);
+    TriggerEnable(TriggerGetCurrent(), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_PsiStorm_Init () {
+    libEFA54406_gt_PsiStorm = TriggerCreate("libEFA54406_gt_PsiStorm_Func");
+    TriggerAddEventUnitAbility(libEFA54406_gt_PsiStorm, null, AbilityCommand("PsiStorm", 0), c_unitAbilStageExecute, false);
+    TriggerAddEventUnitAbility(libEFA54406_gt_PsiStorm, null, AbilityCommand("KarassPsiStorm", 0), c_unitAbilStageExecute, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Mothership Vortex
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_MothershipVortex_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    text lv_unit_name_text;
+    string lv_unit_name;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_unit_name = "";
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    lv_unit_name_text = UnitGetName(EventUnit());
+    lv_unit_name = TextToString(lv_unit_name_text);
+    if ((EventPlayer() == 1)) {
+        libEFA54406_gf_create_context("mothership_vortex", ("Player commanded " + lv_unit_name + " to create a Vortex, temporarily trapping all enemies in an area inside a pocket dimension"), true);
+    }
+    else {
+        libEFA54406_gf_create_context("mothership_vortex", (lv_unit_name + " created a Vortex, temporarily trapping all your units in an area inside a pocket dimension"), true);
+    }
+    Wait(3.0, c_timeReal);
+    TriggerEnable(TriggerGetCurrent(), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_MothershipVortex_Init () {
+    libEFA54406_gt_MothershipVortex = TriggerCreate("libEFA54406_gt_MothershipVortex_Func");
+    TriggerAddEventUnitAbility(libEFA54406_gt_MothershipVortex, null, AbilityCommand("ArtanisVortex", 0), c_unitAbilStageExecute, false);
+    TriggerAddEventUnitAbility(libEFA54406_gt_MothershipVortex, null, AbilityCommand("Vortex", 0), c_unitAbilStageExecute, false);
+    TriggerAddEventUnitAbility(libEFA54406_gt_MothershipVortex, null, AbilityCommand("VortexPurifier", 0), c_unitAbilStageExecute, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Mothership Wormhole Transit
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_MothershipWormholeTransit_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    text lv_unit_name_text;
+    string lv_unit_name;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_unit_name = "";
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    lv_unit_name_text = UnitGetName(EventUnit());
+    lv_unit_name = TextToString(lv_unit_name_text);
+    if ((EventPlayer() == 1)) {
+        libEFA54406_gf_create_context("mothership_wormhole", ("Player commanded " + lv_unit_name + " to travel through a Wormhole to a different location"), true);
+    }
+    else {
+        libEFA54406_gf_create_context("mothership_wormhole", (lv_unit_name + "  flees through a Wormhole and returns to its base"), true);
+    }
+    Wait(3.0, c_timeReal);
+    TriggerEnable(TriggerGetCurrent(), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_MothershipWormholeTransit_Init () {
+    libEFA54406_gt_MothershipWormholeTransit = TriggerCreate("libEFA54406_gt_MothershipWormholeTransit_Func");
+    TriggerAddEventUnitAbility(libEFA54406_gt_MothershipWormholeTransit, null, AbilityCommand("WormholeTransit", 0), c_unitAbilStageExecute, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Mothership Mass Recall
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_MothershipMassRecall_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    text lv_unit_name_text;
+    string lv_unit_name;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_unit_name = "";
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    lv_unit_name_text = UnitGetName(EventUnit());
+    lv_unit_name = TextToString(lv_unit_name_text);
+    if ((EventPlayer() == 1)) {
+        libEFA54406_gf_create_context("mothership_mass_recall", ("Player commanded " + lv_unit_name + " to Mass Recall with all your units around it back to your base"), true);
+    }
+    else {
+        libEFA54406_gf_create_context("mothership_mass_recall", (lv_unit_name + " Mass Recalles with all units around it back to their base"), true);
+    }
+    Wait(3.0, c_timeReal);
+    TriggerEnable(TriggerGetCurrent(), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_MothershipMassRecall_Init () {
+    libEFA54406_gt_MothershipMassRecall = TriggerCreate("libEFA54406_gt_MothershipMassRecall_Func");
+    TriggerAddEventUnitAbility(libEFA54406_gt_MothershipMassRecall, null, AbilityCommand("MassRecall", 0), c_unitAbilStageExecute, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Purifier Planet Cracker
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_PurifierPlanetCracker_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    libEFA54406_gf_create_context("purifier_planet_cracker", ("The Purifier has started the Planet Cracker. Vaporising the colony settlement and everything around it"), true);
+    Wait(3.0, c_timeReal);
+    TriggerEnable(TriggerGetCurrent(), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_PurifierPlanetCracker_Init () {
+    libEFA54406_gt_PurifierPlanetCracker = TriggerCreate("libEFA54406_gt_PurifierPlanetCracker_Func");
+    TriggerAddEventUnitAbility(libEFA54406_gt_PurifierPlanetCracker, null, AbilityCommand("PurifierPlanetCracker", 0), c_unitAbilStageExecute, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Zeratul Void Prison
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_ZeratulVoidPrison_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    text lv_unit_name_text_2;
+    string lv_unit_name_2;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_unit_name_2 = "";
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    lv_unit_name_text_2 = UnitGetName(EventUnitTargetUnit());
+    lv_unit_name_2 = TextToString(lv_unit_name_text_2);
+    if ((EventPlayer() == 1)) {
+        libEFA54406_gf_create_context("zeratul_prison", ("Player commanded Zeratul to temporarily imprison " + lv_unit_name_2 + " in a Void Prison"), true);
+    }
+
+    Wait(3.0, c_timeReal);
+    TriggerEnable(TriggerGetCurrent(), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_ZeratulVoidPrison_Init () {
+    libEFA54406_gt_ZeratulVoidPrison = TriggerCreate("libEFA54406_gt_ZeratulVoidPrison_Func");
+    TriggerAddEventUnitAbility(libEFA54406_gt_ZeratulVoidPrison, null, AbilityCommand("ZeratulStun", 0), c_unitAbilStageExecute, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Tosh Shield
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_ToshShield_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((UnitGetType(EventUnit()) == "Tosh"))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    if ((EventPlayer() == 1)) {
+        libEFA54406_gf_create_context("tosh_shield", ("Player commanded Tosh to shield himself with a Psi Shield"), true);
+    }
+
+    Wait(15.0, c_timeReal);
+    TriggerEnable(TriggerGetCurrent(), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_ToshShield_Init () {
+    libEFA54406_gt_ToshShield = TriggerCreate("libEFA54406_gt_ToshShield_Func");
+    TriggerAddEventUnitAbility(libEFA54406_gt_ToshShield, null, AbilityCommand("VoodooShield", 0), c_unitAbilStageExecute, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Tosh Consumption
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_ToshConsumption_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    text lv_unit_name_text_2;
+    string lv_unit_name_2;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_unit_name_2 = "";
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    lv_unit_name_text_2 = UnitGetName(EventUnitTargetUnit());
+    lv_unit_name_2 = TextToString(lv_unit_name_text_2);
+    if ((EventPlayer() == 1)) {
+        libEFA54406_gf_create_context("tosh_consumption", ("Player commanded Tosh to consume the life force of Raynor's " + lv_unit_name_2 + " to restore his energy"), true);
+    }
+
+    Wait(15.0, c_timeReal);
+    TriggerEnable(TriggerGetCurrent(), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_ToshConsumption_Init () {
+    libEFA54406_gt_ToshConsumption = TriggerCreate("libEFA54406_gt_ToshConsumption_Func");
+    TriggerAddEventUnitAbility(libEFA54406_gt_ToshConsumption, null, AbilityCommand("Consumption", 0), c_unitAbilStageExecute, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Nova Dominate
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_NovaDominate_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    text lv_unit_name_text_2;
+    string lv_unit_name_2;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_unit_name_2 = "";
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lv_unit_name_text_2 = UnitGetName(EventUnitTargetUnit());
+    lv_unit_name_2 = TextToString(lv_unit_name_text_2);
+    if ((EventPlayer() == 1)) {
+        libEFA54406_gf_create_context("nova_dominate", ("Player commanded Nova to Dominate the mind of " + lv_unit_name_2 + ". They will follow your every order"), true);
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_NovaDominate_Init () {
+    libEFA54406_gt_NovaDominate = TriggerCreate("libEFA54406_gt_NovaDominate_Func");
+    TriggerAddEventUnitAbility(libEFA54406_gt_NovaDominate, null, AbilityCommand("Domination", 0), c_unitAbilStageExecute, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Raynor Breaching Charge
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_RaynorBreachingCharge_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    text lv_unit_name_text_2;
+    string lv_unit_name_2;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_unit_name_2 = "";
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    lv_unit_name_text_2 = UnitGetName(EventUnitTargetUnit());
+    lv_unit_name_2 = TextToString(lv_unit_name_text_2);
+    if ((EventPlayer() == 1)) {
+        libEFA54406_gf_create_context("raynor_breach", ("Player commanded Raynor to plant a Breaching Charge on " + lv_unit_name_2), true);
+    }
+
+    Wait(3.0, c_timeReal);
+    TriggerEnable(TriggerGetCurrent(), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_RaynorBreachingCharge_Init () {
+    libEFA54406_gt_RaynorBreachingCharge = TriggerCreate("libEFA54406_gt_RaynorBreachingCharge_Func");
+    TriggerAddEventUnitAbility(libEFA54406_gt_RaynorBreachingCharge, null, AbilityCommand("RaynorC4", 0), c_unitAbilStageExecute, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Raynor Plasma Gun
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_RaynorPlasmaGun_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    text lv_unit_name_text_2;
+    string lv_unit_name_2;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_unit_name_2 = "";
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    lv_unit_name_text_2 = UnitGetName(EventUnitTargetUnit());
+    lv_unit_name_2 = TextToString(lv_unit_name_text_2);
+    if ((EventPlayer() == 1)) {
+        libEFA54406_gf_create_context("raynor_plasmagun", ("Player commanded Raynor to shoot at " + lv_unit_name_2 + " with the experimental Plasma Gun"), true);
+    }
+
+    Wait(3.0, c_timeReal);
+    TriggerEnable(TriggerGetCurrent(), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_RaynorPlasmaGun_Init () {
+    libEFA54406_gt_RaynorPlasmaGun = TriggerCreate("libEFA54406_gt_RaynorPlasmaGun_Func");
+    TriggerAddEventUnitAbility(libEFA54406_gt_RaynorPlasmaGun, null, AbilityCommand("ExperimentalPlasmaGun", 0), c_unitAbilStageExecute, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Raynor Grenade
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_RaynorGrenade_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    if ((EventPlayer() == 1)) {
+        libEFA54406_gf_create_context("raynor_grenade", ("Player commanded Raynor to throw a Grenade"), true);
+    }
+
+    Wait(3.0, c_timeReal);
+    TriggerEnable(TriggerGetCurrent(), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_RaynorGrenade_Init () {
+    libEFA54406_gt_RaynorGrenade = TriggerCreate("libEFA54406_gt_RaynorGrenade_Func");
+    TriggerAddEventUnitAbility(libEFA54406_gt_RaynorGrenade, null, AbilityCommand("TossGrenade", 0), c_unitAbilStageExecute, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Raynor Chrono Rift
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_RaynorChronoRift_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    if ((EventPlayer() == 1)) {
+        libEFA54406_gf_create_context("raynor_chronorift", ("Player commanded Raynor to deploy a Chrono Rift Device, slowing down time in an area"), true);
+    }
+
+    Wait(3.0, c_timeReal);
+    TriggerEnable(TriggerGetCurrent(), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_RaynorChronoRift_Init () {
+    libEFA54406_gt_RaynorChronoRift = TriggerCreate("libEFA54406_gt_RaynorChronoRift_Func");
+    TriggerAddEventUnitAbility(libEFA54406_gt_RaynorChronoRift, null, AbilityCommand("TheMorosDevice", 0), c_unitAbilStageExecute, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Raynor Penetrator
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_RaynorPenetrator_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    if ((EventPlayer() == 1)) {
+        libEFA54406_gf_create_context("raynor_penetrator", ("Player commanded Raynor to snipe with his Rail Gun"), true);
+    }
+
+    Wait(3.0, c_timeReal);
+    TriggerEnable(TriggerGetCurrent(), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_RaynorPenetrator_Init () {
+    libEFA54406_gt_RaynorPenetrator = TriggerCreate("libEFA54406_gt_RaynorPenetrator_Func");
+    TriggerAddEventUnitAbility(libEFA54406_gt_RaynorPenetrator, null, AbilityCommand("RaynorSnipe", 0), c_unitAbilStageExecute, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Tychus Grenade
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_TychusGrenade_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    if ((EventPlayer() == 1)) {
+        libEFA54406_gf_create_context("tychus_grenade", ("Player commanded Tychus to toss a Shredder Grenade"), true);
+    }
+
+    Wait(3.0, c_timeReal);
+    TriggerEnable(TriggerGetCurrent(), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_TychusGrenade_Init () {
+    libEFA54406_gt_TychusGrenade = TriggerCreate("libEFA54406_gt_TychusGrenade_Func");
+    TriggerAddEventUnitAbility(libEFA54406_gt_TychusGrenade, null, AbilityCommand("BonesTossGrenade", 0), c_unitAbilStageExecute, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Swann Flaming Betty
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_SwannFlamingBetty_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    if ((EventPlayer() == 1)) {
+        libEFA54406_gf_create_context("swann_betty", ("Player commanded Swann to deploy his Flaming Betty (Flamethrower turret)"), true);
+    }
+
+    Wait(3.0, c_timeReal);
+    TriggerEnable(TriggerGetCurrent(), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_SwannFlamingBetty_Init () {
+    libEFA54406_gt_SwannFlamingBetty = TriggerCreate("libEFA54406_gt_SwannFlamingBetty_Func");
+    TriggerAddEventUnitAbility(libEFA54406_gt_SwannFlamingBetty, null, AbilityCommand("DutchPlaceTurret", 0), c_unitAbilStageExecute, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Kerrigan Razor Swarm
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_KerriganRazorSwarm_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    libEFA54406_gf_create_context("kerrigan_razor_swarm", ("Kerrigan commands a Razor Swarm on you, dealing massive damage to all your units in an area"), true);
+    Wait(3.0, c_timeReal);
+    TriggerEnable(TriggerGetCurrent(), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_KerriganRazorSwarm_Init () {
+    libEFA54406_gt_KerriganRazorSwarm = TriggerCreate("libEFA54406_gt_KerriganRazorSwarm_Func");
+    TriggerAddEventUnitAbility(libEFA54406_gt_KerriganRazorSwarm, null, AbilityCommand("Tychus03OmegaStorm", 0), c_unitAbilStageExecute, false);
+    TriggerAddEventUnitAbility(libEFA54406_gt_KerriganRazorSwarm, null, AbilityCommand("OmegaStorm", 0), c_unitAbilStageExecute, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Kerrigan Implosion
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_KerriganImplosion_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    text lv_unit_name_text_2;
+    string lv_unit_name_2;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_unit_name_2 = "";
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    lv_unit_name_text_2 = UnitGetName(EventUnitTargetUnit());
+    lv_unit_name_2 = TextToString(lv_unit_name_text_2);
+    libEFA54406_gf_create_context("raynor_breach", ("Kerrigan implodes " + lv_unit_name_2 + ". Crushing it into something denser than a Tungsten Cube"), true);
+    Wait(3.0, c_timeReal);
+    TriggerEnable(TriggerGetCurrent(), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_KerriganImplosion_Init () {
+    libEFA54406_gt_KerriganImplosion = TriggerCreate("libEFA54406_gt_KerriganImplosion_Func");
+    TriggerAddEventUnitAbility(libEFA54406_gt_KerriganImplosion, null, AbilityCommand("Implosion", 0), c_unitAbilStageExecute, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: OC Scanner Sweep
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_OCScannerSweep_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    text lv_unit_name_text;
+    string lv_unit_name;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_unit_name = "";
+
+    // Conditions
+    if (testConds) {
+        if (!((EventPlayer() == 1))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    lv_unit_name_text = UnitGetName(EventUnit());
+    lv_unit_name = TextToString(lv_unit_name_text);
+    libEFA54406_gf_create_context("scanner_sweep", ("Player commanded a Command Center to scan an area for map vision and to reveal hidden enemies"), true);
+    Wait(15.0, c_timeReal);
+    TriggerEnable(TriggerGetCurrent(), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_OCScannerSweep_Init () {
+    libEFA54406_gt_OCScannerSweep = TriggerCreate("libEFA54406_gt_OCScannerSweep_Func");
+    TriggerAddEventUnitAbility(libEFA54406_gt_OCScannerSweep, null, AbilityCommand("ScannerSweep", 0), c_unitAbilStageExecute, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: OC Calldown MULE
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_OCCalldownMULE_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    text lv_unit_name_text;
+    string lv_unit_name;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_unit_name = "";
+
+    // Conditions
+    if (testConds) {
+        if (!((EventPlayer() == 1))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    lv_unit_name_text = UnitGetName(EventUnit());
+    lv_unit_name = TextToString(lv_unit_name_text);
+    libEFA54406_gf_create_context("call_mule", ("Player commanded a Command Center to calldown a MULE that mines Minerals for a short time"), true);
+    Wait(30.0, c_timeReal);
+    TriggerEnable(TriggerGetCurrent(), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_OCCalldownMULE_Init () {
+    libEFA54406_gt_OCCalldownMULE = TriggerCreate("libEFA54406_gt_OCCalldownMULE_Func");
+    TriggerAddEventUnitAbility(libEFA54406_gt_OCCalldownMULE, null, AbilityCommand("CalldownMULE", 0), c_unitAbilStageExecute, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Hive Mind Emulator Use
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_HiveMindEmulatorUse_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    text lv_unit_name_text;
+    string lv_unit_name;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_unit_name = "";
+
+    // Conditions
+    if (testConds) {
+        if (!((EventPlayer() == 1))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lv_unit_name_text = UnitGetName(EventUnitTargetUnit());
+    lv_unit_name = TextToString(lv_unit_name_text);
+    libEFA54406_gf_create_context("hivemind_emulator", ("Player commanded a Hive Mind Emulator to mind control a " + lv_unit_name + ". They will now fight on your side"), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_HiveMindEmulatorUse_Init () {
+    libEFA54406_gt_HiveMindEmulatorUse = TriggerCreate("libEFA54406_gt_HiveMindEmulatorUse_Func");
+    TriggerAddEventUnitAbility(libEFA54406_gt_HiveMindEmulatorUse, null, AbilityCommand("MindControl", 0), c_unitAbilStageExecute, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Player Produces Nuke
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_PlayerProducesNuke_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((EventPlayer() == 1))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    libEFA54406_gf_create_context("arm_silo", "Player started arming a silo with a tactical nuke", true);
+    Wait(10.0, c_timeReal);
+    TriggerEnable(TriggerGetCurrent(), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_PlayerProducesNuke_Init () {
+    libEFA54406_gt_PlayerProducesNuke = TriggerCreate("libEFA54406_gt_PlayerProducesNuke_Func");
+    TriggerAddEventUnitAbility(libEFA54406_gt_PlayerProducesNuke, null, AbilityCommand("ArmSiloWithNuke", 0), c_unitAbilStageExecute, false);
+    TriggerAddEventUnitAbility(libEFA54406_gt_PlayerProducesNuke, null, AbilityCommand("SpectreNukeSiloArmMagazine", 1), c_unitAbilStageExecute, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Nuke Is Produced
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_NukeIsProduced_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((UnitGetOwner(EventUnit()) == 1))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    if ((TechTreeAbilityIsAllowed(1, AbilityCommand("BarracksTrain", 2)) == true)) {
+        libEFA54406_gf_create_context("armed_silo", "A silo has been armed with a tactical nuke. (A Ghost has the ability to launch the nuke against the enemy)", true);
+    }
+    else {
+        libEFA54406_gf_create_context("armed_silo", "A silo has been armed with a tactical nuke. (A Spectre has the ability to launch the nuke against the enemy)", true);
+    }
+    Wait(10.0, c_timeReal);
+    TriggerEnable(TriggerGetCurrent(), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_NukeIsProduced_Init () {
+    libEFA54406_gt_NukeIsProduced = TriggerCreate("libEFA54406_gt_NukeIsProduced_Func");
+    TriggerAddEventUnitAbility(libEFA54406_gt_NukeIsProduced, null, AbilityCommand("ArmSiloWithNuke", 0), c_unitAbilStageComplete, false);
+    TriggerAddEventUnitAbility(libEFA54406_gt_NukeIsProduced, null, AbilityCommand("ArmSiloWithNuke", 1), c_unitAbilStageComplete, false);
+    TriggerAddEventUnitAbility(libEFA54406_gt_NukeIsProduced, null, AbilityCommand("SpectreNukeSiloArmMagazine", 1), c_unitAbilStageComplete, false);
+    TriggerAddEventUnitAbility(libEFA54406_gt_NukeIsProduced, null, AbilityCommand("SpectreNukeSiloArmMagazine", 2), c_unitAbilStageComplete, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Player Transforms CC to PF
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_PlayerTransformsCCtoPF_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((UnitGetOwner(EventUnit()) == 1))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    libEFA54406_gf_create_context("upgrade_cc", "Player started upgrading a Command Center to a Planetary Fortress", true);
+    Wait(10.0, c_timeReal);
+    TriggerEnable(TriggerGetCurrent(), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_PlayerTransformsCCtoPF_Init () {
+    libEFA54406_gt_PlayerTransformsCCtoPF = TriggerCreate("libEFA54406_gt_PlayerTransformsCCtoPF_Func");
+    TriggerAddEventUnitAbility(libEFA54406_gt_PlayerTransformsCCtoPF, null, AbilityCommand("UpgradeToPlanetaryFortress", 0), c_unitAbilStageExecute, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: CC Transformed to PF
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_CCTransformedtoPF_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((UnitGetOwner(EventUnit()) == 1))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerEnable(TriggerGetCurrent(), false);
+    libEFA54406_gf_create_context("upgraded_cc", "A Command Center has been upgraded to a Planetary Fortress", true);
+    Wait(10.0, c_timeReal);
+    TriggerEnable(TriggerGetCurrent(), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_CCTransformedtoPF_Init () {
+    libEFA54406_gt_CCTransformedtoPF = TriggerCreate("libEFA54406_gt_CCTransformedtoPF_Func");
+    TriggerAddEventUnitAbility(libEFA54406_gt_CCTransformedtoPF, null, AbilityCommand("UpgradeToPlanetaryFortress", 0), c_unitAbilStageComplete, false);
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: Victory Achieved
 //--------------------------------------------------------------------------------------------------
 bool libEFA54406_gt_VictoryAchieved_Func (bool testConds, bool runActions) {
@@ -12029,14 +13348,14 @@ bool libEFA54406_gt_NeuroCanProduceUnits_Func (bool testConds, bool runActions) 
             if (lv_unit == null) { break; }
             lv_academy_exists = true;
             if ((TechTreeAbilityIsAllowed(1, AbilityCommand("BarracksTrain", 2)) == true)) {
-                if ((UnitCheckAbilCmdState(lv_unit, AbilityCommand("ArmSiloWithNuke", 0), c_cmdStateExecuting | c_cmdStateDisabled) == true)) {
+                if ((UnitCheckAbilCmdState(lv_unit, AbilityCommand("ArmSiloWithNuke", 0), c_cmdStateDisabled) == true)) {
                 }
                 else {
                     lv_unarmed_academy_exists = true;
                 }
             }
             else {
-                if ((UnitCheckAbilCmdState(lv_unit, AbilityCommand("SpectreNukeSiloArmMagazine", 1), c_cmdStateExecuting | c_cmdStateDisabled) == true)) {
+                if ((UnitCheckAbilCmdState(lv_unit, AbilityCommand("SpectreNukeSiloArmMagazine", 1), c_cmdStateDisabled) == true)) {
                 }
                 else {
                     lv_unarmed_academy_exists = true;
@@ -14195,8 +15514,6 @@ void libEFA54406_InitTriggers () {
     libEFA54406_gt_StartupContextCooldown_Init();
     libEFA54406_gt_Playerchatmessage_Init();
     libEFA54406_gt_PlayerActivityContext_Init();
-    libEFA54406_gt_UnitAbility_Init();
-    libEFA54406_gt_UnitCommandContext_Init();
     libEFA54406_gt_UnitAttackedWeapon_Init();
     libEFA54406_gt_UnitAttackedAbility_Init();
     libEFA54406_gt_UnitAttackedContext_Init();
@@ -14216,6 +15533,47 @@ void libEFA54406_InitTriggers () {
     libEFA54406_gt_UpgradeResearched_Init();
     libEFA54406_gt_EconomyContext_Init();
     libEFA54406_gt_EconomyContextCooldown_Init();
+    libEFA54406_gt_PlayerAttacks_Init();
+    libEFA54406_gt_Cloak_Init();
+    libEFA54406_gt_GhostSnipe_Init();
+    libEFA54406_gt_SpectreStun_Init();
+    libEFA54406_gt_SpectrePsionicLash_Init();
+    libEFA54406_gt_Nukeislaunched_Init();
+    libEFA54406_gt_SpectreStun2_Init();
+    libEFA54406_gt_ThorBarrage_Init();
+    libEFA54406_gt_ThorImmortalityProtocol_Init();
+    libEFA54406_gt_RavenSeekerMissile_Init();
+    libEFA54406_gt_RavenTurret_Init();
+    libEFA54406_gt_RavenDefenseDrone_Init();
+    libEFA54406_gt_ScienceVesselIrradiate_Init();
+    libEFA54406_gt_BattlecruiserMissilePods_Init();
+    libEFA54406_gt_BattlecruiserMatrix_Init();
+    libEFA54406_gt_BattlecruiserYamatoCannon_Init();
+    libEFA54406_gt_PsiStorm_Init();
+    libEFA54406_gt_MothershipVortex_Init();
+    libEFA54406_gt_MothershipWormholeTransit_Init();
+    libEFA54406_gt_MothershipMassRecall_Init();
+    libEFA54406_gt_PurifierPlanetCracker_Init();
+    libEFA54406_gt_ZeratulVoidPrison_Init();
+    libEFA54406_gt_ToshShield_Init();
+    libEFA54406_gt_ToshConsumption_Init();
+    libEFA54406_gt_NovaDominate_Init();
+    libEFA54406_gt_RaynorBreachingCharge_Init();
+    libEFA54406_gt_RaynorPlasmaGun_Init();
+    libEFA54406_gt_RaynorGrenade_Init();
+    libEFA54406_gt_RaynorChronoRift_Init();
+    libEFA54406_gt_RaynorPenetrator_Init();
+    libEFA54406_gt_TychusGrenade_Init();
+    libEFA54406_gt_SwannFlamingBetty_Init();
+    libEFA54406_gt_KerriganRazorSwarm_Init();
+    libEFA54406_gt_KerriganImplosion_Init();
+    libEFA54406_gt_OCScannerSweep_Init();
+    libEFA54406_gt_OCCalldownMULE_Init();
+    libEFA54406_gt_HiveMindEmulatorUse_Init();
+    libEFA54406_gt_PlayerProducesNuke_Init();
+    libEFA54406_gt_NukeIsProduced_Init();
+    libEFA54406_gt_PlayerTransformsCCtoPF_Init();
+    libEFA54406_gt_CCTransformedtoPF_Init();
     libEFA54406_gt_VictoryAchieved_Init();
     libEFA54406_gt_PlayerVictoryPlayAgain_Init();
     libEFA54406_gt_PlayerVictoryContinue_Init();
