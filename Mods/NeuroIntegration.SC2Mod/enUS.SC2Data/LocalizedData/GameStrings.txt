@@ -215,14 +215,12 @@ Param/Value/lib_EFA54406_2DBA9E31=<c val="FFFF00">???</c> - Not yet available
 Param/Value/lib_EFA54406_2EC3277C=<c val="FFFF00">???</c> - Not yet available
 Param/Value/lib_EFA54406_2FDA0621= used the <c val="FFFF00">Heal Ability (Medium Heal)</c>. All units <c val="00FF00">healed</c> by <c val="00FF00">50%</c>
 Param/Value/lib_EFA54406_302217DB=→ <c val="FFFF00">Nuke Level 1</c> - Small Nuke: Call down a tactical Nuke (<c val="0080FF">75</c>)
-Param/Value/lib_EFA54406_30D0A3C5=There is no killing unit
 Param/Value/lib_EFA54406_30D2824A=<s val="BattlenetSmallButton">LVL 4</s>
 Param/Value/lib_EFA54406_30E427C9=→ <c val="FFFF00">Heal Level 4</c> - Increase Values: Small Heal: 25%→<c val="00FF00">33%</c>, Medium Heal: 50%→<c val="00FF00">67%</c>, Large Heal: 75%→<c val="00FF00">100%</c>
 Param/Value/lib_EFA54406_3129835D=→ <c val="FFFF00">Max Level</c> reached
 Param/Value/lib_EFA54406_312BF7F5=<c val="FFFF00">Building Speed Level 2</c> - Increases Const., Prod. & Research speed. Small: +75% (<c val="0080FF">75</c>), Large: +150% (<c val="0080FF">125</c>). Lasts 25s
 Param/Value/lib_EFA54406_3134D4DA=does not Have planetary fortress
 Param/Value/lib_EFA54406_31606535=
-Param/Value/lib_EFA54406_32C5EC07=Someone is killing
 Param/Value/lib_EFA54406_341AF50D=<c val="00FF00">NEW</c> - <c val="FFFF00">Shields Level 0</c>
 Param/Value/lib_EFA54406_34485C7E=<c val="FFFF00">???</c> - Not yet available
 Param/Value/lib_EFA54406_349A75E3=Shields
@@ -496,7 +494,6 @@ Param/Value/lib_EFA54406_EDFA4F13= used the <c val="FFFF00">Slowdown Ability</c>
 Param/Value/lib_EFA54406_EE3C6734= used the <c val="FFFF00">Heal Ability (Great Heal)</c>. All units <c val="00FF00">healed</c> by <c val="00FF00">75%</c>
 Param/Value/lib_EFA54406_EEC1EA70=→ <c val="FFFF00">Building Speed Level 1</c> - Small Buff: Increase Construction, Production & Research Speed by 75% for 25s (<c val="0080FF">75</c>)
 Param/Value/lib_EFA54406_EECCADDF=→ <c val="FFFF00">Restore Energy Level 1</c> - Small Restore: Restores 33% Energy for all units (<c val="0080FF">75</c>)
-Param/Value/lib_EFA54406_EEFEBD42=Own Unit killed by Fire Wall
 Param/Value/lib_EFA54406_EF17038F=→ <c val="FFFF00">Purifier Beam Level 3</c> - Large beam: Call down a large Purifier Beam that does area damage for 15s. (<c val="0080FF">125</c>)
 Param/Value/lib_EFA54406_F1884B6D=<s val="BattlenetSmallButton">LVL 4</s>
 Param/Value/lib_EFA54406_F247EE10=selected something
@@ -507,7 +504,6 @@ Param/Value/lib_EFA54406_FA364084=→ <c val="FFFF00">Call Backup Level 2</c> - 
 Param/Value/lib_EFA54406_FB51E2CF=Cheat not available in intermission
 Param/Value/lib_EFA54406_FBA60E79=→ <c val="FFFF00">Heal Level 3</c> - Large Heal: Heals all units by 75% (<c val="0080FF">100</c>)
 Param/Value/lib_EFA54406_FD5C3B9E=<s val="BoardTitle"><c val="FFFF00">Ability Upgrade</c></s><n/>
-Param/Value/lib_EFA54406_FDB6AD5D=Killer is invisible
 SimpleDisplay/Attack2=<s val="@@@SimpleCommandRow">%hotkey</c> then</s> <IMG path="Assets\Textures\tutorialmouseleftbuttondown.dds" alignment="absolutemiddle"/> <s val="@@@SimpleCommandRow">ground to Auto-attack</s>
 SimpleDisplay/Attack22=<s val="@@@SimpleCommandRow">%hotkey</c> then</s> <IMG path="Assets\Textures\tutorialmouseleftbuttondown.dds" alignment="absolutemiddle"/> <s val="@@@SimpleCommandRow">ground to Auto-attack</s>
 SimpleDisplay/Attack222=<s val="@@@SimpleCommandRow">%hotkey</c> then</s> <IMG path="Assets\Textures\tutorialmouseleftbuttondown.dds" alignment="absolutemiddle"/> <s val="@@@SimpleCommandRow">ground to Auto-attack</s>
