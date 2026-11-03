@@ -224,6 +224,7 @@ trigger libEFA54406_gt_NoCooldowns;
 trigger libEFA54406_gt_StartupContext;
 trigger libEFA54406_gt_StartupContextCooldown;
 trigger libEFA54406_gt_Playerchatmessage;
+trigger libEFA54406_gt_NydusWormSpawnsCloseBy;
 trigger libEFA54406_gt_PlayerActivityContext;
 trigger libEFA54406_gt_UnitAttackedWeapon;
 trigger libEFA54406_gt_UnitAttackedAbility;

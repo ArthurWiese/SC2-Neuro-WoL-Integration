@@ -2627,10 +2627,6 @@ bool auto_libEFA54406_gf_ShowAbilities_TriggerFunc (bool testConds, bool runActi
                 libEFA54406_gv_current_energy = (libEFA54406_gv_current_energy + 225.0);
             }
             else {
-                if ((libEFA54406_gv_previous_choice_on_map == "Initial Energy")) {
-                    libEFA54406_gv_current_energy = MaxF((libEFA54406_gv_current_energy - 50.0), 0.0);
-                }
-
             }
             auto261047EE_val = libEFA54406_gv_level_energy_regeneration;
             if (auto261047EE_val == 1) {
@@ -2646,11 +2642,15 @@ bool auto_libEFA54406_gf_ShowAbilities_TriggerFunc (bool testConds, bool runActi
                 libEFA54406_gv_energy_regen_rate = 1.5;
             }
             else {
-                if ((libEFA54406_gv_previous_choice_on_map == "Energy Regeneration")) {
-                    libEFA54406_gv_energy_regen_rate = (libEFA54406_gv_energy_regen_rate - 0.125);
-                }
-
             }
+        }
+
+        if ((libEFA54406_gv_previous_choice_on_map == "Initial Energy")) {
+            libEFA54406_gv_current_energy = MaxF((libEFA54406_gv_current_energy - 75.0), 0.0);
+        }
+
+        if ((libEFA54406_gv_previous_choice_on_map == "Energy Regeneration")) {
+            libEFA54406_gv_energy_regen_rate = (libEFA54406_gv_energy_regen_rate - 0.125);
         }
 
         if ((libEFA54406_gv_is_nobuild == false)) {
@@ -9257,6 +9257,61 @@ void libEFA54406_gt_Playerchatmessage_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: Nydus Worm Spawns Close By
+//--------------------------------------------------------------------------------------------------
+bool libEFA54406_gt_NydusWormSpawnsCloseBy_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unitgroup lv_player_units;
+
+    // Automatic Variable Declarations
+    unitgroup auto26D50D7F_g;
+    int auto26D50D7F_u;
+    unit auto26D50D7F_var;
+
+    // Variable Initialization
+    lv_player_units = UnitGroupEmpty();
+
+    // Conditions
+    if (testConds) {
+        if (!((UnitGetType(EventUnit()) == "NydusCanal"))) {
+            return false;
+        }
+
+        if (!((libNtve_gf_PlayerIsEnemy(1, UnitGetOwner(EventUnit()), libNtve_ge_PlayerRelation_Enemy) == true))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lv_player_units = UnitGroup(null, 1, RegionPlayableMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    auto26D50D7F_g = lv_player_units;
+    auto26D50D7F_u = UnitGroupCount(auto26D50D7F_g, c_unitCountAll);
+    for (;; auto26D50D7F_u -= 1) {
+        auto26D50D7F_var = UnitGroupUnitFromEnd(auto26D50D7F_g, auto26D50D7F_u);
+        if (auto26D50D7F_var == null) { break; }
+        if ((DistanceBetweenPoints(UnitGetPosition(EventUnit()), UnitGetPosition(auto26D50D7F_var)) <= 16.0)) {
+            TriggerEnable(TriggerGetCurrent(), false);
+            libEFA54406_gf_create_context("nydus_spawn", "A Nydus Worm has broken through the ground and started spewing out vile Zerg. It needs to be killed quickly or it will never stop!", true);
+            Wait(6.0, c_timeReal);
+            TriggerEnable(TriggerGetCurrent(), true);
+            return true;
+        }
+
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEFA54406_gt_NydusWormSpawnsCloseBy_Init () {
+    libEFA54406_gt_NydusWormSpawnsCloseBy = TriggerCreate("libEFA54406_gt_NydusWormSpawnsCloseBy_Func");
+    TriggerAddEventUnitRegion(libEFA54406_gt_NydusWormSpawnsCloseBy, null, RegionPlayableMap(), true);
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: Player Activity Context
 //--------------------------------------------------------------------------------------------------
 bool libEFA54406_gt_PlayerActivityContext_Func (bool testConds, bool runActions) {
@@ -15569,6 +15624,7 @@ void libEFA54406_InitTriggers () {
     libEFA54406_gt_StartupContext_Init();
     libEFA54406_gt_StartupContextCooldown_Init();
     libEFA54406_gt_Playerchatmessage_Init();
+    libEFA54406_gt_NydusWormSpawnsCloseBy_Init();
     libEFA54406_gt_PlayerActivityContext_Init();
     libEFA54406_gt_UnitAttackedWeapon_Init();
     libEFA54406_gt_UnitAttackedAbility_Init();
