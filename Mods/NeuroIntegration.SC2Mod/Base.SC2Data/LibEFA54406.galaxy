@@ -9605,6 +9605,10 @@ bool libEFA54406_gt_UnitDies_Func (bool testConds, bool runActions) {
     lv_name_of_unit_string = TextToString(lv_name_of_unit);
     if ((EventPlayer() == 1)) {
         if ((libNtve_gf_KillingPlayer() == 1)) {
+            if ((EventUnitDamageDeathCheck(c_deathTypeTimeout) == true)) {
+                return true;
+            }
+
             lv_name_of_unit_string_player_player = (lv_name_of_unit_string + "_player_player");
             if ((DataTableValueExists(true, lv_name_of_unit_string_player_player) == true)) {
                 DataTableSetInt(true, lv_name_of_unit_string_player_player, (DataTableGetInt(true, lv_name_of_unit_string_player_player) + 1));
