@@ -7801,6 +7801,7 @@ bool auto_libEFA54406_gf_BlockContext_TriggerFunc (bool testConds, bool runActio
     if ((lp_block == true)) {
         libEFA54406_gv_is_blocking = true;
         TriggerStop(libEFA54406_gt_PlayerActivityContext);
+        TriggerEnable(libEFA54406_gt_NydusWormSpawnsCloseBy, false);
         TriggerExecute(libEFA54406_gt_ClearQueue, true, false);
         libEFA54406_gf_ShowAbilities(false);
         libEFA54406_gf_create_action_0_arg("current_energy", false, "Get your currently available Energy for Abilities", -1);
@@ -7820,6 +7821,7 @@ bool auto_libEFA54406_gf_BlockContext_TriggerFunc (bool testConds, bool runActio
     }
     else {
         libEFA54406_gv_is_blocking = false;
+        TriggerEnable(libEFA54406_gt_NydusWormSpawnsCloseBy, true);
         libEFA54406_gf_ShowAbilities(true);
         libEFA54406_gf_create_action_0_arg("current_energy", true, "Get your currently available Energy for Abilities", -1);
         libEFA54406_gf_create_action_0_arg("get_objectives", true, "Get the current mission objectives", -1);
@@ -9301,7 +9303,7 @@ bool libEFA54406_gt_NydusWormSpawnsCloseBy_Func (bool testConds, bool runActions
     for (;; auto26D50D7F_u -= 1) {
         auto26D50D7F_var = UnitGroupUnitFromEnd(auto26D50D7F_g, auto26D50D7F_u);
         if (auto26D50D7F_var == null) { break; }
-        if ((DistanceBetweenPoints(UnitGetPosition(EventUnit()), UnitGetPosition(auto26D50D7F_var)) <= 16.0)) {
+        if ((DistanceBetweenPoints(UnitGetPosition(EventUnit()), UnitGetPosition(auto26D50D7F_var)) <= 20.0)) {
             TriggerEnable(TriggerGetCurrent(), false);
             libEFA54406_gf_create_context("nydus_spawn", "A Nydus Worm has broken through the ground and started spewing out vile Zerg. It needs to be killed quickly or it will never stop!", true);
             Wait(6.0, c_timeReal);
