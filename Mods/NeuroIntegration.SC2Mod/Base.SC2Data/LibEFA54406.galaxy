@@ -9373,7 +9373,7 @@ bool libEFA54406_gt_UnitAttackedWeapon_Func (bool testConds, bool runActions) {
 
     // Conditions
     if (testConds) {
-        if (!((((EventPlayer() == 1) && (UnitGetOwner(EventUnitTarget()) != 1)) || ((UnitGetOwner(EventUnitTarget()) == 1) && (libNtve_gf_PlayerIsEnemy(1, EventPlayer(), libNtve_ge_PlayerRelation_Enemy) == true))))) {
+        if (!(((((EventPlayer() == 1) || (UnitGetType(EventUnit()) == "Odin") || (UnitGetType(libNtve_gf_KillingUnit()) == "TychusChaingun")) && (UnitGetOwner(EventUnitTarget()) != 1)) || (((UnitGetOwner(EventUnitTarget()) == 1) || (UnitGetType(EventUnitTarget()) == "Odin")) && (libNtve_gf_PlayerIsEnemy(1, EventPlayer(), libNtve_ge_PlayerRelation_Enemy) == true))))) {
             return false;
         }
     }
@@ -9596,6 +9596,10 @@ bool libEFA54406_gt_UnitDies_Func (bool testConds, bool runActions) {
         if (!((UnitGetType(EventUnit()) != "BEAMUnit"))) {
             return false;
         }
+
+        if (!((UnitGetType(EventUnit()) != "MULE"))) {
+            return false;
+        }
     }
 
     // Actions
@@ -9646,7 +9650,7 @@ bool libEFA54406_gt_UnitDies_Func (bool testConds, bool runActions) {
         }
     }
     else {
-        if ((libNtve_gf_KillingPlayer() == 1)) {
+        if (((libNtve_gf_KillingPlayer() == 1) || (UnitGetType(libNtve_gf_KillingUnit()) == "Odin") || (UnitGetType(libNtve_gf_KillingUnit()) == "TychusChaingun"))) {
             if ((libNtve_gf_PlayerIsEnemy(1, EventPlayer(), libNtve_ge_PlayerRelation_Enemy) == true)) {
                 lv_name_of_unit_string_enemy_player = (lv_name_of_unit_string + "_enemy_player");
                 if ((DataTableValueExists(true, lv_name_of_unit_string_enemy_player) == true)) {
@@ -9812,7 +9816,7 @@ bool libEFA54406_gt_EnvironmentalEffectPlayerNeuroKilledOwnUnit_Func (bool testC
 
     // Conditions
     if (testConds) {
-        if (!((EventPlayer() == 1))) {
+        if (!(((EventPlayer() == 1) || (UnitGetType(EventUnit()) == "Odin")))) {
             return false;
         }
 
