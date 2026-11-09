@@ -12498,6 +12498,7 @@ void libEFA54406_gt_MothershipVortex_Init () {
     libEFA54406_gt_MothershipVortex = TriggerCreate("libEFA54406_gt_MothershipVortex_Func");
     TriggerAddEventUnitAbility(libEFA54406_gt_MothershipVortex, null, AbilityCommand("ArtanisVortex", 0), c_unitAbilStageExecute, false);
     TriggerAddEventUnitAbility(libEFA54406_gt_MothershipVortex, null, AbilityCommand("Vortex", 0), c_unitAbilStageExecute, false);
+    TriggerAddEventUnitAbility(libEFA54406_gt_MothershipVortex, null, AbilityCommand("TalDarimVortex", 0), c_unitAbilStageExecute, false);
     TriggerAddEventUnitAbility(libEFA54406_gt_MothershipVortex, null, AbilityCommand("VortexPurifier", 0), c_unitAbilStageExecute, false);
 }
 
@@ -12525,7 +12526,7 @@ bool libEFA54406_gt_MothershipWormholeTransit_Func (bool testConds, bool runActi
         libEFA54406_gf_create_context("mothership_wormhole", ("Player commanded " + lv_unit_name + " to travel through a Wormhole to a different location"), true);
     }
     else {
-        libEFA54406_gf_create_context("mothership_wormhole", (lv_unit_name + "  flees through a Wormhole and returns to its base"), true);
+        libEFA54406_gf_create_context("mothership_wormhole", (lv_unit_name + " flees through a Wormhole and returns to its base"), true);
     }
     Wait(3.0, c_timeReal);
     TriggerEnable(TriggerGetCurrent(), true);

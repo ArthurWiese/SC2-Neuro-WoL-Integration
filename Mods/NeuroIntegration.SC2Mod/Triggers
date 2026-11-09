@@ -112767,6 +112767,7 @@
             <Variable Type="Variable" Library="EFA54406" Id="9CBBCFC8"/>
             <Event Type="FunctionCall" Library="EFA54406" Id="683C9FC0"/>
             <Event Type="FunctionCall" Library="EFA54406" Id="9B904D43"/>
+            <Event Type="FunctionCall" Library="EFA54406" Id="391267B3"/>
             <Event Type="FunctionCall" Library="EFA54406" Id="410309B7"/>
             <Action Type="FunctionCall" Library="EFA54406" Id="AF670A2E"/>
             <Action Type="FunctionCall" Library="EFA54406" Id="5E236373"/>
@@ -112839,6 +112840,30 @@
         <Element Type="Param" Id="EE80A7FE">
             <ParameterDef Type="ParamDef" Library="Ntve" Id="3F2584C8"/>
             <Value>Vortex</Value>
+            <ValueType Type="abilcmd"/>
+        </Element>
+        <Element Type="FunctionCall" Id="391267B3">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="D00F9D6F"/>
+            <Parameter Type="Param" Library="EFA54406" Id="600B0642"/>
+            <Parameter Type="Param" Library="EFA54406" Id="0C9B3F8A"/>
+            <Parameter Type="Param" Library="EFA54406" Id="E1941C5A"/>
+            <Parameter Type="Param" Library="EFA54406" Id="7AAB27B4"/>
+        </Element>
+        <Element Type="Param" Id="600B0642">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="EE631277"/>
+            <Preset Type="PresetValue" Library="Ntve" Id="C84C7A78"/>
+        </Element>
+        <Element Type="Param" Id="0C9B3F8A">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="BB4C37B6"/>
+            <Preset Type="PresetValue" Library="Ntve" Id="00000259"/>
+        </Element>
+        <Element Type="Param" Id="E1941C5A">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="ACC52290"/>
+            <Preset Type="PresetValue" Library="Ntve" Id="03977D39"/>
+        </Element>
+        <Element Type="Param" Id="7AAB27B4">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="3F2584C8"/>
+            <Value>TalDarimVortex</Value>
             <ValueType Type="abilcmd"/>
         </Element>
         <Element Type="FunctionCall" Id="410309B7">
@@ -113203,7 +113228,7 @@
         </Element>
         <Element Type="Param" Id="26FD602D">
             <ParameterDef Type="ParamDef" Library="Ntve" Id="00000211"/>
-            <Value>  flees through a Wormhole and returns to its base</Value>
+            <Value> flees through a Wormhole and returns to its base</Value>
             <ValueType Type="string"/>
         </Element>
         <Element Type="FunctionCall" Id="3B3D16C1">
