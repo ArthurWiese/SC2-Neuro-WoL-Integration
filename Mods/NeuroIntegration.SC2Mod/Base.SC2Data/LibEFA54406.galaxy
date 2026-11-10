@@ -9573,6 +9573,10 @@ bool libEFA54406_gt_UnitDies_Func (bool testConds, bool runActions) {
 
     // Conditions
     if (testConds) {
+        if (!((libEFA54406_gv_is_blocking == false))) {
+            return false;
+        }
+
         if (!((UnitGetType(EventUnit()) != "HeroNuke"))) {
             return false;
         }

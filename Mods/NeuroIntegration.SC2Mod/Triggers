@@ -82472,6 +82472,7 @@
             <Variable Type="Variable" Library="EFA54406" Id="85F48790"/>
             <Variable Type="Variable" Library="EFA54406" Id="8FD8901E"/>
             <Event Type="FunctionCall" Library="EFA54406" Id="8B5F43DC"/>
+            <Condition Type="FunctionCall" Library="EFA54406" Id="6709BEA8"/>
             <Condition Type="FunctionCall" Library="EFA54406" Id="D9E07B2D"/>
             <Condition Type="FunctionCall" Library="EFA54406" Id="27F61D85"/>
             <Condition Type="FunctionCall" Library="EFA54406" Id="25E80CA8"/>
@@ -82563,6 +82564,25 @@
         <Element Type="Param" Id="34F1AC49">
             <ParameterDef Type="ParamDef" Library="Ntve" Id="00000159"/>
             <Preset Type="PresetValue" Library="Ntve" Id="C84C7A78"/>
+        </Element>
+        <Element Type="FunctionCall" Id="6709BEA8">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="C439C375"/>
+            <Parameter Type="Param" Library="EFA54406" Id="AEE7639C"/>
+            <Parameter Type="Param" Library="EFA54406" Id="A60BEA05"/>
+            <Parameter Type="Param" Library="EFA54406" Id="2E238A75"/>
+        </Element>
+        <Element Type="Param" Id="AEE7639C">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="ABB380C4"/>
+            <Variable Type="Variable" Library="EFA54406" Id="65F10D42"/>
+        </Element>
+        <Element Type="Param" Id="A60BEA05">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="51567265"/>
+            <Preset Type="PresetValue" Library="Ntve" Id="1E7A4625"/>
+        </Element>
+        <Element Type="Param" Id="2E238A75">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="4A15EC5F"/>
+            <Value>false</Value>
+            <ValueType Type="bool"/>
         </Element>
         <Element Type="FunctionCall" Id="D9E07B2D">
             <FunctionDef Type="FunctionDef" Library="Ntve" Id="C439C375"/>
