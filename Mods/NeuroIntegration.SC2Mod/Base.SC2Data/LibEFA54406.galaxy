@@ -10122,7 +10122,10 @@ bool libEFA54406_gt_CombatContext_Func (bool testConds, bool runActions) {
             lv_death_reason = "Units that were shredded to pieces by the Razor Swarm: ";
         }
         else if (auto4D5B8245_val == "Disintegration") {
-            lv_death_reason = "Units that remained too long in a Disintegration Field and were atomised: ";
+            lv_death_reason = "Units that remained too long in a Rip-Field and were atomised: ";
+        }
+        else if (auto4D5B8245_val == "PlatformExplosion") {
+            lv_death_reason = "Units that stood on the exploding platform and died: ";
         }
         else {
         }
@@ -12920,7 +12923,12 @@ bool libEFA54406_gt_SwannFlamingBetty_Func (bool testConds, bool runActions) {
 
     TriggerEnable(TriggerGetCurrent(), false);
     if ((EventPlayer() == 1)) {
-        libEFA54406_gf_create_context("swann_betty", ("Player commanded Swann to deploy his Flaming Betty (Flamethrower turret)"), true);
+        if ((libEFA54406_gv_is_blocking == true)) {
+            libEFA54406_gf_create_context("swann_betty", ("Swann deployed his Flaming Betty (Flamethrower turret)"), true);
+        }
+        else {
+            libEFA54406_gf_create_context("swann_betty", ("Player commanded Swann to deploy his Flaming Betty (Flamethrower turret)"), true);
+        }
     }
 
     Wait(3.0, c_timeReal);

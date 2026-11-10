@@ -88976,6 +88976,7 @@
             <FunctionCall Type="FunctionCall" Library="EFA54406" Id="1C036CDE"/>
             <FunctionCall Type="FunctionCall" Library="EFA54406" Id="E5DB8814"/>
             <FunctionCall Type="FunctionCall" Library="EFA54406" Id="D3B97292"/>
+            <FunctionCall Type="FunctionCall" Library="EFA54406" Id="8E50E7F4"/>
         </Element>
         <Element Type="Param" Id="D25890DA">
             <ParameterDef Type="ParamDef" Library="Ntve" Id="B4ACF12A"/>
@@ -89160,7 +89161,33 @@
         </Element>
         <Element Type="Param" Id="370DFB3F">
             <ParameterDef Type="ParamDef" Library="Ntve" Id="00000220"/>
-            <Value>Units that remained too long in a Disintegration Field and were atomised: </Value>
+            <Value>Units that remained too long in a Rip-Field and were atomised: </Value>
+            <ValueType Type="string"/>
+        </Element>
+        <Element Type="FunctionCall" Id="8E50E7F4">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="3A1227AB"/>
+            <SubFunctionType Type="SubFuncType" Library="Ntve" Id="AD43BC93"/>
+            <Parameter Type="Param" Library="EFA54406" Id="8AD27851"/>
+            <FunctionCall Type="FunctionCall" Library="EFA54406" Id="3D270C19"/>
+        </Element>
+        <Element Type="Param" Id="8AD27851">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="9A8F1093"/>
+            <Value>PlatformExplosion</Value>
+            <ValueType Type="string"/>
+        </Element>
+        <Element Type="FunctionCall" Id="3D270C19">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000136"/>
+            <SubFunctionType Type="SubFuncType" Library="Ntve" Id="363CE97C"/>
+            <Parameter Type="Param" Library="EFA54406" Id="655838B4"/>
+            <Parameter Type="Param" Library="EFA54406" Id="3ABF05C3"/>
+        </Element>
+        <Element Type="Param" Id="655838B4">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="00000219"/>
+            <Variable Type="Variable" Library="EFA54406" Id="921D932C"/>
+        </Element>
+        <Element Type="Param" Id="3ABF05C3">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="00000220"/>
+            <Value>Units that stood on the exploding platform and died: </Value>
             <ValueType Type="string"/>
         </Element>
         <Element Type="FunctionCall" Id="7DF56FEA">
@@ -115416,12 +115443,50 @@
         </Element>
         <Element Type="FunctionCall" Id="2FF883B2">
             <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000137"/>
-            <FunctionCall Type="FunctionCall" Library="EFA54406" Id="EA7777A2"/>
+            <FunctionCall Type="FunctionCall" Library="EFA54406" Id="37D1B644"/>
             <FunctionCall Type="FunctionCall" Library="EFA54406" Id="2E958A2E"/>
+        </Element>
+        <Element Type="FunctionCall" Id="37D1B644">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000137"/>
+            <SubFunctionType Type="SubFuncType" Library="Ntve" Id="00000004"/>
+            <FunctionCall Type="FunctionCall" Library="EFA54406" Id="8404DBED"/>
+            <FunctionCall Type="FunctionCall" Library="EFA54406" Id="EA7777A2"/>
+            <FunctionCall Type="Comment" Library="EFA54406" Id="7EFAB1B1"/>
+            <FunctionCall Type="FunctionCall" Library="EFA54406" Id="9B3FACA7"/>
+        </Element>
+        <Element Type="FunctionCall" Id="8404DBED">
+            <FunctionDef Type="FunctionDef" Library="EFA54406" Id="36F6B028"/>
+            <SubFunctionType Type="SubFuncType" Library="Ntve" Id="00000004"/>
+            <Parameter Type="Param" Library="EFA54406" Id="8F36E5D9"/>
+            <Parameter Type="Param" Library="EFA54406" Id="FAE50208"/>
+            <Parameter Type="Param" Library="EFA54406" Id="A5BB5035"/>
+        </Element>
+        <Element Type="Param" Id="8F36E5D9">
+            <ParameterDef Type="ParamDef" Library="EFA54406" Id="167A7B5F"/>
+            <Value>true</Value>
+            <ValueType Type="bool"/>
+        </Element>
+        <Element Type="Param" Id="FAE50208">
+            <ParameterDef Type="ParamDef" Library="EFA54406" Id="B5856478"/>
+            <Value>swann_betty</Value>
+            <ValueType Type="string"/>
+        </Element>
+        <Element Type="Param" Id="A5BB5035">
+            <ParameterDef Type="ParamDef" Library="EFA54406" Id="9A1BE2F9"/>
+            <FunctionCall Type="FunctionCall" Library="EFA54406" Id="49B3BCAD"/>
+        </Element>
+        <Element Type="FunctionCall" Id="49B3BCAD">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000130"/>
+            <Parameter Type="Param" Library="EFA54406" Id="7AD5AFB8"/>
+        </Element>
+        <Element Type="Param" Id="7AD5AFB8">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="00000211"/>
+            <Value>Swann deployed his Flaming Betty (Flamethrower turret)</Value>
+            <ValueType Type="string"/>
         </Element>
         <Element Type="FunctionCall" Id="EA7777A2">
             <FunctionDef Type="FunctionDef" Library="EFA54406" Id="36F6B028"/>
-            <SubFunctionType Type="SubFuncType" Library="Ntve" Id="00000004"/>
+            <SubFunctionType Type="SubFuncType" Library="Ntve" Id="00000005"/>
             <Parameter Type="Param" Library="EFA54406" Id="91F00C05"/>
             <Parameter Type="Param" Library="EFA54406" Id="94EAAFD6"/>
             <Parameter Type="Param" Library="EFA54406" Id="8AC62DF4"/>
@@ -115448,6 +115513,32 @@
             <ParameterDef Type="ParamDef" Library="Ntve" Id="00000211"/>
             <Value>Player commanded Swann to deploy his Flaming Betty (Flamethrower turret)</Value>
             <ValueType Type="string"/>
+        </Element>
+        <Element Type="Comment" Id="7EFAB1B1">
+            <Comment>
+                This also gets triggered in a cutscene in Belly of the Beast
+            </Comment>
+            <SubFunctionType Type="SubFuncType" Library="Ntve" Id="00000003"/>
+        </Element>
+        <Element Type="FunctionCall" Id="9B3FACA7">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="C439C375"/>
+            <SubFunctionType Type="SubFuncType" Library="Ntve" Id="00000003"/>
+            <Parameter Type="Param" Library="EFA54406" Id="69A04E2B"/>
+            <Parameter Type="Param" Library="EFA54406" Id="7543143C"/>
+            <Parameter Type="Param" Library="EFA54406" Id="D3ACEB23"/>
+        </Element>
+        <Element Type="Param" Id="69A04E2B">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="ABB380C4"/>
+            <Variable Type="Variable" Library="EFA54406" Id="65F10D42"/>
+        </Element>
+        <Element Type="Param" Id="7543143C">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="51567265"/>
+            <Preset Type="PresetValue" Library="Ntve" Id="1E7A4625"/>
+        </Element>
+        <Element Type="Param" Id="D3ACEB23">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="4A15EC5F"/>
+            <Value>true</Value>
+            <ValueType Type="bool"/>
         </Element>
         <Element Type="FunctionCall" Id="2E958A2E">
             <FunctionDef Type="FunctionDef" Library="Ntve" Id="C439C375"/>
