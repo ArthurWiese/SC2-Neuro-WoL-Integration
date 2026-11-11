@@ -6028,6 +6028,363 @@ bool auto_libEFA54406_gf_VictoryScreenContext_TriggerFunc (bool testConds, bool 
     return true;
 }
 
+trigger auto_libEFA54406_gf_TransmissionContextSoundlink_Trigger = null;
+soundlink auto_libEFA54406_gf_TransmissionContextSoundlink_lp_transmission;
+
+void libEFA54406_gf_TransmissionContextSoundlink (soundlink lp_transmission) {
+    auto_libEFA54406_gf_TransmissionContextSoundlink_lp_transmission = lp_transmission;
+
+    if (auto_libEFA54406_gf_TransmissionContextSoundlink_Trigger == null) {
+        auto_libEFA54406_gf_TransmissionContextSoundlink_Trigger = TriggerCreate("auto_libEFA54406_gf_TransmissionContextSoundlink_TriggerFunc");
+    }
+
+    TriggerExecute(auto_libEFA54406_gf_TransmissionContextSoundlink_Trigger, false, false);
+}
+
+bool auto_libEFA54406_gf_TransmissionContextSoundlink_TriggerFunc (bool testConds, bool runActions) {
+    soundlink lp_transmission = auto_libEFA54406_gf_TransmissionContextSoundlink_lp_transmission;
+
+    // Variable Declarations
+    text lv_transmission_text;
+    string lv_transmission_string;
+    string lv_transmission_portrait;
+    string lv_transmission_name;
+
+    // Automatic Variable Declarations
+    string autoC70C99BC_val;
+    string auto84D04AD9_val;
+    string autoA2D830B5_val;
+    soundlink autoD79EC314_val;
+
+    // Variable Initialization
+    lv_transmission_string = "";
+    lv_transmission_name = "";
+
+    // Implementation
+    lv_transmission_text = SoundSubtitleText(lp_transmission);
+    lv_transmission_string = TextToString(lv_transmission_text);
+    lv_transmission_portrait = SoundPortraitModel(lp_transmission);
+    autoC70C99BC_val = lv_transmission_portrait;
+    if (autoC70C99BC_val == "AdjutantPortrait_L") {
+        lv_transmission_name = "Adjutant";
+    }
+    else if (autoC70C99BC_val == "RaynorCommanderPortrait") {
+        lv_transmission_name = "Raynor";
+    }
+    else if (autoC70C99BC_val == "RaynorMarinePortrait") {
+        lv_transmission_name = "Raynor";
+    }
+    else if (autoC70C99BC_val == "HornerPortrait") {
+        lv_transmission_name = "Horner";
+    }
+    else if (autoC70C99BC_val == "TychusPortrait") {
+        lv_transmission_name = "Tychus";
+    }
+    else if (autoC70C99BC_val == "SwannPortrait") {
+        lv_transmission_name = "Swann";
+    }
+    else if (autoC70C99BC_val == "SwannMarauderPortrait") {
+        lv_transmission_name = "Swann";
+    }
+    else if (autoC70C99BC_val == "StetmannPortrait") {
+        lv_transmission_name = "Stetmann";
+    }
+    else if (autoC70C99BC_val == "StetmannMedicPortrait") {
+        lv_transmission_name = "Stetmann";
+    }
+    else if (autoC70C99BC_val == "HansonPortrait") {
+        lv_transmission_name = "Hanson";
+    }
+    else if (autoC70C99BC_val == "ToshPortrait") {
+        lv_transmission_name = "Tosh";
+    }
+    else if (autoC70C99BC_val == "WarfieldPortrait") {
+        lv_transmission_name = "Warfield";
+    }
+    else if (autoC70C99BC_val == "KerriganPortrait") {
+        lv_transmission_name = "Kerrigan";
+    }
+    else if (autoC70C99BC_val == "SarahPortrait") {
+        lv_transmission_name = "Sarah";
+    }
+    else if (autoC70C99BC_val == "MengskHologramPortrait") {
+        lv_transmission_name = "Arcturus";
+    }
+    else if (autoC70C99BC_val == "ArcturusPortrait") {
+        lv_transmission_name = "Arcturus";
+    }
+    else if (autoC70C99BC_val == "HanPortrait") {
+        lv_transmission_name = "Han";
+    }
+    else if (autoC70C99BC_val == "OrlanPortrait") {
+        lv_transmission_name = "Orlan";
+    }
+    else if (autoC70C99BC_val == "NovaPortrait") {
+        lv_transmission_name = "Nova";
+    }
+    else if (autoC70C99BC_val == "NarudPortrait") {
+        lv_transmission_name = "Narud";
+    }
+    else if (autoC70C99BC_val == "ValerianPortrait") {
+        lv_transmission_name = "Valerian";
+    }
+    else if (autoC70C99BC_val == "ZeratulPortrait") {
+        lv_transmission_name = "Zeratul";
+    }
+    else if (autoC70C99BC_val == "TalDarimExecutorPortrait") {
+        lv_transmission_name = "Tal'darim Executor";
+    }
+    else if (autoC70C99BC_val == "ExecutorPortrait") {
+        lv_transmission_name = "Executor";
+    }
+    else if (autoC70C99BC_val == "HybridProtossPortrait") {
+        lv_transmission_name = "Hybrid Protoss";
+    }
+    else if (autoC70C99BC_val == "KarassPortrait") {
+        lv_transmission_name = "Karass";
+    }
+    else if (autoC70C99BC_val == "TassadarPortrait") {
+        lv_transmission_name = "Tassadar";
+    }
+    else if (autoC70C99BC_val == "MohandarPortrait") {
+        lv_transmission_name = "Mohandar";
+    }
+    else if (autoC70C99BC_val == "UrunPortrait") {
+        lv_transmission_name = "Urun";
+    }
+    else if (autoC70C99BC_val == "SelendisPortrait") {
+        lv_transmission_name = "Selendis";
+    }
+    else if (autoC70C99BC_val == "ArtanisPortrait") {
+        lv_transmission_name = "Artanis";
+    }
+    else if (autoC70C99BC_val == "DarkVoicePortrait") {
+        lv_transmission_name = "Dark Voice";
+    }
+    else if (autoC70C99BC_val == "MaleCivilian1Portrait") {
+        lv_transmission_name = "Civilian";
+    }
+    else if (autoC70C99BC_val == "MaleCivilian2Portrait") {
+        lv_transmission_name = "Civilian";
+    }
+    else if (autoC70C99BC_val == "MaleCivilian3Portrait") {
+        lv_transmission_name = "Civilian";
+    }
+    else if (autoC70C99BC_val == "MaleCivilian4Portrait") {
+        lv_transmission_name = "Civilian";
+    }
+    else if (autoC70C99BC_val == "MaleCivilian5Portrait") {
+        lv_transmission_name = "Civilian";
+    }
+    else if (autoC70C99BC_val == "MaleCivilian6Portrait") {
+        lv_transmission_name = "Civilian";
+    }
+    else if (autoC70C99BC_val == "MaleCivilian7Portrait") {
+        lv_transmission_name = "Civilian";
+    }
+    else if (autoC70C99BC_val == "MaleCivilian8Portrait") {
+        lv_transmission_name = "Civilian";
+    }
+    else if (autoC70C99BC_val == "MaleCivilian9Portrait") {
+        lv_transmission_name = "Civilian";
+    }
+    else if (autoC70C99BC_val == "MaleCivilian10Portrait") {
+        lv_transmission_name = "Civilian";
+    }
+    else if (autoC70C99BC_val == "MaleCivilian11Portrait") {
+        lv_transmission_name = "Civilian";
+    }
+    else if (autoC70C99BC_val == "FemaleCivilian1Portrait") {
+        lv_transmission_name = "Civilian";
+    }
+    else if (autoC70C99BC_val == "FemaleCivilian2Portrait") {
+        lv_transmission_name = "Civilian";
+    }
+    else if (autoC70C99BC_val == "FemaleCivilian3Portrait") {
+        lv_transmission_name = "Civilian";
+    }
+    else if (autoC70C99BC_val == "FemaleCivilian4Portrait") {
+        lv_transmission_name = "Civilian";
+    }
+    else if (autoC70C99BC_val == "FemaleCivilian5Portrait") {
+        lv_transmission_name = "Civilian";
+    }
+    else if (autoC70C99BC_val == "InfestedColonistPortrait") {
+        lv_transmission_name = "Infested Refugee";
+    }
+    else if (autoC70C99BC_val == "InfestorTerranPortrait") {
+        lv_transmission_name = "Infested Marine";
+    }
+    else if (autoC70C99BC_val == "Scientist1Portrait") {
+        lv_transmission_name = "Scientist";
+    }
+    else if (autoC70C99BC_val == "Scientist2Portrait") {
+        lv_transmission_name = "Scientist";
+    }
+    else if (autoC70C99BC_val == "DominionMarine1Portrait") {
+        lv_transmission_name = "Dominion Marine";
+    }
+    else if (autoC70C99BC_val == "DominionMarine2Portrait") {
+        lv_transmission_name = "Dominion Marine";
+    }
+    else if (autoC70C99BC_val == "DominionMarine3Portrait") {
+        lv_transmission_name = "Dominion Marine";
+    }
+    else if (autoC70C99BC_val == "DominionMarine5Portrait") {
+        lv_transmission_name = "Dominion Marine";
+    }
+    else if (autoC70C99BC_val == "DominionMarine7Portrait") {
+        auto84D04AD9_val = libEFA54406_gv_current_map_string;
+        if (auto84D04AD9_val == "thorner05s") {
+            lv_transmission_name = "Dominion Officer";
+        }
+        else {
+            lv_transmission_name = "Dominion Marine";
+        }
+    }
+    else if (autoC70C99BC_val == "DominionMarine8Portrait") {
+        lv_transmission_name = "Dominion Marine";
+    }
+    else if (autoC70C99BC_val == "DominionMarine9Portrait") {
+        lv_transmission_name = "Dominion Marine";
+    }
+    else if (autoC70C99BC_val == "DominionMarauderPortrait") {
+        lv_transmission_name = "Dominion Marauder";
+    }
+    else if (autoC70C99BC_val == "DominionOfficer1Portrait") {
+        lv_transmission_name = "Dominion Officer";
+    }
+    else if (autoC70C99BC_val == "SCVPortrait") {
+        lv_transmission_name = "SCV";
+    }
+    else if (autoC70C99BC_val == "Marine1Portrait") {
+        lv_transmission_name = "Marine";
+    }
+    else if (autoC70C99BC_val == "Marine5Portrait") {
+        lv_transmission_name = "Marine";
+    }
+    else if (autoC70C99BC_val == "Marine7Portrait") {
+        autoA2D830B5_val = libEFA54406_gv_current_map_string;
+        if (autoA2D830B5_val == "traynor02") {
+            lv_transmission_name = "Rebel";
+        }
+        else {
+            lv_transmission_name = "Marine";
+        }
+    }
+    else if (autoC70C99BC_val == "Marine8Portrait") {
+        lv_transmission_name = "Marine";
+    }
+    else if (autoC70C99BC_val == "Marine9Portrait") {
+        lv_transmission_name = "Marine";
+    }
+    else if (autoC70C99BC_val == "MarinePortrait") {
+        lv_transmission_name = "Marine";
+    }
+    else if (autoC70C99BC_val == "MarineMercenaryPortrait") {
+        autoD79EC314_val = lp_transmission;
+        if (autoD79EC314_val == SoundLink("TTychus03MoebiusMarine00021", 0)) {
+            lv_transmission_name = "Moebius Marine";
+        }
+        else if (autoD79EC314_val == SoundLink("TTychus03MoebiusMarine00022", 0)) {
+            lv_transmission_name = "Moebius Marine";
+        }
+        else if (autoD79EC314_val == SoundLink("TTychus03MoebiusMarine00024", 0)) {
+            lv_transmission_name = "Moebius Marine";
+        }
+        else if (autoD79EC314_val == SoundLink("TTychus03MoebiusMarine00030", 0)) {
+            lv_transmission_name = "Moebius Marine";
+        }
+        else {
+            lv_transmission_name = "Marine";
+        }
+    }
+    else if (autoC70C99BC_val == "FirebatPortrait") {
+        lv_transmission_name = "Firebat";
+    }
+    else if (autoC70C99BC_val == "MarauderPortrait") {
+        lv_transmission_name = "Marauder";
+    }
+    else if (autoC70C99BC_val == "MarauderMercenaryPortrait") {
+        lv_transmission_name = "Moebius Marauder";
+    }
+    else if (autoC70C99BC_val == "ReaperPortrait") {
+        lv_transmission_name = "Reaper";
+    }
+    else if (autoC70C99BC_val == "GoliathMercenaryPortrait222") {
+        lv_transmission_name = "Goliath";
+    }
+    else if (autoC70C99BC_val == "GoliathMercenaryPortrait") {
+        lv_transmission_name = "Goliath";
+    }
+    else if (autoC70C99BC_val == "GoliathMercenaryPortrait22") {
+        lv_transmission_name = "Goliath";
+    }
+    else if (autoC70C99BC_val == "GoliathMercenaryPortrait2") {
+        lv_transmission_name = "Goliath";
+    }
+    else if (autoC70C99BC_val == "SiegeTankPortrait") {
+        lv_transmission_name = "Siege Tank";
+    }
+    else if (autoC70C99BC_val == "MedivacPortrait") {
+        lv_transmission_name = "Medivac";
+    }
+    else if (autoC70C99BC_val == "BansheePortrait") {
+        lv_transmission_name = "Banshee";
+    }
+    else if (autoC70C99BC_val == "BattlecruiserPortrait") {
+        lv_transmission_name = "Battlecruiser";
+    }
+    else if (autoC70C99BC_val == "Preserver1Portrait") {
+        lv_transmission_name = "Preserver";
+    }
+    else if (autoC70C99BC_val == "Preserver2Portrait") {
+        lv_transmission_name = "Preserver";
+    }
+    else if (autoC70C99BC_val == "Preserver3Portrait") {
+        lv_transmission_name = "Preserver";
+    }
+    else if (autoC70C99BC_val == "StalkerPortrait") {
+        lv_transmission_name = "Stalker";
+    }
+    else if (autoC70C99BC_val == "DarkTemplarPortrait") {
+        lv_transmission_name = "Dark Templar";
+    }
+    else if (autoC70C99BC_val == "HighTemplarPortrait") {
+        lv_transmission_name = "High Templar";
+    }
+    else if (autoC70C99BC_val == "ImmortalPortrait") {
+        lv_transmission_name = "Immortal";
+    }
+    else {
+        lv_transmission_name = "Nobody";
+    }
+    libEFA54406_gf_create_context("transmission_text", (lv_transmission_name + ": " + lv_transmission_string), true);
+    return true;
+}
+
+trigger auto_libEFA54406_gf_TransmissionContextString_Trigger = null;
+string auto_libEFA54406_gf_TransmissionContextString_lp_transmission;
+
+void libEFA54406_gf_TransmissionContextString (string lp_transmission) {
+    auto_libEFA54406_gf_TransmissionContextString_lp_transmission = lp_transmission;
+
+    if (auto_libEFA54406_gf_TransmissionContextString_Trigger == null) {
+        auto_libEFA54406_gf_TransmissionContextString_Trigger = TriggerCreate("auto_libEFA54406_gf_TransmissionContextString_TriggerFunc");
+    }
+
+    TriggerExecute(auto_libEFA54406_gf_TransmissionContextString_Trigger, false, false);
+}
+
+bool auto_libEFA54406_gf_TransmissionContextString_TriggerFunc (bool testConds, bool runActions) {
+    string lp_transmission = auto_libEFA54406_gf_TransmissionContextString_lp_transmission;
+
+    // Automatic Variable Declarations
+    // Implementation
+    libEFA54406_gf_create_context("transmission_text", lp_transmission, true);
+    return true;
+}
+
 trigger auto_libEFA54406_gf_PlayerUnitsContext_Trigger = null;
 string auto_libEFA54406_gf_PlayerUnitsContext_lp_requested_units;
 
