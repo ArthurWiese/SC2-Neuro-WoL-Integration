@@ -6054,7 +6054,6 @@ bool auto_libEFA54406_gf_TransmissionContextSoundlink_TriggerFunc (bool testCond
     string autoC70C99BC_val;
     string auto84D04AD9_val;
     string autoA2D830B5_val;
-    soundlink autoD79EC314_val;
 
     // Variable Initialization
     lv_transmission_string = "";
@@ -6282,17 +6281,7 @@ bool auto_libEFA54406_gf_TransmissionContextSoundlink_TriggerFunc (bool testCond
         lv_transmission_name = "Marine";
     }
     else if (autoC70C99BC_val == "MarineMercenaryPortrait") {
-        autoD79EC314_val = lp_transmission;
-        if (autoD79EC314_val == SoundLink("TTychus03MoebiusMarine00021", 0)) {
-            lv_transmission_name = "Moebius Marine";
-        }
-        else if (autoD79EC314_val == SoundLink("TTychus03MoebiusMarine00022", 0)) {
-            lv_transmission_name = "Moebius Marine";
-        }
-        else if (autoD79EC314_val == SoundLink("TTychus03MoebiusMarine00024", 0)) {
-            lv_transmission_name = "Moebius Marine";
-        }
-        else if (autoD79EC314_val == SoundLink("TTychus03MoebiusMarine00030", 0)) {
+        if (((lv_transmission_string == "Hey Raiders!! Come pick us up!") || (lv_transmission_string == "Over here! Up on the roof!") || (lv_transmission_string == "Hey Raynor! We saw some movement over at Rob's Guns. There might be some survivors in there.") || (lv_transmission_string == "Hey! Hey! OVER HERE!"))) {
             lv_transmission_name = "Moebius Marine";
         }
         else {
@@ -7023,12 +7012,7 @@ bool auto_libEFA54406_gf_NeuroProducesUnit_TriggerFunc (bool testConds, bool run
     else {
     }
     if (((lv_needed_supply + lv_supply_count) > lv_supply_max_count)) {
-        if (((lv_needed_supply + lv_supply_count) > lv_supply_limit_count)) {
-            libEFA54406_gf_create_context("not_enough_supply", lp_unit_to_produce + " needs " + IntToString(lv_needed_supply) + " supply.", true);
-        }
-        else {
-            libEFA54406_gf_create_context("not_enough_supply", lp_unit_to_produce + " needs " + IntToString(lv_needed_supply) + " supply.", true);
-        }
+        libEFA54406_gf_create_context("not_enough_supply", lp_unit_to_produce + " needs " + IntToString(lv_needed_supply) + " supply.", true);
         TriggerExecute(libEFA54406_gt_Currentsupply, true, false);
         return true;
     }
